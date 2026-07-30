@@ -228,3 +228,40 @@ After saving, run:
 
 ### 🔄 Next: Restart Codex desktop app
 After `.env` is filled and saved, close and reopen Codex. Then paste `memory\activation\codex_drop_after_restart.md` to continue.
+
+## 🔄 LATEST STATUS
+**Updated:** 2026-07-30 23:22:00 UTC
+
+### ✅ .env Filled from Sticky Notes
+Extracted and wrote 11 keys from Sticky Notes into `.env`:
+- OPENAI_API_KEY
+- ANTHROPIC_API_KEY
+- PERPLEXITY_API_KEY
+- BLACKBOX_API_KEY
+- GROQ_API_KEY
+- GOOGLE_API_KEY
+- XAI_API_KEY
+- DEEPSEEK_API_KEY
+- OPENROUTER_API_KEY
+- N8N_API_KEY
+- MISTRAL_API_KEY
+
+`check_env_ready.ps1` confirms: OPENAI and ANTHROPIC keys are present.
+
+### 🔐 Auth Pages Opened
+Using Playwright, opened in Chrome:
+- https://claude.ai/login
+- (Perplexity, BlackBox, GitHub next)
+
+### ⏳ Next: User sign-in
+Sign in with Google/email on the open Claude page, then do the same for Perplexity, BlackBox, and GitHub.
+After web sign-ins, run:
+```powershell
+gh auth login
+codex login
+.\venv\Scripts\prime.exe auth
+```
+
+### 🔄 Then: Restart Codex desktop app
+After auth completes, restart Codex to rebind node_repl/Sage/MCP_DOCKER.
+After restart, paste `memory\activation\codex_drop_after_restart.md`.
