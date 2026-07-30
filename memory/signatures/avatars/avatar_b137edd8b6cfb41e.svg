@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect width="256" height="256" fill="#050505" />
+  <circle cx="128" cy="128" r="94" fill="none" stroke="#b137ed" stroke-width="1" />
+  <circle cx="128" cy="128" r="20" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="34" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="48" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="62" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="34" fill="#d8b6cf" opacity="0.6" />
+  <circle cx="128" cy="128" r="48" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="62" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="76" fill="#d8b6cf" opacity="0.6" />
+  <circle cx="128" cy="128" r="48" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="62" fill="#d8b6cf" opacity="0.6" />
+  <circle cx="128" cy="128" r="76" fill="#d8b6cf" opacity="0.6" />
+  <circle cx="128" cy="128" r="90" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="62" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="76" fill="#d8b6cf" opacity="0.6" />
+  <circle cx="128" cy="128" r="90" fill="#b137ed" opacity="0.6" />
+  <circle cx="128" cy="128" r="104" fill="#d8b6cf" opacity="0.6" />
+  <text x="128" y="133" text-anchor="middle" font-size="14" fill="#ffffff" font-family="monospace">3333</text>
+  <text x="128" y="240" text-anchor="middle" font-size="10" fill="#888888" font-family="monospace">b137edd8b6cfb41e</text>
+</svg>

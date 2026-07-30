@@ -1,8 +1,8 @@
 {
-  "based_on_signature": "46c7647172c0469b551af3961826f4dc",
+  "based_on_signature": "62f89c06972b0ce7522f17a71145a81f",
   "next_action": "defeat Saboteur of Incompletion: admin install + Codex restart + .env keys",
   "eta_gate_clear": "within 10 minutes of user action",
   "trajectory": "mastery/build phase; optimal for heavy construction",
-  "recommended_mode": "eco",
+  "recommended_mode": "balance",
   "synthetic_confidence": 0.7
 }

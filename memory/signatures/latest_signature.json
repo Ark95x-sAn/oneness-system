@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-07-30T11:00:29.972789+00:00",
-  "hash": "46c7647172c0469b551af3961826f4dc",
-  "glyph": "\u25ce\u25ce\u25ce\u25c9\n  \u25ce\u25ce\u25c9\u25c9\n  \u25c9\u25ce\u25ce\u25ce\n  \u25ce\u25ce\u25c9\u25c9",
+  "timestamp": "2026-07-30T22:53:18.016259+00:00",
+  "hash": "b137edd8b6cfb41eef33f58c29f11a96",
+  "glyph": "\u25c9\u25c9\u25c9\u25c9\n  \u25ce\u25c9\u25c9\u25ce\n  \u25c9\u25ce\u25ce\u25c9\n  \u25c9\u25ce\u25c9\u25ce",
   "frequency": {
     "band": 3333,
     "label": "Mastery/Build",
@@ -14,8 +14,8 @@
   },
   "aura": {
     "is_gaming": false,
-    "cpu_percent": 46.9,
-    "recommended_mode": "eco"
+    "cpu_percent": 25.3,
+    "recommended_mode": "balance"
   },
   "risk": {
     "kill_switch_active": false,
@@ -27,14 +27,14 @@
     "max_order_usd": 50,
     "max_exposure_usd": 200,
     "demo_mode": true,
-    "last_updated": "2026-07-29T10:18:23.524272+00:00"
+    "last_updated": "2026-07-30T22:53:10.526157+00:00"
   },
   "projects": {
     "narrative.md": "e46f3a43739408d5fea9a61b5a8e1d71",
-    "lite_signals.json": "6e144d4795dd56814574f5502225fb1f",
+    "lite_signals.json": "ef3d5feaede90a5d46bc10c29ec4b8a3",
     "net95x.html": "bf6e5bfa8d9233bf27a557200c6b9820"
   },
   "recent_events": 20,
-  "entropy": 1.2156,
+  "entropy": 1.2152,
   "version": "2045.1.0"
 }
