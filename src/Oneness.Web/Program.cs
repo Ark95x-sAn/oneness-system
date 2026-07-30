@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Hosting.WindowsServices;
 using System.Text.Json;
 using Oneness.Web.Models;
 using Oneness.Web.Services;
@@ -12,6 +13,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+builder.Host.UseWindowsService();
 
 var config = builder.Configuration;
 var systemRoot = config.GetValue<string>("Oneness:SystemRoot")

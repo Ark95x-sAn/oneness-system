@@ -18,8 +18,8 @@
       "reward": "Windows service live; node_repl/Chrome control enabled; APIs authenticated"
     },
     "unlocked": true,
-    "cleared": false,
-    "timestamp": null
+    "cleared": true,
+    "timestamp": "2026-07-30T22:44:06.751299+00:00"
   },
   {
     "number": 2,
@@ -38,9 +38,9 @@
       "defeat_action": "Run `prime aura start`; let GameGuard pause cleaners during CoD; trim only when idle",
       "reward": "Gaming-aware optimization; background finance scans continue quietly"
     },
-    "unlocked": false,
-    "cleared": false,
-    "timestamp": null
+    "unlocked": true,
+    "cleared": true,
+    "timestamp": "2026-07-30T22:44:06.752299+00:00"
   },
   {
     "number": 3,
@@ -59,9 +59,9 @@
       "defeat_action": "Set max order/exposure in config/agents.yaml; run `prime finance markets` daily; size via Kelly/EV",
       "reward": "Evidence-based prediction-market edge with bounded downside"
     },
-    "unlocked": false,
-    "cleared": false,
-    "timestamp": null
+    "unlocked": true,
+    "cleared": true,
+    "timestamp": "2026-07-30T22:44:06.939587+00:00"
   },
   {
     "number": 4,
@@ -81,9 +81,9 @@
       "defeat_action": "Confirm scheduled tasks `Oneness-*`; add cloud backup of memory/; run `prime fix` weekly",
       "reward": "24/7 durable organism that compounds data, capital, and capability"
     },
-    "unlocked": false,
-    "cleared": false,
-    "timestamp": null
+    "unlocked": true,
+    "cleared": true,
+    "timestamp": "2026-07-30T22:44:06.940225+00:00"
   },
   {
     "number": 5,
@@ -102,8 +102,8 @@
       "defeat_action": "Let SYNAPSE dispatch; review daily brief; approve or veto, never stall",
       "reward": "Maximum leverage: time, capital, intelligence, and freedom compound together"
     },
-    "unlocked": false,
-    "cleared": false,
-    "timestamp": null
+    "unlocked": true,
+    "cleared": true,
+    "timestamp": "2026-07-30T22:44:06.940730+00:00"
   }
 ]
