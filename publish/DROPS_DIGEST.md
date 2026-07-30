@@ -1291,4 +1291,127 @@ Tool integration targets: ChatGPT, Claw (OpenClaw), Gemini, Brock (Claude/BlackB
 
 ---
 
+# LAYER 7 - TELEMETRY TO FREQUENCY LEVERAGE + 4 QUADS EXECUTED
+
+> Updated: 2026-07-29T09:15:13.127457+00:00
+
+## How Telemetry Becomes Leverage
+
+The system reads invisible oscillations:
+- CPU load, memory pressure, disk fragmentation
+- Mouse/keyboard idle time, active window, gaming state
+- Agent heartbeats, API key state, GitHub auth
+- Network-95 intelligence, document entropy, recent events
+
+Each signal is mapped to a frequency band:
+- 1111Hz Foundation = root health
+- 2222Hz Harmony = human-machine sync
+- 3333Hz Mastery = build intensity
+- 852Hz System AI = agent grid resonance
+- 963Hz Ascension = automatic recorders / versioning
+- 999Hz Compounding = closed-loop data → insight → action
+
+The formula: leverage = value_potential / compute_cost
+The highest-leverage band becomes the next compute pass.
+
+## Latest Scan Results
+
+- Dominant band shifted from 852Hz to **3333Hz Mastery**
+- This means the machine is ready for heavy construction
+- Build intensity triggered the band shift
+
+## The 4 Quads — Executed
+
+| Quad | Action | Result | Artifact |
+|---|---|---|---|
+| Q1 | Publish content bundle | Generated | publish/README.md, publish/DROPS_DIGEST.md, publish/BLOG_POST.md |
+| Q2 | Start Qdrant + index docs | Fallback TF-IDF indexer active | memory/qdrant_fallback/index.json (21 docs indexed) |
+| Q3 | Defeat Gate 1 boss | Service installed as admin; start pending user/restart | memory/logs/gate1_check.json |
+| Q4 | Build paper-trading bot | Scaffolded and smoke-tested | src/polymarket/paper_bot.py, memory/polymarket/paper_trades.json |
+
+## Next Pass
+
+3333Hz is dominant. The highest compute pass is to **ship code**: push GitHub trunk, harden the bot, integrate Qdrant, and write tests. Harmony rules still apply — pause if gaming begins.
+
+## Shell Commands
+
+`powershell
+codex-amara           # Full master drop
+codex-leverage        # End-game leverage analysis
+codex-status          # 852 + boss + sabotage + aura
+.\scriptsun_all_quads.ps1  # Re-run all four quads
+`
+
+---
+*End Layer 7.*
+
+
+---
+
+# LAYER 8 - PC ADMIN #2, MAX ORCHESTRATION, PASSIVE AI WEALTH GENERATION
+
+> Updated: 2026-07-29T09:30:00+00:00
+
+## What Is Now Automated
+
+The system runs a **daily passive orchestration** and a **weekly full-quad run** via Windows Scheduled Tasks.
+
+### Daily (06:00 local time) - Oneness-Daily
+- PC admin optimization pass
+- Aura subagent start
+- 852 resonance pulse + signature generation
+- Network-95 intelligence cycle
+- Memory/retrieval index refresh
+- Paper-trading bot evaluation (DEMO ONLY)
+
+### Weekly (Sunday 12:00) - Oneness-Weekly
+- Content bundle refresh
+- All 4 quads background run
+- Property operations re-score
+
+### At Logon - Oneness-AuraAtLogon
+- Starts all aura subagents
+
+## Wealth Engines
+
+1. Net95x property ops -  annual run-rate protected
+2. Polymarket paper bot - demo-mode Kelly/EV edge engine
+3. Content/audience engine - weekly bundle generation
+4. Network-95 intelligence - daily tool/threat scout
+5. AI services pipeline - Oneness.Web dashboard + Amara bridge
+
+## Approval Boundary
+
+Auto-approved: read-only, demo-mode, local, non-destructive.
+Requires user: spending money, live orders, public publish, remediation scripts, external sharing, legal/financial actions.
+
+---
+*End Layer 8.*
+
+
+---
+
+# LAYER 9 - RUN MORE: DEEPER AUTOMATION, RICHER SIGNALS, TIGHTER LOOPS
+
+> Updated: 2026-07-29T09:32:00+00:00
+
+## What Run More Achieved
+
+- Resonance pulsed to 852 x 18.
+- Network-95 cycle ran: 49 findings, 3 remediations generated (not auto-executed).
+- Document index expanded from 21 to 26 docs (scripts, src, publish included).
+- Paper-trading bot gained a backtest function.
+- GitHub commit manifest created for first trunk push.
+- Richer telemetry snapshot capturing CPU/process signals.
+
+## New Artifacts
+
+- memory/analysis/run_more_snapshot.json`n- memory/analysis/github_commit_manifest.json`n- memory/analysis/run_more_report.md`n- src/polymarket/paper_bot.py (with backtest)
+- Updated memory/qdrant_fallback/index.json`n
+---
+*End Layer 9.*
+
+
+---
+
 
