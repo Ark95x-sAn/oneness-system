@@ -1,0 +1,61 @@
+2026-07-30 17:39:53.394 -05:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-07-30 17:39:53.431 -05:00 [DBG] Initializing Razor view compiler with compiled view: '/Pages/Index.cshtml'.
+2026-07-30 17:39:53.440 -05:00 [INF] User profile is available. Using 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-30 17:39:53.469 -05:00 [DBG] Hosting starting
+2026-07-30 17:39:53.477 -05:00 [DBG] Reading data from file 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys\key-a05a8dc2-9a35-47b8-9d94-c936cb910034.xml'.
+2026-07-30 17:39:53.494 -05:00 [DBG] Found key {a05a8dc2-9a35-47b8-9d94-c936cb910034}.
+2026-07-30 17:39:53.500 -05:00 [DBG] Considering key {a05a8dc2-9a35-47b8-9d94-c936cb910034} with expiration date 2026-08-04 04:58:08Z as default key.
+2026-07-30 17:39:53.501 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-30 17:39:53.502 -05:00 [DBG] Decrypting secret element using Windows DPAPI.
+2026-07-30 17:39:53.502 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-30 17:39:53.504 -05:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2026-07-30 17:39:53.505 -05:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2026-07-30 17:39:53.505 -05:00 [DBG] Using key {a05a8dc2-9a35-47b8-9d94-c936cb910034} as the default key.
+2026-07-30 17:39:53.505 -05:00 [DBG] Key ring with default key {a05a8dc2-9a35-47b8-9d94-c936cb910034} was loaded during application startup.
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:39:53.507 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:39:53.514 -05:00 [WRN] The WebRootPath was not found: C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\wwwroot. Static files may be unavailable.
+2026-07-30 17:39:53.574 -05:00 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2026-07-30 17:39:53.575 -05:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-07-30 17:39:53.596 -05:00 [DBG] No listening endpoints were configured. Binding to http://localhost:5000 by default.
+2026-07-30 17:39:53.596 -05:00 [INF] Now listening on: http://localhost:5000
+2026-07-30 17:39:53.599 -05:00 [DBG] Loaded hosting startup assembly Oneness.Web
+2026-07-30 17:39:53.599 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-30 17:39:53.599 -05:00 [INF] Hosting environment: Production
+2026-07-30 17:39:53.599 -05:00 [INF] Content root path: C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem
+2026-07-30 17:39:53.599 -05:00 [DBG] Hosting started
+2026-07-30 17:40:08.954 -05:00 [INF] PC health: C: 77.7% used, 7 recent errors
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:40:53.508 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:41:53.508 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:42:53.529 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:42:53.530 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:42:53.531 -05:00 [DBG] Heartbeat RISKWARDEN

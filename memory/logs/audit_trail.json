@@ -373,5 +373,35 @@
       "score": 54.6,
       "decision": "SUPPRESS"
     }
+  },
+  {
+    "timestamp": "2026-07-30T22:45:27.814261+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-30T22:51:10.359876+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
   }
 ]

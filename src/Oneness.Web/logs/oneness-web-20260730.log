@@ -30358,3 +30358,434 @@ System.Security.SecurityException: Requested registry access is not allowed.
 2026-07-30 17:38:17.250 -05:00 [DBG] Connection id "0HNNDAAP79OQU" received FIN.
 2026-07-30 17:38:17.250 -05:00 [DBG] Connection id "0HNNDAAP79OQU" sending FIN because: "The Socket transport's send loop completed gracefully."
 2026-07-30 17:38:17.250 -05:00 [DBG] Connection id "0HNNDAAP79OQU" disconnecting.
+2026-07-30 17:38:24.292 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:38:24.293 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:38:24.292 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:38:25.266 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:38:25.266 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:38:25.266 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:38:25.460 -05:00 [DBG] No information found on request to perform content negotiation.
+2026-07-30 17:38:25.460 -05:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2026-07-30 17:38:25.460 -05:00 [DBG] No information found on request to perform content negotiation.
+2026-07-30 17:38:25.460 -05:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2026-07-30 17:38:25.460 -05:00 [DBG] No information found on request to perform content negotiation.
+2026-07-30 17:38:25.460 -05:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2026-07-30 17:38:25.541 -05:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2026-07-30 17:38:25.541 -05:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2026-07-30 17:38:25.541 -05:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2026-07-30 17:38:25.748 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:38:25.748 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:38:25.748 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:38:25.865 -05:00 [INF] Executing OkObjectResult, writing value of type 'Oneness.Web.Models.HealthSnapshot'.
+2026-07-30 17:38:25.865 -05:00 [INF] Executing OkObjectResult, writing value of type 'Oneness.Web.Models.HealthSnapshot'.
+2026-07-30 17:38:25.865 -05:00 [INF] Executing OkObjectResult, writing value of type 'Oneness.Web.Models.HealthSnapshot'.
+2026-07-30 17:38:26.974 -05:00 [INF] Executed action Oneness.Web.Controllers.HealthController.Get (Oneness.Web) in 11699.7443ms
+2026-07-30 17:38:26.974 -05:00 [INF] Executed action Oneness.Web.Controllers.HealthController.Get (Oneness.Web) in 11699.7404ms
+2026-07-30 17:38:26.974 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:38:26.974 -05:00 [INF] Executed action Oneness.Web.Controllers.HealthController.Get (Oneness.Web) in 11699.7308ms
+2026-07-30 17:38:26.974 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:38:26.974 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:38:26.974 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 499 null application/json; charset=utf-8 13667.8536ms
+2026-07-30 17:38:26.974 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 499 null application/json; charset=utf-8 11717.3178ms
+2026-07-30 17:38:26.974 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 499 null application/json; charset=utf-8 12755.229ms
+2026-07-30 17:38:26.985 -05:00 [DBG] Connection id "0HNNDAAP79OQS" stopped.
+2026-07-30 17:38:26.985 -05:00 [DBG] Connection id "0HNNDAAP79OQT" stopped.
+2026-07-30 17:38:26.985 -05:00 [DBG] Connection id "0HNNDAAP79OQU" stopped.
+2026-07-30 17:38:52.670 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:38:52.670 -05:00 [INF] PC health: C: 77.7% used, 0 recent errors
+2026-07-30 17:39:05.911 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:39:05.919 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:39:36.806 -05:00 [DBG] Connection id "0HNNDAAP79OQV" received FIN.
+2026-07-30 17:39:36.813 -05:00 [DBG] Connection id "0HNNDAAP79OQV" accepted.
+2026-07-30 17:39:36.815 -05:00 [DBG] Connection id "0HNNDAAP79OQV" started.
+2026-07-30 17:39:36.821 -05:00 [DBG] Connection id "0HNNDAAP79OQV" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:39:36.824 -05:00 [DBG] Connection id "0HNNDAAP79OQV" disconnecting.
+2026-07-30 17:39:36.825 -05:00 [DBG] Connection id "0HNNDAAP79OQV" stopped.
+2026-07-30 17:40:05.922 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:40:05.923 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:40:50.177 -05:00 [DBG] Connection id "0HNNDAAP79OR0" accepted.
+2026-07-30 17:40:50.178 -05:00 [DBG] Connection id "0HNNDAAP79OR0" started.
+2026-07-30 17:40:50.182 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/health - application/json null
+2026-07-30 17:40:50.184 -05:00 [DBG] The request path  does not match the path filter
+2026-07-30 17:40:50.184 -05:00 [DBG] The request path /api/health does not match a supported file type
+2026-07-30 17:40:50.185 -05:00 [DBG] 1 candidate(s) found for the request path '/api/health'
+2026-07-30 17:40:50.185 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)' with route pattern 'api/Health' is valid for the request path '/api/health'
+2026-07-30 17:40:50.185 -05:00 [DBG] Request matched endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:50.185 -05:00 [INF] Executing endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:50.187 -05:00 [INF] Route matched with {action = "Get", controller = "Health", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Oneness.Web.Controllers.HealthController (Oneness.Web).
+2026-07-30 17:40:50.187 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-07-30 17:40:50.187 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-30 17:40:50.188 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-07-30 17:40:50.188 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-30 17:40:50.188 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-07-30 17:40:50.188 -05:00 [DBG] Executing controller factory for controller Oneness.Web.Controllers.HealthController (Oneness.Web)
+2026-07-30 17:40:50.188 -05:00 [DBG] Executed controller factory for controller Oneness.Web.Controllers.HealthController (Oneness.Web)
+2026-07-30 17:40:57.144 -05:00 [DBG] Connection id "0HNNDAAP79OR1" accepted.
+2026-07-30 17:40:57.145 -05:00 [DBG] Connection id "0HNNDAAP79OR1" started.
+2026-07-30 17:40:57.146 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/health - application/json null
+2026-07-30 17:40:57.146 -05:00 [DBG] The request path  does not match the path filter
+2026-07-30 17:40:57.146 -05:00 [DBG] The request path /api/health does not match a supported file type
+2026-07-30 17:40:57.147 -05:00 [DBG] 1 candidate(s) found for the request path '/api/health'
+2026-07-30 17:40:57.147 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)' with route pattern 'api/Health' is valid for the request path '/api/health'
+2026-07-30 17:40:57.147 -05:00 [DBG] Request matched endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:57.147 -05:00 [INF] Executing endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:57.147 -05:00 [INF] Route matched with {action = "Get", controller = "Health", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Oneness.Web.Controllers.HealthController (Oneness.Web).
+2026-07-30 17:40:57.147 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-07-30 17:40:57.147 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-30 17:40:57.147 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-07-30 17:40:57.147 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-30 17:40:57.147 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-07-30 17:40:57.147 -05:00 [DBG] Executing controller factory for controller Oneness.Web.Controllers.HealthController (Oneness.Web)
+2026-07-30 17:40:57.147 -05:00 [DBG] Executed controller factory for controller Oneness.Web.Controllers.HealthController (Oneness.Web)
+2026-07-30 17:40:52.949 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:40:57.631 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:40:57.632 -05:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2026-07-30 17:40:57.632 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:40:57.632 -05:00 [INF] Executing OkObjectResult, writing value of type 'Oneness.Web.Models.HealthSnapshot'.
+2026-07-30 17:40:57.642 -05:00 [INF] Executed action Oneness.Web.Controllers.HealthController.Get (Oneness.Web) in 7451.8619ms
+2026-07-30 17:40:57.642 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:57.643 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 200 null application/json; charset=utf-8 7461.8193ms
+2026-07-30 17:40:57.643 -05:00 [DBG] Connection id "0HNNDAAP79OR0" disconnecting.
+2026-07-30 17:40:57.643 -05:00 [DBG] Connection id "0HNNDAAP79OR0" stopped.
+2026-07-30 17:40:57.643 -05:00 [DBG] Connection id "0HNNDAAP79OR0" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:40:58.231 -05:00 [DBG] Connection id "0HNNDAAP79OR2" accepted.
+2026-07-30 17:40:58.235 -05:00 [DBG] Connection id "0HNNDAAP79OR2" started.
+2026-07-30 17:40:58.235 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/health - application/json null
+2026-07-30 17:40:58.236 -05:00 [DBG] The request path  does not match the path filter
+2026-07-30 17:40:58.236 -05:00 [DBG] The request path /api/health does not match a supported file type
+2026-07-30 17:40:58.236 -05:00 [DBG] 1 candidate(s) found for the request path '/api/health'
+2026-07-30 17:40:58.236 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)' with route pattern 'api/Health' is valid for the request path '/api/health'
+2026-07-30 17:40:58.236 -05:00 [DBG] Request matched endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:58.236 -05:00 [INF] Executing endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:40:58.236 -05:00 [INF] Route matched with {action = "Get", controller = "Health", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Oneness.Web.Controllers.HealthController (Oneness.Web).
+2026-07-30 17:40:58.236 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-07-30 17:40:58.236 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-30 17:40:58.236 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-07-30 17:40:58.236 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-30 17:40:58.236 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-07-30 17:40:58.236 -05:00 [DBG] Executing controller factory for controller Oneness.Web.Controllers.HealthController (Oneness.Web)
+2026-07-30 17:40:58.236 -05:00 [DBG] Executed controller factory for controller Oneness.Web.Controllers.HealthController (Oneness.Web)
+2026-07-30 17:41:00.033 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:41:00.033 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:41:00.033 -05:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2026-07-30 17:41:00.033 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:41:00.033 -05:00 [INF] Executing OkObjectResult, writing value of type 'Oneness.Web.Models.HealthSnapshot'.
+2026-07-30 17:41:00.034 -05:00 [INF] Executed action Oneness.Web.Controllers.HealthController.Get (Oneness.Web) in 2886.6015ms
+2026-07-30 17:41:00.034 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:41:00.034 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 200 null application/json; charset=utf-8 2888.3792ms
+2026-07-30 17:41:00.034 -05:00 [DBG] Connection id "0HNNDAAP79OR1" disconnecting.
+2026-07-30 17:41:00.034 -05:00 [DBG] Connection id "0HNNDAAP79OR1" stopped.
+2026-07-30 17:41:00.034 -05:00 [DBG] Connection id "0HNNDAAP79OR1" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:41:00.334 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-30 17:41:00.334 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:41:00.334 -05:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2026-07-30 17:41:00.334 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:41:00.334 -05:00 [INF] Executing OkObjectResult, writing value of type 'Oneness.Web.Models.HealthSnapshot'.
+2026-07-30 17:41:00.335 -05:00 [INF] Executed action Oneness.Web.Controllers.HealthController.Get (Oneness.Web) in 2098.6656ms
+2026-07-30 17:41:00.335 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)'
+2026-07-30 17:41:00.335 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 200 null application/json; charset=utf-8 2099.1505ms
+2026-07-30 17:41:00.335 -05:00 [DBG] Connection id "0HNNDAAP79OR2" disconnecting.
+2026-07-30 17:41:00.335 -05:00 [DBG] Connection id "0HNNDAAP79OR2" stopped.
+2026-07-30 17:41:00.335 -05:00 [DBG] Connection id "0HNNDAAP79OR2" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:41:00.336 -05:00 [DBG] Connection id "0HNNDAAP79OR3" accepted.
+2026-07-30 17:41:00.336 -05:00 [DBG] Connection id "0HNNDAAP79OR3" started.
+2026-07-30 17:41:00.346 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/agents - application/json null
+2026-07-30 17:41:00.346 -05:00 [DBG] The request path  does not match the path filter
+2026-07-30 17:41:00.346 -05:00 [DBG] The request path /api/agents does not match a supported file type
+2026-07-30 17:41:00.347 -05:00 [DBG] 1 candidate(s) found for the request path '/api/agents'
+2026-07-30 17:41:00.347 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.AgentsController.List (Oneness.Web)' with route pattern 'api/Agents' is valid for the request path '/api/agents'
+2026-07-30 17:41:00.347 -05:00 [DBG] Request matched endpoint 'Oneness.Web.Controllers.AgentsController.List (Oneness.Web)'
+2026-07-30 17:41:00.347 -05:00 [INF] Executing endpoint 'Oneness.Web.Controllers.AgentsController.List (Oneness.Web)'
+2026-07-30 17:41:00.347 -05:00 [INF] Route matched with {action = "List", controller = "Agents", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult List() on controller Oneness.Web.Controllers.AgentsController (Oneness.Web).
+2026-07-30 17:41:00.347 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-07-30 17:41:00.347 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-30 17:41:00.347 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-07-30 17:41:00.347 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-30 17:41:00.347 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-07-30 17:41:00.347 -05:00 [DBG] Executing controller factory for controller Oneness.Web.Controllers.AgentsController (Oneness.Web)
+2026-07-30 17:41:00.347 -05:00 [DBG] Executed controller factory for controller Oneness.Web.Controllers.AgentsController (Oneness.Web)
+2026-07-30 17:41:00.348 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:41:00.348 -05:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2026-07-30 17:41:00.348 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:41:00.348 -05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Oneness.Web.Models.AgentStatus, Oneness.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-30 17:41:00.350 -05:00 [INF] Executed action Oneness.Web.Controllers.AgentsController.List (Oneness.Web) in 2.546ms
+2026-07-30 17:41:00.350 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.AgentsController.List (Oneness.Web)'
+2026-07-30 17:41:00.350 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/agents - 200 null application/json; charset=utf-8 3.293ms
+2026-07-30 17:41:00.350 -05:00 [DBG] Connection id "0HNNDAAP79OR3" disconnecting.
+2026-07-30 17:41:00.350 -05:00 [DBG] Connection id "0HNNDAAP79OR3" stopped.
+2026-07-30 17:41:00.350 -05:00 [DBG] Connection id "0HNNDAAP79OR3" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:41:00.351 -05:00 [DBG] Connection id "0HNNDAAP79OR4" accepted.
+2026-07-30 17:41:00.351 -05:00 [DBG] Connection id "0HNNDAAP79OR4" started.
+2026-07-30 17:41:00.351 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/tools - application/json null
+2026-07-30 17:41:00.351 -05:00 [DBG] The request path  does not match the path filter
+2026-07-30 17:41:00.351 -05:00 [DBG] The request path /api/tools does not match a supported file type
+2026-07-30 17:41:00.351 -05:00 [DBG] 1 candidate(s) found for the request path '/api/tools'
+2026-07-30 17:41:00.352 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.ToolsController.List (Oneness.Web)' with route pattern 'api/Tools' is valid for the request path '/api/tools'
+2026-07-30 17:41:00.352 -05:00 [DBG] Request matched endpoint 'Oneness.Web.Controllers.ToolsController.List (Oneness.Web)'
+2026-07-30 17:41:00.352 -05:00 [INF] Executing endpoint 'Oneness.Web.Controllers.ToolsController.List (Oneness.Web)'
+2026-07-30 17:41:00.352 -05:00 [INF] Route matched with {action = "List", controller = "Tools", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult List() on controller Oneness.Web.Controllers.ToolsController (Oneness.Web).
+2026-07-30 17:41:00.352 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-07-30 17:41:00.352 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-30 17:41:00.352 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-07-30 17:41:00.352 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-30 17:41:00.352 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-07-30 17:41:00.352 -05:00 [DBG] Executing controller factory for controller Oneness.Web.Controllers.ToolsController (Oneness.Web)
+2026-07-30 17:41:00.352 -05:00 [DBG] Executed controller factory for controller Oneness.Web.Controllers.ToolsController (Oneness.Web)
+2026-07-30 17:41:00.356 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:41:00.356 -05:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2026-07-30 17:41:00.356 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:41:00.356 -05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Oneness.Web.Models.AiTool, Oneness.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-30 17:41:00.356 -05:00 [INF] Executed action Oneness.Web.Controllers.ToolsController.List (Oneness.Web) in 4.501ms
+2026-07-30 17:41:00.356 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.ToolsController.List (Oneness.Web)'
+2026-07-30 17:41:00.356 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/tools - 200 null application/json; charset=utf-8 5.3103ms
+2026-07-30 17:41:00.356 -05:00 [DBG] Connection id "0HNNDAAP79OR4" disconnecting.
+2026-07-30 17:41:00.356 -05:00 [DBG] Connection id "0HNNDAAP79OR4" stopped.
+2026-07-30 17:41:00.356 -05:00 [DBG] Connection id "0HNNDAAP79OR4" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:41:00.357 -05:00 [DBG] Connection id "0HNNDAAP79OR5" accepted.
+2026-07-30 17:41:00.357 -05:00 [DBG] Connection id "0HNNDAAP79OR5" started.
+2026-07-30 17:41:00.357 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/projects - application/json null
+2026-07-30 17:41:00.357 -05:00 [DBG] The request path  does not match the path filter
+2026-07-30 17:41:00.357 -05:00 [DBG] The request path /api/projects does not match a supported file type
+2026-07-30 17:41:00.357 -05:00 [DBG] 1 candidate(s) found for the request path '/api/projects'
+2026-07-30 17:41:00.357 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.ProjectsController.List (Oneness.Web)' with route pattern 'api/Projects' is valid for the request path '/api/projects'
+2026-07-30 17:41:00.357 -05:00 [DBG] Request matched endpoint 'Oneness.Web.Controllers.ProjectsController.List (Oneness.Web)'
+2026-07-30 17:41:00.357 -05:00 [INF] Executing endpoint 'Oneness.Web.Controllers.ProjectsController.List (Oneness.Web)'
+2026-07-30 17:41:00.358 -05:00 [INF] Route matched with {action = "List", controller = "Projects", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult List() on controller Oneness.Web.Controllers.ProjectsController (Oneness.Web).
+2026-07-30 17:41:00.358 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-07-30 17:41:00.358 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-30 17:41:00.358 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-07-30 17:41:00.358 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-30 17:41:00.358 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-07-30 17:41:00.358 -05:00 [DBG] Executing controller factory for controller Oneness.Web.Controllers.ProjectsController (Oneness.Web)
+2026-07-30 17:41:00.359 -05:00 [DBG] Executed controller factory for controller Oneness.Web.Controllers.ProjectsController (Oneness.Web)
+2026-07-30 17:41:00.498 -05:00 [WRN] Failed to parse VS project scan
+System.Text.Json.JsonException: The JSON value could not be converted to System.DateTime. Path: $[0].CSharpProjects[0].LastWriteTime | LineNumber: 9 | BytePositionInLine: 78.
+ ---> System.FormatException: The JSON value is not in a supported DateTime format.
+   at System.Text.Json.ThrowHelper.ThrowFormatException(DataType dataType)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at Oneness.Web.Services.VsProjectService.ScanProjects(String scanOutputPath) in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\VsProjectService.cs:line 21
+2026-07-30 17:41:00.509 -05:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-07-30 17:41:00.509 -05:00 [DBG] Attempting to select an output formatter based on Accept header '["application/json"]'.
+2026-07-30 17:41:00.509 -05:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-07-30 17:41:00.509 -05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Oneness.Web.Models.VsProject, Oneness.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-30 17:41:00.509 -05:00 [INF] Executed action Oneness.Web.Controllers.ProjectsController.List (Oneness.Web) in 150.8866ms
+2026-07-30 17:41:00.509 -05:00 [INF] Executed endpoint 'Oneness.Web.Controllers.ProjectsController.List (Oneness.Web)'
+2026-07-30 17:41:00.509 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/projects - 200 null application/json; charset=utf-8 151.8556ms
+2026-07-30 17:41:00.509 -05:00 [DBG] Connection id "0HNNDAAP79OR5" disconnecting.
+2026-07-30 17:41:00.509 -05:00 [DBG] Connection id "0HNNDAAP79OR5" stopped.
+2026-07-30 17:41:00.514 -05:00 [DBG] Connection id "0HNNDAAP79OR5" received FIN.
+2026-07-30 17:41:00.516 -05:00 [DBG] Connection id "0HNNDAAP79OR5" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:41:05.926 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:45:32.496 -05:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-07-30 17:45:32.529 -05:00 [DBG] Initializing Razor view compiler with compiled view: '/Pages/Index.cshtml'.
+2026-07-30 17:45:32.541 -05:00 [INF] User profile is available. Using 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-30 17:45:32.588 -05:00 [DBG] Hosting starting
+2026-07-30 17:45:32.604 -05:00 [DBG] Reading data from file 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys\key-a05a8dc2-9a35-47b8-9d94-c936cb910034.xml'.
+2026-07-30 17:45:32.611 -05:00 [DBG] Found key {a05a8dc2-9a35-47b8-9d94-c936cb910034}.
+2026-07-30 17:45:32.617 -05:00 [DBG] Considering key {a05a8dc2-9a35-47b8-9d94-c936cb910034} with expiration date 2026-08-04 04:58:08Z as default key.
+2026-07-30 17:45:32.618 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-30 17:45:32.619 -05:00 [DBG] Decrypting secret element using Windows DPAPI.
+2026-07-30 17:45:32.620 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-30 17:45:32.622 -05:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2026-07-30 17:45:32.624 -05:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2026-07-30 17:45:32.625 -05:00 [DBG] Using key {a05a8dc2-9a35-47b8-9d94-c936cb910034} as the default key.
+2026-07-30 17:45:32.625 -05:00 [DBG] Key ring with default key {a05a8dc2-9a35-47b8-9d94-c936cb910034} was loaded during application startup.
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:45:32.630 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:45:32.674 -05:00 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2026-07-30 17:45:32.675 -05:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-07-30 17:45:32.701 -05:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5050: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-07-30 17:45:32.717 -05:00 [ERR] BackgroundService failed
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Oneness.Web.Services.AgentBackgroundService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\AgentBackgroundService.cs:line 24
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2026-07-30 17:45:32.729 -05:00 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Oneness.Web.Services.AgentBackgroundService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\AgentBackgroundService.cs:line 24
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2026-07-30 17:51:12.335 -05:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-07-30 17:51:12.359 -05:00 [DBG] Initializing Razor view compiler with compiled view: '/Pages/Index.cshtml'.
+2026-07-30 17:51:12.368 -05:00 [INF] User profile is available. Using 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-30 17:51:12.394 -05:00 [DBG] Hosting starting
+2026-07-30 17:51:12.399 -05:00 [DBG] Reading data from file 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys\key-a05a8dc2-9a35-47b8-9d94-c936cb910034.xml'.
+2026-07-30 17:51:12.404 -05:00 [DBG] Found key {a05a8dc2-9a35-47b8-9d94-c936cb910034}.
+2026-07-30 17:51:12.409 -05:00 [DBG] Considering key {a05a8dc2-9a35-47b8-9d94-c936cb910034} with expiration date 2026-08-04 04:58:08Z as default key.
+2026-07-30 17:51:12.410 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-30 17:51:12.411 -05:00 [DBG] Decrypting secret element using Windows DPAPI.
+2026-07-30 17:51:12.411 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-30 17:51:12.413 -05:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2026-07-30 17:51:12.413 -05:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2026-07-30 17:51:12.414 -05:00 [DBG] Using key {a05a8dc2-9a35-47b8-9d94-c936cb910034} as the default key.
+2026-07-30 17:51:12.414 -05:00 [DBG] Key ring with default key {a05a8dc2-9a35-47b8-9d94-c936cb910034} was loaded during application startup.
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat PROX
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-30 17:51:12.415 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-30 17:51:12.457 -05:00 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2026-07-30 17:51:12.457 -05:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-07-30 17:51:12.466 -05:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5050: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-07-30 17:51:12.475 -05:00 [ERR] BackgroundService failed
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Oneness.Web.Services.AgentBackgroundService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\AgentBackgroundService.cs:line 24
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2026-07-30 17:51:12.478 -05:00 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Oneness.Web.Services.AgentBackgroundService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\AgentBackgroundService.cs:line 24
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)

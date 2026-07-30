@@ -1,68 +1,56 @@
 [
   {
     "agent": "DockerFixer",
-    "status": "needs_user",
+    "status": "ok",
     "findings": [
       "Checking Docker Desktop installation and engine state.",
       "Docker CLI found: C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker",
-      "Docker daemon not responding. Checking Docker Desktop process.",
-      "com.docker.service status check: Status\n ------\nStopped"
+      "Docker daemon is already running."
     ],
     "actions": [],
-    "errors": [
-      "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
-      "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
-      "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
-      "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
-      "Docker daemon still not responding after launch attempts."
-    ],
-    "recommendations": [
-      "Start Docker Desktop manually, ensure WSL2 backend is enabled, or run wsl --update."
-    ],
-    "timestamp": "2026-07-29T04:40:30.927770+00:00"
+    "errors": [],
+    "recommendations": [],
+    "timestamp": "2026-07-30T22:53:35.710049+00:00"
   },
   {
     "agent": "CodexPluginFixer",
-    "status": "partial",
+    "status": "ok",
     "findings": [
-      "Diagnosing Codex plugin / MCP startup failures.",
-      "Sage hooks.json backup exists from earlier fix.",
-      "hooks.json has no unsupported mcp_tool hooks.",
-      "Sage MCP server bundle exists: C:\\Users\\ArcXN\\.codex\\plugins\\cache\\sage\\sage\\0.11.0\\packages\\claude-code\\dist\\mcp-server.cjs",
-      "node_repl path candidates found: True"
+      "Diagnosing Codex automation environment.",
+      "Codex CLI found at: C:\\Users\\ArcXN\\AppData\\Local\\OpenAI\\Codex\\bin\\69066b736e1e17a4\\codex.exe",
+      "Codex CLI responds: codex-cli 0.146.0-alpha.3.1",
+      "Active model provider: ollama-launch-codex-app",
+      "Sage marketplace plugin is registered in config.",
+      "Sage plugin revision: 92f0c0a1b0b34ec20444ca591938d6b248d25a37",
+      "Ollama model catalog exists: C:\\Users\\ArcXN\\.codex\\ollama-launch-models.json",
+      "No hooks.json found in Sage plugin.",
+      "Sage MCP server bundle not present (may be normal for recent versions).",
+      "node_repl runtime available: True",
+      "Computer-use directory present."
     ],
     "actions": [],
-    "errors": [
-      "Sage MCP server did not return expected initialize response."
-    ],
-    "recommendations": [
-      "The Sage plugin may need an update from the marketplace. Try uninstalling and reinstalling it in Codex."
-    ],
-    "timestamp": "2026-07-29T04:40:30.927770+00:00"
+    "errors": [],
+    "recommendations": [],
+    "timestamp": "2026-07-30T22:53:35.711048+00:00"
   },
   {
     "agent": "AuthFixer",
-    "status": "partial",
+    "status": "ok",
     "findings": [
       "Checking authentication state for external AI tools.",
-      "Claude Desktop: CLI reachable (auth state unknown without API call).",
-      "Claude Code: CLI reachable (auth state unknown without API call).",
-      "OpenClaw: CLI reachable (auth state unknown without API call).",
-      "Codex CLI: CLI responded but check returned non-zero (likely not authenticated).",
-      "GitHub CLI: CLI responded but check returned non-zero (likely not authenticated)."
+      "Claude Desktop: CLI reachable and responding OK.",
+      "Claude Code: CLI reachable and responding OK.",
+      "OpenClaw: CLI reachable and responding OK.",
+      "Codex CLI: CLI reachable and responding OK.",
+      "GitHub CLI: CLI responded with exit code 1.",
+      "Docker Hub: CLI reachable and responding OK."
     ],
     "actions": [
       "Generated auth helper scripts in scripts/fixers/"
     ],
-    "errors": [
-      "Docker Hub: could not run 'docker info': Command 'docker info' timed out after 20 seconds"
-    ],
-    "recommendations": [
-      "Open Codex CLI and complete sign-in / run 'gh auth login' / set API keys in .env.",
-      "Open GitHub CLI and complete sign-in / run 'gh auth login' / set API keys in .env.",
-      "Install or configure Docker Hub."
-    ],
-    "timestamp": "2026-07-29T04:40:30.928274+00:00"
+    "errors": [],
+    "recommendations": [],
+    "timestamp": "2026-07-30T22:53:35.711048+00:00"
   },
   {
     "agent": "ServiceFixer",
@@ -78,7 +66,7 @@
     "recommendations": [
       "Right-click PowerShell and 'Run as administrator', then run scripts/integrations/install_windows_service.ps1"
     ],
-    "timestamp": "2026-07-29T04:40:30.928274+00:00"
+    "timestamp": "2026-07-30T22:53:35.711048+00:00"
   },
   {
     "agent": "NetworkFixer",
@@ -94,17 +82,17 @@
       "registry.npmjs.org:443 -> reachable",
       "DNS anthropic.com -> 160.79.104.10",
       "DNS claude.ai -> 160.79.104.10",
-      "DNS api.openai.com -> 172.66.0.243",
+      "DNS api.openai.com -> 162.159.140.245",
       "DNS github.com -> 140.82.114.4",
-      "DNS www.blackbox.ai -> 64.239.123.129",
-      "DNS www.perplexity.ai -> 104.18.27.48",
-      "DNS registry.npmjs.org -> 104.16.10.34",
+      "DNS www.blackbox.ai -> 64.239.109.129",
+      "DNS www.perplexity.ai -> 104.18.26.48",
+      "DNS registry.npmjs.org -> 104.16.7.34",
       "Active adapters:\nName                               InterfaceDescription                        \n----                               --------------------                        \nvEthernet (WSL (Hyper-V firewall)) Hyper-V Virtual Ethernet Adapter            \nWi-Fi                              Realtek 8851BE Wireless LAN WiFi 6 PCI-E NIC\nTailscale                          Tailscale Tunnel                            \nEthernet                           Realtek PCIe GbE Family Controller"
     ],
     "actions": [],
     "errors": [],
     "recommendations": [],
-    "timestamp": "2026-07-29T04:40:30.928274+00:00"
+    "timestamp": "2026-07-30T22:53:35.711048+00:00"
   },
   {
     "agent": "VsProjectFixer",
@@ -118,6 +106,6 @@
     ],
     "errors": [],
     "recommendations": [],
-    "timestamp": "2026-07-29T04:40:30.928274+00:00"
+    "timestamp": "2026-07-30T22:53:35.711048+00:00"
   }
 ]

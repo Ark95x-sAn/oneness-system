@@ -1,19 +1,21 @@
 {
   "agent": "CodexPluginFixer",
-  "status": "partial",
+  "status": "ok",
   "findings": [
-    "Diagnosing Codex plugin / MCP startup failures.",
-    "Sage hooks.json backup exists from earlier fix.",
-    "hooks.json has no unsupported mcp_tool hooks.",
-    "Sage MCP server bundle exists: C:\\Users\\ArcXN\\.codex\\plugins\\cache\\sage\\sage\\0.11.0\\packages\\claude-code\\dist\\mcp-server.cjs",
-    "node_repl path candidates found: True"
+    "Diagnosing Codex automation environment.",
+    "Codex CLI found at: C:\\Users\\ArcXN\\AppData\\Local\\OpenAI\\Codex\\bin\\69066b736e1e17a4\\codex.exe",
+    "Codex CLI responds: codex-cli 0.146.0-alpha.3.1",
+    "Active model provider: ollama-launch-codex-app",
+    "Sage marketplace plugin is registered in config.",
+    "Sage plugin revision: 92f0c0a1b0b34ec20444ca591938d6b248d25a37",
+    "Ollama model catalog exists: C:\\Users\\ArcXN\\.codex\\ollama-launch-models.json",
+    "No hooks.json found in Sage plugin.",
+    "Sage MCP server bundle not present (may be normal for recent versions).",
+    "node_repl runtime available: True",
+    "Computer-use directory present."
   ],
   "actions": [],
-  "errors": [
-    "Sage MCP server did not return expected initialize response."
-  ],
-  "recommendations": [
-    "The Sage plugin may need an update from the marketplace. Try uninstalling and reinstalling it in Codex."
-  ],
-  "timestamp": "2026-07-29T04:40:30.927770+00:00"
+  "errors": [],
+  "recommendations": [],
+  "timestamp": "2026-07-30T22:53:35.711048+00:00"
 }

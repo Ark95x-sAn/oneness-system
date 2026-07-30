@@ -5,7 +5,7 @@
   "agents": {
     "ORACLEVAULT": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:53:29.684241+00:00",
+      "last_heartbeat": "2026-07-30T22:56:10.863734+00:00",
       "duties": [
         "vault_sync",
         "ingest",
@@ -14,7 +14,7 @@
     },
     "MARKETSCRYER": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:50:28.191299+00:00",
+      "last_heartbeat": "2026-07-30T22:56:10.865739+00:00",
       "duties": [
         "market_scan",
         "arb_watch"
@@ -22,7 +22,7 @@
     },
     "SIGNALFORGE": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:50:28.192302+00:00",
+      "last_heartbeat": "2026-07-30T22:56:10.866739+00:00",
       "duties": [
         "macd",
         "rsi",
@@ -32,7 +32,7 @@
     },
     "TRADEWEAVER": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:50:28.192302+00:00",
+      "last_heartbeat": "2026-07-30T22:56:10.866739+00:00",
       "duties": [
         "order_place",
         "order_cancel",
@@ -41,7 +41,7 @@
     },
     "RISKWARDEN": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:53:29.684759+00:00",
+      "last_heartbeat": "2026-07-30T22:56:10.868245+00:00",
       "duties": [
         "sizing",
         "limits",
@@ -51,7 +51,7 @@
     },
     "PROX": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:45:27.818261+00:00",
+      "last_heartbeat": "2026-07-30T22:51:10.371412+00:00",
       "duties": [
         "intake",
         "issue_spot",
@@ -62,7 +62,7 @@
     },
     "CASEBLADE": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:45:27.818261+00:00",
+      "last_heartbeat": "2026-07-30T22:51:10.372413+00:00",
       "duties": [
         "deadlines",
         "strikes",
@@ -72,7 +72,7 @@
     },
     "SENTINEL": {
       "healthy": true,
-      "last_heartbeat": "2026-07-30T22:53:29.684759+00:00",
+      "last_heartbeat": "2026-07-30T22:56:10.868245+00:00",
       "duties": [
         "heartbeat",
         "alerts",
@@ -101,7 +101,7 @@
     "max_order_usd": 50,
     "max_exposure_usd": 200,
     "demo_mode": true,
-    "last_updated": "2026-07-30T22:53:29.684241+00:00"
+    "last_updated": "2026-07-30T22:56:10.866739+00:00"
   },
-  "last_updated": "2026-07-30T22:53:30.686198+00:00"
+  "last_updated": "2026-07-30T22:57:06.958150+00:00"
 }

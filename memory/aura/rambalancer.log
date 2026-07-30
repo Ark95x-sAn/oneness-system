@@ -7393,3 +7393,90 @@
 2026-07-30T22:38:31.451023+00:00 | RAMBALANCER | memory at 80.4%, no trim needed
 2026-07-30T22:38:43.281620+00:00 | RAMBALANCER | memory at 79.9%, no trim needed
 2026-07-30T22:38:46.883046+00:00 | RAMBALANCER | memory at 38.1%, no trim needed
+2026-07-30T22:39:16.831072+00:00 | RAMBALANCER | memory at 78.2%, no trim needed
+2026-07-30T22:39:19.638608+00:00 | RAMBALANCER | memory at 78.7%, no trim needed
+2026-07-30T22:39:43.283213+00:00 | RAMBALANCER | memory at 81.7%, no trim needed
+2026-07-30T22:39:46.886641+00:00 | RAMBALANCER | memory at 40.7%, no trim needed
+2026-07-30T22:40:16.832745+00:00 | RAMBALANCER | memory at 78.3%, no trim needed
+2026-07-30T22:40:19.640054+00:00 | RAMBALANCER | memory at 78.3%, no trim needed
+2026-07-30T22:40:31.672278+00:00 | RAMBALANCER | memory at 78.6%, no trim needed
+2026-07-30T22:40:43.284577+00:00 | RAMBALANCER | memory at 71.7%, no trim needed
+2026-07-30T22:40:46.893437+00:00 | RAMBALANCER | memory at 38.1%, no trim needed
+2026-07-30T22:41:16.834664+00:00 | RAMBALANCER | memory at 75.2%, no trim needed
+2026-07-30T22:41:19.641125+00:00 | RAMBALANCER | memory at 75.6%, no trim needed
+2026-07-30T22:41:31.678258+00:00 | RAMBALANCER | memory at 76.0%, no trim needed
+2026-07-30T22:41:43.288084+00:00 | RAMBALANCER | memory at 36.7%, no trim needed
+2026-07-30T22:41:46.899411+00:00 | RAMBALANCER | memory at 43.7%, no trim needed
+2026-07-30T22:42:16.836051+00:00 | RAMBALANCER | memory at 76.7%, no trim needed
+2026-07-30T22:42:19.645568+00:00 | RAMBALANCER | memory at 78.2%, no trim needed
+2026-07-30T22:42:31.679922+00:00 | RAMBALANCER | memory at 78.2%, no trim needed
+2026-07-30T22:42:43.289250+00:00 | RAMBALANCER | memory at 79.8%, no trim needed
+2026-07-30T22:42:46.901627+00:00 | RAMBALANCER | memory at 80.6%, no trim needed
+2026-07-30T22:43:16.837639+00:00 | RAMBALANCER | memory at 78.9%, no trim needed
+2026-07-30T22:43:19.646628+00:00 | RAMBALANCER | memory at 78.3%, no trim needed
+2026-07-30T22:43:31.706152+00:00 | RAMBALANCER | memory at 80.0%, no trim needed
+2026-07-30T22:43:43.291066+00:00 | RAMBALANCER | memory at 80.3%, no trim needed
+2026-07-30T22:43:46.909777+00:00 | RAMBALANCER | memory at 80.5%, no trim needed
+2026-07-30T22:44:16.838582+00:00 | RAMBALANCER | memory at 81.0%, no trim needed
+2026-07-30T22:44:19.664108+00:00 | RAMBALANCER | memory at 80.9%, no trim needed
+2026-07-30T22:44:31.707518+00:00 | RAMBALANCER | memory at 80.9%, no trim needed
+2026-07-30T22:44:43.291708+00:00 | RAMBALANCER | memory at 81.7%, no trim needed
+2026-07-30T22:44:46.923865+00:00 | RAMBALANCER | memory at 83.2%, no trim needed
+2026-07-30T22:45:16.896866+00:00 | RAMBALANCER | memory at 85.0%, candidates: ['notion.exe']
+2026-07-30T22:45:19.711926+00:00 | RAMBALANCER | memory at 85.2%, candidates: ['notion.exe']
+2026-07-30T22:45:39.775234+00:00 | RAMBALANCER | memory at 85.3%, candidates: ['notion.exe']
+2026-07-30T22:45:43.292833+00:00 | RAMBALANCER | memory at 84.4%, no trim needed
+2026-07-30T22:45:46.932114+00:00 | RAMBALANCER | memory at 84.4%, no trim needed
+2026-07-30T22:46:16.916246+00:00 | RAMBALANCER | memory at 87.5%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:46:19.744935+00:00 | RAMBALANCER | memory at 87.5%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:46:43.328192+00:00 | RAMBALANCER | memory at 87.3%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:46:45.734502+00:00 | RAMBALANCER | memory at 87.3%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:46:54.959210+00:00 | RAMBALANCER | memory at 87.2%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:47:16.949967+00:00 | RAMBALANCER | memory at 88.3%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:47:19.841112+00:00 | RAMBALANCER | memory at 88.4%, candidates: ['notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:47:43.370463+00:00 | RAMBALANCER | memory at 89.2%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:47:53.347169+00:00 | RAMBALANCER | memory at 86.9%, candidates: ['msedgewebview2.exe', 'notion.exe']
+2026-07-30T22:48:08.567862+00:00 | RAMBALANCER | memory at 86.3%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:48:16.975450+00:00 | RAMBALANCER | memory at 86.6%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:48:19.866587+00:00 | RAMBALANCER | memory at 86.5%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:48:43.415059+00:00 | RAMBALANCER | memory at 86.8%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:48:56.530589+00:00 | RAMBALANCER | memory at 86.9%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:49:12.459589+00:00 | RAMBALANCER | memory at 86.9%, candidates: ['msedgewebview2.exe', 'notion.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:49:17.022362+00:00 | RAMBALANCER | memory at 87.0%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:49:19.891782+00:00 | RAMBALANCER | memory at 87.0%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:49:43.446545+00:00 | RAMBALANCER | memory at 88.6%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'chrome.exe']
+2026-07-30T22:50:05.671118+00:00 | RAMBALANCER | memory at 89.5%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:50:17.042958+00:00 | RAMBALANCER | memory at 90.2%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:50:19.914355+00:00 | RAMBALANCER | memory at 90.4%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:50:21.154854+00:00 | RAMBALANCER | memory at 89.9%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:50:43.547916+00:00 | RAMBALANCER | memory at 91.2%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:51:06.884335+00:00 | RAMBALANCER | memory at 89.9%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:51:17.059936+00:00 | RAMBALANCER | memory at 89.2%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:51:19.931444+00:00 | RAMBALANCER | memory at 89.1%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:51:22.231464+00:00 | RAMBALANCER | memory at 89.2%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:51:43.569227+00:00 | RAMBALANCER | memory at 88.4%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:52:08.277538+00:00 | RAMBALANCER | memory at 88.1%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:52:17.076183+00:00 | RAMBALANCER | memory at 88.2%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:52:19.949413+00:00 | RAMBALANCER | memory at 88.2%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:52:23.612966+00:00 | RAMBALANCER | memory at 88.3%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:52:43.585199+00:00 | RAMBALANCER | memory at 87.9%, candidates: ['msedgewebview2.exe', 'chrome.exe', 'notion.exe', 'chrome.exe', 'notion.exe', 'chrome.exe']
+2026-07-30T22:53:09.245569+00:00 | RAMBALANCER | memory at 86.7%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:53:17.090626+00:00 | RAMBALANCER | memory at 86.6%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:53:19.966921+00:00 | RAMBALANCER | memory at 86.7%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:53:24.625908+00:00 | RAMBALANCER | memory at 86.7%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:53:43.597424+00:00 | RAMBALANCER | memory at 87.3%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:54:10.144219+00:00 | RAMBALANCER | memory at 88.0%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:54:17.106379+00:00 | RAMBALANCER | memory at 87.6%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:54:19.982358+00:00 | RAMBALANCER | memory at 87.5%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:54:25.553722+00:00 | RAMBALANCER | memory at 87.5%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:54:43.622972+00:00 | RAMBALANCER | memory at 88.8%, candidates: ['msedgewebview2.exe', 'notion.exe', 'msedgewebview2.exe', 'notion.exe']
+2026-07-30T22:55:11.032312+00:00 | RAMBALANCER | memory at 88.8%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:55:17.120569+00:00 | RAMBALANCER | memory at 88.5%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:55:19.999091+00:00 | RAMBALANCER | memory at 88.6%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:55:26.455763+00:00 | RAMBALANCER | memory at 88.6%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:55:43.636579+00:00 | RAMBALANCER | memory at 87.2%, candidates: ['msedgewebview2.exe', 'notion.exe', 'notion.exe']
+2026-07-30T22:56:11.033576+00:00 | RAMBALANCER | memory at 46.0%, no trim needed
+2026-07-30T22:56:17.121630+00:00 | RAMBALANCER | memory at 46.1%, no trim needed
+2026-07-30T22:56:19.999464+00:00 | RAMBALANCER | memory at 46.1%, no trim needed
+2026-07-30T22:56:26.457146+00:00 | RAMBALANCER | memory at 46.1%, no trim needed
+2026-07-30T22:56:43.637739+00:00 | RAMBALANCER | memory at 47.0%, no trim needed

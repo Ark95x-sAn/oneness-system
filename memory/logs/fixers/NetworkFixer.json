@@ -12,15 +12,15 @@
     "registry.npmjs.org:443 -> reachable",
     "DNS anthropic.com -> 160.79.104.10",
     "DNS claude.ai -> 160.79.104.10",
-    "DNS api.openai.com -> 172.66.0.243",
+    "DNS api.openai.com -> 162.159.140.245",
     "DNS github.com -> 140.82.114.4",
-    "DNS www.blackbox.ai -> 64.239.123.129",
-    "DNS www.perplexity.ai -> 104.18.27.48",
-    "DNS registry.npmjs.org -> 104.16.10.34",
+    "DNS www.blackbox.ai -> 64.239.109.129",
+    "DNS www.perplexity.ai -> 104.18.26.48",
+    "DNS registry.npmjs.org -> 104.16.7.34",
     "Active adapters:\nName                               InterfaceDescription                        \n----                               --------------------                        \nvEthernet (WSL (Hyper-V firewall)) Hyper-V Virtual Ethernet Adapter            \nWi-Fi                              Realtek 8851BE Wireless LAN WiFi 6 PCI-E NIC\nTailscale                          Tailscale Tunnel                            \nEthernet                           Realtek PCIe GbE Family Controller"
   ],
   "actions": [],
   "errors": [],
   "recommendations": [],
-  "timestamp": "2026-07-29T04:40:30.928274+00:00"
+  "timestamp": "2026-07-30T22:53:35.711048+00:00"
 }

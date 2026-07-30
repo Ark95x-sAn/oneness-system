@@ -1,47 +1,47 @@
-﻿{
-    "snapshot":  {
-                     "memory":  {
-                                    "FreeGB":  9.66,
-                                    "TotalGB":  31.16,
-                                    "FreePct":  31
-                                },
-                     "disk":  {
-                                  "FreeGB":  425.75,
-                                  "SizeGB":  1882.67,
-                                  "PctFree":  22.6
-                              }
-                 },
-    "timestamp":  "2026-07-30T06:00:02.5618017-05:00",
-    "actions":  [
-                    {
-                        "detail":  "Cleaned temp files older than 3 days",
-                        "status":  "ok",
-                        "name":  "temp_cleanup"
-                    },
-                    {
-                        "detail":  "Use -DeepClean to empty recycle bin",
-                        "status":  "skipped",
-                        "name":  "recycle_bin"
-                    },
-                    {
-                        "detail":  "1 updates pending (manual install required)",
-                        "status":  "info",
-                        "name":  "windows_update"
-                    },
-                    {
-                        "detail":  "High performance",
-                        "status":  "ok",
-                        "name":  "power_plan"
-                    },
-                    {
-                        "detail":  "DNS cache flushed",
-                        "status":  "ok",
-                        "name":  "dns_flush"
-                    },
-                    {
-                        "detail":  "Recorded C: drive and memory state",
-                        "status":  "ok",
-                        "name":  "snapshot"
-                    }
-                ]
+{
+  "snapshot": {
+    "memory": {
+      "FreeGB": 4.66,
+      "TotalGB": 31.16,
+      "FreePct": 14.9
+    },
+    "disk": {
+      "FreeGB": 422.89,
+      "SizeGB": 1882.67,
+      "PctFree": 22.5
+    }
+  },
+  "actions": [
+    {
+      "status": "ok",
+      "name": "temp_cleanup",
+      "detail": "Cleaned temp files older than 3 days"
+    },
+    {
+      "status": "skipped",
+      "name": "recycle_bin",
+      "detail": "Use -DeepClean to empty recycle bin"
+    },
+    {
+      "status": "info",
+      "name": "windows_update",
+      "detail": "1 updates pending (manual install required)"
+    },
+    {
+      "status": "ok",
+      "name": "power_plan",
+      "detail": "High performance"
+    },
+    {
+      "status": "ok",
+      "name": "dns_flush",
+      "detail": "DNS cache flushed"
+    },
+    {
+      "status": "ok",
+      "name": "snapshot",
+      "detail": "Recorded C: drive and memory state"
+    }
+  ],
+  "timestamp": "2026-07-30T17:44:57.8620601-05:00"
 }

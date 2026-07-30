@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-07-30T22:56:16.021278+00:00",
+  "codex": {
+    "cli_path": "C:\\Users\\ArcXN\\AppData\\Local\\OpenAI\\Codex\\bin\\69066b736e1e17a4\\codex.exe",
+    "version": "codex-cli 0.146.0-alpha.3.1",
+    "version_ok": true
+  },
+  "config": {
+    "model_provider": "ollama-launch-codex-app",
+    "model": "kimi-k2.7-code:cloud",
+    "ollama_reachable": true,
+    "ollama_models_count": 28,
+    "sandbox_mode": "danger-full-access"
+  },
+  "plugins": {
+    "sage": {
+      "registered": true,
+      "last_revision": "92f0c0a1b0b34ec20444ca591938d6b248d25a37",
+      "source_type": "git",
+      "cache_exists": true,
+      "hooks_exist": false,
+      "mcp_server_exists": false
+    }
+  },
+  "integration": {
+    "fixer_script_exists": true,
+    "orchestrator_exists": true,
+    "venv_python_ok": true
+  },
+  "issues": [],
+  "actions_taken": [],
+  "recommendations": []
+}
