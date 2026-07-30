@@ -13,6 +13,9 @@ PYTHON = ROOT / "venv" / "Scripts" / "python.exe"
 SUBAGENTS = [
     "aura.watcher",
     "aura.subagents.gameguard",
+    "aura.subagents.focusguard",
+    "aura.subagents.contextswitcher",
+    "aura.subagents.buildbooster",
     "aura.subagents.idlecleaner",
     "aura.subagents.rambalancer",
     "aura.subagents.signalforge_lite",

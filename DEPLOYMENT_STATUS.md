@@ -192,3 +192,39 @@ un_more_snapshot.json, github_commit_manifest.json`n
 3. Reinstall/rebuild `@moonpay/cli` and complete KYC
 4. Wire `moonpay-mcp` into Oneness System MCP config
 5. Begin Capital Gate live ops with bounded risk via Kelly/EV sizing
+
+## 🔄 LATEST AUTOMATION PASS
+**Updated:** 2026-07-30 23:06:07 UTC
+
+### ✅ Completed without user input
+1. **All 4 quads executed** — content bundle published, memory indexed, Gate 1 checklist skipped (already done), paper-trading bot smoke test passed.
+2. **Windows Task Scheduler confirmed** — Oneness-Daily, Oneness-Weekly, Oneness-AuraAtLogon, Oneness-DailyCleanup, Oneness-MetaAgent, Oneness-HealthCheck, Oneness-VSScan all Ready.
+3. **Aura expanded from 8 → 11 subagents** for productivity automation:
+   - **focusguard** — protects deep-work sessions (VS Code, terminal, Notion, browsers)
+   - **contextswitcher** — infers context from active window and suggests the right agent
+   - **buildbooster** — detects build activity and signals resource optimizers to back off
+   - Existing: watcher, gameguard, idlecleaner, rambalancer, signalforge_lite, tradewatch, healthwealth, selfsaboteur_watch
+
+### ⚠️ MoonPay Capital Rail — Windows Blocker
+- MoonPay web confirms: **Windows desktop app is "Coming soon"**
+- MoonPay CLI installs but crashes on Windows with missing native binary: `@open-wallet-standard/core-win32-x64-msvc`
+- **Workaround options:**
+  - Use WSL2/Linux to run the CLI
+  - Wait for official Windows desktop app
+  - Use a cloud Linux instance for the agent treasury
+- File: `memory/intel/moonpay_cli_windows_blocker.md`
+
+### 📝 .env is now open in Notepad
+Paste real keys and save:
+- `OPENAI_API_KEY=sk-...`
+- `ANTHROPIC_API_KEY=sk-ant-...`
+- Optional: `PERPLEXITY_API_KEY=pplx-...`, `BLACKBOX_API_KEY=...`
+
+After saving, run:
+```powershell
+.\scripts\check_env_ready.ps1
+.\venv\Scripts\prime.exe auth
+```
+
+### 🔄 Next: Restart Codex desktop app
+After `.env` is filled and saved, close and reopen Codex. Then paste `memory\activation\codex_drop_after_restart.md` to continue.
