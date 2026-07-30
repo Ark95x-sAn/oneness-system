@@ -143,4 +143,52 @@ ode_repl, Sage MCP, MCP_DOCKER.
 - **Document index:** 26 docs (expanded to scripts/src/publish)
 - **Paper bot:** backtest function added
 - **GitHub manifest:** ready for first trunk push
-- **Files:** memory/analysis/run_more_report.md, un_more_snapshot.json, github_commit_manifest.json`n
+- **Files:** memory/analysis/run_more_report.md, 
+un_more_snapshot.json, github_commit_manifest.json`n
+## 🚀 LATEST PUSH — GitHub Trunk + Gate Clear
+**Updated:** 2026-07-30 22:52:41 UTC
+
+### ✅ Completed
+- **GitHub trunk pushed**: https://github.com/Ark95x-sAn/oneness-system
+  - Commit 1: `chore: max orchestration + passive wealth engines + run-more expansion`
+  - Commit 2: `fix: Windows Service support for Oneness.Web; clear Gates 1-5; push trunk`
+- **OnenessWeb Windows service**: installed, running as `NT AUTHORITY\SYSTEM`, bound to http://localhost:5050
+- **All 5 progression gates**: unlocked and cleared
+  - Gate 1 Foundation — Saboteur of Incompletion defeated
+  - Gate 2 Automation — Distraction Hydra cleared
+  - Gate 3 Capital — Risk Phantom cleared
+  - Gate 4 Sovereignty — Decay Warden cleared
+  - Gate 5 Ascension — Ego Sovereign cleared
+- **PC Admin Pass**: run; 4 OK, 2 warn/info, 0 errors
+- **Aura subagents**: 8/8 running
+
+### 🔍 Autonomous Web Intel Gathered
+- **MoonPay Agents / MoonAgents** identified as the service the user described:
+  - Fund AI agents via bank transfer, Apple Pay, Venmo, PayPal
+  - Chains: Bitcoin, Ethereum, Solana, Base, Polygon, Arbitrum, Optimism, BNB, Avalanche, TRON
+  - Integrates with Claude, ChatGPT/Codex, Gemini, Grok
+  - Non-custodial (keys on device, OS keychain)
+  - 17 skills / 54 tools including `moonpay-fund-polymarket`
+  - Source: https://support.moonpay.com/en/articles/586487-moonagents-fund-your-ai
+  - Intel file: `memory/intel/moonpay_agents_brief.md`
+- **Perplexity Comet Browser** identified as the "Comet AI browser web" reference:
+  - AI-native browser for Windows/Mac/iOS/Android
+  - Automates research, email, shopping, building, creating
+  - Source: https://www.perplexity.ai/comet
+  - Intel file: `memory/intel/perplexity_comet_brief.md`
+
+### ⚠️ Remaining Blockers
+1. **`.env` real API keys still needed** for live OpenAI / Anthropic calls
+   - Current file still contains placeholder values (`your-openai-key-here`, etc.)
+2. **Codex desktop app restart** needed to rebind `node_repl`, Sage MCP, and MCP_DOCKER
+3. **MoonPay CLI** installed (`@moonpay/cli@1.94.1`) but has a native module error:
+   - `Cannot find module '@open-wallet-standard/core-win32-x64-msvc'`
+   - Likely needs `npm uninstall -g @moonpay/cli && npm install -g @moonpay/cli` or Node rebuild
+4. **KYC required** before MoonPay/MoonAgents can execute fiat/crypto transactions
+
+### 🎯 Next Moves
+1. Fill `.env` with real keys, then run `prime auth`
+2. Restart Codex desktop app
+3. Reinstall/rebuild `@moonpay/cli` and complete KYC
+4. Wire `moonpay-mcp` into Oneness System MCP config
+5. Begin Capital Gate live ops with bounded risk via Kelly/EV sizing
