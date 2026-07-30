@@ -1,0 +1,19 @@
+
+version: "3.9"
+
+services:
+  oneness-system:
+    build: .
+    container_name: oneness-system
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - oneness-memory:/app/memory
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "python.*oneness_orchestrator"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  oneness-memory:

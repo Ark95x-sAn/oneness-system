@@ -1,0 +1,89 @@
+{
+  "generated": "2026-07-29T09:28:43.831110+00:00",
+  "engines": [
+    {
+      "name": "Net95x Property Operations",
+      "type": "active_management",
+      "status": "operational",
+      "annual_run_rate_protected": 300000,
+      "cash_to_pull_this_month": 2500,
+      "automation": "Daily re-score via scheduled task",
+      "capital_required": 0,
+      "risk_level": "low",
+      "approval_required": "Only for contractor spend > 500 USD or eviction/legal"
+    },
+    {
+      "name": "Polymarket Paper-Trading Bot",
+      "type": "prediction_market_edge",
+      "status": "demo_mode",
+      "annual_potential": "unknown until validated",
+      "automation": "Daily demo evaluations logged to paper_trades.json",
+      "capital_required": 1000,
+      "risk_level": "high",
+      "approval_required": "Required to: (1) set demo_mode=false, (2) add real API keys, (3) allow any live order"
+    },
+    {
+      "name": "Content / Audience Engine",
+      "type": "audience_and_lead_gen",
+      "status": "bundle_ready",
+      "annual_potential": "consulting + collaboration inbound",
+      "automation": "Weekly content bundle refresh",
+      "capital_required": 0,
+      "risk_level": "low",
+      "approval_required": "Required to publish under real name or push to public GitHub"
+    },
+    {
+      "name": "Network-95 Intelligence",
+      "type": "tool_and_threat_scout",
+      "status": "operational",
+      "value": "surfaces new tools, fixes, and security trends daily",
+      "automation": "Daily cycle + weekly remediation review",
+      "capital_required": 0,
+      "risk_level": "low",
+      "approval_required": "Required to run any generated remediation script"
+    },
+    {
+      "name": "AI Services Deployment Pipeline",
+      "type": "productized_services",
+      "status": "scaffolded",
+      "value": "Oneness.Web dashboard + Amara bridge endpoints",
+      "automation": "Build and deploy pipeline ready after Gate 1 defeat",
+      "capital_required": 0,
+      "risk_level": "low",
+      "approval_required": "Required to deploy to public hosting or accept customer data"
+    }
+  ],
+  "daily_passive_actions": [
+    "Run PC admin optimization",
+    "Start aura subagents",
+    "Pulse 852 resonance + update signature",
+    "Run Network-95 intelligence cycle",
+    "Refresh document index",
+    "Evaluate paper-trading bot in demo mode"
+  ],
+  "weekly_passive_actions": [
+    "Refresh content bundle",
+    "Run all 4 quads in background",
+    "Re-score property operations",
+    "Review Network-95 remediation brief"
+  ],
+  "approval_boundary": {
+    "auto_approved": "Any read-only, demo-mode, local-only, non-destructive action",
+    "requires_user_approval": [
+      "Spending real money",
+      "Publishing content under real name",
+      "Pushing code to public GitHub",
+      "Running Network-95 remediation scripts",
+      "Switching paper bot from demo to live",
+      "Sharing legal documents externally",
+      "Installing new software",
+      "Changing Windows service/network settings"
+    ],
+    "never_auto": [
+      "Live market orders with real capital",
+      "Legal filings",
+      "Financial transactions",
+      "Credential harvesting or TOS violations"
+    ]
+  }
+}

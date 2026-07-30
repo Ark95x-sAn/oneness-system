@@ -1,0 +1,34 @@
+[
+  {
+    "module": "aura.watcher",
+    "pid": 8412
+  },
+  {
+    "module": "aura.subagents.gameguard",
+    "pid": 39180
+  },
+  {
+    "module": "aura.subagents.idlecleaner",
+    "pid": 31208
+  },
+  {
+    "module": "aura.subagents.rambalancer",
+    "pid": 40480
+  },
+  {
+    "module": "aura.subagents.signalforge_lite",
+    "pid": 40936
+  },
+  {
+    "module": "aura.subagents.tradewatch",
+    "pid": 46964
+  },
+  {
+    "module": "aura.subagents.healthwealth",
+    "pid": 48984
+  },
+  {
+    "module": "aura.subagents.selfsaboteur_watch",
+    "pid": 3988
+  }
+]

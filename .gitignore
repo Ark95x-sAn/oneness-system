@@ -1,0 +1,38 @@
+
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Data / logs
+memory/logs/*.log
+memory/**/*.json.tmp
+memory/polymarket/orders.json
+memory/polymarket/positions.json
+
+# Vendor repos (clone these separately)
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db
+.env.example
+*.pyc
+src/**/bin/
+src/**/obj/
+*.dll
+*.exe
+*.pdb
+.playwright-cli/
+memory/qdrant_fallback/
+C:\Ops\Network95\
+_tmp_*.py
+_fix*.py

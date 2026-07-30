@@ -1,0 +1,86 @@
+{
+  "name": "Prime Fire Council",
+  "version": "1.1",
+  "mode": "demo",
+  "description": "Top-level consciousness crew that delegates to 9 Oneness subagents plus 6 problem-solving fixer agents.",
+  "council": [
+    {
+      "seat": "Memory",
+      "agent": "ORACLEVAULT",
+      "role": "Ingest, sync, summarize, link all files and web data"
+    },
+    {
+      "seat": "Markets",
+      "agent": "MARKETSCRYER",
+      "role": "Scan Polymarket and cross-platform arbitrage"
+    },
+    {
+      "seat": "Signals",
+      "agent": "SIGNALFORGE",
+      "role": "Generate MACD, RSI, CVD trading signals"
+    },
+    {
+      "seat": "Execution",
+      "agent": "TRADEWEAVER",
+      "role": "Place/cancel limit orders and track positions"
+    },
+    {
+      "seat": "Risk",
+      "agent": "RISKWARDEN",
+      "role": "Enforce limits, kill switch, drawdown, legal hold"
+    },
+    {
+      "seat": "Legal Intel",
+      "agent": "PROX",
+      "role": "Ethical legal-intelligence and narrative design"
+    },
+    {
+      "seat": "Litigation",
+      "agent": "CASEBLADE",
+      "role": "Deadlines, procedural strikes, case workflows"
+    },
+    {
+      "seat": "Sentinel",
+      "agent": "SENTINEL",
+      "role": "Monitoring, alerts, daily briefings, audit trail"
+    },
+    {
+      "seat": "Orchestrator",
+      "agent": "SYNAPSE",
+      "role": "Confluence scoring, dispatch, 24/7 scheduling"
+    }
+  ],
+  "fixers": [
+    {
+      "agent": "DockerFixer",
+      "role": "Start Docker Desktop/engine"
+    },
+    {
+      "agent": "CodexPluginFixer",
+      "role": "Repair Codex plugin/MCP issues"
+    },
+    {
+      "agent": "AuthFixer",
+      "role": "Detect auth gaps and create login helpers"
+    },
+    {
+      "agent": "ServiceFixer",
+      "role": "Install Windows service and scheduled tasks"
+    },
+    {
+      "agent": "NetworkFixer",
+      "role": "Check AI service connectivity"
+    },
+    {
+      "agent": "VsProjectFixer",
+      "role": "Scan and build VS/VSCode projects"
+    }
+  ],
+  "automation": {
+    "health_check_daily": "06:00",
+    "vs_project_scan_daily": "07:00",
+    "fixer_run_daily": "08:00",
+    "agent_heartbeat_interval_minutes": 1,
+    "pc_health_interval_minutes": 5
+  }
+}

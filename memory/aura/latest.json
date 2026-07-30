@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-30T22:38:48.932306+00:00",
+  "is_gaming": false,
+  "active_window_title": "Snap Assist",
+  "active_process": "15852",
+  "cpu_percent": 97.5,
+  "memory_available_mb": 19500.4,
+  "mouse_idle_seconds": 0,
+  "keyboard_idle_seconds": 0,
+  "user_present": true,
+  "recommended_mode": "balance"
+}

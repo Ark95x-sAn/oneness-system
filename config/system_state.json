@@ -1,0 +1,107 @@
+{
+  "system": "OnenessSystem",
+  "version": "1.0",
+  "demo_mode": true,
+  "agents": {
+    "ORACLEVAULT": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T10:18:23.524272+00:00",
+      "duties": [
+        "vault_sync",
+        "ingest",
+        "index"
+      ]
+    },
+    "MARKETSCRYER": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T10:16:00.984900+00:00",
+      "duties": [
+        "market_scan",
+        "arb_watch"
+      ]
+    },
+    "SIGNALFORGE": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T10:16:00.985909+00:00",
+      "duties": [
+        "macd",
+        "rsi",
+        "cvd",
+        "new_market"
+      ]
+    },
+    "TRADEWEAVER": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T10:16:00.985909+00:00",
+      "duties": [
+        "order_place",
+        "order_cancel",
+        "position_sync"
+      ]
+    },
+    "RISKWARDEN": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T10:18:23.524272+00:00",
+      "duties": [
+        "sizing",
+        "limits",
+        "kill_switch",
+        "drawdown"
+      ]
+    },
+    "PROX": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T09:20:54.136005+00:00",
+      "duties": [
+        "intake",
+        "issue_spot",
+        "evidence",
+        "narrative",
+        "simulation"
+      ]
+    },
+    "CASEBLADE": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T09:20:54.136005+00:00",
+      "duties": [
+        "deadlines",
+        "strikes",
+        "timing",
+        "legal_hold"
+      ]
+    },
+    "SENTINEL": {
+      "healthy": true,
+      "last_heartbeat": "2026-07-29T10:18:23.525278+00:00",
+      "duties": [
+        "heartbeat",
+        "alerts",
+        "daily_brief",
+        "audit"
+      ]
+    },
+    "SYNAPSE": {
+      "healthy": true,
+      "last_heartbeat": null,
+      "duties": [
+        "confluence",
+        "dispatch",
+        "schedule",
+        "recalibration"
+      ]
+    }
+  },
+  "risk_state": {
+    "kill_switch_active": false,
+    "legal_hold": false,
+    "daily_drawdown_pct": 0.0,
+    "total_exposure_usd": 0.0,
+    "available_capital_usd": 0.0,
+    "reserve_usd": 0.0,
+    "max_order_usd": 50,
+    "max_exposure_usd": 200,
+    "demo_mode": true,
+    "last_updated": "2026-07-29T10:18:23.524272+00:00"
+  },
+  "last_updated": "2026-07-29T10:19:17.301759+00:00"
+}

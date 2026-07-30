@@ -1,0 +1,1055 @@
+[
+  {
+    "timestamp": "2026-07-29T09:12:10.027202+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:14:50.603069+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:25:32.288518+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:25:36.833855+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:25:47.869528+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:26:03.412685+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:26:03.419230+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:26:03.425231+00:00",
+    "market": "will-bitcoin-hit-100k-in-2026",
+    "model_probability": 0.48,
+    "market_price": 0.42,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06,
+    "half_kelly_fraction": 0.051724137931034496,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:26:03.430756+00:00",
+    "market": "will-trump-run-in-2028",
+    "model_probability": 0.71,
+    "market_price": 0.65,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.05999999999999994,
+    "half_kelly_fraction": 0.08571428571428567,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:28:14.649622+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:28:14.650622+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:28:14.658129+00:00",
+    "market": "will-bitcoin-hit-100k-in-2026",
+    "model_probability": 0.48,
+    "market_price": 0.42,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06,
+    "half_kelly_fraction": 0.051724137931034496,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:28:14.663144+00:00",
+    "market": "will-trump-run-in-2028",
+    "model_probability": 0.71,
+    "market_price": 0.65,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.05999999999999994,
+    "half_kelly_fraction": 0.08571428571428567,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:52:29.205106+00:00",
+    "market": "m1",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:52:29.212063+00:00",
+    "market": "m2",
+    "model_probability": 0.48,
+    "market_price": 0.42,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06,
+    "half_kelly_fraction": 0.051724137931034496,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:52:29.217592+00:00",
+    "market": "m3",
+    "model_probability": 0.71,
+    "market_price": 0.65,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.05999999999999994,
+    "half_kelly_fraction": 0.08571428571428567,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:52:33.411347+00:00",
+    "market": "m1",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:52:33.417364+00:00",
+    "market": "m2",
+    "model_probability": 0.48,
+    "market_price": 0.42,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06,
+    "half_kelly_fraction": 0.051724137931034496,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T09:52:33.425398+00:00",
+    "market": "m3",
+    "model_probability": 0.71,
+    "market_price": 0.65,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.05999999999999994,
+    "half_kelly_fraction": 0.08571428571428567,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T11:02:59.541966+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T11:02:59.542971+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T11:02:59.551004+00:00",
+    "market": "will-bitcoin-hit-100k-in-2026",
+    "model_probability": 0.48,
+    "market_price": 0.42,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06,
+    "half_kelly_fraction": 0.051724137931034496,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-29T11:02:59.556512+00:00",
+    "market": "will-trump-run-in-2028",
+    "model_probability": 0.71,
+    "market_price": 0.65,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.05999999999999994,
+    "half_kelly_fraction": 0.08571428571428567,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-30T11:01:13.669940+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-30T11:01:13.670941+00:00",
+    "market": "will-fed-cut-rates-in-july",
+    "model_probability": 0.62,
+    "market_price": 0.55,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06999999999999995,
+    "half_kelly_fraction": 0.07777777777777775,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-30T11:01:13.676943+00:00",
+    "market": "will-bitcoin-hit-100k-in-2026",
+    "model_probability": 0.48,
+    "market_price": 0.42,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.06,
+    "half_kelly_fraction": 0.051724137931034496,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-07-30T11:01:13.682949+00:00",
+    "market": "will-trump-run-in-2028",
+    "model_probability": 0.71,
+    "market_price": 0.65,
+    "direction": "yes",
+    "confluence_score": 0.48750000000000004,
+    "edge": 0.05999999999999994,
+    "half_kelly_fraction": 0.08571428571428567,
+    "suggested_usd": 50.0,
+    "approved": false,
+    "demo_mode": true,
+    "signals": [
+      {
+        "source": "macd",
+        "side": "yes",
+        "strength": 0.72,
+        "reason": "MACD line crossed above signal"
+      },
+      {
+        "source": "rsi",
+        "side": "yes",
+        "strength": 0.55,
+        "reason": "RSI 58, room before overbought"
+      },
+      {
+        "source": "cvd",
+        "side": "no",
+        "strength": 0.4,
+        "reason": "CVD flattening on ask side"
+      },
+      {
+        "source": "sentiment",
+        "side": "yes",
+        "strength": 0.68,
+        "reason": "Social volume rising for Yes"
+      }
+    ]
+  }
+]

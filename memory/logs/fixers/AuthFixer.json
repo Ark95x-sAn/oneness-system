@@ -1,0 +1,24 @@
+{
+  "agent": "AuthFixer",
+  "status": "partial",
+  "findings": [
+    "Checking authentication state for external AI tools.",
+    "Claude Desktop: CLI reachable (auth state unknown without API call).",
+    "Claude Code: CLI reachable (auth state unknown without API call).",
+    "OpenClaw: CLI reachable (auth state unknown without API call).",
+    "Codex CLI: CLI responded but check returned non-zero (likely not authenticated).",
+    "GitHub CLI: CLI responded but check returned non-zero (likely not authenticated)."
+  ],
+  "actions": [
+    "Generated auth helper scripts in scripts/fixers/"
+  ],
+  "errors": [
+    "Docker Hub: could not run 'docker info': Command 'docker info' timed out after 20 seconds"
+  ],
+  "recommendations": [
+    "Open Codex CLI and complete sign-in / run 'gh auth login' / set API keys in .env.",
+    "Open GitHub CLI and complete sign-in / run 'gh auth login' / set API keys in .env.",
+    "Install or configure Docker Hub."
+  ],
+  "timestamp": "2026-07-29T04:40:30.928274+00:00"
+}

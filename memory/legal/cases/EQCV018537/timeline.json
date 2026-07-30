@@ -1,0 +1,50 @@
+{
+  "case_id": "EQCV018537",
+  "case_name": "RSB v. Nordskog",
+  "jurisdiction": "Iowa",
+  "county": "Winnebago",
+  "events": [
+    {
+      "date": "2019",
+      "event": "MERS assignment executed/recorded",
+      "actor": "RSB/MERS",
+      "evidence": "2019 MERS assignment",
+      " significance": "standing/chain"
+    },
+    {
+      "date": "unknown",
+      "event": "Loan originated; notes and mortgage executed",
+      "actor": "RSB/Nordskog",
+      "evidence": "Original note, mortgage",
+      "significance": "core debt instrument"
+    },
+    {
+      "date": "unknown",
+      "event": "Default alleged by RSB",
+      "actor": "RSB",
+      "evidence": "Default notice, cure notice",
+      "significance": "trigger for foreclosure"
+    },
+    {
+      "date": "unknown",
+      "event": "RSB filed foreclosure",
+      "actor": "RSB",
+      "evidence": "Petition",
+      "significance": "initiated litigation"
+    },
+    {
+      "date": "2026-04-25",
+      "event": "Motion for 7-day extension filed (RSB)",
+      "actor": "RSB",
+      "evidence": "Motion.7Day.Extension.RSB.Nordskog.EQCV018537.2026-04-25.pdf",
+      "significance": "procedural posture"
+    },
+    {
+      "date": "current",
+      "event": "Court order: NO proof of service on Nordskog Properties; response deadline NOT started",
+      "actor": "Court",
+      "evidence": "Court order",
+      "significance": "Strike 1 \u2014 jurisdiction/service defect"
+    }
+  ]
+}

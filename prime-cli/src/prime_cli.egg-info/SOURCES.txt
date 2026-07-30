@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/prime/__init__.py
+src/prime/api.py
+src/prime/commands.py
+src/prime/config.py
+src/prime/main.py
+src/prime_cli.egg-info/PKG-INFO
+src/prime_cli.egg-info/SOURCES.txt
+src/prime_cli.egg-info/dependency_links.txt
+src/prime_cli.egg-info/entry_points.txt
+src/prime_cli.egg-info/requires.txt
+src/prime_cli.egg-info/top_level.txt
+tests/test_prime.py

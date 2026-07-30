@@ -1,0 +1,245 @@
+{
+  "PROPERTIES": [
+    {
+      "id": "NS-01",
+      "name": "Forest City Main",
+      "addr": "101 Main St, Forest City",
+      "type": "Multi-Family",
+      "tenant": "Hauser + 3 units",
+      "rent": 3200,
+      "status": "paid",
+      "lastPaid": "Jun 1",
+      "dueNext": "Jul 1",
+      "leaseEnd": "2027-02-28",
+      "flag": false,
+      "plan": "Hold · cash-flowing",
+      "workOpen": 0
+    },
+    {
+      "id": "NS-02",
+      "name": "Oak St Duplex A",
+      "addr": "204 Oak St, Forest City",
+      "type": "Duplex",
+      "tenant": "Reyes",
+      "rent": 1800,
+      "status": "paid",
+      "lastPaid": "Jun 3",
+      "dueNext": "Jul 1",
+      "leaseEnd": "2026-09-30",
+      "flag": true,
+      "plan": "Hold · lease up in 90d",
+      "workOpen": 1
+    },
+    {
+      "id": "NS-03",
+      "name": "Oak St Duplex B",
+      "addr": "206 Oak St, Forest City",
+      "type": "Duplex",
+      "tenant": "— vacant —",
+      "rent": 1700,
+      "status": "vacant",
+      "lastPaid": "—",
+      "dueNext": "—",
+      "leaseEnd": "—",
+      "flag": true,
+      "plan": "Turn · ready to re-list",
+      "workOpen": 2
+    },
+    {
+      "id": "NS-04",
+      "name": "Mill Rd Rental",
+      "addr": "78 Mill Rd, Lake Mills",
+      "type": "Single Family",
+      "tenant": "Brandt",
+      "rent": 1400,
+      "status": "plan",
+      "lastPaid": "May 28",
+      "dueNext": "Jun 20",
+      "leaseEnd": "2026-12-31",
+      "flag": true,
+      "plan": "Hold · payment arrangement",
+      "workOpen": 0
+    },
+    {
+      "id": "NS-05",
+      "name": "Elm St House 1",
+      "addr": "312 Elm St, Forest City",
+      "type": "Single Family",
+      "tenant": "Whitaker",
+      "rent": 1100,
+      "status": "paid",
+      "lastPaid": "Jun 1",
+      "dueNext": "Jul 1",
+      "leaseEnd": "2027-05-31",
+      "flag": false,
+      "plan": "Hold · long-term tenant",
+      "workOpen": 0
+    },
+    {
+      "id": "NS-06",
+      "name": "Elm St House 2",
+      "addr": "318 Elm St, Forest City",
+      "type": "Single Family",
+      "tenant": "Coombs",
+      "rent": 1100,
+      "status": "late",
+      "lastPaid": "May 1",
+      "dueNext": "Jun 1",
+      "leaseEnd": "2026-08-31",
+      "flag": true,
+      "plan": "Hold · follow up on rent",
+      "workOpen": 1
+    },
+    {
+      "id": "NS-07",
+      "name": "Lake Ave Commercial",
+      "addr": "45 Lake Ave, Lake Mills",
+      "type": "Commercial",
+      "tenant": "Prairie Print Co.",
+      "rent": 2800,
+      "status": "paid",
+      "lastPaid": "Jun 1",
+      "dueNext": "Jul 1",
+      "leaseEnd": "2028-01-31",
+      "flag": false,
+      "plan": "Hold · anchor tenant",
+      "workOpen": 0
+    },
+    {
+      "id": "NS-08",
+      "name": "Main St Mixed-Use",
+      "addr": "12 Main St, Lake Mills",
+      "type": "Mixed Use",
+      "tenant": "2 retail + 1 apt",
+      "rent": 4200,
+      "status": "due",
+      "lastPaid": "May 30",
+      "dueNext": "Jun 20",
+      "leaseEnd": "2027-03-31",
+      "flag": false,
+      "plan": "Hold · strong rent roll",
+      "workOpen": 1
+    },
+    {
+      "id": "NS-09",
+      "name": "Industrial Shop",
+      "addr": "500 Industrial Blvd, Forest City",
+      "type": "Commercial",
+      "tenant": "North Iron Welding",
+      "rent": 3100,
+      "status": "paid",
+      "lastPaid": "Jun 2",
+      "dueNext": "Jul 1",
+      "leaseEnd": "2026-11-30",
+      "flag": false,
+      "plan": "Hold · stable lease",
+      "workOpen": 0
+    }
+  ],
+  "LELAND": [
+    {
+      "id": "LE-01",
+      "name": "545 W L",
+      "addr": "545 W L St, Leland",
+      "owner": "Owner of record",
+      "contract": "Signed · Management",
+      "rent": 1250,
+      "status": "paid",
+      "lastPaid": "Jun 1",
+      "term": "12-mo management",
+      "mgmtFee": "8% of rent",
+      "leaseEnd": "2027-01-31",
+      "flag": false,
+      "note": "Running clean. Owner statement auto-sends monthly."
+    },
+    {
+      "id": "LE-02",
+      "name": "540 S Lynn",
+      "addr": "540 S Lynn St, Leland",
+      "owner": "Owner of record",
+      "contract": "Signed · Management",
+      "rent": 1150,
+      "status": "due",
+      "lastPaid": "May 29",
+      "term": "12-mo management",
+      "mgmtFee": "8% of rent",
+      "leaseEnd": "2026-10-31",
+      "flag": true,
+      "note": "Rent due Jun 20. Reminder text scheduled."
+    }
+  ],
+  "WORK_ORDERS": [
+    {
+      "id": "WO-118",
+      "prop": "NS-03",
+      "title": "Furnace not igniting — unit B",
+      "priority": "high",
+      "status": "open",
+      "opened": "Jun 17"
+    },
+    {
+      "id": "WO-119",
+      "prop": "NS-06",
+      "title": "Kitchen faucet leak under sink",
+      "priority": "med",
+      "status": "open",
+      "opened": "Jun 16"
+    },
+    {
+      "id": "WO-120",
+      "prop": "NS-03",
+      "title": "Repaint + carpet for re-list",
+      "priority": "med",
+      "status": "working",
+      "opened": "Jun 12"
+    },
+    {
+      "id": "WO-121",
+      "prop": "NS-02",
+      "title": "Gutter pulling loose, NE corner",
+      "priority": "low",
+      "status": "open",
+      "opened": "Jun 15"
+    },
+    {
+      "id": "WO-122",
+      "prop": "NS-08",
+      "title": "Parking lot light out",
+      "priority": "low",
+      "status": "working",
+      "opened": "Jun 14"
+    },
+    {
+      "id": "WO-115",
+      "prop": "NS-01",
+      "title": "Water heater swap — unit 2",
+      "priority": "high",
+      "status": "done",
+      "opened": "Jun 5"
+    },
+    {
+      "id": "WO-116",
+      "prop": "NS-07",
+      "title": "Replace entry door closer",
+      "priority": "low",
+      "status": "done",
+      "opened": "Jun 8"
+    },
+    {
+      "id": "WO-117",
+      "prop": "NS-09",
+      "title": "Overhead door spring tension",
+      "priority": "med",
+      "status": "done",
+      "opened": "Jun 10"
+    }
+  ],
+  "HV_COSTS": {
+    "rent_call": 25,
+    "re_list": 600,
+    "lease_renewal": 150,
+    "fix_high": 700,
+    "fix_med": 300,
+    "fix_low": 120
+  }
+}

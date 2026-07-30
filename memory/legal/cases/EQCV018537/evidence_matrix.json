@@ -1,0 +1,85 @@
+{
+  "case_id": "EQCV018537",
+  "exhibits": [
+    {
+      "id": "A",
+      "name": "Notes",
+      "holder": "RSB",
+      "status": "demanded",
+      "authentication_notes": "Original or certified copy required under Iowa R. Civ. P. 1.961",
+      "strength": "unknown"
+    },
+    {
+      "id": "B",
+      "name": "Mortgages",
+      "holder": "RSB",
+      "status": "held",
+      "authentication_notes": "Verify legal description, parties, recording",
+      "strength": "unknown"
+    },
+    {
+      "id": "C",
+      "name": "Assignments/MERS chain",
+      "holder": "RSB",
+      "status": "held",
+      "authentication_notes": "2019 MERS assignment; watch for robo-signing challenge",
+      "strength": "unknown"
+    },
+    {
+      "id": "D",
+      "name": "Default/Cure notices",
+      "holder": "RSB",
+      "status": "held",
+      "authentication_notes": "Verify dates, content, delivery",
+      "strength": "unknown"
+    },
+    {
+      "id": "E",
+      "name": "Mediation release/certificate",
+      "holder": "RSB",
+      "status": "demanded",
+      "authentication_notes": "Critical for \u00a7654.2A/\u00a7654A defense",
+      "strength": "unknown"
+    },
+    {
+      "id": "F",
+      "name": "Payment history",
+      "holder": "RSB",
+      "status": "demanded",
+      "authentication_notes": "Full ledger + fee basis for accounting collapse",
+      "strength": "unknown"
+    },
+    {
+      "id": "G",
+      "name": "Affidavit of amount due",
+      "holder": "RSB",
+      "status": "expected",
+      "authentication_notes": "Will be filed with MSJ",
+      "strength": "unknown"
+    },
+    {
+      "id": "H",
+      "name": "Attorney fee affidavit",
+      "holder": "RSB",
+      "status": "expected",
+      "authentication_notes": "Must be reasonable and contract-authorized",
+      "strength": "unknown"
+    },
+    {
+      "id": "I",
+      "name": "Proof of service on Nordskog Properties",
+      "holder": "RSB",
+      "status": "missing",
+      "authentication_notes": "Court order says none; Strike 1",
+      "strength": "defense"
+    },
+    {
+      "id": "J",
+      "name": "Agricultural mediation certificate",
+      "holder": "RSB",
+      "status": "missing",
+      "authentication_notes": "If 40-acre parcel is agricultural; Strike 2",
+      "strength": "defense"
+    }
+  ]
+}

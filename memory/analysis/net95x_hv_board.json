@@ -1,0 +1,140 @@
+{
+  "today": "2026-07-29",
+  "hero": {
+    "cash_to_pull_this_month": 2500,
+    "annual_run_rate": 300000,
+    "moves_on_board": 10
+  },
+  "moves": [
+    {
+      "rank": 1,
+      "score": 420.0,
+      "kind": "work",
+      "id": "WO-122",
+      "name": "Parking lot light out",
+      "where": "Main St Mixed-Use - WO-122 - low - working",
+      "cash": 50400,
+      "cost": 120,
+      "payback_days": 1,
+      "cta": "Schedule fix",
+      "why": "Protect $50400 run-rate"
+    },
+    {
+      "rank": 2,
+      "score": 180.0,
+      "kind": "work",
+      "id": "WO-121",
+      "name": "Gutter pulling loose, NE corner",
+      "where": "Oak St Duplex A - WO-121 - low - open",
+      "cash": 21600,
+      "cost": 120,
+      "payback_days": 2,
+      "cta": "Schedule fix",
+      "why": "Protect $21600 run-rate"
+    },
+    {
+      "rank": 3,
+      "score": 144.0,
+      "kind": "lease",
+      "id": "LEASE-NS-02",
+      "name": "Renew lease - Reyes",
+      "where": "Oak St Duplex A - lease ends 2026-09-30",
+      "cash": 21600,
+      "cost": 150,
+      "payback_days": null,
+      "cta": "Reach out for renewal",
+      "why": "Secure $21600 annual run-rate"
+    },
+    {
+      "rank": 4,
+      "score": 88.0,
+      "kind": "lease",
+      "id": "LEASE-NS-06",
+      "name": "Renew lease - Coombs",
+      "where": "Elm St House 2 - lease ends 2026-08-31",
+      "cash": 13200,
+      "cost": 150,
+      "payback_days": null,
+      "cta": "Reach out for renewal",
+      "why": "Secure $13200 annual run-rate"
+    },
+    {
+      "rank": 5,
+      "score": 68.0,
+      "kind": "work",
+      "id": "WO-120",
+      "name": "Repaint + carpet for re-list",
+      "where": "Oak St Duplex B - WO-120 - med - working",
+      "cash": 20400,
+      "cost": 300,
+      "payback_days": 5,
+      "cta": "Schedule fix",
+      "why": "Protect $20400 run-rate"
+    },
+    {
+      "rank": 6,
+      "score": 56.0,
+      "kind": "rent",
+      "id": "RENT-NS-04",
+      "name": "Collect plan rent - Brandt",
+      "where": "Mill Rd Rental - 78 Mill Rd, Lake Mills - rent $1400",
+      "cash": 1400,
+      "cost": 25,
+      "payback_days": 7,
+      "cta": "Call tenant today",
+      "why": "One-time recovery of $1400"
+    },
+    {
+      "rank": 7,
+      "score": 44.0,
+      "kind": "rent",
+      "id": "RENT-NS-06",
+      "name": "Collect late rent - Coombs",
+      "where": "Elm St House 2 - 318 Elm St, Forest City - rent $1100",
+      "cash": 1100,
+      "cost": 25,
+      "payback_days": 8,
+      "cta": "Call tenant today",
+      "why": "One-time recovery of $1100"
+    },
+    {
+      "rank": 8,
+      "score": 44.0,
+      "kind": "work",
+      "id": "WO-119",
+      "name": "Kitchen faucet leak under sink",
+      "where": "Elm St House 2 - WO-119 - med - open",
+      "cash": 13200,
+      "cost": 300,
+      "payback_days": 8,
+      "cta": "Schedule fix",
+      "why": "Protect $13200 run-rate"
+    },
+    {
+      "rank": 9,
+      "score": 34.0,
+      "kind": "vacant",
+      "id": "VACANT-NS-03",
+      "name": "Re-list Oak St Duplex B",
+      "where": "Oak St Duplex B - monthly $1700",
+      "cash": 20400,
+      "cost": 600,
+      "payback_days": 11,
+      "cta": "Finish turn and list",
+      "why": "Annual run-rate $20400"
+    },
+    {
+      "rank": 10,
+      "score": 29.1,
+      "kind": "work",
+      "id": "WO-118",
+      "name": "Furnace not igniting \u2014 unit B",
+      "where": "Oak St Duplex B - WO-118 - high - open",
+      "cash": 20400,
+      "cost": 700,
+      "payback_days": 13,
+      "cta": "Schedule fix",
+      "why": "Protect $20400 run-rate"
+    }
+  ]
+}

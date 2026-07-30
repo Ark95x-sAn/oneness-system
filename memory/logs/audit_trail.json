@@ -1,0 +1,377 @@
+[
+  {
+    "timestamp": "2026-07-29T03:26:40.922491+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T03:50:19.731948+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T03:50:39.715613+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T03:51:10.096193+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T03:51:10.103222+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T03:51:53.228119+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T03:51:53.234646+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:05:48.044980+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:05:48.055010+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:05:51.188669+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:05:51.196696+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:07:42.033868+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:07:42.040381+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:07:42.817425+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:07:43.042855+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:18:27.824763+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T04:20:40.167876+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T05:48:38.689664+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T05:49:19.950770+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T09:00:57.597755+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T09:20:54.131716+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test-1",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T11:00:49.483397+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-29T11:00:49.487421+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  },
+  {
+    "timestamp": "2026-07-30T11:00:02.515299+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.85,
+        "human_approved": false,
+        "side": "BUY"
+      },
+      "score": 74.0,
+      "decision": "HUMAN_QUEUE"
+    }
+  },
+  {
+    "timestamp": "2026-07-30T11:00:02.524304+00:00",
+    "agent": "SYNAPSE",
+    "event": "dispatch",
+    "payload": {
+      "signal": {
+        "id": "test",
+        "strength": 0.99,
+        "human_approved": true,
+        "side": "BUY"
+      },
+      "score": 54.6,
+      "decision": "SUPPRESS"
+    }
+  }
+]

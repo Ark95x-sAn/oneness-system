@@ -1,0 +1,109 @@
+[
+  {
+    "number": 1,
+    "name": "Foundation",
+    "requirement": "Oneness System installed and `prime doctor` returns ready",
+    "boss": {
+      "name": "The Saboteur of Incompletion",
+      "gate": 1,
+      "pattern": "leaving admin installers unrun, not restarting Codex, not filling .env",
+      "detection": {
+        "checks": [
+          "admin_service_installed",
+          "codex_restarted",
+          "env_filled"
+        ]
+      },
+      "defeat_action": "Run Oneness Admin Install as admin; restart Codex; fill .env keys",
+      "reward": "Windows service live; node_repl/Chrome control enabled; APIs authenticated"
+    },
+    "unlocked": true,
+    "cleared": false,
+    "timestamp": null
+  },
+  {
+    "number": 2,
+    "name": "Automation",
+    "requirement": "Aura subagents running and adapting to your sessions",
+    "boss": {
+      "name": "The Distraction Hydra",
+      "gate": 2,
+      "pattern": "many apps competing for RAM/CPU while gaming or working",
+      "detection": {
+        "checks": [
+          "aura_subagents_running",
+          "focus_mode_respected"
+        ]
+      },
+      "defeat_action": "Run `prime aura start`; let GameGuard pause cleaners during CoD; trim only when idle",
+      "reward": "Gaming-aware optimization; background finance scans continue quietly"
+    },
+    "unlocked": false,
+    "cleared": false,
+    "timestamp": null
+  },
+  {
+    "number": 3,
+    "name": "Capital",
+    "requirement": "Live Polymarket data flowing and compound math validated",
+    "boss": {
+      "name": "The Risk Phantom",
+      "gate": 3,
+      "pattern": "trading without size limits, EV checks, or Kelly sizing",
+      "detection": {
+        "checks": [
+          "polymarket_api_reachable",
+          "risk_limits_configured"
+        ]
+      },
+      "defeat_action": "Set max order/exposure in config/agents.yaml; run `prime finance markets` daily; size via Kelly/EV",
+      "reward": "Evidence-based prediction-market edge with bounded downside"
+    },
+    "unlocked": false,
+    "cleared": false,
+    "timestamp": null
+  },
+  {
+    "number": 4,
+    "name": "Sovereignty",
+    "requirement": "System self-heals, backs up memory, and survives reboots",
+    "boss": {
+      "name": "The Decay Warden",
+      "gate": 4,
+      "pattern": "logs pile up, configs drift, services fail silently over time",
+      "detection": {
+        "checks": [
+          "daily_cleanup_active",
+          "meta_agent_healthy",
+          "service_auto_start"
+        ]
+      },
+      "defeat_action": "Confirm scheduled tasks `Oneness-*`; add cloud backup of memory/; run `prime fix` weekly",
+      "reward": "24/7 durable organism that compounds data, capital, and capability"
+    },
+    "unlocked": false,
+    "cleared": false,
+    "timestamp": null
+  },
+  {
+    "number": 5,
+    "name": "Ascension",
+    "requirement": "Human-AI council operates with delegated authority and audit trail",
+    "boss": {
+      "name": "The Ego Sovereign",
+      "gate": 5,
+      "pattern": "refusing to delegate; micromanaging; ignoring the council",
+      "detection": {
+        "checks": [
+          "delegation_log_present",
+          "decision_audit_trail"
+        ]
+      },
+      "defeat_action": "Let SYNAPSE dispatch; review daily brief; approve or veto, never stall",
+      "reward": "Maximum leverage: time, capital, intelligence, and freedom compound together"
+    },
+    "unlocked": false,
+    "cleared": false,
+    "timestamp": null
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "case_id": "EQCV018537",
+  "principle": "Pressure = Timing \u00d7 Law \u00d7 Opponent Cost",
+  "strikes": [
+    {
+      "number": 1,
+      "name": "Service Defect Freeze",
+      "law": "Iowa R. Civ. P. 1.303(1)",
+      "argument": "No proof of service on Nordskog Properties means no jurisdiction over that defendant; no deadlines triggered.",
+      "effect": "You are not late. You are early.",
+      "timing": "Immediate",
+      "cost_to_opponent": "high",
+      "cost_to_client": "low"
+    },
+    {
+      "number": 2,
+      "name": "\u00a7654.2A / \u00a7654A Mediation Defect",
+      "law": "Iowa Code \u00a7654.2A / \u00a7654A",
+      "argument": "No agricultural mediation certificate = premature filing = dismissal; burden on plaintiff.",
+      "effect": "Forces RSB to prove mediation satisfaction; potential dismissal or limited stay of 40-acre parcel.",
+      "timing": "File MTD before answer; Friday 3:30-4:30 PM window",
+      "cost_to_opponent": "very high",
+      "cost_to_client": "low"
+    },
+    {
+      "number": 3,
+      "name": "Note / Standing",
+      "law": "Iowa R. Civ. P. 1.961; UCC Article 3 (Iowa Code Ch. 554)",
+      "argument": "Demand original note and complete chain of assignment; failure = no enforcement right.",
+      "effect": "Delays MSJ; exposes proof gaps.",
+      "timing": "With MTD and discovery requests",
+      "cost_to_opponent": "high",
+      "cost_to_client": "low"
+    },
+    {
+      "number": 4,
+      "name": "Accounting Collapse",
+      "law": "Discovery / summary-judgment proof",
+      "argument": "Demand full payment history + fee basis; dispute amount destroys SJ viability.",
+      "effect": "Prevents clean summary judgment; forces evidentiary hearing on amount due.",
+      "timing": "Immediate discovery demand",
+      "cost_to_opponent": "high",
+      "cost_to_client": "low"
+    }
+  ],
+  "kill_zone": {
+    "description": "Deficiency hearing",
+    "law": "Iowa Code \u00a7654.20",
+    "strategy": "Demand FMV determination before deficiency hearing; introduce appraisal showing FMV \u2265 debt \u2192 deficiency = $0 as matter of law.",
+    "timing": "Post-judgment, pre-deficiency hearing"
+  }
+}

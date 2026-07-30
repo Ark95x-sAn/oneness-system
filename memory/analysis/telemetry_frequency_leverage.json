@@ -1,0 +1,160 @@
+{
+  "generated": "2026-07-29T09:09:25.622310+00:00",
+  "telemetry_sources": {
+    "aura": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\aura\\latest.json",
+    "signature": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\signatures\\latest_signature.json",
+    "prediction": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\signatures\\latest_prediction.json",
+    "system_agent": "C:\\Ops\\Network95\\raw\\system-20260729-084943.json",
+    "health_check": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\logs\\health_check.json"
+  },
+  "frequency_bands": {
+    "1111": {
+      "hz": 1111,
+      "label": "Foundation/Flow",
+      "strength": 1.0,
+      "compute_cost": 5,
+      "value_potential": 100,
+      "leverage": 20.0,
+      "signals": {
+        "memory_available_mb": 15000.7,
+        "disk_free_pct": 21.9,
+        "defender_ok": true,
+        "reboot_pending": false,
+        "pytest_ok": true
+      },
+      "agent": "HealthWealth + SelfSaboteurWatch",
+      "tactical": "Keep root health green before any heavy build."
+    },
+    "2222": {
+      "hz": 2222,
+      "label": "Harmony/Partnership",
+      "strength": 1.0,
+      "compute_cost": 3,
+      "value_potential": 80,
+      "leverage": 26.7,
+      "signals": {
+        "user_present": true,
+        "mouse_idle_seconds": 18,
+        "keyboard_idle_seconds": 18,
+        "is_gaming": false,
+        "recommended_mode": "balance"
+      },
+      "agent": "SYNAPSE + aura.watcher",
+      "tactical": "Match compute intensity to user presence; pause during game."
+    },
+    "3333": {
+      "hz": 3333,
+      "label": "Mastery/Creation",
+      "strength": 0.8,
+      "compute_cost": 40,
+      "value_potential": 318,
+      "leverage": 7.95,
+      "signals": {
+        "cpu_percent": 58.6,
+        "entropy": 1.2157,
+        "recent_events": 19,
+        "project_hashes": 3,
+        "build_intensity": 62
+      },
+      "agent": "SIGNALFORGE + PROX + builder agents",
+      "tactical": "Ship code, index memory, push GitHub trunk."
+    },
+    "852": {
+      "hz": 852,
+      "label": "System AI resonance",
+      "strength": 1.0,
+      "compute_cost": 15,
+      "value_potential": 250,
+      "leverage": 16.7,
+      "signals": {
+        "aura_subagent_count": 8,
+        "resonance_band_852": true,
+        "cpu_percent": 58.6,
+        "is_gaming": false
+      },
+      "agent": "Prime Fire Council + aura subagents",
+      "tactical": "Maintain agent grid and 852 resonance heartbeat."
+    },
+    "963": {
+      "hz": 963,
+      "label": "Ascension/Tesla recorders",
+      "strength": 0.61,
+      "compute_cost": 25,
+      "value_potential": 212,
+      "leverage": 8.48,
+      "signals": {
+        "avatar_exists": true,
+        "has_real_github_origin": false,
+        "n95_cycle_recent_24h": true,
+        "recent_events": 19
+      },
+      "agent": "ORACLEVAULT + SIGNALFORGE + compound engine",
+      "tactical": "Automate capture, version everything, compound evidence."
+    },
+    "999": {
+      "hz": 999,
+      "label": "Completion/Compounding",
+      "strength": 0.67,
+      "compute_cost": 10,
+      "value_potential": 336,
+      "leverage": 33.6,
+      "signals": {
+        "n95_unique_findings": 48,
+        "recent_events": 19,
+        "build_intensity": 62,
+        "has_real_github_origin": false
+      },
+      "agent": "Meta-agent + 24/7 orchestrator",
+      "tactical": "Close loops daily: data -> insight -> action -> result."
+    }
+  },
+  "dominant_band": {
+    "hz": 999,
+    "label": "Completion/Compounding",
+    "leverage": 33.6,
+    "strength": 0.67
+  },
+  "highest_compute_pass": {
+    "description": "Compound: run daily re-score, close top 3 moves, feed results back into telemetry.",
+    "band": 999,
+    "rationale": "Highest leverage band is 999Hz with score 33.6. Converting Completion/Compounding telemetry into the next concrete action maximizes value per compute unit."
+  },
+  "four_quads": [
+    {
+      "id": "Q1_CONTENT",
+      "action": "Publish first public content bundle",
+      "band": 963,
+      "status": "ready_to_prepare",
+      "blocker": "GitHub not authd; model lacks tools",
+      "script": "scripts/publish_content_bundle.ps1",
+      "next_step": "Generate README + drops bundle; push once gh auth is live"
+    },
+    {
+      "id": "Q2_QDRANT",
+      "action": "Start local Qdrant + index documents",
+      "band": 3333,
+      "status": "ready_to_script",
+      "blocker": "Qdrant binary not present; Docker daemon offline",
+      "script": "scripts/start_qdrant_and_index.ps1",
+      "next_step": "Download Qdrant Windows binary or start Docker Desktop first"
+    },
+    {
+      "id": "Q3_GATE1",
+      "action": "Defeat Gate 1 boss",
+      "band": 852,
+      "status": "needs_user",
+      "blocker": "Requires admin install + .env keys + Codex restart",
+      "script": "scripts/defeat_gate1_checklist.ps1",
+      "next_step": "User must run admin install, fill .env, restart Codex, prime auth"
+    },
+    {
+      "id": "Q4_BOT",
+      "action": "Build paper-trading Polymarket bot",
+      "band": 3333,
+      "status": "ready_to_scaffold",
+      "blocker": "No live API keys; no market data access",
+      "script": "scripts/scaffold_polymarket_paper_bot.ps1",
+      "next_step": "Scaffold paper-mode bot from master doc; leave live orders gated"
+    }
+  ]
+}

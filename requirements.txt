@@ -1,0 +1,13 @@
+
+# Oneness System Python Dependencies
+pyyaml>=6.0
+python-dotenv>=1.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+py-clob-client>=0.17.0
+websockets>=12.0
+httpx>=0.27.0
+eth-account>=0.11.0
+docx2txt>=0.8
+PyPDF2>=3.0.0
+requests>=2.31.0

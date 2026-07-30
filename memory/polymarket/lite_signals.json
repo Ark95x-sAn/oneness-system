@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-07-30T22:36:19.946698+00:00",
+  "count": 10,
+  "markets": [
+    {
+      "id": "559696",
+      "question": "Will Graham Platner win the 2028 Democratic presidential nomination?",
+      "volume24h": 149704.022326,
+      "liquidity": 2385103.15064,
+      "spread": 0.001,
+      "bestBid": 0.002,
+      "bestAsk": 0.003,
+      "category": null
+    },
+    {
+      "id": "559663",
+      "question": "Will J.B. Pritzker win the 2028 Democratic presidential nomination?",
+      "volume24h": 63955.253864,
+      "liquidity": 419247.47874,
+      "spread": 0.001,
+      "bestBid": 0.011,
+      "bestAsk": 0.012,
+      "category": null
+    },
+    {
+      "id": "561243",
+      "question": "Will Donald Trump win the 2028 US Presidential Election?",
+      "volume24h": 54832.251029,
+      "liquidity": 575489.56932,
+      "spread": 0.001,
+      "bestBid": 0.025,
+      "bestAsk": 0.026,
+      "category": null
+    },
+    {
+      "id": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "volume24h": 42037.389555,
+      "liquidity": 913255.4591,
+      "spread": 0.01,
+      "bestBid": 0.08,
+      "bestAsk": 0.09,
+      "category": null
+    },
+    {
+      "id": "559668",
+      "question": "Will Mark Kelly win the 2028 Democratic presidential nomination?",
+      "volume24h": 24905.733658000005,
+      "liquidity": 295035.48851,
+      "spread": 0.002,
+      "bestBid": 0.029,
+      "bestAsk": 0.031,
+      "category": null
+    },
+    {
+      "id": "561234",
+      "question": "Will Marco Rubio win the 2028 US Presidential Election?",
+      "volume24h": 23496.113213,
+      "liquidity": 448249.57179,
+      "spread": 0.001,
+      "bestBid": 0.123,
+      "bestAsk": 0.124,
+      "category": null
+    },
+    {
+      "id": "561255",
+      "question": "Will Ivanka Trump win the 2028 US Presidential Election?",
+      "volume24h": 22257.12275,
+      "liquidity": 628057.48137,
+      "spread": 0.001,
+      "bestBid": 0.004,
+      "bestAsk": 0.005,
+      "category": null
+    },
+    {
+      "id": "559682",
+      "question": "Will Hunter Biden win the 2028 Democratic presidential nomination?",
+      "volume24h": 19662.4148,
+      "liquidity": 1141244.72909,
+      "spread": 0.001,
+      "bestBid": 0.005,
+      "bestAsk": 0.006,
+      "category": null
+    },
+    {
+      "id": "559678",
+      "question": "Will Liz Cheney win the 2028 Democratic presidential nomination?",
+      "volume24h": 16315.164164000002,
+      "liquidity": 2458432.66351,
+      "spread": 0.001,
+      "bestBid": 0.003,
+      "bestAsk": 0.004,
+      "category": null
+    },
+    {
+      "id": "540819",
+      "question": "Will Jesus Christ return before GTA VI?",
+      "volume24h": 16176.066237999994,
+      "liquidity": 218842.1551,
+      "spread": 0.01,
+      "bestBid": 0.49,
+      "bestAsk": 0.5,
+      "category": null
+    }
+  ]
+}

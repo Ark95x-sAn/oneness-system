@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-07-30T11:00:29.972789+00:00",
+  "hash": "46c7647172c0469b551af3961826f4dc",
+  "glyph": "\u25ce\u25ce\u25ce\u25c9\n  \u25ce\u25ce\u25c9\u25c9\n  \u25c9\u25ce\u25ce\u25ce\n  \u25ce\u25ce\u25c9\u25c9",
+  "frequency": {
+    "band": 3333,
+    "label": "Mastery/Build",
+    "strength": 0.9
+  },
+  "gates": {
+    "current_gate": 1,
+    "cleared": 5,
+    "boss": "The Saboteur of Incompletion"
+  },
+  "aura": {
+    "is_gaming": false,
+    "cpu_percent": 46.9,
+    "recommended_mode": "eco"
+  },
+  "risk": {
+    "kill_switch_active": false,
+    "legal_hold": false,
+    "daily_drawdown_pct": 0.0,
+    "total_exposure_usd": 0.0,
+    "available_capital_usd": 0.0,
+    "reserve_usd": 0.0,
+    "max_order_usd": 50,
+    "max_exposure_usd": 200,
+    "demo_mode": true,
+    "last_updated": "2026-07-29T10:18:23.524272+00:00"
+  },
+  "projects": {
+    "narrative.md": "e46f3a43739408d5fea9a61b5a8e1d71",
+    "lite_signals.json": "6e144d4795dd56814574f5502225fb1f",
+    "net95x.html": "bf6e5bfa8d9233bf27a557200c6b9820"
+  },
+  "recent_events": 20,
+  "entropy": 1.2156,
+  "version": "2045.1.0"
+}

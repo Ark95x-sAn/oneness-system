@@ -1,0 +1,53 @@
+﻿[
+    {
+        "Root":  "C:\\Users\\ArcXN\\OneDrive\\Desktop",
+        "Solutions":  [
+
+                      ],
+        "CSharpProjects":  [
+                               {
+                                   "FullName":  "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\src\\Oneness.Web\\Oneness.Web.csproj",
+                                   "LastWriteTime":  "\/Date(1785297577719)\/"
+                               }
+                           ],
+        "NodeProjects":  [
+
+                         ]
+    },
+    {
+        "Root":  "C:\\Users\\ArcXN\\OneDrive\\Documents",
+        "Solutions":  [
+
+                      ],
+        "CSharpProjects":  [
+
+                           ],
+        "NodeProjects":  [
+
+                         ]
+    },
+    {
+        "Root":  "C:\\Users\\ArcXN\\source",
+        "Solutions":  [
+
+                      ],
+        "CSharpProjects":  [
+
+                           ],
+        "NodeProjects":  [
+
+                         ]
+    },
+    {
+        "Root":  "C:\\Users\\ArcXN\\Downloads",
+        "Solutions":  [
+
+                      ],
+        "CSharpProjects":  [
+
+                           ],
+        "NodeProjects":  [
+
+                         ]
+    }
+]

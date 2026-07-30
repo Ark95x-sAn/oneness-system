@@ -1,0 +1,108 @@
+
+# Oneness System — Agent Configuration
+# WARNING: Never commit real API keys or private keys to git.
+# Place secrets in a local .env file and load via python-dotenv.
+
+system:
+  name: OnenessSystem
+  version: "1.0"
+  demo_mode: true
+  vault_root: "C:\\Users\\ArcXN\\OneDrive\\Desktop\\SecondBrain"
+  sync_path: "C:\\Users\\ArcXN\\Desktop\\SB-Sync-TEST"
+  memory_root: "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory"
+  timezone: "America/Chicago"
+  log_level: INFO
+
+# Trading / finance limits
+risk:
+  max_order_size_usd: 50
+  max_total_exposure_usd: 200
+  max_position_size_per_market_usd: 100
+  max_drawdown_pct: 0.10
+  max_trades_per_hour: 20
+  balance_reserve_pct: 0.10
+  require_confirmation_above_usd: 50
+  incubation_ladder:
+    - 1   # week 1-2
+    - 5   # week 3-4
+    - 10  # week 5-6
+    - 50  # week 7-8
+    - 100 # week 9+
+
+# Polymarket API settings
+polymarket:
+  host: "https://clob.polymarket.com"
+  chain_id: 137
+  signature_type: 2
+  gamma_api: "https://gamma-api.polymarket.com/markets"
+  min_volume_24h: 10000
+  min_liquidity: 5000
+  price_min: 0.05
+  price_max: 0.95
+  max_watchlist_size: 50
+  scan_interval_seconds: 300
+  stale_order_seconds: 600
+
+# Strategy defaults
+strategies:
+  macd:
+    enabled: true
+    fast: 3
+    slow: 15
+    signal: 3
+    volume_multiplier: 1.5
+  rsi:
+    enabled: true
+    period: 14
+    oversold: 30
+    overbought: 70
+    vwap_reset: daily
+  cvd:
+    enabled: false  # requires tick-level data source
+    lookback_bars: 20
+
+# Cross-platform arb
+arb:
+  enabled: false
+  platforms:
+    - polymarket
+    - kalshi
+  min_price_gap_pct: 3.0
+
+# Alerts
+alerts:
+  discord_webhook: ""  # set via DISCORD_WEBHOOK env
+  telegram_bot_token: "" # optional
+  telegram_chat_id: ""   # optional
+  heartbeat_seconds: 60
+
+# Legal workflow defaults
+legal:
+  default_jurisdiction: "Iowa"
+  active_cases:
+    - id: "EQCV018537"
+      name: "RSB v. Nordskog"
+      path: "memory/legal/cases/EQCV018537"
+      alert_days_before_deadline: 7
+
+# Confluence scoring weights (must sum to 1.0)
+confluence:
+  signal_strength: 0.40
+  risk_clearance: 0.30
+  capital_availability: 0.15
+  legal_clearance: 0.10
+  human_approval: 0.05
+  auto_execute_threshold: 0.80
+  human_approval_threshold: 0.60
+  legal_action_threshold: 0.95
+
+# Agent cadences in seconds
+schedule:
+  oraclevault_sync: 60
+  market_scan: 300
+  signal_generate: 300
+  risk_check: 60
+  legal_check: 3600
+  sentinel_heartbeat: 60
+  daily_briefing: "00:00"
+  weekly_review: "Sunday 00:00"

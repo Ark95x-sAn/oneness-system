@@ -1,0 +1,16 @@
+{
+  "agent": "ServiceFixer",
+  "status": "needs_user",
+  "findings": [
+    "Checking admin privileges and service installation readiness.",
+    "Running as admin: False"
+  ],
+  "actions": [],
+  "errors": [
+    "Cannot install Windows service without admin privileges."
+  ],
+  "recommendations": [
+    "Right-click PowerShell and 'Run as administrator', then run scripts/integrations/install_windows_service.ps1"
+  ],
+  "timestamp": "2026-07-29T04:40:30.928274+00:00"
+}

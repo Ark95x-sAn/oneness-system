@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-07-30T22:38:17.609844+00:00",
+  "count": 4,
+  "patterns": [
+    {
+      "name": "Unfinished Foundation",
+      "signal": "OnenessWeb Windows service never installed despite admin approval",
+      "severity": "high",
+      "evidence": [
+        "admin_install.log missing"
+      ],
+      "counterspell": "Right-click 'Oneness Admin Install' desktop shortcut \u2192 Run as administrator"
+    },
+    {
+      "name": "Empty Vault",
+      "signal": "API keys still placeholders",
+      "severity": "high",
+      "evidence": [
+        ".env contains 'your-openai-key'"
+      ],
+      "counterspell": "Edit .env with real OPENAI_API_KEY, ANTHROPIC_API_KEY, etc."
+    },
+    {
+      "name": "Unbound Hand",
+      "signal": "Computer Use node_repl pipe not present; desktop automation unavailable",
+      "severity": "medium",
+      "evidence": [
+        "named pipe missing"
+      ],
+      "counterspell": "Restart Codex desktop app so node_repl/Sage/MCP_DOCKER reinitialize"
+    },
+    {
+      "name": "Silent Watchdog",
+      "signal": "Meta-agent has not run recently",
+      "severity": "low",
+      "evidence": [
+        "last meta-agent run 307 minutes ago"
+      ],
+      "counterspell": "Run `prime start` and confirm `Oneness-MetaAgent` task is Ready"
+    }
+  ]
+}

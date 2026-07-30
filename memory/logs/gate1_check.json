@@ -1,0 +1,8 @@
+{
+  "IsAdmin": true,
+  "ServiceInstalled": true,
+  "EnvHasKeys": false,
+  "GhAuth": [],
+  "CodexAuth": true,
+  "NodeReplPipe": false
+}

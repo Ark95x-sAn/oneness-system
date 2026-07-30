@@ -1,0 +1,26 @@
+{
+  "case_id": "EQCV018537",
+  "opponent": "RSB",
+  "expected_recovery": 400000,
+  "defense_costs_to_opponent": {
+    "appraisal_litigation": {
+      "low": 10000,
+      "high": 25000,
+      "note": "if deficiency hearing forced"
+    },
+    "procedural_motion_practice": {
+      "low": 5000,
+      "high": 15000,
+      "note": "service/mediation motions"
+    },
+    "discovery_on_note_and_accounting": {
+      "low": 3000,
+      "high": 8000,
+      "note": "document production, custodian affidavit"
+    },
+    "trial_risk": {
+      "note": "if case cannot be resolved on summary judgment"
+    }
+  },
+  "strategy": "Convert law into cost asymmetry. Force RSB to litigate survival, not foreclosure."
+}

@@ -1,0 +1,152 @@
+# ONENESS SYSTEM — AI TOOL INTEGRATIONS
+## Prime Fire Council Deployment Guide
+
+This document describes how the Oneness System integrates with Claude, Blackbox, Perplexity, Copilot, Claude Code, Codex, OpenClaw, and Visual Studio projects.
+
+---
+
+## 🧠 Consciousness Crews — 9 Agents
+
+The Oneness System delegates work to 9 specialist subagents. Each has a distinct lane and all merge data into `memory/`.
+
+| Seat | Agent | External Tool Pair | Workstream |
+|------|-------|-------------------|-------------|
+| Memory | ORACLEVAULT | VS Code / file system | Ingest, tag, summarize, sync |
+| Markets | MARKETSCRYER | Polymarket API | Scan tradeable markets |
+| Signals | SIGNALFORGE | Polymarket CLOB | MACD/RSI/CVD signals |
+| Execution | TRADEWEAVER | py-clob-client | Limit-order execution |
+| Risk | RISKWARDEN | Kill switch / Discord | Sizing, drawdown, legal hold |
+| Legal Intel | PRO-X | Legal docs / court | Ethical legal support |
+| Litigation | CASEBLADE | Court orders / deadlines | Procedural strike workflow |
+| Sentinel | SENTINEL | Discord/Telegram | Alerts, daily briefings |
+| Orchestrator | SYNAPSE | Web dashboard | Confluence + dispatch |
+
+---
+
+## 🔧 Detected External Tools
+
+Run `GET /api/tools` from the web dashboard or:
+
+```bat
+cd C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem
+venv\Scripts\python -c "from src.Oneness.Web.Services.AiToolService import AiToolService; from src.Oneness.Web.Models import OnenessConfig; print([t.__dict__ for t in AiToolService(OnenessConfig(SystemRoot=r'C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem')).DiscoverTools()])"
+```
+
+Detected on this machine:
+- ✅ **Claude Desktop** (`claude.exe`)
+- ✅ **Claude Code CLI** (via `npx @anthropic-ai/claude-code`)
+- ✅ **OpenClaw** (`openclaw.ps1`)
+- ✅ **OpenAI Codex CLI** (via `npx openai-codex`)
+- ✅ **GitHub Copilot CLI** (`gh.exe`)
+- ⚠️ **Perplexity AI** — web, accessible but bot-guarded via Playwright; use human browser for logged-in work
+- ✅ **Blackbox AI** — web, accessible via Playwright
+- ✅ **Visual Studio Code** (`code.cmd`)
+
+---
+
+## 🚀 Launch Commands
+
+All launchers are in `scripts/integrations/`.
+
+```bat
+# Launch from dashboard
+scripts\integrations\launch_claude_desktop.ps1
+scripts\integrations\launch_openclaw.ps1
+scripts\integrations\launch_codex_cli.ps1
+scripts\integrations\launch_github_copilot.ps1
+scripts\integrations\launch_blackbox_playwright.ps1
+scripts\integrations\launch_perplexity_playwright.ps1
+```
+
+Or use the web dashboard at `http://localhost:5050` and click the **launch** buttons.
+
+---
+
+## 🖥️ AI Serve App
+
+The ASP.NET Core control center is at `src/Oneness.Web/`.
+
+### Run locally
+```bat
+cd C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web
+dotnet run --urls http://localhost:5050
+```
+
+### Run the full Prime Fire Council
+```bat
+cd C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem
+scripts\run_prime_fire_council.bat
+```
+
+### Endpoints
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /` | Dashboard |
+| `GET /api/health` | PC doctor snapshot |
+| `GET /api/agents` | 9 agent statuses |
+| `POST /api/agents/{id}/tick` | Tick one agent |
+| `POST /api/agents/start-demo` | Start Python orchestrator |
+| `GET /api/tools` | Detected AI tools |
+| `POST /api/tools/launch` | Launch a tool by ID |
+| `GET /api/projects` | Scanned VS projects |
+| `POST /api/projects/scan` | Rescan projects |
+| `POST /api/projects/build` | Build a project |
+
+---
+
+## 🔁 Automation
+
+### Scheduled tasks (requires admin/interactive user)
+```bat
+powershell -ExecutionPolicy Bypass -File scripts\integrations\create_scheduled_tasks.ps1
+```
+
+Creates:
+- `Oneness-HealthCheck` daily at 06:00
+- `Oneness-VSScan` daily at 07:00
+
+### Windows service (requires admin)
+```bat
+powershell -ExecutionPolicy Bypass -File scripts\integrations\install_windows_service.ps1
+```
+
+---
+
+## 📁 Visual Studio / VS Code Projects
+
+The scanner searches:
+- `C:\Users\ArcXN\OneDrive\Desktop`
+- `C:\Users\ArcXN\OneDrive\Documents`
+- `C:\Users\ArcXN\source`
+- `C:\Users\ArcXN\Downloads`
+
+Currently found:
+- `OnenessSystem\src\Oneness.Web\Oneness.Web.csproj`
+
+Build any project from the dashboard or:
+```bat
+scripts\integrations\build_vs_project.ps1 -ProjectPath "path\to\project.csproj" -Configuration Release
+```
+
+---
+
+## ⚠️ Current Limitations
+
+1. **node_repl MCP unavailable** — Computer Use and Chrome Extension control require a Codex runtime restart/update.
+2. **Docker daemon offline** — Start Docker Desktop for containerized deployment.
+3. **Perplexity bot guard** — Playwright hits a security verification page; use the desktop browser for logged-in work.
+4. **External tool logins** — Claude, Blackbox, Copilot, etc. require your credentials/session.
+
+---
+
+## 🛠️ Next Steps
+
+1. Run `scripts\run_prime_fire_council.bat`
+2. Open `http://localhost:5050`
+3. Click **Detect AI Tools** then launch whichever tools you need
+4. Click **Scan VS/VSCode Projects** to find/build your work
+5. Restart Codex desktop app to restore `node_repl` / Chrome / Computer Use plugins
+
+---
+
+*Generated by Oneness System integration run.*

@@ -1,0 +1,175 @@
+@page
+@model Oneness.Web.Pages.IndexModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Oneness System — Prime Fire Council</title>
+    <style>
+        :root { --bg:#0b0f19; --panel:#151b2b; --border:#2a3447; --accent:#2563eb; --ok:#22c55e; --warn:#f59e0b; --err:#ef4444; --text:#e2e8f0; }
+        * { box-sizing:border-box; }
+        body { margin:0; font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); }
+        header { padding:1rem 2rem; background:var(--panel); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+        h1 { margin:0; font-size:1.4rem; }
+        .badge { padding:.25rem .6rem; border-radius:999px; font-size:.75rem; background:var(--accent); }
+        main { padding:1.5rem; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1rem; }
+        .card { background:var(--panel); border:1px solid var(--border); border-radius:.6rem; padding:1rem; }
+        .card h2 { margin-top:0; font-size:1.1rem; color:#94a3b8; }
+        .row { display:flex; justify-content:space-between; align-items:center; padding:.4rem 0; border-bottom:1px solid var(--border); }
+        .row:last-child { border:none; }
+        button { background:var(--accent); color:white; border:none; padding:.4rem .8rem; border-radius:.3rem; cursor:pointer; font-size:.85rem; }
+        button:hover { filter:brightness(1.1); }
+        button:disabled { opacity:.5; cursor:not-allowed; }
+        .status { font-size:.8rem; }
+        .status.ready { color:var(--ok); } .status.offline { color:var(--err); }
+        .log { font-family:monospace; font-size:.75rem; max-height:150px; overflow:auto; background:#0f172a; padding:.5rem; border-radius:.3rem; }
+        .prime { grid-column:1/-1; background:linear-gradient(90deg,#1e293b,#0f172a); }
+        .prime-actions { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div><h1>🔥 Prime Fire Council — Oneness System Control Center</h1></div>
+        <div><span class="badge">9 Agents Online</span> <span class="badge" id="mode">DEMO</span></div>
+    </header>
+    <main>
+        <section class="card prime">
+            <h2>Consciousness Crews — Mission Control</h2>
+            <p>Deploy the 9 subagents to serve separate workstreams. Each agent runs independently and merges data into the shared Oneness memory vault.</p>
+            <div class="prime-actions">
+                <button onclick="startDemo()">▶ Start Oneness Demo</button>
+                <button onclick="tickAll()">🔄 Heartbeat All Agents</button>
+                <button onclick="scanProjects()">🔍 Scan VS/VSCode Projects</button>
+                <button onclick="refreshHealth()">💓 PC Doctor Scan</button>
+                <button onclick="refreshTools()">🤖 Detect AI Tools</button>
+            </div>
+            <div id="prime-log" class="log" style="margin-top:.5rem;">Waiting for command...</div>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h2>System Health</h2>
+                <div id="health">Loading...</div>
+            </div>
+
+            <div class="card">
+                <h2>Agents</h2>
+                <div id="agents">Loading...</div>
+            </div>
+
+            <div class="card">
+                <h2>AI Tool Integrations</h2>
+                <div id="tools">Loading...</div>
+            </div>
+
+            <div class="card">
+                <h2>Visual Studio / Projects</h2>
+                <div id="projects">Loading...</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const logEl = document.getElementById('prime-log');
+        function log(msg) { logEl.innerHTML += `\n[${new Date().toLocaleTimeString()}] ${msg}`; logEl.scrollTop = logEl.scrollHeight; }
+
+        async function refreshHealth() {
+            log('Scanning PC health...');
+            const r = await fetch('/api/health');
+            const h = await r.json();
+            const disks = h.disks.map(d => `&lt;div class='row'&gt;&lt;span&gt;${d.drive}&lt;/span&gt;&lt;span class="${d.usedPercent > 90 ? 'status offline' : 'status ready'}"&gt;${d.usedPercent}% used&lt;/span&gt;&lt;/div&gt;`).join('');
+            const services = h.services.map(s => `&lt;div class='row'&gt;&lt;span&gt;${s.name}&lt;/span&gt;&lt;span class="${s.status === 'Running' ? 'status ready' : 'status offline'}"&gt;${s.status}&lt;/span&gt;&lt;/div&gt;`).slice(0, 6).join('');
+            document.getElementById('health').innerHTML = `
+                &lt;div class='row'&gt;&lt;span&gt;Memory&lt;/span&gt;&lt;span&gt;${h.memoryUsedGb} / ${h.memoryTotalGb} GB&lt;/span&gt;&lt;/div&gt;
+                ${disks}
+                &lt;div class='row'&gt;&lt;span&gt;Recent errors (24h)&lt;/span&gt;&lt;span class="${h.recentErrors.length > 5 ? 'status offline' : 'status ready'}"&gt;${h.recentErrors.length}&lt;/span&gt;&lt;/div&gt;
+                &lt;hr style="border-color:var(--border);"&gt;
+                ${services}
+            `;
+            log(`PC doctor: ${h.recentErrors.length} errors, C: ${h.disks.find(d => d.drive === 'C:')?.usedPercent}% used`);
+        }
+
+        async function tickAll() {
+            log('Sending heartbeat to all 9 agents...');
+            const r = await fetch('/api/agents');
+            const agents = await r.json();
+            for (const a of agents) await fetch(`/api/agents/${a.id}/tick`, { method: 'POST' });
+            renderAgents(agents);
+            log('All agents ticked');
+        }
+
+        function renderAgents(agents) {
+            document.getElementById('agents').innerHTML = agents.map(a => `
+                &lt;div class='row'&gt;
+                    &lt;span&gt;${a.id}&lt;/span&gt;
+                    &lt;span class="status ${a.healthy ? 'ready' : 'offline'}"&gt;${a.healthy ? 'online' : 'down'}&lt;/span&gt;
+                &lt;/div&gt;
+            `).join('');
+        }
+
+        async function refreshTools() {
+            log('Detecting AI tools...');
+            const r = await fetch('/api/tools');
+            const tools = await r.json();
+            document.getElementById('tools').innerHTML = tools.map(t => `
+                &lt;div class='row'&gt;
+                    &lt;span&gt;${t.name}&lt;/span&gt;
+                    &lt;span&gt;
+                        &lt;span class="status ${t.detected ? 'ready' : 'offline'}"&gt;${t.status}&lt;/span&gt;
+                        ${t.launchScript ? `&lt;button onclick="launchTool('${t.id}')"&gt;launch&lt;/button&gt;` : ''}
+                    &lt;/span&gt;
+                &lt;/div&gt;
+            `).join('');
+            log(`Detected ${tools.filter(t => t.detected).length}/${tools.length} tools`);
+        }
+
+        async function launchTool(id) {
+            log(`Launching ${id}...`);
+            const r = await fetch('/api/tools/launch', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({toolId:id}) });
+            const j = await r.json();
+            log(`Launch result: ${j.status}`);
+        }
+
+        async function scanProjects() {
+            log('Scanning VS/VSCode projects...');
+            await fetch('/api/projects/scan', { method: 'POST' });
+            await new Promise(r => setTimeout(r, 2000));
+            await refreshProjects();
+        }
+
+        async function refreshProjects() {
+            const r = await fetch('/api/projects');
+            const projects = await r.json();
+            if (!projects.length) { document.getElementById('projects').innerHTML = 'No projects scanned yet. Click Scan.'; return; }
+            document.getElementById('projects').innerHTML = projects.slice(0, 10).map(p => `
+                &lt;div class='row'&gt;
+                    &lt;span title="${p.path}"&gt;${p.name} (${p.type})&lt;/span&gt;
+                    &lt;button onclick="buildProject('${p.path}')"&gt;build&lt;/button&gt;
+                &lt;/div&gt;
+            `).join('');
+            log(`${projects.length} projects loaded`);
+        }
+
+        async function buildProject(path) {
+            log(`Building ${path}...`);
+            const r = await fetch(`/api/projects/build?path=${encodeURIComponent(path)}`, { method: 'POST' });
+            const j = await r.json();
+            log(`Build result: ${j.result}`);
+        }
+
+        async function startDemo() {
+            log('Starting Oneness orchestrator in demo mode...');
+            const r = await fetch('/api/agents/start-demo', { method: 'POST' });
+            const j = await r.json();
+            log(`Orchestrator pid ${j.pid}`);
+        }
+
+        refreshHealth();
+        tickAll();
+        refreshTools();
+        refreshProjects();
+        setInterval(refreshHealth, 60000);
+        setInterval(tickAll, 60000);
+    </script>
+</body>
+</html>

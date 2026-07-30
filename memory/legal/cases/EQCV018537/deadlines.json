@@ -1,0 +1,35 @@
+{
+  "case_id": "EQCV018537",
+  "last_updated": "2026-07-28T22:00:00-05:00",
+  "notes": "Response deadline has NOT started because no proof of service on Nordskog Properties. This is a defense advantage, not a missed deadline.",
+  "deadlines": [
+    {
+      "description": "Response deadline begins",
+      "trigger": "After valid service on Nordskog Properties",
+      "due_date": "TBD",
+      "status": "not_started",
+      "priority": "critical"
+    },
+    {
+      "description": "Prepare/file Motion to Dismiss (service + mediation)",
+      "trigger": "Before answering",
+      "due_date": "Day 5 from now (suggested)",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "description": "Demand original note and chain of assignment",
+      "trigger": "Immediate",
+      "due_date": "2026-07-29",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "description": "Demand full payment history and fee basis",
+      "trigger": "Immediate",
+      "due_date": "2026-07-29",
+      "status": "planned",
+      "priority": "high"
+    }
+  ]
+}

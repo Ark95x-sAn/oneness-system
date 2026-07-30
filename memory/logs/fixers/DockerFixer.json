@@ -1,0 +1,22 @@
+{
+  "agent": "DockerFixer",
+  "status": "needs_user",
+  "findings": [
+    "Checking Docker Desktop installation and engine state.",
+    "Docker CLI found: C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker",
+    "Docker daemon not responding. Checking Docker Desktop process.",
+    "com.docker.service status check: Status\n ------\nStopped"
+  ],
+  "actions": [],
+  "errors": [
+    "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
+    "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
+    "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
+    "Command failed: docker version -> Command '['docker', 'version']' timed out after 15 seconds",
+    "Docker daemon still not responding after launch attempts."
+  ],
+  "recommendations": [
+    "Start Docker Desktop manually, ensure WSL2 backend is enabled, or run wsl --update."
+  ],
+  "timestamp": "2026-07-29T04:40:30.927770+00:00"
+}

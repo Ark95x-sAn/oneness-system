@@ -1,0 +1,288 @@
+{
+  "generated": "2026-07-29 09:04 UTC",
+  "hero": {
+    "cash_to_pull_this_month": 2500,
+    "annual_run_rate": 300000,
+    "moves_on_board": 10
+  },
+  "property_ops": [
+    {
+      "rank": 1,
+      "id": "WO-122",
+      "kind": "work",
+      "score": 420.0,
+      "cash": 50400,
+      "cost": 120,
+      "payback_days": 1,
+      "name": "Parking lot light out",
+      "where": "Main St Mixed-Use - WO-122 - low priority - working",
+      "cta": "Schedule contractor or complete during swing-through",
+      "team": "Defense",
+      "agents": [
+        "SENTINEL",
+        "PROX",
+        "SYNAPSE"
+      ],
+      "tactical": "Safety and tenant retention fix at the highest return property"
+    },
+    {
+      "rank": 2,
+      "id": "WO-121",
+      "kind": "work",
+      "score": 180.0,
+      "cash": 21600,
+      "cost": 120,
+      "payback_days": 2,
+      "name": "Gutter pulling loose, NE corner",
+      "where": "Oak St Duplex A - WO-121 - low priority - open",
+      "cta": "Schedule contractor or complete during swing-through",
+      "team": "Defense",
+      "agents": [
+        "SENTINEL",
+        "PROX"
+      ],
+      "tactical": "Prevent water intrusion and exterior damage"
+    },
+    {
+      "rank": 3,
+      "id": "LEASE-NS-02",
+      "kind": "lease",
+      "score": 144.0,
+      "cash": 21600,
+      "cost": 150,
+      "payback_days": null,
+      "name": "Renew lease - Reyes",
+      "where": "Oak St Duplex A - lease ends 2026-09-30",
+      "cta": "Reach out 90 days out; offer renewal terms",
+      "team": "Offense",
+      "agents": [
+        "ORACLEVAULT",
+        "SYNAPSE"
+      ],
+      "tactical": "Retain 21,600 USD annual rent before lease expires"
+    },
+    {
+      "rank": 4,
+      "id": "LEASE-NS-06",
+      "kind": "lease",
+      "score": 88.0,
+      "cash": 13200,
+      "cost": 150,
+      "payback_days": null,
+      "name": "Renew lease - Coombs",
+      "where": "Elm St House 2 - lease ends 2026-08-31",
+      "cta": "Reach out 90 days out; offer renewal terms",
+      "team": "Offense",
+      "agents": [
+        "ORACLEVAULT",
+        "CASEBLADE",
+        "SYNAPSE"
+      ],
+      "tactical": "Retain 13,200 USD annual rent and resolve late rent on same unit"
+    },
+    {
+      "rank": 5,
+      "id": "WO-120",
+      "kind": "work",
+      "score": 68.0,
+      "cash": 20400,
+      "cost": 300,
+      "payback_days": 5,
+      "name": "Repaint + carpet for re-list",
+      "where": "Oak St Duplex B - WO-120 - med priority - working",
+      "cta": "Schedule contractor or complete during swing-through",
+      "team": "Offense",
+      "agents": [
+        "SIGNALFORGE",
+        "PROX",
+        "SENTINEL"
+      ],
+      "tactical": "Complete make-ready to re-list vacant unit"
+    },
+    {
+      "rank": 6,
+      "id": "RENT-NS-04",
+      "kind": "rent",
+      "score": 56.0,
+      "cash": 1400,
+      "cost": 25,
+      "payback_days": 7,
+      "name": "Collect plan rent - Brandt",
+      "where": "Mill Rd Rental - 78 Mill Rd, Lake Mills - rent $1400",
+      "cta": "Text/call tenant today; confirm payment timeline",
+      "team": "Offense",
+      "agents": [
+        "ORACLEVAULT",
+        "SYNAPSE"
+      ],
+      "tactical": "Recover 1,400 USD plan payment with a 25 USD call"
+    },
+    {
+      "rank": 7,
+      "id": "RENT-NS-06",
+      "kind": "rent",
+      "score": 44.0,
+      "cash": 1100,
+      "cost": 25,
+      "payback_days": 8,
+      "name": "Collect late rent - Coombs",
+      "where": "Elm St House 2 - 318 Elm St, Forest City - rent $1100",
+      "cta": "Text/call tenant today; confirm payment timeline",
+      "team": "Offense",
+      "agents": [
+        "ORACLEVAULT",
+        "CASEBLADE",
+        "SYNAPSE"
+      ],
+      "tactical": "Recover 1,100 USD late rent; escalate if needed"
+    },
+    {
+      "rank": 8,
+      "id": "WO-119",
+      "kind": "work",
+      "score": 44.0,
+      "cash": 13200,
+      "cost": 300,
+      "payback_days": 8,
+      "name": "Kitchen faucet leak under sink",
+      "where": "Elm St House 2 - WO-119 - med priority - open",
+      "cta": "Schedule contractor or complete during swing-through",
+      "team": "Defense",
+      "agents": [
+        "SENTINEL",
+        "PROX"
+      ],
+      "tactical": "Stop leak before cabinet/floor damage spreads"
+    },
+    {
+      "rank": 9,
+      "id": "VACANT-NS-03",
+      "kind": "vacant",
+      "score": 34.0,
+      "cash": 20400,
+      "cost": 600,
+      "payback_days": 11,
+      "name": "Re-list and fill Oak St Duplex B",
+      "where": "Oak St Duplex B - 206 Oak St, Forest City - monthly $1700",
+      "cta": "Finish turn; photos; listing; showings",
+      "team": "Offense",
+      "agents": [
+        "PROX",
+        "SIGNALFORGE",
+        "ORACLEVAULT",
+        "SENTINEL"
+      ],
+      "tactical": "Fill vacancy and restore 20,400 USD annual run-rate"
+    },
+    {
+      "rank": 10,
+      "id": "WO-118",
+      "kind": "work",
+      "score": 29.1,
+      "cash": 20400,
+      "cost": 700,
+      "payback_days": 13,
+      "name": "Furnace not igniting \u2014 unit B",
+      "where": "Oak St Duplex B - WO-118 - high priority - open",
+      "cta": "Schedule contractor or complete during swing-through",
+      "team": "Defense",
+      "agents": [
+        "SENTINEL",
+        "PROX"
+      ],
+      "tactical": "Restore heat/habitability before weather or legal risk"
+    }
+  ],
+  "system_defense": [
+    {
+      "source": "sabotage",
+      "name": "Unfinished Foundation",
+      "severity": "high",
+      "counterspell": "Run Oneness Admin Install as administrator",
+      "agents": [
+        "SENTINEL",
+        "ServiceFixer"
+      ]
+    },
+    {
+      "source": "sabotage",
+      "name": "Empty Vault",
+      "severity": "high",
+      "counterspell": "Edit .env with real OPENAI_API_KEY and ANTHROPIC_API_KEY",
+      "agents": [
+        "ORACLEVAULT",
+        "AuthFixer"
+      ]
+    },
+    {
+      "source": "sabotage",
+      "name": "Unbound Hand",
+      "severity": "medium",
+      "counterspell": "Restart Codex desktop app to rebind node_repl Sage and MCP_DOCKER",
+      "agents": [
+        "SENTINEL",
+        "CodexPluginFixer"
+      ]
+    },
+    {
+      "source": "fixer",
+      "name": "Docker daemon not responding",
+      "severity": "medium",
+      "counterspell": "Start Docker Desktop manually or run wsl --update",
+      "agents": [
+        "DockerFixer",
+        "SENTINEL"
+      ]
+    },
+    {
+      "source": "fixer",
+      "name": "Auth incomplete for GitHub and Codex CLI",
+      "severity": "high",
+      "counterspell": "Run gh auth login and complete Codex sign-in",
+      "agents": [
+        "AuthFixer",
+        "ORACLEVAULT"
+      ]
+    },
+    {
+      "source": "health",
+      "name": "High CPU from msedgewebview2 processes",
+      "severity": "low",
+      "counterspell": "Close idle Edge WebView2 hosts and review aura.rambalancer",
+      "agents": [
+        "Network95",
+        "aura.rambalancer"
+      ]
+    },
+    {
+      "source": "system",
+      "name": "Qdrant collections empty / not running",
+      "severity": "medium",
+      "counterspell": "Start local Qdrant and index documents",
+      "agents": [
+        "SIGNALFORGE",
+        "PROX"
+      ]
+    },
+    {
+      "source": "system",
+      "name": "GitHub origin is placeholder and token invalid",
+      "severity": "high",
+      "counterspell": "Create real repo and run gh auth login",
+      "agents": [
+        "ORACLEVAULT",
+        "oneness-github script"
+      ]
+    },
+    {
+      "source": "system",
+      "name": "Model openhermes does not support tools",
+      "severity": "high",
+      "counterspell": "Switch to a tool-capable model in Codex CLI",
+      "agents": [
+        "SYNAPSE",
+        "user"
+      ]
+    }
+  ]
+}

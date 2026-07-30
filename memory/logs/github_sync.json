@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2026-07-29T08:30:48.160530+00:00",
+    "init": {
+      "ok": true,
+      "returncode": 0,
+      "stdout": "Initialized empty Git repository in C:/Users/ArcXN/OneDrive/Desktop/OnenessSystem/.git/",
+      "stderr": ""
+    },
+    "remote": {
+      "ok": true,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "auth": {
+      "authenticated": false,
+      "details": {
+        "ok": false,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "github.com\n  X Failed to log in to github.com using token (GH_TOKEN)\n  - Active account: true\n  - The token in GH_TOKEN is invalid."
+      }
+    },
+    "status": "auth_required",
+    "next_step": "Run 'gh auth login' or set GH_TOKEN, then re-run sync."
+  }
+]

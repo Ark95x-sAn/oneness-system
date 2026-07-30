@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-07-29T09:52:41.834964+00:00",
+  "system": {
+    "webview2_processes": 1,
+    "vmmem_wsl_detected": true,
+    "top_cpu_name": "vmmemWSL",
+    "top_cpu_value": 39702.953125
+  },
+  "documents_indexed": 26,
+  "top_property_actions": [
+    {
+      "rank": 1,
+      "id": "WO-122",
+      "name": "Parking lot light out",
+      "cta": "Schedule fix",
+      "cash": 50400,
+      "cost": 120
+    },
+    {
+      "rank": 2,
+      "id": "WO-121",
+      "name": "Gutter pulling loose, NE corner",
+      "cta": "Schedule fix",
+      "cash": 21600,
+      "cost": 120
+    },
+    {
+      "rank": 3,
+      "id": "LEASE-NS-02",
+      "name": "Renew lease - Reyes",
+      "cta": "Reach out for renewal",
+      "cash": 21600,
+      "cost": 150
+    },
+    {
+      "rank": 4,
+      "id": "LEASE-NS-06",
+      "name": "Renew lease - Coombs",
+      "cta": "Reach out for renewal",
+      "cash": 13200,
+      "cost": 150
+    },
+    {
+      "rank": 5,
+      "id": "WO-120",
+      "name": "Repaint + carpet for re-list",
+      "cta": "Schedule fix",
+      "cash": 20400,
+      "cost": 300
+    }
+  ],
+  "github_prep": {
+    "ready_to_push": true,
+    "files_to_commit": [
+      "memory/activation/*.md",
+      "memory/analysis/*.md",
+      "memory/analysis/*.json",
+      "src/",
+      "scripts/",
+      "publish/",
+      "README.md",
+      "DEPLOYMENT_STATUS.md"
+    ],
+    "blockers": [
+      ".env real keys",
+      "gh auth login",
+      "Codex restart"
+    ],
+    "first_commit_message": "chore: oneness system max orchestration + passive wealth engines"
+  }
+}

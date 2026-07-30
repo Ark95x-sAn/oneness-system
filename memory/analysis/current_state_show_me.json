@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-07-29T10:24:36.443372+00:00",
+  "resonance_count": 20,
+  "signature_hash": "a9ba76f71a19452f958a0cf5b3871a61",
+  "frequency_band": 3333,
+  "frequency_label": "Mastery/Build",
+  "boss": "The Saboteur of Incompletion",
+  "cash_to_pull": 2500,
+  "annual_run_rate": 300000,
+  "moves_on_board": 10,
+  "top_3_moves": [
+    {
+      "rank": 1,
+      "score": 420.0,
+      "kind": "work",
+      "id": "WO-122",
+      "name": "Parking lot light out",
+      "where": "Main St Mixed-Use - WO-122 - low - working",
+      "cash": 50400,
+      "cost": 120,
+      "payback_days": 1,
+      "cta": "Schedule fix",
+      "why": "Protect $50400 run-rate"
+    },
+    {
+      "rank": 2,
+      "score": 180.0,
+      "kind": "work",
+      "id": "WO-121",
+      "name": "Gutter pulling loose, NE corner",
+      "where": "Oak St Duplex A - WO-121 - low - open",
+      "cash": 21600,
+      "cost": 120,
+      "payback_days": 2,
+      "cta": "Schedule fix",
+      "why": "Protect $21600 run-rate"
+    },
+    {
+      "rank": 3,
+      "score": 144.0,
+      "kind": "lease",
+      "id": "LEASE-NS-02",
+      "name": "Renew lease - Reyes",
+      "where": "Oak St Duplex A - lease ends 2026-09-30",
+      "cash": 21600,
+      "cost": 150,
+      "payback_days": null,
+      "cta": "Reach out for renewal",
+      "why": "Secure $21600 annual run-rate"
+    }
+  ],
+  "wealth_engines_count": 5,
+  "daily_actions": [
+    "Run PC admin optimization",
+    "Start aura subagents",
+    "Pulse 852 resonance + update signature",
+    "Run Network-95 intelligence cycle",
+    "Refresh document index",
+    "Evaluate paper-trading bot in demo mode"
+  ],
+  "weekly_actions": [
+    "Refresh content bundle",
+    "Run all 4 quads in background",
+    "Re-score property operations",
+    "Review Network-95 remediation brief"
+  ],
+  "blockers": [
+    ".env real keys",
+    "gh auth login",
+    "Codex restart"
+  ],
+  "documents_indexed": 26
+}

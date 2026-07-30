@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-07-29T07:55:10.097315+00:00",
+  "count": 10,
+  "markets": [
+    {
+      "id": "561242",
+      "question": "Will Tulsi Gabbard win the 2028 US Presidential Election?",
+      "volume24h": 1104797.883,
+      "liquidity": 591824.94497,
+      "spread": 0.001,
+      "bestBid": 0.003,
+      "bestAsk": 0.004,
+      "category": null
+    },
+    {
+      "id": "559668",
+      "question": "Will Mark Kelly win the 2028 Democratic presidential nomination?",
+      "volume24h": 191753.089599,
+      "liquidity": 301751.72291,
+      "spread": 0.002,
+      "bestBid": 0.031,
+      "bestAsk": 0.033,
+      "category": null
+    },
+    {
+      "id": "561256",
+      "question": "Will Zohran Mamdani win the 2028 US Presidential Election?",
+      "volume24h": 129494.821327,
+      "liquidity": 1813388.33024,
+      "spread": 0.001,
+      "bestBid": 0.003,
+      "bestAsk": 0.004,
+      "category": null
+    },
+    {
+      "id": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "volume24h": 71733.595503,
+      "liquidity": 903084.6881,
+      "spread": 0.01,
+      "bestBid": 0.08,
+      "bestAsk": 0.09,
+      "category": null
+    },
+    {
+      "id": "559679",
+      "question": "Will Bernie Sanders win the 2028 Democratic presidential nomination?",
+      "volume24h": 25693.784994,
+      "liquidity": 911006.13599,
+      "spread": 0.001,
+      "bestBid": 0.006,
+      "bestAsk": 0.007,
+      "category": null
+    },
+    {
+      "id": "559664",
+      "question": "Will Raphael Warnock win the 2028 Democratic presidential nomination?",
+      "volume24h": 20475.824333,
+      "liquidity": 1828243.65655,
+      "spread": 0.001,
+      "bestBid": 0.005,
+      "bestAsk": 0.006,
+      "category": null
+    },
+    {
+      "id": "561243",
+      "question": "Will Donald Trump win the 2028 US Presidential Election?",
+      "volume24h": 19557.893132999998,
+      "liquidity": 613552.63337,
+      "spread": 0.001,
+      "bestBid": 0.019,
+      "bestAsk": 0.02,
+      "category": null
+    },
+    {
+      "id": "559651",
+      "question": "Xi Jinping out before 2027?",
+      "volume24h": 18037.607138,
+      "liquidity": 248768.76554,
+      "spread": 0.001,
+      "bestBid": 0.046,
+      "bestAsk": 0.047,
+      "category": null
+    },
+    {
+      "id": "559670",
+      "question": "Will Gina Raimondo win the 2028 Democratic presidential nomination?",
+      "volume24h": 17451.276661,
+      "liquidity": 2173323.49244,
+      "spread": 0.001,
+      "bestBid": 0.003,
+      "bestAsk": 0.004,
+      "category": null
+    },
+    {
+      "id": "540819",
+      "question": "Will Jesus Christ return before GTA VI?",
+      "volume24h": 16510.069259999997,
+      "liquidity": 236093.0185,
+      "spread": 0.01,
+      "bestBid": 0.49,
+      "bestAsk": 0.5,
+      "category": null
+    }
+  ]
+}

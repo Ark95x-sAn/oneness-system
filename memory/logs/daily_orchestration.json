@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-07-29T04:27:43.5925150-05:00",
+  "steps": [
+    {
+      "name": "PC Admin Pass",
+      "status": "ok",
+      "output": ""
+    },
+    {
+      "name": "Aura Start",
+      "status": "ok",
+      "output": "Aura action: start\r\n{\r\n  \"action\": \"start\",\r\n  \"controller\": {\r\n    \"ok\": true,\r\n    \"returncode\": 0,\r\n    \"stdout\": \"{'started': 8, 'processes': [{'module': 'aura.watcher', 'pid': 14352}, {'module': 'aura.subagents.gameguard', 'pid': 48376}, {'module': 'aura.subagents.idlecleaner', 'pid': 32120}, {'module': 'aura.subagents.rambalancer', 'pid': 42520}, {'module': 'aura.subagents.signalforge_lite', 'pid': 44952}, {'module': 'aura.subagents.tradewatch', 'pid': 23516}, {'module': 'aura.subagents.he"
+    },
+    {
+      "name": "852 Pulse + Signature",
+      "status": "ok",
+      "output": "{\r\n  \"code\": \"852-852-852z\",\r\n  \"activated\": true,\r\n  \"resonance_count\": 16,\r\n  \"last_intent\": \"rise\",\r\n  \"timestamp\": \"2026-07-29T09:27:52.786883+00:00\"\r\n}\r\n{\r\n  \"signature\": {\r\n    \"timestamp\": \"2026-07-29T09:27:52.875319+00:00\",\r\n    \"hash\": \"d3e3eb9bcdcb35463b527ee300dc69ae\",\r\n    \"glyph\": \"\\u25c9\\u25c9\\u25ce\\u25c9\\n  \\u25ce\\u25c9\\u25c9\\u25c9\\n  \\u25ce\\u25c9\\u25ce\\u25c9\\n  \\u25c9\\u25c9\\u25ce\\u25ce\",\r\n    \"frequency\": {\r\n      \"band\": 3333,\r\n      \"label\": \"Mastery/Build\",\r\n      \"strength\": "
+    },
+    {
+      "name": "Network-95 Cycle",
+      "status": "ok",
+      "output": "2026-07-29 04:27:53,007 [INFO] Starting Network-95 cycle | focus: ['security', 'performance', 'cost', 'ai-tools']\r\n2026-07-29 04:27:53,007 [INFO] Delegating to system_agent: --out C:\\Ops\\Network95\\raw\\system-20260729-092753.json\r\n2026-07-29 04:27:56,895 [INFO] Wrote raw output: C:\\Ops\\Network95\\raw\\system_agent-20260729-092756.json\r\n2026-07-29 04:27:56,897 [INFO] Delegating to github_agent: --out C:\\Ops\\Network95\\raw\\github-20260729-092753.json\r\n2026-07-29 04:28:02,347 [INFO] Wrote raw output: C"
+    },
+    {
+      "name": "Memory Index Refresh",
+      "status": "ok",
+      "output": "Indexed 23 documents. Query with idx.search('your question').\r\n0.177 C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\analysis\\quad_run_report.md\r\n0.082 C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\activation\\codex_drop_genx.md\r\n0.065 C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\analysis\\endgame_leverage_analysis.md\r\n"
+    },
+    {
+      "name": "Paper Bot Demo",
+      "status": "ok",
+      "output": "{\r\n  \"timestamp\": \"2026-07-29T09:28:14.649622+00:00\",\r\n  \"market\": \"will-fed-cut-rates-in-july\",\r\n  \"model_probability\": 0.62,\r\n  \"market_price\": 0.55,\r\n  \"direction\": \"yes\",\r\n  \"confluence_score\": 0.48750000000000004,\r\n  \"edge\": 0.06999999999999995,\r\n  \"half_kelly_fraction\": 0.07777777777777775,\r\n  \"suggested_usd\": 50.0,\r\n  \"approved\": false,\r\n  \"demo_mode\": true,\r\n  \"signals\": [\r\n    {\r\n      \"source\": \"macd\",\r\n      \"side\": \"yes\",\r\n      \"strength\": 0.72,\r\n      \"reason\": \"MACD line crossed a"
+    }
+  ]
+}

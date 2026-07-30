@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Python syntax",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "name": "Agent syntax",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "name": "Pytest",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "name": "YAML config",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "name": "Docker daemon",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "name": "Node available",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "name": "npx available",
+    "ok": true,
+    "returncode": 0,
+    "stderr": ""
+  }
+]

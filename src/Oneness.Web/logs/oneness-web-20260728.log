@@ -1,0 +1,160 @@
+2026-07-28 23:18:37.149 -05:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-07-28 23:18:37.928 -05:00 [DBG] Initializing Razor view compiler with compiled view: '/Pages/Index.cshtml'.
+2026-07-28 23:18:37.948 -05:00 [INF] User profile is available. Using 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-28 23:18:38.134 -05:00 [DBG] Hosting starting
+2026-07-28 23:18:38.167 -05:00 [DBG] Reading data from file 'C:\Users\ArcXN\AppData\Local\ASP.NET\DataProtection-Keys\key-a05a8dc2-9a35-47b8-9d94-c936cb910034.xml'.
+2026-07-28 23:18:39.963 -05:00 [DBG] Found key {a05a8dc2-9a35-47b8-9d94-c936cb910034}.
+2026-07-28 23:18:40.099 -05:00 [DBG] Considering key {a05a8dc2-9a35-47b8-9d94-c936cb910034} with expiration date 2026-08-04 04:58:08Z as default key.
+2026-07-28 23:18:40.113 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-28 23:18:40.121 -05:00 [DBG] Decrypting secret element using Windows DPAPI.
+2026-07-28 23:18:40.124 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-07-28 23:18:40.131 -05:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2026-07-28 23:18:40.577 -05:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2026-07-28 23:18:40.606 -05:00 [DBG] Using key {a05a8dc2-9a35-47b8-9d94-c936cb910034} as the default key.
+2026-07-28 23:18:40.609 -05:00 [DBG] Key ring with default key {a05a8dc2-9a35-47b8-9d94-c936cb910034} was loaded during application startup.
+2026-07-28 23:18:40.621 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-28 23:18:40.626 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-28 23:18:40.628 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-28 23:18:40.630 -05:00 [DBG] Heartbeat PROX
+2026-07-28 23:18:40.634 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-28 23:18:40.636 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-28 23:18:40.637 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-28 23:18:40.638 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-28 23:18:40.639 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-28 23:18:40.760 -05:00 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2026-07-28 23:18:40.774 -05:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-07-28 23:18:40.809 -05:00 [INF] Now listening on: http://localhost:5050
+2026-07-28 23:18:40.817 -05:00 [DBG] Loaded hosting startup assembly Oneness.Web
+2026-07-28 23:18:40.834 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-28 23:18:40.857 -05:00 [INF] Hosting environment: Development
+2026-07-28 23:18:40.858 -05:00 [INF] Content root path: C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web
+2026-07-28 23:18:40.869 -05:00 [DBG] Hosting started
+2026-07-28 23:18:44.228 -05:00 [WRN] Could not read event logs
+System.Security.SecurityException: Requested registry access is not allowed.
+   at Microsoft.Win32.RegistryKey.OpenSubKey(String name, Boolean writable)
+   at System.Diagnostics.EventLog.Exists(String logName, String machineName)
+   at System.Diagnostics.EventLogInternal.OpenForRead(String currentMachineName)
+   at System.Diagnostics.EventLogInternal.GetEntryAtNoThrow(Int32 index)
+   at System.Linq.Enumerable.CastICollectionIterator`1.MoveNext()
+   at System.Linq.Enumerable.IEnumerableWhereIterator`1.MoveNext()
+   at System.Linq.Enumerable.IEnumerableSkipTakeIterator`1.MoveNext()
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArrayNoPresizing()
+   at System.Linq.Enumerable.IteratorSelectIterator`2.ToArray()
+   at System.Linq.Enumerable.OrderedIterator`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at Oneness.Web.Services.HealthMonitorService.GetSnapshot() in C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\src\Oneness.Web\Services\HealthMonitorService.cs:line 60
+2026-07-28 23:18:44.330 -05:00 [INF] PC health: C: 77.8% used, 0 recent errors
+2026-07-28 23:19:40.140 -05:00 [DBG] Connection id "0HNND52DSKR0S" accepted.
+2026-07-28 23:19:40.142 -05:00 [DBG] Connection id "0HNND52DSKR0S" started.
+2026-07-28 23:19:40.304 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/ - null null
+2026-07-28 23:19:40.320 -05:00 [DBG] The request path  does not match the path filter
+2026-07-28 23:19:40.321 -05:00 [DBG] The request path / does not match a supported file type
+2026-07-28 23:19:40.364 -05:00 [DBG] 1 candidate(s) found for the request path '/'
+2026-07-28 23:19:40.369 -05:00 [DBG] Endpoint '/Index' with route pattern '' is valid for the request path '/'
+2026-07-28 23:19:40.372 -05:00 [DBG] Request matched endpoint '/Index'
+2026-07-28 23:19:40.374 -05:00 [INF] Executing endpoint '/Index'
+2026-07-28 23:19:40.459 -05:00 [INF] Route matched with {page = "/Index", action = "", controller = ""}. Executing page /Index
+2026-07-28 23:19:40.468 -05:00 [DBG] Execution plan of authorization filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.AutoValidateAntiforgeryTokenAuthorizationFilter"]
+2026-07-28 23:19:40.470 -05:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-28 23:19:40.471 -05:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2026-07-28 23:19:40.473 -05:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-07-28 23:19:40.475 -05:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2026-07-28 23:19:40.480 -05:00 [DBG] Executing page model factory for page AspNetCoreGeneratedDocument.Pages_Index (Oneness.Web)
+2026-07-28 23:19:40.489 -05:00 [DBG] Executed page model factory for page AspNetCoreGeneratedDocument.Pages_Index (Oneness.Web)
+2026-07-28 23:19:40.494 -05:00 [INF] Executing handler method Oneness.Web.Pages.IndexModel.OnGet - ModelState is "Valid"
+2026-07-28 23:19:40.501 -05:00 [INF] Executed handler method OnGet, returned result .
+2026-07-28 23:19:40.514 -05:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2026-07-28 23:19:40.515 -05:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2026-07-28 23:19:40.596 -05:00 [INF] Executed page /Index in 117.5999ms
+2026-07-28 23:19:40.599 -05:00 [INF] Executed endpoint '/Index'
+2026-07-28 23:19:40.600 -05:00 [DBG] Connection id "0HNND52DSKR0S" completed keep alive response.
+2026-07-28 23:19:40.603 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/ - 200 null text/html; charset=utf-8 306.0354ms
+2026-07-28 23:19:40.649 -05:00 [DBG] Heartbeat SYNAPSE
+2026-07-28 23:19:40.649 -05:00 [DBG] Heartbeat TRADEWEAVER
+2026-07-28 23:19:40.650 -05:00 [DBG] Heartbeat CASEBLADE
+2026-07-28 23:19:40.651 -05:00 [DBG] Heartbeat PROX
+2026-07-28 23:19:40.651 -05:00 [DBG] Heartbeat SENTINEL
+2026-07-28 23:19:40.652 -05:00 [DBG] Heartbeat MARKETSCRYER
+2026-07-28 23:19:40.653 -05:00 [DBG] Heartbeat SIGNALFORGE
+2026-07-28 23:19:40.654 -05:00 [DBG] Heartbeat ORACLEVAULT
+2026-07-28 23:19:40.655 -05:00 [DBG] Heartbeat RISKWARDEN
+2026-07-28 23:19:40.666 -05:00 [DBG] Connection id "0HNND52DSKR0S" received FIN.
+2026-07-28 23:19:40.671 -05:00 [DBG] Connection id "0HNND52DSKR0S" disconnecting.
+2026-07-28 23:19:40.683 -05:00 [DBG] Connection id "0HNND52DSKR0S" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-28 23:19:40.696 -05:00 [DBG] Connection id "0HNND52DSKR0S" stopped.
+2026-07-28 23:19:56.673 -05:00 [DBG] Connection id "0HNND52DSKR0T" accepted.
+2026-07-28 23:19:56.677 -05:00 [DBG] Connection id "0HNND52DSKR0T" started.
+2026-07-28 23:19:56.679 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/health - null null
+2026-07-28 23:19:56.682 -05:00 [DBG] The request path  does not match the path filter
+2026-07-28 23:19:56.699 -05:00 [DBG] The request path /api/health does not match a supported file type
+2026-07-28 23:19:56.739 -05:00 [DBG] 2 candidate(s) found for the request path '/api/health'
+2026-07-28 23:19:56.747 -05:00 [DBG] Endpoint 'HTTP: GET /api/health' with route pattern '/api/health' is valid for the request path '/api/health'
+2026-07-28 23:19:56.759 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.HealthController.Get (Oneness.Web)' with route pattern 'api/Health' is valid for the request path '/api/health'
+2026-07-28 23:19:56.768 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+HTTP: GET /api/health
+Oneness.Web.Controllers.HealthController.Get (Oneness.Web)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-07-28 23:19:56.791 -05:00 [DBG] Connection id "0HNND52DSKR0T" completed keep alive response.
+2026-07-28 23:19:56.802 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/health - 500 null text/plain; charset=utf-8 123.2521ms
+2026-07-28 23:19:56.893 -05:00 [DBG] Connection id "0HNND52DSKR0T" received FIN.
+2026-07-28 23:19:56.897 -05:00 [DBG] Connection id "0HNND52DSKR0T" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-28 23:19:56.908 -05:00 [DBG] Connection id "0HNND52DSKR0U" accepted.
+2026-07-28 23:19:56.943 -05:00 [DBG] Connection id "0HNND52DSKR0T" disconnecting.
+2026-07-28 23:19:56.973 -05:00 [DBG] Connection id "0HNND52DSKR0U" started.
+2026-07-28 23:19:56.977 -05:00 [DBG] Connection id "0HNND52DSKR0T" stopped.
+2026-07-28 23:19:56.997 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/agents - null null
+2026-07-28 23:19:57.014 -05:00 [DBG] The request path  does not match the path filter
+2026-07-28 23:19:57.035 -05:00 [DBG] The request path /api/agents does not match a supported file type
+2026-07-28 23:19:57.039 -05:00 [DBG] 2 candidate(s) found for the request path '/api/agents'
+2026-07-28 23:19:57.040 -05:00 [DBG] Endpoint 'HTTP: GET /api/agents' with route pattern '/api/agents' is valid for the request path '/api/agents'
+2026-07-28 23:19:57.044 -05:00 [DBG] Endpoint 'Oneness.Web.Controllers.AgentsController.List (Oneness.Web)' with route pattern 'api/Agents' is valid for the request path '/api/agents'
+2026-07-28 23:19:57.055 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+HTTP: GET /api/agents
+Oneness.Web.Controllers.AgentsController.List (Oneness.Web)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-07-28 23:19:57.088 -05:00 [DBG] Connection id "0HNND52DSKR0U" completed keep alive response.
+2026-07-28 23:19:57.091 -05:00 [DBG] Connection id "0HNND52DSKR0U" received FIN.
+2026-07-28 23:19:57.092 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/agents - 500 null text/plain; charset=utf-8 95.4875ms
+2026-07-28 23:19:57.093 -05:00 [DBG] Connection id "0HNND52DSKR0U" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-28 23:19:57.096 -05:00 [DBG] Connection id "0HNND52DSKR0V" accepted.
+2026-07-28 23:19:57.100 -05:00 [DBG] Connection id "0HNND52DSKR0U" disconnecting.
+2026-07-28 23:19:57.101 -05:00 [DBG] Connection id "0HNND52DSKR0V" started.
+2026-07-28 23:19:57.114 -05:00 [DBG] Connection id "0HNND52DSKR0U" stopped.
+2026-07-28 23:19:57.122 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5050/api/status - null null
+2026-07-28 23:19:57.143 -05:00 [DBG] The request path  does not match the path filter
+2026-07-28 23:19:57.146 -05:00 [DBG] The request path /api/status does not match a supported file type
+2026-07-28 23:19:57.147 -05:00 [DBG] No candidates found for the request path '/api/status'
+2026-07-28 23:19:57.148 -05:00 [DBG] Request did not match any endpoints
+2026-07-28 23:19:57.150 -05:00 [DBG] Connection id "0HNND52DSKR0V" completed keep alive response.
+2026-07-28 23:19:57.152 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5050/api/status - 404 0 null 30.403ms
+2026-07-28 23:19:57.157 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5050/api/status, Response status code: 404
+2026-07-28 23:19:57.333 -05:00 [DBG] Connection id "0HNND52DSKR0V" received FIN.
+2026-07-28 23:19:57.370 -05:00 [DBG] Connection id "0HNND52DSKR0V" disconnecting.
+2026-07-28 23:19:57.377 -05:00 [DBG] Connection id "0HNND52DSKR0V" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-07-28 23:19:57.400 -05:00 [DBG] Connection id "0HNND52DSKR0V" stopped.
