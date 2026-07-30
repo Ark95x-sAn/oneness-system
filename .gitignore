@@ -36,3 +36,7 @@ memory/qdrant_fallback/
 C:\Ops\Network95\
 _tmp_*.py
 _fix*.py
+
+# Extracted raw data with secrets
+memory/extracted/sticky_notes_numbers.json
+
