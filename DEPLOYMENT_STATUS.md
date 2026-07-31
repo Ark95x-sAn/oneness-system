@@ -265,3 +265,34 @@ codex login
 ### 🔄 Then: Restart Codex desktop app
 After auth completes, restart Codex to rebind node_repl/Sage/MCP_DOCKER.
 After restart, paste `memory\activation\codex_drop_after_restart.md`.
+
+## 🎮 CALL OF DUTY CRASH FIX
+**Updated:** 2026-07-31 00:02:20 UTC
+
+### Diagnosis
+- **System:** ASUS ROG GM700TZ, Ryzen 7 9800X3D, RTX 5070 Ti, 32GB RAM
+- **Display:** 5120x1440 @ 240Hz (Odyssey G93SD ultrawide)
+- **GPU driver:** NVIDIA 32.0.15.9159 (dated 2025-12-10) — **very old for this GPU + OS**
+- **OS:** Windows 11 Home Insider Preview 26H1 build 28120
+- **Game installs:**
+  - `C:\Program Files (x86)\Call of Duty\_retail_\cod.exe`
+  - `C:\Program Files (x86)\Steam\steamapps\common\Call of Duty HQ\cod.exe`
+- **Most recent crash report:** 2026-07-28 (crash inside cod.exe)
+
+### Safe Fixes Applied
+1. ✅ Disabled Hardware-Accelerated GPU Scheduling (HAGS)
+2. ✅ Increased GPU driver timeout (TdrDelay/TdrDdiDelay) to 10 seconds
+3. ✅ Disabled fullscreen optimizations for both CoD executables
+4. ✅ Set Windows Graphics Settings to prefer high-performance NVIDIA GPU for both CoD executables
+5. ✅ Reinforced Game DVR OFF and Game Mode ON
+
+### Required Next Steps
+1. **Restart PC** (HAGS + TDR changes need it)
+2. **Update NVIDIA GPU driver** to latest Game Ready driver from nvidia.com
+3. **In-game:** change Nvidia Reflex from `Enabled + boost` to `Enabled` or `Disabled` if crashes persist
+4. **Verify game files** through Steam/Activision launcher after driver update
+
+### Report
+- `memory/logs/cod_crash_fix_report.md`
+- `memory/logs/dxdiag.txt`
+- `scripts/cod_crash_fix.ps1`
