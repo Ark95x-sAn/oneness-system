@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal Command Ops — RSB v. Nordskog Properties (EQCV018537)</title>
+<style>
+:root { --bg:#0b0f19; --panel:#111827; --accent:#3b82f6; --accent2:#10b981; --danger:#ef4444; --warn:#f59e0b; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --check:#8b5cf6; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.45; }
+header { padding: 16px 24px; background: linear-gradient(90deg, #0f172a, #1e3a8a); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+header h1 { margin: 0; font-size: 1.35rem; color: #fff; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+.badge-red { background: #450a0a; color: #fca5a5; }
+.badge-amber { background: #451a03; color: #fcd34d; }
+.badge-green { background: #064e3b; color: #6ee7b7; }
+.badge-blue { background: #1e3a8a; color: #bfdbfe; }
+.grid { display: grid; grid-template-columns: 280px 1fr 320px; gap: 16px; padding: 16px; min-height: calc(100vh - 80px); }
+.panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.panel h2 { margin: 0; padding: 12px 16px; background: #0f172a; border-bottom: 1px solid var(--border); font-size: .95rem; color: #fff; display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 12px; overflow: auto; flex: 1; }
+.card { background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 10px; cursor: pointer; transition: transform .1s, border-color .15s; }
+.card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.card h3 { margin: 0 0 6px; font-size: .9rem; color: #fff; }
+.card p { margin: 0; font-size: .8rem; color: var(--muted); }
+.meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.stat { text-align: center; padding: 10px; border-radius: 8px; background: #0f172a; border: 1px solid var(--border); flex: 1; min-width: 80px; }
+.stat .num { display: block; font-size: 1.2rem; font-weight: 800; color: var(--accent2); }
+.stat .label { font-size: .7rem; color: var(--muted); text-transform: uppercase; }
+.checks-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.check-piece { aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 14px; border: 2px solid; border-bottom-width: 6px; cursor: pointer; transition: transform .1s; }
+.check-piece:hover { transform: translateY(-3px) scale(1.02); }
+.check-piece.red { background: linear-gradient(145deg, #7f1d1d, #450a0a); border-color: #ef4444; color: #fee2e2; }
+.check-piece.amber { background: linear-gradient(145deg, #78350f, #451a03); border-color: #f59e0b; color: #fef3c7; }
+.check-piece.green { background: linear-gradient(145deg, #064e3b, #022c22); border-color: #10b981; color: #d1fae5; }
+.check-piece.blue { background: linear-gradient(145deg, #1e3a8a, #172554); border-color: #3b82f6; color: #dbeafe; }
+.check-piece.purple { background: linear-gradient(145deg, #581c87, #3b0764); border-color: #8b5cf6; color: #ede9fe; }
+.check-piece .icon { font-size: 1.6rem; margin-bottom: 4px; }
+.check-piece .title { font-size: .75rem; font-weight: 700; line-height: 1.1; }
+.check-piece .status { font-size: .65rem; opacity: .85; margin-top: 4px; }
+.log-line { font-size: .78rem; padding: 6px 0; border-bottom: 1px dashed var(--border); color: var(--muted); }
+.log-line .ts { color: var(--accent); font-weight: 600; }
+.log-line .src { display: inline-block; background: #1f2937; padding: 1px 5px; border-radius: 4px; margin-right: 4px; font-size: .65rem; }
+.file-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: .85rem; border-bottom: 1px solid var(--border); }
+.file-item svg { width: 18px; height: 18px; fill: var(--accent); }
+.file-item .name { color: var(--text); }
+.file-item .size { margin-left: auto; font-size: .7rem; color: var(--muted); }
+.move-detail { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(560px, 92vw); max-height: 80vh; background: var(--panel); border: 1px solid var(--accent); border-radius: 16px; padding: 20px; z-index: 100; box-shadow: 0 25px 80px rgba(0,0,0,.7); overflow: auto; }
+.move-detail.active { display: block; }
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 99; }
+.overlay.active { display: block; }
+.close { float: right; background: none; border: none; color: var(--text); font-size: 1.3rem; cursor: pointer; }
+.btn { background: var(--accent); color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-size: .8rem; cursor: pointer; margin-top: 10px; }
+.btn:hover { background: #2563eb; }
+.cmd-bar { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 16px; background: #0f172a; border-bottom: 1px solid var(--border); }
+.cmd-bar button { background: #1f2937; border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: .78rem; cursor: pointer; }
+.cmd-bar button:hover { border-color: var(--accent); color: var(--accent); }
+.property-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: .82rem; }
+.property-row .addr { font-weight: 600; color: #fff; }
+.property-row .occupant { font-size: .75rem; color: var(--muted); }
+.countdown { font-variant-numeric: tabular-nums; color: var(--warn); font-weight: 800; }
+@media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>⚖️ Legal Command Ops</h1>
+    <div style="color:var(--muted);font-size:.85rem">Reliance State Bank v. Nordskog Properties, LLC — EQCV018537 — Iowa District Court for Winnebago County</div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span class="badge badge-red">Foreclosure Active</span>
+    <span class="badge badge-amber">Order for Judgment Entered</span>
+    <span class="badge badge-blue">9 Properties</span>
+  </div>
+</header>
+
+<div class="cmd-bar">
+  <button onclick="runAgent('file_ops')">🔍 Scan Case Files</button>
+  <button onclick="runAgent('web_research')">🌐 Web Research</button>
+  <button onclick="runAgent('cleanup_ops')">🧹 Cleanup Report</button>
+  <button onclick="runAgent('cpu_ops')">📊 System Health</button>
+  <button onclick="location.reload()">🔄 Refresh Dashboard</button>
+</div>
+
+<div class="grid">
+  <div class="panel">
+    <h2>📁 Case Files</h2>
+    <div class="panel-body" id="files">
+      <div class="file-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg><span class="name">order_for_judgment.txt</span><span class="size">23KB</span></div>
+      <div class="file-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg><span class="name">case_summary.json</span><span class="size">2KB</span></div>
+      <div style="margin-top:12px"><strong style="font-size:.8rem;color:var(--accent)">Total Judgment (as of 2026-06-03):</strong></div>
+      <div class="stat" style="margin-top:8px"><span class="num" style="color:var(--danger)">$267,211.63</span><span class="label">Principal + Interest</span></div>
+      <div style="margin-top:12px"><strong style="font-size:.8rem;color:var(--accent)">Per Diem Interest:</strong></div>
+      <div class="stat" style="margin-top:8px"><span class="num">$47.15</span><span class="label">Daily Accrual</span></div>
+      <div style="margin-top:12px"><strong style="font-size:.8rem;color:var(--accent)">Properties (9):</strong></div>
+      <div class="property-row"><div><div class="addr">203 West Broadway</div><div class="occupant">Ben Nordskog (a/k/a Benjamin S. Nordskog)</div></div></div>
+      <div class="property-row"><div><div class="addr">302 Walnut Street</div><div class="occupant">Azreal Blaas, Mikayla Ashburner, Paige Willson, Carri O'Tool, Paul Fulgum</div></div></div>
+      <div class="property-row"><div><div class="addr">209 West Broadway</div><div class="occupant">Nylita Brakel, Sandra Wickman, Roger Hammon</div></div></div>
+      <div class="property-row"><div><div class="addr">545 West L Street</div><div class="occupant">No party in possession</div></div></div>
+      <div class="property-row"><div><div class="addr">540 South Lynn Street</div><div class="occupant">Megan Chapman</div></div></div>
+      <div class="property-row"><div><div class="addr">312 A Street</div><div class="occupant">Mike Clark</div></div></div>
+      <div class="property-row"><div><div class="addr">202 North C Street</div><div class="occupant">No party in possession</div></div></div>
+      <div class="property-row"><div><div class="addr">306 East Broadway</div><div class="occupant">Hunter O'Tool, Jesse O'Tool</div></div></div>
+      <div class="property-row"><div><div class="addr">Agricultural land (unspecified)</div><div class="occupant">No party in possession</div></div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>🎲 Game of Checks — Legal Moves to Play</h2>
+    <div class="panel-body">
+      <div class="checks-board" id="checks">
+        <div class="check-piece red" onclick="showMove('appeal')"><div class="icon">⚖️</div><div class="title">Appeal Order for Judgment</div><div class="status">HIGH RISK • TIME-SENSITIVE</div></div>
+        <div class="check-piece amber" onclick="showMove('setaside')"><div class="icon">📝</div><div class="title">Motion to Set Aside Default</div><div class="status">MEDIUM RISK • 30-DAY WINDOW</div></div>
+        <div class="check-piece amber" onclick="showMove('delay')"><div class="icon">⏳</div><div class="title">Demand Delay of Sheriff Sale</div><div class="status">MEDIUM RISK • PRE-SALE</div></div>
+        <div class="check-piece green" onclick="showMove('settle')"><div class="icon">🤝</div><div class="title">Negotiate Settlement / Forbearance</div><div class="status">LOW RISK • ONGOING</div></div>
+        <div class="check-piece blue" onclick="showMove('redeem')"><div class="icon">🌾</div><div class="title">Redeem Agricultural Land</div><div class="status">1-YEAR REDEMPTION RIGHT</div></div>
+        <div class="check-piece purple" onclick="showMove('service')"><div class="icon">📬</div><div class="title">Challenge Service of Process</div><div class="status">COLLATERAL ATTACK</div></div>
+        <div class="check-piece purple" onclick="showMove('title')"><div class="icon">🔍</div><div class="title">Quiet Title / Lien Priority</div><div class="status">TITULAR DEFENSE</div></div>
+        <div class="check-piece red" onclick="showMove('bankruptcy')"><div class="icon">🛡️</div><div class="title">Bankruptcy Automatic Stay</div><div class="status">NUCLEAR OPTION</div></div>
+        <div class="check-piece amber" onclick="showMove('object')"><div class="icon">🚨</div><div class="title">Object to Sale Terms</div><div class="status">POST-PRAECIPE</div></div>
+        <div class="check-piece green" onclick="showMove('mediation')"><div class="icon">🧩</div><div class="title">Request Mediation</div><div class="status">COST-EFFECTIVE</div></div>
+        <div class="check-piece blue" onclick="showMove('possession')"><div class="icon">🏠</div><div class="title">Contest Writ of Possession</div><div class="status">POST-SALE</div></div>
+        <div class="check-piece purple" onclick="showMove('records')"><div class="icon">📜</div><div class="title">Recorder Document Audit</div><div class="status">EVIDENCE GATHERING</div></div>
+      </div>
+
+      <div style="margin-top:16px">
+        <h3 style="margin:0 0 8px;font-size:.95rem">⏰ Next Critical Deadline</h3>
+        <div class="card">
+          <p>Order for Judgment entered <strong>2026-07-02</strong>. Iowa generally allows 30 days to file a notice of appeal or post-judgment motion. Sheriff's sale may proceed immediately because no delay demand was filed and deficiency was waived.</p>
+          <div class="countdown" id="countdown">Calculating...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>💬 Command History &amp; Logs</h2>
+    <div class="panel-body" id="logs">
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:43:20</span> 5739 | Doctor ready=False</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:43:33</span> 0678 | Web API not ok; running fixers</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:45:37</span> 0046 | Meta-agent cycle complete</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:51:57</span> 8059 | Meta-agent cycle started</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:52:41</span> 8592 | System not ready; attempting start</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:55:23</span> 3206 | Doctor ready=False</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:56:07</span> 1681 | Web API not ok; running fixers</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T16:56:56</span> 7420 | Meta-agent cycle complete</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:00:55</span> 6235 | Meta-agent cycle started</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:01:07</span> 9071 | System not ready; attempting start</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:03:23</span> 5385 | Doctor ready=False</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:03:35</span> 1283 | Web API not ok; running fixers</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:07:14</span> 3213 | Meta-agent cycle complete</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:10:50</span> 2698 | Meta-agent cycle started</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:11:00</span> 1501 | System not ready; attempting start</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:13:16</span> 0296 | Doctor ready=False</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:13:26</span> 7924 | Web API not ok; running fixers</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:15:26</span> 3111 | Meta-agent cycle complete</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:20:22</span> 2324 | Meta-agent cycle started</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:20:25</span> 3536 | Doctor ready=True</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:20:30</span> 9669 | Status ok; agents=9</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:20:30</span> 0671 | Meta-agent cycle complete</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:20:50</span> 4288 | Meta-agent cycle started</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:20:59</span> 2391 | Doctor ready=True</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:21:03</span> 4354 | Status ok; agents=9</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:21:03</span> 5343 | Meta-agent cycle complete</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:30:49</span> 7318 | Meta-agent cycle started</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:30:54</span> 1292 | Doctor ready=True</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:30:58</span> 4107 | Status ok; agents=9</div>
+      <div class="log-line"><span class="src">META_AGENT</span><span class="ts">2026-08-06T17:30:58</span> 5113 | Meta-agent cycle complete</div>
+      <div style="margin-top:12px;font-size:.75rem;color:var(--muted)">Browser chat histories (ChatGPT/Claude/Perplexity/Manus) are not accessible from this shell. Open each app directly to review case-related threads.</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMove()"></div>
+<div class="move-detail" id="move-detail">
+  <button class="close" onclick="closeMove()">×</button>
+  <h2 id="move-title"></h2>
+  <p id="move-desc"></p>
+  <div id="move-checklist"></div>
+  <button class="btn" onclick="closeMove()">Close</button>
+</div>
+
+<script>
+const moves = {
+  appeal: { title: 'Appeal Order for Judgment', desc: 'File Notice of Appeal within the applicable post-judgment timeframe. Given the order was entered 2026-07-02, this window is likely very narrow or closed. Verify exact Iowa/Appellate rules immediately.', checklist: ['Confirm appeal deadline from docket','Prepare Notice of Appeal','Order transcript','File appeal bond or IFP motion','Notify all parties'] },
+  setaside: { title: 'Motion to Set Aside Default', desc: 'Iowa Rule of Civil Procedure 1.977 allows the court to set aside a default for good cause. Nordskog defendants did not answer or resist the MSJ.', checklist: ['Draft Motion to Set Aside','Attach affidavit of meritorious defense','Show excusable neglect','Serve on RSB counsel','Request hearing date'] },
+  delay: { title: 'Demand Delay of Sheriff Sale', desc: 'Iowa Code § 654.19 permits a delay of sale. Demand must be filed before sale. Here the order says no delay demand was filed, so sale may be immediate.', checklist: ['Draft Demand for Delay of Sale','Pay/post required bond or undertaking','File before Praecipe to Sheriff','Serve plaintiff'] },
+  settle: { title: 'Negotiate Settlement / Forbearance', desc: 'Even post-judgment, plaintiff (RSB) may accept a reinstatement, payoff plan, or deed in lieu. RSB waived deficiency, so they may prefer resolution over sale costs.', checklist: ['Contact RSB counsel','Propose reinstatement/payoff timeline','Request accounting statement','Draft forbearance agreement','Record release upon performance'] },
+  redeem: { title: 'Redeem Agricultural Land', desc: 'Agricultural land sold at sheriff sale carries a one-year redemption period under Iowa law. Nordskog retains possession during redemption.', checklist: ['Identify Ag. Land parcel','Track sale date','Calculate redemption amount + interest','Prepare redemption tender','Record redemption certificate'] },
+  service: { title: 'Challenge Service of Process', desc: 'Order states each defendant was served with Original Notice and Amended Petition and proof of service is on file. Collateral attack is difficult after judgment.', checklist: ['Retrieve proof(s) of service','Verify address/method','Compare to actual residence','Consult process server records','Assess motion to quash viability'] },
+  title: { title: 'Quiet Title / Lien Priority', desc: 'Torres and Vazquez claim interest in 545 West L Street via recorded real estate contract (Doc 2020-1134). Their rights may survive foreclosure if not joined or named correctly.', checklist: ['Pull Recorder file 2020-1134','Analyze contract terms','Verify named parties','Assess purchase-money defenses','File separate quiet title action if needed'] },
+  bankruptcy: { title: 'Bankruptcy Automatic Stay', desc: 'A Chapter 11/13 filing by Nordskog or any defendant would impose an automatic stay on sale and possession actions. Nuclear option with long-term consequences.', checklist: ['Evaluate eligibility','Gather financial schedules','File voluntary petition','Serve notice of stay on RSB/Sheriff','Prepare debtor-in-possession plan'] },
+  object: { title: 'Object to Sale Terms', desc: 'After RSB files Praecipe and Directions to Sheriff, object to improper notice, appraisal, or sale terms.', checklist: ['Monitor Praecipe filing','Review sale notice publication','Verify appraisal compliance','File objections before sale','Appear at sale if necessary'] },
+  mediation: { title: 'Request Mediation', desc: 'Some Iowa courts offer or require mediation in foreclosure matters. Even post-judgment, parties can stipulate to mediate.', checklist: ['Check local ADR rules','File joint stipulation','Select mediator','Prepare settlement memo','Attend session'] },
+  possession: { title: 'Contest Writ of Possession', desc: 'For non-agricultural properties, Sheriff grants possession to purchaser after deed. For Ag. Land, possession stays with Nordskog during redemption.', checklist: ['Identify property type','Review post-sale timeline','File stay motion if grounds exist','Coordinate with occupants','Prepare tenant/occupant notices'] },
+  records: { title: 'Recorder Document Audit', desc: 'Verify all mortgages, renewals, assignments, and junior liens are properly recorded and described in the judgment.', checklist: ['Winnebago County recorder search','Pull each mortgage document','Cross-check renewals','Identify any unrecorded assignments','Compare to judgment exhibits'] }
+};
+function showMove(key){
+  const m = moves[key];
+  document.getElementById('move-title').textContent = m.title;
+  document.getElementById('move-desc').textContent = m.desc;
+  document.getElementById('move-checklist').innerHTML = '<h4 style="margin:12px 0 6px">Checklist</h4><ul>' + m.checklist.map(i=>'<li>'+i+'</li>').join('') + '</ul>';
+  document.getElementById('move-detail').classList.add('active');
+  document.getElementById('overlay').classList.add('active');
+}
+function closeMove(){
+  document.getElementById('move-detail').classList.remove('active');
+  document.getElementById('overlay').classList.remove('active');
+}
+function runAgent(name){
+  const el = document.getElementById('logs');
+  const line = document.createElement('div');
+  line.className = 'log-line';
+  line.innerHTML = '<span class="src">CMD</span><span class="ts">' + new Date().toISOString().slice(0,19) + '</span> Dispatched ' + name + ' agent (run from terminal: venv\Scripts\python.exe src\subagents\' + name + '.py)';
+  el.insertBefore(line, el.firstChild);
+}
+function updateCountdown(){
+  const order = new Date('2026-07-02T07:25:00');
+  const deadline = new Date(order.getTime() + 30*24*60*60*1000);
+  const now = new Date();
+  const diff = deadline - now;
+  const days = Math.floor(diff / (1000*60*60*24));
+  const sign = diff < 0 ? 'OVERDUE by ' : '';
+  document.getElementById('countdown').textContent = sign + Math.abs(days) + ' days from Order for Judgment (appeal/post-judgment deadline estimate)';
+}
+updateCountdown();
+</script>
+</body>
+</html>
