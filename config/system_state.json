@@ -1,107 +1,26 @@
 {
-  "system": "OnenessSystem",
-  "version": "1.0",
-  "demo_mode": true,
-  "agents": {
-    "ORACLEVAULT": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:56:10.863734+00:00",
-      "duties": [
-        "vault_sync",
-        "ingest",
-        "index"
-      ]
+  "timestamp": "2026-08-06T22:20:49.842451+00:00",
+  "phase": "Phase 2 in progress",
+  "issues_remaining": [
+    {
+      "name": "Oneness.Web stale Windows service",
+      "status": "Bypassed by running current build on port 5051 via run_web_app.ps1; original service still needs admin refresh"
     },
-    "MARKETSCRYER": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:56:10.865739+00:00",
-      "duties": [
-        "market_scan",
-        "arb_watch"
-      ]
-    },
-    "SIGNALFORGE": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:56:10.866739+00:00",
-      "duties": [
-        "macd",
-        "rsi",
-        "cvd",
-        "new_market"
-      ]
-    },
-    "TRADEWEAVER": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:56:10.866739+00:00",
-      "duties": [
-        "order_place",
-        "order_cancel",
-        "position_sync"
-      ]
-    },
-    "RISKWARDEN": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:56:10.868245+00:00",
-      "duties": [
-        "sizing",
-        "limits",
-        "kill_switch",
-        "drawdown"
-      ]
-    },
-    "PROX": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:51:10.371412+00:00",
-      "duties": [
-        "intake",
-        "issue_spot",
-        "evidence",
-        "narrative",
-        "simulation"
-      ]
-    },
-    "CASEBLADE": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:51:10.372413+00:00",
-      "duties": [
-        "deadlines",
-        "strikes",
-        "timing",
-        "legal_hold"
-      ]
-    },
-    "SENTINEL": {
-      "healthy": true,
-      "last_heartbeat": "2026-07-30T22:56:10.868245+00:00",
-      "duties": [
-        "heartbeat",
-        "alerts",
-        "daily_brief",
-        "audit"
-      ]
-    },
-    "SYNAPSE": {
-      "healthy": true,
-      "last_heartbeat": null,
-      "duties": [
-        "confluence",
-        "dispatch",
-        "schedule",
-        "recalibration"
-      ]
+    {
+      "name": "Web search blocked",
+      "status": "Google/DuckDuckGo block headless browsers"
     }
-  },
-  "risk_state": {
-    "kill_switch_active": false,
-    "legal_hold": false,
-    "daily_drawdown_pct": 0.0,
-    "total_exposure_usd": 0.0,
-    "available_capital_usd": 0.0,
-    "reserve_usd": 0.0,
-    "max_order_usd": 50,
-    "max_exposure_usd": 200,
-    "demo_mode": true,
-    "last_updated": "2026-07-30T22:56:10.866739+00:00"
-  },
-  "last_updated": "2026-07-30T22:57:06.958150+00:00"
+  ],
+  "actions": [
+    "Created install_oneness_web_service.ps1 elevated service installer",
+    "Updated prime-cli/src/prime/commands.py to manage OnenessWeb service",
+    "Archived old memory/subagents/raw JSONs",
+    "Fixed file_ops.py and web_research.py --out handling and output parsing",
+    "Tuned orchestrate.py CPU guard to keep bot team running under pressure",
+    "Verified full AURA cycle: cpu_ops, cleanup_ops, file_ops ok",
+    "Started current Oneness.Web build on port 5051 (run_web_app.ps1)",
+    "prime doctor --json now reports ready=true",
+    "prime status --json reports web_ok=true, 9 healthy agents",
+    "Meta-agent cycle completed: Doctor ready=True, Status ok; agents=9"
+  ]
 }

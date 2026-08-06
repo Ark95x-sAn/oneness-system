@@ -6,7 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv(Path.home() / ".oneness" / ".env", override=False)
-load_dotenv(Path(".env"), override=False)
+load_dotenv(Path(".env"), override=True)
 
 DEFAULT_ROOT = Path.home() / "OneDrive" / "Desktop" / "OnenessSystem"
 ROOT = Path(os.environ.get("ONENESS_SYSTEM_ROOT", DEFAULT_ROOT)).resolve()
