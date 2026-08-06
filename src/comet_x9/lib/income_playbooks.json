@@ -1,0 +1,1111 @@
+{
+  "playbooks": [
+    {
+      "id": "ai-1",
+      "name": "AI Automation Agency retainers",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 20,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.6,
+      "annual_usd": 30000,
+      "tags": [
+        "agency",
+        "retainer",
+        "automation"
+      ],
+      "one_liner": "Build n8n/Zapier/Make workflows for SMBs on monthly retainers."
+    },
+    {
+      "id": "ai-2",
+      "name": "Chatbot deployment service",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 15,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.7,
+      "annual_usd": 24000,
+      "tags": [
+        "chatbot",
+        "support",
+        "saas"
+      ],
+      "one_liner": "Deploy custom support/lead bots for local businesses."
+    },
+    {
+      "id": "ai-3",
+      "name": "AI content licensing bundle",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 10,
+      "skill": "low",
+      "effort": "high",
+      "passivity": 0.8,
+      "annual_usd": 18000,
+      "tags": [
+        "content",
+        "templates",
+        "digital_products"
+      ],
+      "one_liner": "Sell prompt packs, templates, and AI-generated asset bundles."
+    },
+    {
+      "id": "ai-4",
+      "name": "Document automation for law firms",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 25,
+      "skill": "high",
+      "effort": "high",
+      "passivity": 0.75,
+      "annual_usd": 50000,
+      "tags": [
+        "legal",
+        "documents",
+        "b2b"
+      ],
+      "one_liner": "Automate discovery, intake, and brief drafting for solo attorneys."
+    },
+    {
+      "id": "ai-5",
+      "name": "AI-assisted real estate listing copy",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 8,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.65,
+      "annual_usd": 12000,
+      "tags": [
+        "real_estate",
+        "copywriting",
+        "freelance"
+      ],
+      "one_liner": "Generate listing descriptions and photo captions for agents."
+    },
+    {
+      "id": "ai-6",
+      "name": "Resume/Cover letter generator subscription",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 12,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 15000,
+      "tags": [
+        "career",
+        "subscription",
+        "saas"
+      ],
+      "one_liner": "Monthly subscription for tailored resumes and cover letters."
+    },
+    {
+      "id": "ai-7",
+      "name": "AI podcast clipping service",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 10,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.6,
+      "annual_usd": 20000,
+      "tags": [
+        "podcast",
+        "video",
+        "social"
+      ],
+      "one_liner": "Auto-clip and caption podcast episodes for creators."
+    },
+    {
+      "id": "ai-8",
+      "name": "Code snippet/template marketplace",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 15,
+      "skill": "high",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 22000,
+      "tags": [
+        "code",
+        "developer",
+        "marketplace"
+      ],
+      "one_liner": "Sell reusable scripts and connectors on Gumroad/Payhip."
+    },
+    {
+      "id": "ai-9",
+      "name": "AI email newsletter writer",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 8,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.75,
+      "annual_usd": 16000,
+      "tags": [
+        "newsletter",
+        "writing",
+        "saas"
+      ],
+      "one_liner": "Ghostwrite weekly newsletters for niche businesses."
+    },
+    {
+      "id": "ai-10",
+      "name": "Voiceover / synthetic narration resale",
+      "category": "ai_services",
+      "capital": 0,
+      "time": 6,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.7,
+      "annual_usd": 10000,
+      "tags": [
+        "voice",
+        "audio",
+        "resale"
+      ],
+      "one_liner": "Produce AI voiceovers for ads, courses, and IVR."
+    },
+    {
+      "id": "dig-1",
+      "name": "Niche YouTube faceless channel",
+      "category": "content",
+      "capital": 500,
+      "time": 10,
+      "skill": "low",
+      "effort": "high",
+      "passivity": 0.9,
+      "annual_usd": 25000,
+      "tags": [
+        "youtube",
+        "ads",
+        "affiliate"
+      ],
+      "one_liner": "AI-generated explainer videos monetized via AdSense and affiliates."
+    },
+    {
+      "id": "dig-2",
+      "name": "Niche blog + affiliate SEO",
+      "category": "content",
+      "capital": 200,
+      "time": 12,
+      "skill": "medium",
+      "effort": "high",
+      "passivity": 0.9,
+      "annual_usd": 30000,
+      "tags": [
+        "blog",
+        "seo",
+        "affiliate"
+      ],
+      "one_liner": "Publish SEO articles and earn affiliate commissions."
+    },
+    {
+      "id": "dig-3",
+      "name": "Digital course on local investing",
+      "category": "content",
+      "capital": 0,
+      "time": 30,
+      "skill": "high",
+      "effort": "high",
+      "passivity": 0.85,
+      "annual_usd": 40000,
+      "tags": [
+        "course",
+        "education",
+        "foreclosure"
+      ],
+      "one_liner": "Turn RSB/Nordskog foreclosure knowledge into a paid course."
+    },
+    {
+      "id": "dig-4",
+      "name": "Notion template shop",
+      "category": "content",
+      "capital": 0,
+      "time": 8,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 14000,
+      "tags": [
+        "notion",
+        "templates",
+        "marketplace"
+      ],
+      "one_liner": "Sell productivity and investment tracking templates."
+    },
+    {
+      "id": "dig-5",
+      "name": "Printable legal forms / checklists",
+      "category": "content",
+      "capital": 0,
+      "time": 6,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.9,
+      "annual_usd": 9000,
+      "tags": [
+        "legal",
+        "forms",
+        "etsy"
+      ],
+      "one_liner": "Sell foreclosure/property checklists on Etsy and Gumroad."
+    },
+    {
+      "id": "dig-6",
+      "name": "Stock photo / AI art asset packs",
+      "category": "content",
+      "capital": 0,
+      "time": 5,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 8000,
+      "tags": [
+        "art",
+        "stock",
+        "marketplace"
+      ],
+      "one_liner": "Upload AI-generated assets to stock marketplaces."
+    },
+    {
+      "id": "dig-7",
+      "name": "Membership community for AI ops",
+      "category": "content",
+      "capital": 0,
+      "time": 15,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.7,
+      "annual_usd": 24000,
+      "tags": [
+        "community",
+        "membership",
+        "discord"
+      ],
+      "one_liner": "Paid Discord/Skool community for OnenessSystem-style automation."
+    },
+    {
+      "id": "dig-8",
+      "name": "Substack paid newsletter",
+      "category": "content",
+      "capital": 0,
+      "time": 10,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.8,
+      "annual_usd": 20000,
+      "tags": [
+        "substack",
+        "newsletter",
+        "writing"
+      ],
+      "one_liner": "Niche AI/wealth automation newsletter with paid tier."
+    },
+    {
+      "id": "dig-9",
+      "name": "Spotify podcast with dynamic ads",
+      "category": "content",
+      "capital": 300,
+      "time": 8,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 12000,
+      "tags": [
+        "podcast",
+        "audio",
+        "ads"
+      ],
+      "one_liner": "AI-assisted podcast with host-read and programmatic ads."
+    },
+    {
+      "id": "dig-10",
+      "name": "Online arbitrage guide + tool",
+      "category": "content",
+      "capital": 500,
+      "time": 12,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.75,
+      "annual_usd": 18000,
+      "tags": [
+        "arbitrage",
+        "reselling",
+        "guide"
+      ],
+      "one_liner": "Teach and sell tools for Amazon/eBay online arbitrage."
+    },
+    {
+      "id": "fin-1",
+      "name": "High-yield Treasury/cash sweep ladder",
+      "category": "finance",
+      "capital": 10000,
+      "time": 2,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.98,
+      "annual_usd": 5000,
+      "tags": [
+        "treasury",
+        "yield",
+        "cash"
+      ],
+      "one_liner": "Ladder T-bills and money-market funds for 4-5% yield."
+    },
+    {
+      "id": "fin-2",
+      "name": "Dividend growth ETF portfolio",
+      "category": "finance",
+      "capital": 50000,
+      "time": 2,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.95,
+      "annual_usd": 2500,
+      "tags": [
+        "dividends",
+        "stocks",
+        "etf"
+      ],
+      "one_liner": "Build SCHD/VYM dividend portfolio for quarterly income."
+    },
+    {
+      "id": "fin-3",
+      "name": "Covered call ETF income",
+      "category": "finance",
+      "capital": 50000,
+      "time": 2,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.9,
+      "annual_usd": 8000,
+      "tags": [
+        "options",
+        "etfs",
+        "yield"
+      ],
+      "one_liner": "Use JEPI/XYLD-style funds for 7-9% annual income."
+    },
+    {
+      "id": "fin-4",
+      "name": "Real estate crowdfunding (Fundrise/Arrived)",
+      "category": "finance",
+      "capital": 5000,
+      "time": 2,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.9,
+      "annual_usd": 450,
+      "tags": [
+        "reits",
+        "crowdfunding",
+        "real_estate"
+      ],
+      "one_liner": "Earn quarterly distributions from eREITs."
+    },
+    {
+      "id": "fin-5",
+      "name": "Tax lien certificate investing",
+      "category": "finance",
+      "capital": 5000,
+      "time": 8,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 1000,
+      "tags": [
+        "tax_liens",
+        "county",
+        "interest"
+      ],
+      "one_liner": "Buy county tax liens for 12-18% interest or property."
+    },
+    {
+      "id": "fin-6",
+      "name": "Private lending / real estate notes",
+      "category": "finance",
+      "capital": 25000,
+      "time": 5,
+      "skill": "high",
+      "effort": "low",
+      "passivity": 0.8,
+      "annual_usd": 2500,
+      "tags": [
+        "notes",
+        "lending",
+        "real_estate"
+      ],
+      "one_liner": "Act as hard-money lender through verified brokers."
+    },
+    {
+      "id": "fin-7",
+      "name": "Iowa farmland cash rent",
+      "category": "finance",
+      "capital": 100000,
+      "time": 3,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.95,
+      "annual_usd": 4000,
+      "tags": [
+        "farmland",
+        "rent",
+        "iowa"
+      ],
+      "one_liner": "Own/rent Iowa ag land for 3-5% cash rent yield."
+    },
+    {
+      "id": "fin-8",
+      "name": "CD ladder",
+      "category": "finance",
+      "capital": 20000,
+      "time": 2,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.99,
+      "annual_usd": 800,
+      "tags": [
+        "cds",
+        "ladder",
+        "bank"
+      ],
+      "one_liner": "Lock in 4-5% with brokered CDs."
+    },
+    {
+      "id": "fin-9",
+      "name": "I-bonds",
+      "category": "finance",
+      "capital": 10000,
+      "time": 1,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.99,
+      "annual_usd": 500,
+      "tags": [
+        "treasury",
+        "inflation",
+        "bonds"
+      ],
+      "one_liner": "Buy $10k/year Series I bonds for inflation-protected yield."
+    },
+    {
+      "id": "fin-10",
+      "name": "REIT preferred shares",
+      "category": "finance",
+      "capital": 10000,
+      "time": 3,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.9,
+      "annual_usd": 700,
+      "tags": [
+        "reits",
+        "preferred",
+        "yield"
+      ],
+      "one_liner": "Hold REIT preferreds for 7-9% fixed dividends."
+    },
+    {
+      "id": "fin-11",
+      "name": "Mortgage note partials",
+      "category": "finance",
+      "capital": 10000,
+      "time": 6,
+      "skill": "high",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 1200,
+      "tags": [
+        "notes",
+        "mortgage",
+        "partial"
+      ],
+      "one_liner": "Buy partials of performing mortgage notes."
+    },
+    {
+      "id": "fin-12",
+      "name": "Crypto staking / restaking",
+      "category": "finance",
+      "capital": 5000,
+      "time": 3,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.8,
+      "annual_usd": 400,
+      "tags": [
+        "crypto",
+        "staking",
+        "defi"
+      ],
+      "one_liner": "Stake ETH or stablecoins via regulated platforms."
+    },
+    {
+      "id": "fin-13",
+      "name": "Annuity income rider",
+      "category": "finance",
+      "capital": 50000,
+      "time": 4,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.95,
+      "annual_usd": 3000,
+      "tags": [
+        "annuity",
+        "insurance",
+        "guaranteed"
+      ],
+      "one_liner": "Deferred income annuity for guaranteed future payments."
+    },
+    {
+      "id": "loc-1",
+      "name": "House hack / rent-by-room",
+      "category": "real_estate",
+      "capital": 50000,
+      "time": 10,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.7,
+      "annual_usd": 12000,
+      "tags": [
+        "house_hacking",
+        "rental",
+        "room"
+      ],
+      "one_liner": "Rent spare rooms to cover mortgage and generate cash flow."
+    },
+    {
+      "id": "loc-2",
+      "name": "Short-term rental arbitrage",
+      "category": "real_estate",
+      "capital": 10000,
+      "time": 15,
+      "skill": "medium",
+      "effort": "high",
+      "passivity": 0.65,
+      "annual_usd": 20000,
+      "tags": [
+        "airbnb",
+        "arbitrage",
+        "rental"
+      ],
+      "one_liner": "Lease and sublease furnished units on Airbnb."
+    },
+    {
+      "id": "loc-3",
+      "name": "Storage unit income",
+      "category": "real_estate",
+      "capital": 30000,
+      "time": 5,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.85,
+      "annual_usd": 8000,
+      "tags": [
+        "storage",
+        "self_storage",
+        "passive"
+      ],
+      "one_liner": "Own or partner in mini-storage facility."
+    },
+    {
+      "id": "loc-4",
+      "name": "Parking space / lot rental",
+      "category": "real_estate",
+      "capital": 5000,
+      "time": 3,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.9,
+      "annual_usd": 3000,
+      "tags": [
+        "parking",
+        "rental",
+        "land"
+      ],
+      "one_liner": "Rent unused parking spaces or small lot."
+    },
+    {
+      "id": "loc-5",
+      "name": "Laundromat / vending partnership",
+      "category": "real_estate",
+      "capital": 25000,
+      "time": 8,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.8,
+      "annual_usd": 8000,
+      "tags": [
+        "vending",
+        "laundromat",
+        "cash_flow"
+      ],
+      "one_liner": "Buy into existing cash-flowing laundromat or vending route."
+    },
+    {
+      "id": "loc-6",
+      "name": "Car wash subscription/self-serve",
+      "category": "real_estate",
+      "capital": 40000,
+      "time": 8,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.8,
+      "annual_usd": 15000,
+      "tags": [
+        "car_wash",
+        "self_serve",
+        "cash"
+      ],
+      "one_liner": "Operate or partner in a self-serve car wash."
+    },
+    {
+      "id": "loc-7",
+      "name": "Billboard / cell tower lease",
+      "category": "real_estate",
+      "capital": 15000,
+      "time": 4,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.95,
+      "annual_usd": 6000,
+      "tags": [
+        "billboard",
+        "lease",
+        "land"
+      ],
+      "one_liner": "Lease land for billboard or cellular equipment."
+    },
+    {
+      "id": "loc-8",
+      "name": "RV / camper rental",
+      "category": "real_estate",
+      "capital": 20000,
+      "time": 6,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.7,
+      "annual_usd": 9000,
+      "tags": [
+        "rv",
+        "rental",
+        "outdoorsy"
+      ],
+      "one_liner": "Rent RV on Outdoorsy or RVshare when not in use."
+    },
+    {
+      "id": "loc-9",
+      "name": "Tool / equipment rental",
+      "category": "real_estate",
+      "capital": 10000,
+      "time": 5,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.75,
+      "annual_usd": 7000,
+      "tags": [
+        "tools",
+        "rental",
+        "equipment"
+      ],
+      "one_liner": "Rent construction/landscaping tools locally."
+    },
+    {
+      "id": "ecom-1",
+      "name": "Amazon KDP low-content books",
+      "category": "ecommerce",
+      "capital": 0,
+      "time": 8,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 8000,
+      "tags": [
+        "kdp",
+        "books",
+        "amazon"
+      ],
+      "one_liner": "Publish journals, planners, and logbooks on Amazon KDP."
+    },
+    {
+      "id": "ecom-2",
+      "name": "Amazon FBA wholesale",
+      "category": "ecommerce",
+      "capital": 10000,
+      "time": 15,
+      "skill": "medium",
+      "effort": "high",
+      "passivity": 0.75,
+      "annual_usd": 30000,
+      "tags": [
+        "fba",
+        "wholesale",
+        "amazon"
+      ],
+      "one_liner": "Resell brand-name products via Amazon FBA."
+    },
+    {
+      "id": "ecom-3",
+      "name": "Dropshipping niche store",
+      "category": "ecommerce",
+      "capital": 1000,
+      "time": 10,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.8,
+      "annual_usd": 12000,
+      "tags": [
+        "dropship",
+        "shopify",
+        "ads"
+      ],
+      "one_liner": "Run Shopify store with supplier fulfillment."
+    },
+    {
+      "id": "ecom-4",
+      "name": "Print-on-demand apparel",
+      "category": "ecommerce",
+      "capital": 0,
+      "time": 8,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 10000,
+      "tags": [
+        "pod",
+        "apparel",
+        "etsy"
+      ],
+      "one_liner": "Sell AI-designed shirts/hoodies via Printful + Etsy."
+    },
+    {
+      "id": "ecom-5",
+      "name": "Digital product bundle marketplace",
+      "category": "ecommerce",
+      "capital": 0,
+      "time": 10,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 15000,
+      "tags": [
+        "digital",
+        "bundles",
+        "gumroad"
+      ],
+      "one_liner": "Sell curated bundles of templates, prompts, and scripts."
+    },
+    {
+      "id": "ecom-6",
+      "name": "Subscription box for AI tools",
+      "category": "ecommerce",
+      "capital": 2000,
+      "time": 12,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.75,
+      "annual_usd": 18000,
+      "tags": [
+        "subscription",
+        "box",
+        "ai"
+      ],
+      "one_liner": "Curate monthly AI tool/resource box."
+    },
+    {
+      "id": "ecom-7",
+      "name": "Domain flipping",
+      "category": "ecommerce",
+      "capital": 1000,
+      "time": 5,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.8,
+      "annual_usd": 5000,
+      "tags": [
+        "domains",
+        "flipping",
+        "sedo"
+      ],
+      "one_liner": "Buy and sell brandable/keyword domains."
+    },
+    {
+      "id": "ecom-8",
+      "name": "Website flipping",
+      "category": "ecommerce",
+      "capital": 2000,
+      "time": 15,
+      "skill": "high",
+      "effort": "high",
+      "passivity": 0.75,
+      "annual_usd": 25000,
+      "tags": [
+        "websites",
+        "flipping",
+        "empireflippers"
+      ],
+      "one_liner": "Build and sell niche content/SaaS sites."
+    },
+    {
+      "id": "ecom-9",
+      "name": "Private-label Amazon",
+      "category": "ecommerce",
+      "capital": 15000,
+      "time": 20,
+      "skill": "medium",
+      "effort": "high",
+      "passivity": 0.8,
+      "annual_usd": 40000,
+      "tags": [
+        "pl",
+        "amazon",
+        "product"
+      ],
+      "one_liner": "Source and brand simple products for Amazon."
+    },
+    {
+      "id": "hyb-1",
+      "name": "AI + human virtual assistant agency",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 15,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.7,
+      "annual_usd": 35000,
+      "tags": [
+        "va",
+        "agency",
+        "ai_human"
+      ],
+      "one_liner": "Hire VAs overseas, supervise with AI, resell to US clients."
+    },
+    {
+      "id": "hyb-2",
+      "name": "Local lead-gen sites for service businesses",
+      "category": "hybrid",
+      "capital": 500,
+      "time": 12,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 24000,
+      "tags": [
+        "lead_gen",
+        "seo",
+        "local"
+      ],
+      "one_liner": "Rank local sites and sell leads on pay-per-call."
+    },
+    {
+      "id": "hyb-3",
+      "name": "Fractional COO/CTO for SMBs",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 25,
+      "skill": "high",
+      "effort": "medium",
+      "passivity": 0.6,
+      "annual_usd": 60000,
+      "tags": [
+        "fractional",
+        "executive",
+        "b2b"
+      ],
+      "one_liner": "Retainer-based operations/tech leadership."
+    },
+    {
+      "id": "hyb-4",
+      "name": "AI-powered property management assistant",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 20,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.75,
+      "annual_usd": 30000,
+      "tags": [
+        "property",
+        "pm",
+        "ai"
+      ],
+      "one_liner": "Offer AI-assisted tenant screening and maintenance coordination."
+    },
+    {
+      "id": "hyb-5",
+      "name": "Referral network for contractors",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 10,
+      "skill": "low",
+      "effort": "low",
+      "passivity": 0.85,
+      "annual_usd": 15000,
+      "tags": [
+        "referral",
+        "contractors",
+        "commission"
+      ],
+      "one_liner": "Match homeowners with vetted contractors for referral fees."
+    },
+    {
+      "id": "hyb-6",
+      "name": "Crowdsourced research reports",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 15,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.8,
+      "annual_usd": 18000,
+      "tags": [
+        "research",
+        "reports",
+        "b2b"
+      ],
+      "one_liner": "Sell niche market/research reports compiled with AI + human review."
+    },
+    {
+      "id": "hyb-7",
+      "name": "AI deal-sourcing for real estate investors",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 15,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.75,
+      "annual_usd": 25000,
+      "tags": [
+        "real_estate",
+        "deals",
+        "investors"
+      ],
+      "one_liner": "Scrape and qualify off-market property leads for investors."
+    },
+    {
+      "id": "hyb-8",
+      "name": "Mastermind / paid accountability group",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 10,
+      "skill": "medium",
+      "effort": "low",
+      "passivity": 0.75,
+      "annual_usd": 12000,
+      "tags": [
+        "mastermind",
+        "community",
+        "coaching"
+      ],
+      "one_liner": "Paid group calls and AI-assisted progress tracking."
+    },
+    {
+      "id": "hyb-9",
+      "name": "Sweat-equity advisor for startups",
+      "category": "hybrid",
+      "capital": 0,
+      "time": 20,
+      "skill": "high",
+      "effort": "medium",
+      "passivity": 0.5,
+      "annual_usd": 50000,
+      "tags": [
+        "advisor",
+        "startups",
+        "equity"
+      ],
+      "one_liner": "Advise early-stage companies for equity + small retainer."
+    },
+    {
+      "id": "saas-1",
+      "name": "Micro-SaaS pricing/scraper tool",
+      "category": "saas",
+      "capital": 500,
+      "time": 20,
+      "skill": "high",
+      "effort": "high",
+      "passivity": 0.85,
+      "annual_usd": 30000,
+      "tags": [
+        "saas",
+        "scraper",
+        "b2b"
+      ],
+      "one_liner": "Build a niche data/scraper SaaS with monthly subscriptions."
+    },
+    {
+      "id": "saas-2",
+      "name": "No-code directory / marketplace",
+      "category": "saas",
+      "capital": 0,
+      "time": 15,
+      "skill": "low",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 15000,
+      "tags": [
+        "directory",
+        "marketplace",
+        "no_code"
+      ],
+      "one_liner": "Curated directory with paid listings and featured placements."
+    },
+    {
+      "id": "saas-3",
+      "name": "API wrapper / connector",
+      "category": "saas",
+      "capital": 0,
+      "time": 18,
+      "skill": "high",
+      "effort": "medium",
+      "passivity": 0.9,
+      "annual_usd": 25000,
+      "tags": [
+        "api",
+        "connector",
+        "developer"
+      ],
+      "one_liner": "Resell a simple API that connects two popular services."
+    },
+    {
+      "id": "saas-4",
+      "name": "Form-builder / workflow niche tool",
+      "category": "saas",
+      "capital": 300,
+      "time": 15,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.85,
+      "annual_usd": 20000,
+      "tags": [
+        "forms",
+        "workflow",
+        "niche"
+      ],
+      "one_liner": "Vertical form/workflow SaaS for one industry."
+    },
+    {
+      "id": "saas-5",
+      "name": "AI-assisted bookkeeping for side hustles",
+      "category": "saas",
+      "capital": 0,
+      "time": 12,
+      "skill": "medium",
+      "effort": "medium",
+      "passivity": 0.8,
+      "annual_usd": 18000,
+      "tags": [
+        "bookkeeping",
+        "ai",
+        "smb"
+      ],
+      "one_liner": "Auto-categorize and reconcile transactions for freelancers."
+    }
+  ],
+  "count": 65,
+  "updated": "2026-08-06"
+}
