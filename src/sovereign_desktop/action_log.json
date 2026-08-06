@@ -1,0 +1,42 @@
+[
+  {
+    "timestamp": "2026-08-06T22:58:31.307814+00:00",
+    "action": "launch",
+    "target": "claude_code",
+    "approved": true,
+    "result": {
+      "ok": true,
+      "pid": 50064
+    }
+  },
+  {
+    "timestamp": "2026-08-06T23:00:41.661135+00:00",
+    "action": "launch",
+    "target": "chatgpt_desktop",
+    "approved": true,
+    "result": {
+      "ok": true,
+      "pid": 52636
+    }
+  },
+  {
+    "timestamp": "2026-08-06T23:00:41.679670+00:00",
+    "action": "launch",
+    "target": "claude_code",
+    "approved": true,
+    "result": {
+      "ok": true,
+      "pid": 52596
+    }
+  },
+  {
+    "timestamp": "2026-08-06T23:00:41.700709+00:00",
+    "action": "launch",
+    "target": "codex_cli",
+    "approved": true,
+    "result": {
+      "ok": true,
+      "pid": 38976
+    }
+  }
+]

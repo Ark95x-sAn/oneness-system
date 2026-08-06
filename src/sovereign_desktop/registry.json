@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "connector_layer_principle": "Not every app wired all the time; every source wireable on demand.",
+  "safety_guards": [
+    "No autopilot.",
+    "No deletions without explicit approval.",
+    "Action buttons log intent and require confirmation.",
+    "Launch operations gated by preview/confirm step."
+  ],
+  "connection_methods": {
+    "cli": {
+      "description": "Command-line invocation",
+      "risk": "low"
+    },
+    "ui_automation": {
+      "description": "Computer Use / UI automation",
+      "risk": "medium"
+    },
+    "browser_web": {
+      "description": "Browser tab or URL",
+      "risk": "low"
+    },
+    "playwright": {
+      "description": "Playwright browser automation",
+      "risk": "low"
+    },
+    "api_openai": {
+      "description": "OpenAI REST API",
+      "risk": "low"
+    },
+    "api_anthropic": {
+      "description": "Anthropic REST API",
+      "risk": "low"
+    },
+    "file_system": {
+      "description": "Local file read/write",
+      "risk": "low"
+    },
+    "email": {
+      "description": "Email integration",
+      "risk": "medium"
+    },
+    "tray": {
+      "description": "System tray application",
+      "risk": "low"
+    },
+    "windows_apps": {
+      "description": "Windows Store app launcher",
+      "risk": "low"
+    },
+    "browser_automation": {
+      "description": "Browser UI automation",
+      "risk": "low"
+    },
+    "ide_extension": {
+      "description": "IDE extension / plugin",
+      "risk": "low"
+    }
+  },
+  "apps": {
+    "chatgpt_desktop": {
+      "display": "ChatGPT Desktop",
+      "family": "openai",
+      "process_pattern": "ChatGPT",
+      "launch_type": "shell_app",
+      "launch_value": "OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0!App",
+      "connection_methods": [
+        "ui_automation",
+        "browser_web",
+        "windows_apps"
+      ],
+      "install_paths": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2026.190.0_x64__2p2nqsd0c76g0",
+        "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_2026.709.1617.0_neutral_~_2p2nqsd0c76g0"
+      ]
+    },
+    "claude_code": {
+      "display": "Claude / Claude Code",
+      "family": "anthropic",
+      "process_pattern": "claude",
+      "launch_type": "command",
+      "launch_value": "claude",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "api_anthropic"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\AppData\\Local\\Microsoft\\WinGet\\Links\\claude.exe",
+        "C:\\Users\\ArcXN\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Anthropic.ClaudeCode_Microsoft.Winget.Source_8wekyb3d8bbwe"
+      ]
+    },
+    "codex_cli": {
+      "display": "OpenAI Codex CLI",
+      "family": "openai",
+      "process_pattern": "codex",
+      "launch_type": "command",
+      "launch_value": "codex",
+      "connection_methods": [
+        "cli",
+        "api_openai"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\AppData\\Roaming\\npm\\codex.cmd"
+      ]
+    },
+    "openclaw": {
+      "display": "OpenClaw",
+      "family": "openclaw",
+      "process_pattern": "OpenClaw.Tray.WinUI",
+      "launch_type": "command",
+      "launch_value": "openclaw",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "tray"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\AppData\\Roaming\\npm\\openclaw.cmd",
+        "C:\\Users\\ArcXN\\AppData\\Local\\OpenClawTray\\OpenClaw.Tray.WinUI.exe"
+      ]
+    },
+    "perplexity": {
+      "display": "Perplexity",
+      "family": "browser",
+      "process_pattern": "Perplexity",
+      "launch_type": "browser_url",
+      "launch_value": "https://perplexity.ai",
+      "connection_methods": [
+        "browser_web",
+        "playwright"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\AppData\\Local\\Perplexity"
+      ]
+    },
+    "chrome": {
+      "display": "Google Chrome",
+      "family": "browser",
+      "process_pattern": "chrome",
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "connection_methods": [
+        "browser_automation",
+        "playwright",
+        "ui_automation"
+      ],
+      "install_paths": [
+        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      ]
+    },
+    "edge": {
+      "display": "Microsoft Edge",
+      "family": "browser",
+      "process_pattern": "msedge",
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "connection_methods": [
+        "browser_automation",
+        "playwright",
+        "ui_automation"
+      ],
+      "install_paths": [
+        "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+      ]
+    },
+    "copilot": {
+      "display": "Microsoft Copilot",
+      "family": "copilot",
+      "process_pattern": "mscopilot",
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe",
+      "connection_methods": [
+        "ui_automation",
+        "browser_web"
+      ],
+      "install_paths": [
+        "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe"
+      ]
+    },
+    "hermes": {
+      "display": "Hermes",
+      "family": "hermes",
+      "process_pattern": "hermes",
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\hermes.exe",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "file_system"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\AppData\\Local\\hermes"
+      ]
+    },
+    "droid": {
+      "display": "Droid",
+      "family": "droid",
+      "process_pattern": "droid",
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\bin\\droid.exe",
+      "connection_methods": [
+        "cli",
+        "ui_automation"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\bin\\droid.exe"
+      ]
+    },
+    "factory": {
+      "display": "Factory",
+      "family": "factory",
+      "process_pattern": "factory-desktop",
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\Factory\\factory-desktop.exe",
+      "connection_methods": [
+        "ui_automation",
+        "file_system"
+      ],
+      "install_paths": [
+        "C:\\Users\\ArcXN\\AppData\\Local\\Factory"
+      ]
+    },
+    "codeium": {
+      "display": "Codeium",
+      "family": "codeium",
+      "process_pattern": "Codeium",
+      "launch_type": "browser_url",
+      "launch_value": "https://codeium.com",
+      "connection_methods": [
+        "browser_web",
+        "ide_extension"
+      ],
+      "install_paths": []
+    },
+    "email_bridge": {
+      "display": "Email Bridge",
+      "family": "email",
+      "process_pattern": "",
+      "launch_type": "none",
+      "launch_value": "",
+      "connection_methods": [
+        "email"
+      ],
+      "install_paths": []
+    },
+    "file_bridge": {
+      "display": "File System Bridge",
+      "family": "file_system",
+      "process_pattern": "",
+      "launch_type": "none",
+      "launch_value": "",
+      "connection_methods": [
+        "file_system"
+      ],
+      "install_paths": []
+    }
+  }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sovereign Desktop Ops HQ</title>
+<style>
+:root { --bg:#06080c; --panel:#0e1118; --accent:#00d4ff; --accent2:#00ff9d; --danger:#ff3b30; --warn:#ffcc00; --text:#e6e6e6; --muted:#8b92a8; --border:#1f2330; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.45; }
+header { padding:18px 24px; background:linear-gradient(90deg,#0a0e1a,#111936); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+header h1 { margin:0; font-size:1.5rem; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.subtitle { color:var(--muted); font-size:.85rem; }
+.badge { display:inline-block; padding:4px 12px; border-radius:999px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
+.badge-green { background:rgba(0,255,157,.12); color:#34ffb6; border:1px solid rgba(0,255,157,.3); }
+.badge-blue { background:rgba(0,212,255,.12); color:#5fe8ff; border:1px solid rgba(0,212,255,.3); }
+.badge-amber { background:rgba(255,204,0,.12); color:#ffe066; border:1px solid rgba(255,204,0,.3); }
+.cmd-bar { display:flex; gap:10px; flex-wrap:wrap; padding:12px 24px; background:#0a0d14; border-bottom:1px solid var(--border); }
+.cmd-bar button { background:#151a26; border:1px solid var(--border); color:var(--text); padding:8px 14px; border-radius:8px; font-size:.78rem; cursor:pointer; transition:all .15s; }
+.cmd-bar button:hover { border-color:var(--accent); color:var(--accent); box-shadow:0 0 12px rgba(0,212,255,.15); }
+.grid { display:grid; grid-template-columns: 1fr 1fr 340px; gap:16px; padding:18px 24px; }
+@media (max-width:1100px) { .grid { grid-template-columns:1fr; } }
+.panel { background:var(--panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+.panel h2 { margin:0; padding:14px 18px; background:#0c0f17; border-bottom:1px solid var(--border); font-size:.95rem; color:#fff; }
+.panel-body { padding:14px; overflow:auto; flex:1; }
+.app-card { background:#0c0f17; border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+.app-card .info { flex:1; }
+.app-card h3 { margin:0 0 6px; font-size:.9rem; color:#fff; }
+.app-card p { margin:0; font-size:.78rem; color:var(--muted); }
+.status { display:flex; gap:6px; margin-top:8px; font-size:.68rem; }
+.status span { padding:2px 8px; border-radius:999px; text-transform:uppercase; font-weight:700; }
+.status .on { background:rgba(0,255,157,.15); color:#34ffb6; border:1px solid rgba(0,255,157,.3); }
+.status .off { background:rgba(255,59,48,.12); color:#ff6b6b; border:1px solid rgba(255,59,48,.3); }
+.status .slot { background:rgba(0,212,255,.1); color:#5fe8ff; border:1px solid rgba(0,212,255,.25); }
+.app-card .actions { display:flex; flex-direction:column; gap:6px; }
+.app-card button { background:#151a26; border:1px solid var(--border); color:var(--text); padding:6px 12px; border-radius:6px; font-size:.72rem; cursor:pointer; }
+.app-card button:hover { border-color:var(--accent); color:var(--accent); }
+.intent-log { font-family:'Segoe UI Mono',Consolas,monospace; font-size:.75rem; color:var(--muted); }
+.intent-log .line { padding:5px 0; border-bottom:1px dashed var(--border); }
+.intent-log .ts { color:var(--accent); font-weight:600; margin-right:6px; }
+.intent-log .src { background:#1f2937; padding:1px 5px; border-radius:4px; margin-right:6px; }
+.asset-list { font-size:.8rem; color:var(--muted); }
+.asset-list a { color:var(--accent); text-decoration:none; }
+.asset-list a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Sovereign Desktop Ops HQ</h1>
+    <div class="subtitle">Connector-layer command center — OpenAI · Anthropic · OpenClaw · Browser · File · Email</div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span class="badge badge-green">7 Running</span>
+    <span class="badge badge-blue">12 Detected</span>
+    <span class="badge badge-amber">No Autopilot</span>
+  </div>
+</header>
+
+<div class="cmd-bar">
+  <button onclick="refreshMap()">Refresh System Map</button>
+  <button onclick="intent('scan','all')">Scan Apps</button>
+  <button onclick="openLocal('comet_commander.html')">Open Comet X9</button>
+  <button onclick="openLocal('cases/rsb_nordskog/legal_commander.html')">Open Legal Ops</button>
+  <button onclick="startApi()">Start API Server</button>
+</div>
+
+<div class="grid">
+  <div class="panel">
+    <h2>Connector Matrix</h2>
+    <div class="panel-body" id="matrix"></div>
+  </div>
+  <div class="panel">
+    <h2>Intent Log</h2>
+    <div class="panel-body">
+      <div class="intent-log" id="log"></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Oneness Assets</h2>
+    <div class="panel-body">
+      <div class="asset-list" id="assets"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const apps = [{"id": "chatgpt_desktop", "display": "ChatGPT Desktop", "family": "openai", "running": true, "detected": true, "launch_type": "shell_app", "launch_value": "OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0!App", "connection_methods": ["ui_automation", "browser_web", "windows_apps"]}, {"id": "claude_code", "display": "Claude / Claude Code", "family": "anthropic", "running": true, "detected": true, "launch_type": "command", "launch_value": "claude", "connection_methods": ["cli", "ui_automation", "api_anthropic"]}, {"id": "codex_cli", "display": "OpenAI Codex CLI", "family": "openai", "running": true, "detected": true, "launch_type": "command", "launch_value": "codex", "connection_methods": ["cli", "api_openai"]}, {"id": "openclaw", "display": "OpenClaw", "family": "openclaw", "running": true, "detected": true, "launch_type": "command", "launch_value": "openclaw", "connection_methods": ["cli", "ui_automation", "tray"]}, {"id": "perplexity", "display": "Perplexity", "family": "browser", "running": false, "detected": true, "launch_type": "browser_url", "launch_value": "https://perplexity.ai", "connection_methods": ["browser_web", "playwright"]}, {"id": "chrome", "display": "Google Chrome", "family": "browser", "running": true, "detected": true, "launch_type": "exe", "launch_value": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "connection_methods": ["browser_automation", "playwright", "ui_automation"]}, {"id": "edge", "display": "Microsoft Edge", "family": "browser", "running": true, "detected": true, "launch_type": "exe", "launch_value": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe", "connection_methods": ["browser_automation", "playwright", "ui_automation"]}, {"id": "copilot", "display": "Microsoft Copilot", "family": "copilot", "running": true, "detected": true, "launch_type": "exe", "launch_value": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe", "connection_methods": ["ui_automation", "browser_web"]}, {"id": "hermes", "display": "Hermes", "family": "hermes", "running": false, "detected": true, "launch_type": "exe", "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\hermes.exe", "connection_methods": ["cli", "ui_automation", "file_system"]}, {"id": "droid", "display": "Droid", "family": "droid", "running": false, "detected": true, "launch_type": "exe", "launch_value": "C:\\Users\\ArcXN\\bin\\droid.exe", "connection_methods": ["cli", "ui_automation"]}, {"id": "factory", "display": "Factory", "family": "factory", "running": false, "detected": true, "launch_type": "exe", "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\Factory\\factory-desktop.exe", "connection_methods": ["ui_automation", "file_system"]}, {"id": "codeium", "display": "Codeium", "family": "codeium", "running": false, "detected": true, "launch_type": "browser_url", "launch_value": "https://codeium.com", "connection_methods": ["browser_web", "ide_extension"]}, {"id": "email_bridge", "display": "Email Bridge", "family": "email", "running": false, "detected": false, "launch_type": "none", "launch_value": "", "connection_methods": ["email"]}, {"id": "file_bridge", "display": "File System Bridge", "family": "file_system", "running": false, "detected": false, "launch_type": "none", "launch_value": "", "connection_methods": ["file_system"]}];
+const onenessAssets = {"dashboards": ["comet_commander.html", "cases/rsb_nordskog/legal_commander.html"], "orchestrators": ["src/oneness_orchestrator.py", "src/meta_agent.py", "src/comet_x9/orchestrate.py", "src/net95x/orchestrate.py", "src/subagents/orchestrate.py"], "launchers": ["src/comet_x9/app_launcher.py", "src/net95x/app_launcher.py"], "subagents": ["src/subagents/file_ops.py", "src/subagents/browser_ops.py", "src/subagents/code_ops.py", "src/subagents/cpu_ops.py", "src/subagents/cleanup_ops.py", "src/subagents/web_research.py"], "web_app": "src/Oneness.Web"};
+
+function renderMatrix(){
+  const el = document.getElementById('matrix');
+  el.innerHTML = '';
+  apps.forEach(app => {
+    const card = document.createElement('div');
+    card.className = 'app-card';
+    const runningCls = app.running ? 'on' : 'off';
+    const detectedCls = app.detected ? 'on' : 'off';
+    const slotLabel = app.slot_type === 'wired' ? 'Wired' : 'Bridgeable Slot';
+    const launchBtn = app.can_launch ? `<button onclick="requestLaunch('${app.id}')">Prepare Launch</button>` : '';
+    const bridgeBtn = app.slot_type === 'bridgeable' ? `<button onclick="intent('bridge','${app.id}')">Bridge Slot</button>` : '';
+    card.innerHTML = `
+      <div class="info">
+        <h3>${app.display}</h3>
+        <p>${app.connection_methods.join(' · ')}</p>
+        <div class="status">
+          <span class="${runningCls}">${app.running ? 'Running' : 'Stopped'}</span>
+          <span class="${detectedCls}">${app.detected ? 'Detected' : 'Not Detected'}</span>
+          <span class="slot">${slotLabel}</span>
+        </div>
+      </div>
+      <div class="actions">${launchBtn}${bridgeBtn}</div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+function renderAssets(){
+  const el = document.getElementById('assets');
+  let html = '';
+  for (const [k,v] of Object.entries(onenessAssets)){
+    if (Array.isArray(v)) {
+      html += `<strong style="color:#fff;display:block;margin-top:10px;">${k}</strong>` + v.map(x => `<div><a href="${x}" target="_blank">${x}</a></div>`).join('');
+    } else {
+      html += `<strong style="color:#fff;display:block;margin-top:10px;">${k}</strong><div><a href="${v}" target="_blank">${v}</a></div>`;
+    }
+  }
+  el.innerHTML = html;
+}
+
+function log(action, target, note){
+  const el = document.getElementById('log');
+  const line = document.createElement('div');
+  line.className = 'line';
+  line.innerHTML = `<span class="ts">${new Date().toISOString().slice(0,19)}</span><span class="src">${action}</span>${target}${note ? ' — ' + note : ''}`;
+  el.insertBefore(line, el.firstChild);
+}
+
+function intent(action, target){
+  log(action, target, 'preview — no autopilot; confirm in chat to execute');
+}
+
+function requestLaunch(appId){
+  const app = apps.find(a => a.id === appId);
+  intent('launch', appId, `${app.launch_methods[0] || 'no launch method'} — click Start API Server to arm`);
+}
+
+function refreshMap(){
+  log('refresh', 'system_map', 'run scan_sovereign.py or refresh this page after a new scan');
+}
+
+function openLocal(path){
+  window.open(path, '_blank');
+  log('open', path, 'opened in new tab');
+}
+
+function startApi(){
+  log('api', 'start', 'run: python run_sovereign_api.py  (http://127.0.0.1:9500)');
+}
+
+renderMatrix();
+renderAssets();
+log('ready', 'sovereign_desktop', 'dashboard loaded — safe mode');
+</script>
+</body>
+</html>

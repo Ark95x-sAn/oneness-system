@@ -1,0 +1,429 @@
+{
+  "generated_at": "2026-08-06T23:00:03.831564+00:00",
+  "project": "OnenessSystem",
+  "connector_layer_principle": "Not every app wired all the time; every source wireable on demand.",
+  "safety_guards": [
+    "No autopilot.",
+    "No deletions without explicit approval.",
+    "Action buttons log intent and require confirmation.",
+    "Launch operations gated by preview/confirm step."
+  ],
+  "host_system": {
+    "cwd": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem",
+    "shell": "powershell",
+    "timezone": "America/Chicago",
+    "date": "2026-08-06"
+  },
+  "apps": {
+    "chatgpt_desktop": {
+      "id": "chatgpt_desktop",
+      "display": "ChatGPT Desktop",
+      "family": "openai",
+      "running": true,
+      "detected": true,
+      "launch_type": "shell_app",
+      "launch_value": "OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0!App",
+      "connection_methods": [
+        "ui_automation",
+        "browser_web",
+        "windows_apps"
+      ]
+    },
+    "claude_code": {
+      "id": "claude_code",
+      "display": "Claude / Claude Code",
+      "family": "anthropic",
+      "running": true,
+      "detected": true,
+      "launch_type": "command",
+      "launch_value": "claude",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "api_anthropic"
+      ]
+    },
+    "codex_cli": {
+      "id": "codex_cli",
+      "display": "OpenAI Codex CLI",
+      "family": "openai",
+      "running": true,
+      "detected": true,
+      "launch_type": "command",
+      "launch_value": "codex",
+      "connection_methods": [
+        "cli",
+        "api_openai"
+      ]
+    },
+    "openclaw": {
+      "id": "openclaw",
+      "display": "OpenClaw",
+      "family": "openclaw",
+      "running": true,
+      "detected": true,
+      "launch_type": "command",
+      "launch_value": "openclaw",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "tray"
+      ]
+    },
+    "perplexity": {
+      "id": "perplexity",
+      "display": "Perplexity",
+      "family": "browser",
+      "running": false,
+      "detected": true,
+      "launch_type": "browser_url",
+      "launch_value": "https://perplexity.ai",
+      "connection_methods": [
+        "browser_web",
+        "playwright"
+      ]
+    },
+    "chrome": {
+      "id": "chrome",
+      "display": "Google Chrome",
+      "family": "browser",
+      "running": true,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "connection_methods": [
+        "browser_automation",
+        "playwright",
+        "ui_automation"
+      ]
+    },
+    "edge": {
+      "id": "edge",
+      "display": "Microsoft Edge",
+      "family": "browser",
+      "running": true,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "connection_methods": [
+        "browser_automation",
+        "playwright",
+        "ui_automation"
+      ]
+    },
+    "copilot": {
+      "id": "copilot",
+      "display": "Microsoft Copilot",
+      "family": "copilot",
+      "running": true,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe",
+      "connection_methods": [
+        "ui_automation",
+        "browser_web"
+      ]
+    },
+    "hermes": {
+      "id": "hermes",
+      "display": "Hermes",
+      "family": "hermes",
+      "running": false,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\hermes.exe",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "file_system"
+      ]
+    },
+    "droid": {
+      "id": "droid",
+      "display": "Droid",
+      "family": "droid",
+      "running": false,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\bin\\droid.exe",
+      "connection_methods": [
+        "cli",
+        "ui_automation"
+      ]
+    },
+    "factory": {
+      "id": "factory",
+      "display": "Factory",
+      "family": "factory",
+      "running": false,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\Factory\\factory-desktop.exe",
+      "connection_methods": [
+        "ui_automation",
+        "file_system"
+      ]
+    },
+    "codeium": {
+      "id": "codeium",
+      "display": "Codeium",
+      "family": "codeium",
+      "running": false,
+      "detected": true,
+      "launch_type": "browser_url",
+      "launch_value": "https://codeium.com",
+      "connection_methods": [
+        "browser_web",
+        "ide_extension"
+      ]
+    },
+    "email_bridge": {
+      "id": "email_bridge",
+      "display": "Email Bridge",
+      "family": "email",
+      "running": false,
+      "detected": false,
+      "launch_type": "none",
+      "launch_value": "",
+      "connection_methods": [
+        "email"
+      ]
+    },
+    "file_bridge": {
+      "id": "file_bridge",
+      "display": "File System Bridge",
+      "family": "file_system",
+      "running": false,
+      "detected": false,
+      "launch_type": "none",
+      "launch_value": "",
+      "connection_methods": [
+        "file_system"
+      ]
+    }
+  },
+  "connector_matrix": [
+    {
+      "id": "chatgpt_desktop",
+      "display": "ChatGPT Desktop",
+      "family": "openai",
+      "running": true,
+      "detected": true,
+      "launch_type": "shell_app",
+      "launch_value": "OpenAI.ChatGPT-Desktop_2p2nqsd0c76g0!App",
+      "connection_methods": [
+        "ui_automation",
+        "browser_web",
+        "windows_apps"
+      ]
+    },
+    {
+      "id": "claude_code",
+      "display": "Claude / Claude Code",
+      "family": "anthropic",
+      "running": true,
+      "detected": true,
+      "launch_type": "command",
+      "launch_value": "claude",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "api_anthropic"
+      ]
+    },
+    {
+      "id": "codex_cli",
+      "display": "OpenAI Codex CLI",
+      "family": "openai",
+      "running": true,
+      "detected": true,
+      "launch_type": "command",
+      "launch_value": "codex",
+      "connection_methods": [
+        "cli",
+        "api_openai"
+      ]
+    },
+    {
+      "id": "openclaw",
+      "display": "OpenClaw",
+      "family": "openclaw",
+      "running": true,
+      "detected": true,
+      "launch_type": "command",
+      "launch_value": "openclaw",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "tray"
+      ]
+    },
+    {
+      "id": "perplexity",
+      "display": "Perplexity",
+      "family": "browser",
+      "running": false,
+      "detected": true,
+      "launch_type": "browser_url",
+      "launch_value": "https://perplexity.ai",
+      "connection_methods": [
+        "browser_web",
+        "playwright"
+      ]
+    },
+    {
+      "id": "chrome",
+      "display": "Google Chrome",
+      "family": "browser",
+      "running": true,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "connection_methods": [
+        "browser_automation",
+        "playwright",
+        "ui_automation"
+      ]
+    },
+    {
+      "id": "edge",
+      "display": "Microsoft Edge",
+      "family": "browser",
+      "running": true,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "connection_methods": [
+        "browser_automation",
+        "playwright",
+        "ui_automation"
+      ]
+    },
+    {
+      "id": "copilot",
+      "display": "Microsoft Copilot",
+      "family": "copilot",
+      "running": true,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe",
+      "connection_methods": [
+        "ui_automation",
+        "browser_web"
+      ]
+    },
+    {
+      "id": "hermes",
+      "display": "Hermes",
+      "family": "hermes",
+      "running": false,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\hermes.exe",
+      "connection_methods": [
+        "cli",
+        "ui_automation",
+        "file_system"
+      ]
+    },
+    {
+      "id": "droid",
+      "display": "Droid",
+      "family": "droid",
+      "running": false,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\bin\\droid.exe",
+      "connection_methods": [
+        "cli",
+        "ui_automation"
+      ]
+    },
+    {
+      "id": "factory",
+      "display": "Factory",
+      "family": "factory",
+      "running": false,
+      "detected": true,
+      "launch_type": "exe",
+      "launch_value": "C:\\Users\\ArcXN\\AppData\\Local\\Factory\\factory-desktop.exe",
+      "connection_methods": [
+        "ui_automation",
+        "file_system"
+      ]
+    },
+    {
+      "id": "codeium",
+      "display": "Codeium",
+      "family": "codeium",
+      "running": false,
+      "detected": true,
+      "launch_type": "browser_url",
+      "launch_value": "https://codeium.com",
+      "connection_methods": [
+        "browser_web",
+        "ide_extension"
+      ]
+    },
+    {
+      "id": "email_bridge",
+      "display": "Email Bridge",
+      "family": "email",
+      "running": false,
+      "detected": false,
+      "launch_type": "none",
+      "launch_value": "",
+      "connection_methods": [
+        "email"
+      ]
+    },
+    {
+      "id": "file_bridge",
+      "display": "File System Bridge",
+      "family": "file_system",
+      "running": false,
+      "detected": false,
+      "launch_type": "none",
+      "launch_value": "",
+      "connection_methods": [
+        "file_system"
+      ]
+    }
+  ],
+  "oneness_assets": {
+    "dashboards": [
+      "comet_commander.html",
+      "cases/rsb_nordskog/legal_commander.html"
+    ],
+    "orchestrators": [
+      "src/oneness_orchestrator.py",
+      "src/meta_agent.py",
+      "src/comet_x9/orchestrate.py",
+      "src/net95x/orchestrate.py",
+      "src/subagents/orchestrate.py"
+    ],
+    "launchers": [
+      "src/comet_x9/app_launcher.py",
+      "src/net95x/app_launcher.py"
+    ],
+    "subagents": [
+      "src/subagents/file_ops.py",
+      "src/subagents/browser_ops.py",
+      "src/subagents/code_ops.py",
+      "src/subagents/cpu_ops.py",
+      "src/subagents/cleanup_ops.py",
+      "src/subagents/web_research.py"
+    ],
+    "web_app": "src/Oneness.Web"
+  },
+  "proposed_repo_skeleton": {
+    "src/sovereign_desktop": {
+      "connectors/": "one module per app family (openai, anthropic, openclaw, browser, file, email)",
+      "registry.json": "canonical app catalog with ids, paths, launch methods, capabilities",
+      "orchestrator.py": "dispatches connector agents, returns unified status",
+      "safety.py": "gates every action: preview-only, no auto-execution",
+      "api_server.py": "lightweight local HTTP API for dashboard"
+    },
+    "sovereign_commander.html": "safe front-end dashboard: status grid, connector slots, intent log, no delete buttons"
+  }
+}
