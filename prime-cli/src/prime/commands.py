@@ -87,74 +87,78 @@ def cmd_doctor(json_mode: bool = False) -> dict[str, Any]:
 
 
 def cmd_start(json_mode: bool = False) -> dict[str, Any]:
-    """Start Prime Fire Council: orchestrator + web dashboard."""
-    import os
-    env = os.environ.copy()
-    env["DEMO_MODE"] = "true"
-    env["ONENESS_SYSTEM_ROOT"] = str(config.ROOT)
+    """Start the OnenessWeb Windows service (no visible dotnet run window)."""
+    import time
+    try:
+        svc = Get_ServiceState()
+    except Exception as e:
+        result = {"ok": False, "error": f"Cannot query service: {e}"}
+        if json_mode:
+            print(json.dumps(result, indent=2, default=str))
+        else:
+            print(f"Cannot query service: {e}")
+        return result
 
-    # Start orchestrator
-    orch_proc = subprocess.Popen(
-        [str(config.VENV_PYTHON), str(config.ORCHESTRATOR), "--demo"],
-        cwd=str(config.ROOT),
-        env=env,
-        creationflags=subprocess.CREATE_NO_WINDOW,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-
-    # Start web dashboard
-    web_proc = subprocess.Popen(
-        ["dotnet", "run", "--project", str(config.ROOT / "src" / "Oneness.Web"), "--urls", config.WEB_URL],
-        cwd=str(config.ROOT),
-        env=env,
-        creationflags=subprocess.CREATE_NO_WINDOW,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-
-    result = {
-        "ok": True,
-        "orchestrator_pid": orch_proc.pid,
-        "web_pid": web_proc.pid,
-    }
-
-    api = OnenessAPI()
-    web_ready = False
-    web_error = None
-    for attempt in range(15):
-        time.sleep(3)
-        try:
-            api.health()
-            web_ready = True
-            break
-        except Exception as e:
-            web_error = str(e)
-    result["web_ready"] = web_ready
-    result["web_error"] = web_error if not web_ready else None
+    if svc["state"] == "Running":
+        result = {"ok": True, "service": "OnenessWeb", "state": "Running", "was_already_running": True}
+    else:
+        start_result = _run(["powershell.exe", "-ExecutionPolicy", "Bypass", "-Command", "Start-Service OnenessWeb"])
+        web_ready = False
+        web_error = None
+        for attempt in range(20):
+            time.sleep(2)
+            try:
+                api = OnenessAPI()
+                api.health()
+                web_ready = True
+                break
+            except Exception as e:
+                web_error = str(e)
+        result = {
+            "ok": start_result["ok"] or web_ready,
+            "service": "OnenessWeb",
+            "state": "Running" if web_ready else "starting",
+            "web_ready": web_ready,
+            "web_error": web_error if not web_ready else None,
+        }
 
     if json_mode:
         print(json.dumps(result, indent=2, default=str))
     else:
-        if web_ready:
+        if result.get("web_ready"):
             print(f"Prime Fire Council active at {config.WEB_URL}")
         else:
-            print(f"Started processes but web dashboard not ready yet: {web_error}")
+            print(f"Started service but web dashboard not ready yet: {result.get('web_error')}")
     return result
 
 
+def Get_ServiceState() -> dict[str, Any]:
+    r = _run(["powershell.exe", "-ExecutionPolicy", "Bypass", "-Command", "Get-Service OnenessWeb | Select-Object Name,Status | ConvertTo-Json -Compress"])
+    if not r["ok"]:
+        raise RuntimeError(r.get("stderr", r.get("error", "unknown")))
+    data = json.loads(r["stdout"]) if r["stdout"].strip() else {}
+    return {"name": data.get("Name"), "state": data.get("Status")}
+
+
 def cmd_stop() -> dict[str, Any]:
-    """Stop Oneness web and orchestrator processes safely."""
-    killed: list[dict[str, Any]] = []
+    """Stop OnenessWeb service and kill any stray Oneness processes."""
+    import time
+    stopped: list[dict[str, Any]] = []
+
+    svc_stop = _run(["powershell.exe", "-ExecutionPolicy", "Bypass", "-Command", "Stop-Service OnenessWeb -Force -ErrorAction SilentlyContinue"])
+    stopped.append({"target": "OnenessWeb service", "ok": svc_stop["ok"], "stderr": svc_stop.get("stderr", "")})
+
+    time.sleep(1)
     targets = _find_oneness_processes()
     for p in targets:
         try:
             p.kill()
-            killed.append({"name": p.info.get("name"), "pid": p.pid})
+            stopped.append({"name": p.info.get("name"), "pid": p.pid})
         except Exception as e:
-            killed.append({"name": p.info.get("name"), "pid": p.pid, "error": str(e)})
-    print(f"Stopped {len(killed)} Oneness process(es).")
-    return {"stopped": killed}
+            stopped.append({"name": p.info.get("name"), "pid": p.pid, "error": str(e)})
+
+    print(f"Stopped {len([s for s in stopped if 'error' not in s and s.get('ok', True)])} Oneness process(es)/service.")
+    return {"stopped": stopped}
 
 
 def _find_oneness_processes():
@@ -242,14 +246,15 @@ def cmd_auth() -> dict[str, Any]:
 
 
 def cmd_service_install() -> dict[str, Any]:
-    """Launch admin installer (user must approve UAC)."""
-    if not config.ADMIN_SCRIPT.exists():
-        return {"ok": False, "error": f"Admin script missing: {config.ADMIN_SCRIPT}"}
-    print("Launching admin installer. Approve the UAC prompt to install the Windows service.")
+    """Launch the elevated installer (user must approve UAC)."""
+    installer = config.ROOT / "install_oneness_web_service.ps1"
+    if not installer.exists():
+        return {"ok": False, "error": f"Installer missing: {installer}"}
+    print("Launching OnenessWeb installer. Approve the UAC prompt to install/refresh the Windows service.")
     result = _run([
         "powershell.exe",
         "-ExecutionPolicy", "Bypass",
-        "-File", str(config.ADMIN_SCRIPT),
+        "-File", str(installer),
     ], wait=False)
     return result
 
