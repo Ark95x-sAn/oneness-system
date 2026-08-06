@@ -26,7 +26,10 @@ from subagents import (
     RAW_DIR, STACKED_DIR, COMPRESSED_DIR, REMEDIATIONS_DIR, LOG_DIR,
     ensure_dirs, now_iso,
 )
-from subagents.alert_ops import send
+try:
+    from subagents.alert_ops import send
+except Exception:
+    send = None
 
 PYTHON = sys.executable
 
@@ -101,7 +104,8 @@ def send_summary(brief_path: Path, generated: list):
         title = f"Oneness Sub-Agent Brief — {brief.get('total_findings', 0)} findings"
         msg = "\n".join([f"{i+1}. {f.get('type')} — {f.get('title')}" for i, f in enumerate(top[:5])])
         msg += f"\n\nGenerated {len(generated)} remediation script(s) for review."
-        send(title, msg, channels=["toast"])
+        if send:
+            send(title, msg, channels=["toast"])
     except Exception as exc:
         log.warning("Summary alert failed: %s", exc)
 
