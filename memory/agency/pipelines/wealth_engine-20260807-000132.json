@@ -1,0 +1,102 @@
+{
+  "id": "wealth_engine-20260807-000132",
+  "blueprint": "wealth_engine",
+  "user_text": "run passive income scouting",
+  "started": "2026-08-07T00:01:29.809416+00:00",
+  "completed": "2026-08-07T00:01:32.543052+00:00",
+  "results": [
+    {
+      "step": {
+        "layer": 1,
+        "coordinator": "sovereign_desktop",
+        "task": "scan_apps",
+        "apps": [
+          "codex_cli",
+          "openclaw"
+        ]
+      },
+      "result": {
+        "ok": true,
+        "apps": [
+          {
+            "id": "codex_cli",
+            "display": "OpenAI Codex CLI",
+            "family": "openai",
+            "running": true,
+            "detected": true,
+            "launch_type": "command",
+            "launch_value": "codex",
+            "connection_methods": [
+              "cli",
+              "api_openai"
+            ]
+          },
+          {
+            "id": "openclaw",
+            "display": "OpenClaw",
+            "family": "openclaw",
+            "running": true,
+            "detected": true,
+            "launch_type": "command",
+            "launch_value": "openclaw",
+            "connection_methods": [
+              "cli",
+              "ui_automation",
+              "tray"
+            ]
+          }
+        ],
+        "count": 2
+      },
+      "timestamp": "2026-08-07T00:01:31.964075+00:00"
+    },
+    {
+      "step": {
+        "layer": 2,
+        "coordinator": "comet_x9",
+        "task": "income_ops"
+      },
+      "result": {
+        "ok": true,
+        "note": "CometX9 task 'income_ops' dispatched (stub)."
+      },
+      "timestamp": "2026-08-07T00:01:31.964075+00:00"
+    },
+    {
+      "step": {
+        "layer": 3,
+        "coordinator": "stack_compress",
+        "target_dirs": [
+          "memory/comet_x9/raw"
+        ]
+      },
+      "result": {
+        "ok": true,
+        "findings": [
+          {
+            "dir": "memory/comet_x9/raw",
+            "out": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\comet_x9\\compressed\\latest-brief.json",
+            "total": 32
+          }
+        ],
+        "raw_files_scanned": 0
+      },
+      "timestamp": "2026-08-07T00:01:32.542053+00:00"
+    },
+    {
+      "step": {
+        "layer": 4,
+        "coordinator": "sovereign_desktop",
+        "task": "open_dashboard",
+        "dashboard": "comet_commander.html"
+      },
+      "result": {
+        "ok": true,
+        "dashboard": "comet_commander.html",
+        "note": "Open comet_commander.html in browser via dashboard UI or file explorer."
+      },
+      "timestamp": "2026-08-07T00:01:32.542053+00:00"
+    }
+  ],
+  "status": "completed"
+}

@@ -1,11 +1,22 @@
-import json, datetime, glob
+import json, datetime, glob, subprocess
 from pathlib import Path
 
-root = Path(r'C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem')
+root = Path(r'C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem')
 map_path = root / 'memory' / 'analysis' / 'sovereign_desktop_map.json'
 html_path = root / 'sovereign_commander.html'
 template_path = root / 'src' / 'sovereign_desktop' / 'dashboard_template.html'
 pipeline_dir = root / 'memory' / 'agency' / 'pipelines'
+cache_dir = root / 'memory' / 'agency'
+cache_dir.mkdir(parents=True, exist_ok=True)
+
+def _run_json(cmd, timeout=30):
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, check=False, cwd=str(root))
+        if result.returncode == 0:
+            return json.loads(result.stdout)
+    except Exception:
+        pass
+    return {}
 
 def load_recent_pipelines(limit=10):
     records = []
@@ -26,16 +37,13 @@ def load_recent_pipelines(limit=10):
     return records
 
 def load_blueprints():
-    try:
-        result = __import__('subprocess').run(
-            ['python', str(root / 'src' / 'agency_pipeline' / 'pipeline.py'), '--list'],
-            capture_output=True, text=True, timeout=30, check=False
-        )
-        if result.returncode == 0:
-            return json.loads(result.stdout)
-    except Exception:
-        pass
-    return {}
+    return _run_json(['python', str(root / 'src' / 'agency_pipeline' / 'pipeline.py'), '--list'])
+
+def load_agents(domain=None):
+    cmd = ['python', str(root / 'src' / 'agency_pipeline' / 'pipeline.py'), '--list-agents']
+    if domain:
+        cmd.extend(['--domain', domain])
+    return _run_json(cmd)
 
 def build_html(map_path_override=None, html_path_override=None):
     mp = Path(map_path_override) if map_path_override else map_path
@@ -48,6 +56,12 @@ def build_html(map_path_override=None, html_path_override=None):
     assets_json = json.dumps(map_data.get('oneness_assets', {}))
     blueprints_json = json.dumps(load_blueprints())
     pipelines_json = json.dumps(load_recent_pipelines())
+    agents_json = json.dumps(load_agents())
+
+    blueprints_cache = load_blueprints()
+    (cache_dir / 'blueprints_cache.json').write_text(json.dumps(blueprints_cache, indent=2), encoding='utf-8')
+    agents_cache = load_agents()
+    (cache_dir / 'agents_cache.json').write_text(json.dumps(agents_cache, indent=2), encoding='utf-8')
 
     if not template_path.exists():
         raise FileNotFoundError(f"Dashboard template not found: {template_path}")
@@ -59,6 +73,7 @@ def build_html(map_path_override=None, html_path_override=None):
         .replace('{ASSETS_JSON}', assets_json)
         .replace('{BLUEPRINTS_JSON}', blueprints_json)
         .replace('{PIPELINES_JSON}', pipelines_json)
+        .replace('{AGENTS_JSON}', agents_json)
         .replace('{GENERATED_AT}', datetime.datetime.now(datetime.timezone.utc).isoformat()))
     hp.write_text(html, encoding='utf-8')
     return hp

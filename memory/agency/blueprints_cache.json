@@ -1,0 +1,22 @@
+{
+  "storage_cleanup": {
+    "display": "Storage Cleanup & Compression",
+    "description": "Scan raw memory dirs, compress/dedupe, archive old raw files, refresh dashboard."
+  },
+  "legal_intelligence": {
+    "display": "Legal Intelligence Sweep",
+    "description": "Search local files, browser histories, and web for case-related intelligence."
+  },
+  "wealth_engine": {
+    "display": "Passive Wealth Engine Run",
+    "description": "Run income-play ranking and top-opportunity scouting."
+  },
+  "system_health": {
+    "display": "System Health & Remediation",
+    "description": "Run PC health sub-agents and generate remediations for review."
+  },
+  "custom": {
+    "display": "Custom Agency Instruction",
+    "description": "Pass user text directly to available coordinators and log intent."
+  }
+}

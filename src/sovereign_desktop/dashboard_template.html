@@ -89,11 +89,52 @@ header h1 { margin:0; font-size:1.5rem; background:linear-gradient(90deg,var(--a
   </div>
 </div>
 
+<div class="grid" style="margin-top:0;">
+  <div class="panel" style="grid-column: span 2;">
+    <h2>Agent Swarm Registry</h2>
+    <div class="panel-body">
+      <div id="agent-domains" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"></div>
+      <div id="agent-list" style="font-size:.75rem;max-height:300px;overflow:auto;"></div>
+    </div>
+  </div>
+  <div class="panel" style="grid-column: span 2;">
+    <h2>Dispatcher Log</h2>
+    <div class="panel-body">
+      <div class="intent-log" id="dispatch-log"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 const apps = {APPS_JSON};
 const onenessAssets = {ASSETS_JSON};
 const blueprints = {BLUEPRINTS_JSON};
 const recentPipelines = {PIPELINES_JSON};
+const agentsCache = {AGENTS_JSON};
+
+function renderAgents(){
+  const domains = [...new Set(agentsCache.agents.map(a => a.domain))].sort();
+  const domainEl = document.getElementById('agent-domains');
+  domainEl.innerHTML = domains.map(d => `<button onclick="filterAgents('${d}')" style="background:#151a26;border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;">${d}</button>`).join('') +
+    ` <button onclick="filterAgents(null)" style="background:#151a26;border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;">all</button>`;
+  filterAgents(null);
+}
+
+function filterAgents(domain){
+  const list = document.getElementById('agent-list');
+  const filtered = domain ? agentsCache.agents.filter(a => a.domain === domain) : agentsCache.agents;
+  let html = `<div style="color:var(--muted);margin-bottom:6px;">${filtered.length} agents${domain ? ' in ' + domain : ''}</div>`;
+  html += '<div style="display:flex;flex-direction:column;gap:4px;">';
+  for (const a of filtered.slice(0, 50)){
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;background:#0c0f17;border:1px solid var(--border);padding:6px 8px;border-radius:6px;">
+      <span>${a.display}</span>
+      <button onclick="intent('agent', '${a.id}')" style="background:#151a26;border:1px solid var(--border);color:var(--text);padding:2px 8px;border-radius:4px;font-size:.68rem;cursor:pointer;">preview</button>
+    </div>`;
+  }
+  if (filtered.length > 50) html += `<div style="color:var(--muted);">... and ${filtered.length - 50} more</div>`;
+  html += '</div>';
+  list.innerHTML = html;
+}
 
 function renderMatrix(){
   const el = document.getElementById('matrix');
@@ -186,6 +227,7 @@ function startApi(){
 
 renderMatrix();
 renderAgency();
+renderAgents();
 renderAssets();
 log('ready', 'sovereign_desktop', 'dashboard loaded — safe mode');
 </script>

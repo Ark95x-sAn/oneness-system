@@ -15,6 +15,14 @@ import datetime
 import subprocess
 from pathlib import Path
 from typing import List, Dict, Any
+import sys
+
+# Ensure src/ is importable when pipeline.py is invoked directly
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from agency_layer import load_registry, dispatch, list_agents as _layer_list_agents
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 SRC = ROOT / "src"
@@ -167,12 +175,26 @@ def run_sovereign_desktop(task: str, **kwargs) -> Dict[str, Any]:
             return {"ok": result.returncode == 0, "output": result.stdout.strip()[:1000]}
         except Exception as exc:
             return {"ok": False, "error": str(exc)}
+    if task == "scan_apps":
+        try:
+            result = subprocess.run(["python", str(ROOT / "scan_sovereign.py")], capture_output=True, text=True, timeout=60, check=False)
+            data = _last_json_block(result.stdout) if result.stdout.strip() else {}
+            apps = data.get("apps", [])
+            wanted = kwargs.get("apps", [])
+            if wanted:
+                apps = [a for a in apps if a.get("id") in wanted]
+            return {"ok": True, "apps": apps, "count": len(apps)}
+        except Exception as exc:
+            return {"ok": False, "error": str(exc)}
     if task == "refresh_dashboard":
         try:
             result = subprocess.run(["python", str(SRC / "sovereign_desktop" / "refresh_dashboard.py")], capture_output=True, text=True, timeout=60, check=False)
             return {"ok": result.returncode == 0, "output": result.stdout.strip()[:500]}
         except Exception as exc:
             return {"ok": False, "error": str(exc)}
+    if task == "open_dashboard":
+        dashboard = kwargs.get("dashboard", "sovereign_commander.html")
+        return {"ok": True, "dashboard": dashboard, "note": f"Open {dashboard} in browser via dashboard UI or file explorer."}
     if task == "log_intent":
         return {"ok": True, "note": "Intent logged; no auto-execution."}
     return {"ok": False, "error": f"unknown sovereign_desktop task: {task}"}
@@ -200,6 +222,18 @@ def dispatch_layer(step: Dict[str, Any]) -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 # Main pipeline
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# Agent registry helpers
+# ---------------------------------------------------------------------------
+def list_agents(domain: str = None) -> Dict[str, Any]:
+    agents = _layer_list_agents(domain)
+    return {"count": len(agents), "agents": agents}
+
+
+def dispatch_agent(agent_id: str, confirmed: bool = False) -> Dict[str, Any]:
+    return dispatch(agent_id, confirmed=confirmed)
 def run_pipeline(blueprint_key: str, user_text: str = "", confirmed: bool = False) -> Dict[str, Any]:
     if not confirmed:
         return {
@@ -256,8 +290,16 @@ if __name__ == "__main__":
     parser.add_argument("--text", default="")
     parser.add_argument("--confirmed", action="store_true")
     parser.add_argument("--list", action="store_true")
+    parser.add_argument("--list-agents", action="store_true")
+    parser.add_argument("--domain")
+    parser.add_argument("--dispatch-agent")
     args = parser.parse_args()
     if args.list:
         print(json.dumps(list_blueprints(), indent=2))
+    elif args.list_agents:
+        agents = _layer_list_agents(args.domain)
+        print(json.dumps({"count": len(agents), "agents": agents}, indent=2))
+    elif args.dispatch_agent:
+        print(json.dumps(dispatch(args.dispatch_agent, confirmed=args.confirmed), indent=2))
     else:
         print(json.dumps(handle_chat_instruction(args.text or args.blueprint, confirmed=args.confirmed), indent=2))
