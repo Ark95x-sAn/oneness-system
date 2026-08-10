@@ -177,15 +177,59 @@ def monitor_services():
     stopped = [s for s in svc_json if s.get("Status") != 4 and s.get("Status") != "Running"]
     stopped_names = [s.get("Name", "?") for s in stopped]
 
-    if stopped:
-        sev = "critical" if any(n in ("WinDefend", "Dhcp", "Dnscache", "wscsvc") for n in stopped_names) else "warning"
+    # Detect if third-party AV is active (Norton, McAfee, etc.)
+    # If so, WinDefend being stopped is expected behavior, not critical
+    av_active = False
+    av_names = []
+    try:
+        av_check_stdout, _, _ = _run_ps(
+            "Get-Service | Where-Object { (.Name -like 'Norton*' -or .Name -like 'mcshield*' -or .Name -like 'avast*' -or .Name -like 'Avg*') -and .Status -eq 'Running' } | Select-Object Name | ConvertTo-Json"
+        )
+        import json as _j
+        av_svcs = _j.loads(av_check_stdout) if av_check_stdout else []
+        if isinstance(av_svcs, dict): av_svcs = [av_svcs]
+        if av_svcs:
+            av_active = True
+            av_names = [s.get("Name", "") for s in av_svcs]
+    except:
+        pass
+
+    # Filter out services that are expected to be stopped
+    # - WinDefend stopped is normal if third-party AV is running
+    # - Manual start-type services stop when not in use (BITS, WinDefend, wuauserv, NlaSvc)
+    expected_stopped = set()
+    if av_active:
+        expected_stopped.add("WinDefend")
+    for s in svc_json:
+        sname = s.get("Name", "")
+        if s.get("StartType") in (3, "Manual") and sname in ("BITS", "WinDefend", "wuauserv", "NlaSvc"):
+            expected_stopped.add(sname)
+
+    truly_stopped = [n for n in stopped_names if n not in expected_stopped]
+
+    if truly_stopped:
+        sev = "critical" if any(n in ("Dhcp", "Dnscache", "wscsvc") for n in truly_stopped) else "warning"
         findings.append({
             "type": "services_stopped", "severity": sev,
-            "title": f"{len(stopped)} critical service(s) not running",
-            "description": json.dumps([{"name": s.get("Name"), "display": s.get("DisplayName"), "status": s.get("Status"), "start": s.get("StartType")} for s in stopped]),
+            "title": f"{len(truly_stopped)} service(s) not running",
+            "description": json.dumps([{"name": s.get("Name"), "display": s.get("DisplayName"), "status": s.get("Status"), "start": s.get("StartType")} for s in stopped if s.get("Name") in truly_stopped]),
             "risk_score": 0.6 if sev == "critical" else 0.3,
             "roi_score": 2.5,
-            "stopped_services": stopped_names,
+            "stopped_services": truly_stopped,
+            "av_active": av_active,
+            "av_names": av_names,
+            "expected_stopped": list(expected_stopped),
+        })
+    elif stopped and not truly_stopped:
+        # All stopped services are expected (on-demand or AV-replaced)
+        findings.append({
+            "type": "services_expected", "severity": "info",
+            "title": f"{len(stopped)} service(s) stopped (expected: on-demand or AV-managed)",
+            "description": f"AV active: {av_active}. Expected stopped: {list(expected_stopped)}",
+            "risk_score": 0.0,
+            "roi_score": 0.5,
+            "stopped_services": [],
+            "av_active": av_active,
         })
 
     return {
