@@ -1,0 +1,246 @@
+{
+  "generated_at": "2026-08-10T16:43:05.155940+00:00",
+  "health_score": 42,
+  "health_status": "POOR",
+  "summary": {
+    "total_findings": 6,
+    "critical": 1,
+    "warnings": 3,
+    "info": 2
+  },
+  "snapshots": {
+    "telemetry": {
+      "cpu_percent": 76.1,
+      "ram_percent": 50.2,
+      "ram_used_gb": 15,
+      "ram_total_gb": 31,
+      "disk_free_gb": 410.74,
+      "disk_total_gb": 1882.67,
+      "disk_pct_free": 21.82
+    },
+    "services": {
+      "total_checked": 13,
+      "running": 8,
+      "stopped": 5,
+      "stopped_names": [
+        "BITS",
+        "MapsBroker",
+        "sppsvc",
+        "WinDefend",
+        "wuauserv"
+      ]
+    },
+    "processes": {
+      "top_processes": [
+        {
+          "name": "vmmemWSL",
+          "pid": 12084,
+          "cpu_s": 93178.7,
+          "ram_mb": 469.8
+        },
+        {
+          "name": "explorer",
+          "pid": 14196,
+          "cpu_s": 12758.4,
+          "ram_mb": 261.7
+        },
+        {
+          "name": "OneDrive.Sync.Service",
+          "pid": 3256,
+          "cpu_s": 9278.3,
+          "ram_mb": 111.1
+        },
+        {
+          "name": "System",
+          "pid": 4,
+          "cpu_s": 7267.8,
+          "ram_mb": 22.3
+        },
+        {
+          "name": "LightingService",
+          "pid": 6200,
+          "cpu_s": 1801.2,
+          "ram_mb": 25
+        },
+        {
+          "name": "AsusFanControlService",
+          "pid": 5632,
+          "cpu_s": 1598.1,
+          "ram_mb": 10.1
+        },
+        {
+          "name": "Corsair.Service",
+          "pid": 5812,
+          "cpu_s": 1537.9,
+          "ram_mb": 22.2
+        },
+        {
+          "name": "svchost",
+          "pid": 3604,
+          "cpu_s": 1425.2,
+          "ram_mb": 16.7
+        },
+        {
+          "name": "Oneness.Web",
+          "pid": 6468,
+          "cpu_s": 939.9,
+          "ram_mb": 45.7
+        },
+        {
+          "name": "dwm",
+          "pid": 1228,
+          "cpu_s": 921.7,
+          "ram_mb": 208.1
+        }
+      ]
+    },
+    "network": {
+      "checks": [
+        {
+          "host": "8.8.8.8",
+          "port": 53,
+          "label": "Google DNS",
+          "reachable": true
+        },
+        {
+          "host": "github.com",
+          "port": 443,
+          "label": "GitHub",
+          "reachable": true
+        },
+        {
+          "host": "www.google.com",
+          "port": 443,
+          "label": "Google Web",
+          "reachable": true
+        }
+      ],
+      "dns_ok": true
+    },
+    "reboot": {
+      "reboot_pending": true,
+      "reasons": [
+        "PendingFileRenameOperations"
+      ],
+      "uptime_days": 0,
+      "uptime_hours": 12
+    },
+    "apps": {
+      "total": 6,
+      "installed": 4,
+      "missing": 2,
+      "apps": [
+        {
+          "name": "Google Chrome",
+          "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+          "installed": true
+        },
+        {
+          "name": "Codex CLI",
+          "path": "C:\\Users\\ArcXN\\AppData\\Roaming\\npm\\codex.cmd",
+          "installed": true
+        },
+        {
+          "name": "Notion",
+          "path": "C:\\Users\\ArcXN\\AppData\\Local\\Programs\\Notion\\Notion.exe",
+          "installed": true
+        },
+        {
+          "name": "Docker Desktop",
+          "path": "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+          "installed": true
+        },
+        {
+          "name": "Claude Desktop",
+          "path": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+          "installed": false
+        },
+        {
+          "name": "Visual Studio",
+          "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+          "installed": false
+        }
+      ]
+    }
+  },
+  "findings": {
+    "critical": [
+      {
+        "type": "services_stopped",
+        "title": "5 critical service(s) not running",
+        "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}, {\"name\": \"wuauserv\", \"display\": \"Windows Update\", \"status\": 1, \"start\": 3}]",
+        "risk_score": 0.6,
+        "roi_score": 2.5
+      }
+    ],
+    "warnings": [
+      {
+        "type": "cpu_high",
+        "title": "CPU high at 76.1%",
+        "description": "System under CPU pressure.",
+        "risk_score": 0.6,
+        "roi_score": 3.0
+      },
+      {
+        "type": "process_high_cpu",
+        "title": "vmmemWSL has accumulated 93179s CPU time",
+        "description": "PID 12084, RAM 470 MB. Consider shutting down WSL if not needed.",
+        "risk_score": 0.5,
+        "roi_score": 3.0
+      },
+      {
+        "type": "reboot_pending",
+        "title": "System reboot pending",
+        "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+        "risk_score": 0.5,
+        "roi_score": 2.0
+      }
+    ],
+    "info": [
+      {
+        "type": "app_missing",
+        "title": "Claude Desktop not installed",
+        "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+        "risk_score": 0.1,
+        "roi_score": 0.5
+      },
+      {
+        "type": "app_missing",
+        "title": "Visual Studio not installed",
+        "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+        "risk_score": 0.1,
+        "roi_score": 0.5
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "medium",
+      "action": "Investigate top CPU processes and consider stopping resource hogs",
+      "safe": true,
+      "command": "python -m src.ops_mind.mind --cycle  # re-check after action"
+    },
+    {
+      "priority": "high",
+      "action": "Review stopped services: BITS, MapsBroker, sppsvc, WinDefend, wuauserv",
+      "safe": true,
+      "command": "Get-Service -Name BITS,MapsBroker,sppsvc,WinDefend,wuauserv | Format-Table"
+    },
+    {
+      "priority": "medium",
+      "action": "Shut down WSL to reduce CPU usage",
+      "safe": false,
+      "command": "wsl --shutdown",
+      "note": "Requires user approval \u2014 kills all WSL/Linux processes"
+    },
+    {
+      "priority": "medium",
+      "action": "Restart the computer to complete pending Windows updates",
+      "safe": false,
+      "command": "shutdown /r /t 0",
+      "note": "Requires user approval \u2014 closes all applications"
+    }
+  ],
+  "cycles_run": 4,
+  "last_cycle": "2026-08-10T16:43:02.262662+00:00"
+}

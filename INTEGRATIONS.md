@@ -1,7 +1,7 @@
 # ONENESS SYSTEM — AI TOOL INTEGRATIONS
 ## Prime Fire Council Deployment Guide
 
-This document describes how the Oneness System integrates with Claude, Blackbox, Perplexity, Copilot, Claude Code, Codex, OpenClaw, and Visual Studio projects.
+This document describes how the Oneness System integrates with Claude, Blackbox, Chrome, Copilot, Claude Code, Codex, OpenClaw, and Visual Studio projects.
 
 ---
 
@@ -38,7 +38,7 @@ Detected on this machine:
 - ✅ **OpenClaw** (`openclaw.ps1`)
 - ✅ **OpenAI Codex CLI** (via `npx openai-codex`)
 - ✅ **GitHub Copilot CLI** (`gh.exe`)
-- ⚠️ **Perplexity AI** — web, accessible but bot-guarded via Playwright; use human browser for logged-in work
+- ✅ **Google Chrome** — free web browser, installed and ready (replaces Perplexity Comet)
 - ✅ **Blackbox AI** — web, accessible via Playwright
 - ✅ **Visual Studio Code** (`code.cmd`)
 
@@ -55,7 +55,7 @@ scripts\integrations\launch_openclaw.ps1
 scripts\integrations\launch_codex_cli.ps1
 scripts\integrations\launch_github_copilot.ps1
 scripts\integrations\launch_blackbox_playwright.ps1
-scripts\integrations\launch_perplexity_playwright.ps1
+scripts\integrations\launch_chrome.ps1
 ```
 
 Or use the web dashboard at `http://localhost:5050` and click the **launch** buttons.
@@ -134,7 +134,7 @@ scripts\integrations\build_vs_project.ps1 -ProjectPath "path\to\project.csproj" 
 
 1. **node_repl MCP unavailable** — Computer Use and Chrome Extension control require a Codex runtime restart/update.
 2. **Docker daemon offline** — Start Docker Desktop for containerized deployment.
-3. **Perplexity bot guard** — Playwright hits a security verification page; use the desktop browser for logged-in work.
+3. **Comet/Perplexity removed** — Replaced with free Google Chrome browser. No bot guard issues.
 4. **External tool logins** — Claude, Blackbox, Copilot, etc. require your credentials/session.
 
 ---

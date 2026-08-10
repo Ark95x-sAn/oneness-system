@@ -12,7 +12,7 @@ class NetworkFixer(FixerAgent):
         ("api.openai.com", 443),
         ("github.com", 443),
         ("www.blackbox.ai", 443),
-        ("www.perplexity.ai", 443),
+        ("www.google.com", 443),  # Chrome free browser connectivity check (was perplexity.ai)
         ("registry.npmjs.org", 443),
     ]
 

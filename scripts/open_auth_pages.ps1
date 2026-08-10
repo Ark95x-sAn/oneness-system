@@ -1,6 +1,6 @@
 $urls = @(
     "https://claude.ai/login",
-    "https://www.perplexity.ai",
+    # Perplexity removed — replaced with free Chrome browser
     "https://app.blackbox.ai/login",
     "https://github.com/login"
 )

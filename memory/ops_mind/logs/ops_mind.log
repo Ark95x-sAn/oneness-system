@@ -1,0 +1,40 @@
+2026-08-10 11:41:27,772 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 0
+2026-08-10 11:41:27,772 | INFO | OPS-MIND | === OPS MIND CYCLE START ===
+2026-08-10 11:41:48,075 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 0
+2026-08-10 11:41:48,075 | INFO | OPS-MIND | === OPS MIND CYCLE START ===
+2026-08-10 11:41:50,829 | INFO | OPS-MIND | Cycle complete: 5 findings (1 critical, 2 warning, 2 info). Health: 55/100
+2026-08-10 11:41:50,829 | WARNING | OPS-MIND | CRITICAL: 13 critical service(s) not running
+2026-08-10 11:41:50,829 | INFO | OPS-MIND | WARNING: vmmemWSL has accumulated 92939s CPU time
+2026-08-10 11:41:50,829 | INFO | OPS-MIND | WARNING: System reboot pending
+2026-08-10 11:41:50,832 | INFO | OPS-MIND | Report generated: C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\memory\ops_mind\reports\report-20260810-164150.json
+2026-08-10 11:41:50,836 | INFO | OPS-MIND | Remediations generated: 2 scripts
+2026-08-10 11:42:03,972 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 1
+2026-08-10 11:42:03,973 | INFO | OPS-MIND | === OPS MIND CYCLE START ===
+2026-08-10 11:42:07,027 | INFO | OPS-MIND | Cycle complete: 5 findings (1 critical, 2 warning, 2 info). Health: 55/100
+2026-08-10 11:42:07,027 | WARNING | OPS-MIND | CRITICAL: 5 critical service(s) not running
+2026-08-10 11:42:07,027 | INFO | OPS-MIND | WARNING: vmmemWSL has accumulated 92990s CPU time
+2026-08-10 11:42:07,027 | INFO | OPS-MIND | WARNING: System reboot pending
+2026-08-10 11:42:07,031 | INFO | OPS-MIND | Report generated: C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\memory\ops_mind\reports\report-20260810-164207.json
+2026-08-10 11:42:07,034 | INFO | OPS-MIND | Remediations generated: 2 scripts
+2026-08-10 11:42:14,981 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 2
+2026-08-10 11:42:14,982 | INFO | OPS-MIND | === OPS MIND CYCLE START ===
+2026-08-10 11:42:17,948 | INFO | OPS-MIND | Cycle complete: 6 findings (1 critical, 3 warning, 2 info). Health: 42/100
+2026-08-10 11:42:17,948 | WARNING | OPS-MIND | CRITICAL: 5 critical service(s) not running
+2026-08-10 11:42:17,949 | INFO | OPS-MIND | WARNING: CPU high at 78.3%
+2026-08-10 11:42:17,949 | INFO | OPS-MIND | WARNING: vmmemWSL has accumulated 93021s CPU time
+2026-08-10 11:42:17,949 | INFO | OPS-MIND | WARNING: System reboot pending
+2026-08-10 11:42:18,066 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 3
+2026-08-10 11:43:02,260 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 3
+2026-08-10 11:43:02,262 | INFO | OPS-MIND | === OPS MIND CYCLE START ===
+2026-08-10 11:43:05,155 | INFO | OPS-MIND | Cycle complete: 6 findings (1 critical, 3 warning, 2 info). Health: 42/100
+2026-08-10 11:43:05,155 | WARNING | OPS-MIND | CRITICAL: 5 critical service(s) not running
+2026-08-10 11:43:05,155 | INFO | OPS-MIND | WARNING: CPU high at 76.1%
+2026-08-10 11:43:05,155 | INFO | OPS-MIND | WARNING: vmmemWSL has accumulated 93179s CPU time
+2026-08-10 11:43:05,155 | INFO | OPS-MIND | WARNING: System reboot pending
+2026-08-10 11:43:05,158 | INFO | OPS-MIND | Report generated: C:\Users\ArcXN\OneDrive\Desktop\OnenessSystem\memory\ops_mind\reports\report-20260810-164305.json
+2026-08-10 11:43:05,170 | INFO | OPS-MIND | Remediations generated: 2 scripts
+2026-08-10 11:45:58,848 | INFO | OPS-MIND | Operations Mind initialized. Cycles run: 4
+2026-08-10 11:45:58,848 | INFO | OPS-MIND | === OPS MIND CYCLE START ===
+2026-08-10 11:46:01,354 | INFO | OPS-MIND | Cycle complete: 4 findings (1 critical, 1 warning, 2 info). Health: 63/100
+2026-08-10 11:46:01,354 | WARNING | OPS-MIND | CRITICAL: 3 critical service(s) not running
+2026-08-10 11:46:01,354 | INFO | OPS-MIND | WARNING: System reboot pending

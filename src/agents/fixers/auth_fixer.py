@@ -68,7 +68,7 @@ class AuthFixer(FixerAgent):
         helpers = {
             "scripts/fixers/auth_claude_desktop.bat": '@echo off\nstart "" "https://claude.ai/login"\necho Sign in to Claude Desktop, then return here.\npause\n',
             "scripts/fixers/auth_blackbox.bat": '@echo off\nstart "" "https://app.blackbox.ai/login"\necho Sign in to Blackbox AI, then return here.\npause\n',
-            "scripts/fixers/auth_perplexity.bat": '@echo off\nstart "" "https://www.perplexity.ai"\necho Sign in to Perplexity, then return here.\npause\n',
+            "scripts/fixers/auth_chrome.bat": '@echo off\nstart "" "https://www.google.com"\necho Chrome is ready — no sign-in required for the free web browser.\npause\n',
             "scripts/fixers/auth_gh_copilot.bat": '@echo off\ngh auth login\ngh copilot --version\npause\n',
             "scripts/fixers/auth_openai_api.bat": '@echo off\necho Add OPENAI_API_KEY to OnenessSystem/.env\nnotepad C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\.env\npause\n',
             "scripts/fixers/auth_anthropic_api.bat": '@echo off\necho Add ANTHROPIC_API_KEY to OnenessSystem/.env\nnotepad C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\.env\npause\n',

@@ -21,7 +21,7 @@ public class AiToolService
             new() { Id = "openclaw", Name = "OpenClaw", Type = "cli", ExecutablePath = FindOnPath("openclaw"), LaunchScript = "launch_openclaw.ps1", Notes = "Open-source agentic coding" },
             new() { Id = "openai-codex", Name = "Codex CLI", Type = "cli", ExecutablePath = FindOnPath("npx"), LaunchScript = "launch_codex_cli.ps1", Notes = "OpenAI Codex in terminal (npx openai-codex)" },
             new() { Id = "github-copilot", Name = "GitHub Copilot CLI", Type = "cli", ExecutablePath = FindOnPath("gh.exe"), LaunchScript = "launch_github_copilot.ps1", Notes = "gh copilot commands" },
-            new() { Id = "perplexity", Name = "Perplexity AI", Type = "web", WebUrl = "https://www.perplexity.ai", LaunchScript = "launch_perplexity_playwright.ps1", Notes = "AI search via Playwright (bot guard may require human browser)" },
+            new() { Id = "chrome", Name = "Google Chrome", Type = "web", WebUrl = "https://www.google.com", LaunchScript = "launch_chrome.ps1", Notes = "Free web browser — replaces Perplexity Comet integration" },
             new() { Id = "blackbox", Name = "Blackbox AI", Type = "web", WebUrl = "https://www.blackbox.ai", LaunchScript = "launch_blackbox_playwright.ps1", Notes = "Coding agent platform via Playwright" },
             new() { Id = "vscode", Name = "Visual Studio Code", Type = "desktop", ExecutablePath = FindOnPath("code.cmd"), LaunchScript = "", Notes = "Editor with Copilot/Codex extensions" },
         };

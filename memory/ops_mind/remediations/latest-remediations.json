@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-08-10T16:43:05.168567+00:00",
+  "total_generated": 2,
+  "generated": [
+    {
+      "finding_type": "services_stopped",
+      "script_path": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\ops_mind\\remediations\\20260810-164305_services_restart.ps1",
+      "script_name": "20260810-164305_services_restart.ps1",
+      "severity": "critical",
+      "title": "5 critical service(s) not running",
+      "preview_only": true
+    },
+    {
+      "finding_type": "reboot_pending",
+      "script_path": "C:\\Users\\ArcXN\\OneDrive\\Desktop\\OnenessSystem\\memory\\ops_mind\\remediations\\20260810-164305_system_reboot.ps1",
+      "script_name": "20260810-164305_system_reboot.ps1",
+      "severity": "warning",
+      "title": "System reboot pending",
+      "preview_only": true
+    }
+  ],
+  "note": "All scripts are PREVIEW ONLY. Review and run manually with explicit approval."
+}

@@ -1,0 +1,272 @@
+{
+  "timestamp": "2026-08-10T16:45:58.848168+00:00",
+  "monitors": {
+    "telemetry": {
+      "monitor": "telemetry",
+      "status": "ok",
+      "snapshot": {
+        "cpu_percent": 32.6,
+        "ram_percent": 47.0,
+        "ram_used_gb": 14,
+        "ram_total_gb": 31,
+        "disk_free_gb": 412.19,
+        "disk_total_gb": 1882.67,
+        "disk_pct_free": 21.89
+      },
+      "findings": []
+    },
+    "services": {
+      "monitor": "services",
+      "status": "ok",
+      "snapshot": {
+        "total_checked": 13,
+        "running": 10,
+        "stopped": 3,
+        "stopped_names": [
+          "BITS",
+          "MapsBroker",
+          "WinDefend"
+        ]
+      },
+      "findings": [
+        {
+          "type": "services_stopped",
+          "severity": "critical",
+          "title": "3 critical service(s) not running",
+          "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}]",
+          "risk_score": 0.6,
+          "roi_score": 2.5,
+          "stopped_services": [
+            "BITS",
+            "MapsBroker",
+            "WinDefend"
+          ]
+        }
+      ]
+    },
+    "processes": {
+      "monitor": "processes",
+      "status": "ok",
+      "snapshot": {
+        "top_processes": [
+          {
+            "name": "explorer",
+            "pid": 14196,
+            "cpu_s": 12815.8,
+            "ram_mb": 264.5
+          },
+          {
+            "name": "OneDrive.Sync.Service",
+            "pid": 3256,
+            "cpu_s": 9340.8,
+            "ram_mb": 125.9
+          },
+          {
+            "name": "System",
+            "pid": 4,
+            "cpu_s": 7291.9,
+            "ram_mb": 22.4
+          },
+          {
+            "name": "LightingService",
+            "pid": 6200,
+            "cpu_s": 1808.2,
+            "ram_mb": 25.1
+          },
+          {
+            "name": "AsusFanControlService",
+            "pid": 5632,
+            "cpu_s": 1605.0,
+            "ram_mb": 10.2
+          },
+          {
+            "name": "Corsair.Service",
+            "pid": 5812,
+            "cpu_s": 1542.1,
+            "ram_mb": 22.2
+          },
+          {
+            "name": "svchost",
+            "pid": 3604,
+            "cpu_s": 1425.4,
+            "ram_mb": 18.2
+          },
+          {
+            "name": "dwm",
+            "pid": 1228,
+            "cpu_s": 940.4,
+            "ram_mb": 208.4
+          },
+          {
+            "name": "Oneness.Web",
+            "pid": 6468,
+            "cpu_s": 939.9,
+            "ram_mb": 45.6
+          },
+          {
+            "name": "OneDrive",
+            "pid": 35324,
+            "cpu_s": 838.7,
+            "ram_mb": 752.9
+          }
+        ]
+      },
+      "findings": []
+    },
+    "network": {
+      "monitor": "network",
+      "status": "ok",
+      "snapshot": {
+        "checks": [
+          {
+            "host": "8.8.8.8",
+            "port": 53,
+            "label": "Google DNS",
+            "reachable": true
+          },
+          {
+            "host": "github.com",
+            "port": 443,
+            "label": "GitHub",
+            "reachable": true
+          },
+          {
+            "host": "www.google.com",
+            "port": 443,
+            "label": "Google Web",
+            "reachable": true
+          }
+        ],
+        "dns_ok": true
+      },
+      "findings": []
+    },
+    "reboot": {
+      "monitor": "reboot",
+      "status": "ok",
+      "snapshot": {
+        "reboot_pending": true,
+        "reasons": [
+          "PendingFileRenameOperations"
+        ],
+        "uptime_days": 0,
+        "uptime_hours": 12
+      },
+      "findings": [
+        {
+          "type": "reboot_pending",
+          "severity": "warning",
+          "title": "System reboot pending",
+          "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+          "risk_score": 0.5,
+          "roi_score": 2.0,
+          "reasons": [
+            "PendingFileRenameOperations"
+          ]
+        }
+      ]
+    },
+    "apps": {
+      "monitor": "apps",
+      "status": "ok",
+      "snapshot": {
+        "total": 6,
+        "installed": 4,
+        "missing": 2,
+        "apps": [
+          {
+            "name": "Google Chrome",
+            "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "installed": true
+          },
+          {
+            "name": "Codex CLI",
+            "path": "C:\\Users\\ArcXN\\AppData\\Roaming\\npm\\codex.cmd",
+            "installed": true
+          },
+          {
+            "name": "Notion",
+            "path": "C:\\Users\\ArcXN\\AppData\\Local\\Programs\\Notion\\Notion.exe",
+            "installed": true
+          },
+          {
+            "name": "Docker Desktop",
+            "path": "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+            "installed": true
+          },
+          {
+            "name": "Claude Desktop",
+            "path": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+            "installed": false
+          },
+          {
+            "name": "Visual Studio",
+            "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+            "installed": false
+          }
+        ]
+      },
+      "findings": [
+        {
+          "type": "app_missing",
+          "severity": "info",
+          "title": "Claude Desktop not installed",
+          "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+          "risk_score": 0.1,
+          "roi_score": 0.5
+        },
+        {
+          "type": "app_missing",
+          "severity": "info",
+          "title": "Visual Studio not installed",
+          "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+          "risk_score": 0.1,
+          "roi_score": 0.5
+        }
+      ]
+    }
+  },
+  "findings": [
+    {
+      "type": "services_stopped",
+      "severity": "critical",
+      "title": "3 critical service(s) not running",
+      "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}]",
+      "risk_score": 0.6,
+      "roi_score": 2.5,
+      "stopped_services": [
+        "BITS",
+        "MapsBroker",
+        "WinDefend"
+      ]
+    },
+    {
+      "type": "reboot_pending",
+      "severity": "warning",
+      "title": "System reboot pending",
+      "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+      "risk_score": 0.5,
+      "roi_score": 2.0,
+      "reasons": [
+        "PendingFileRenameOperations"
+      ]
+    },
+    {
+      "type": "app_missing",
+      "severity": "info",
+      "title": "Claude Desktop not installed",
+      "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+      "risk_score": 0.1,
+      "roi_score": 0.5
+    },
+    {
+      "type": "app_missing",
+      "severity": "info",
+      "title": "Visual Studio not installed",
+      "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+      "risk_score": 0.1,
+      "roi_score": 0.5
+    }
+  ],
+  "health_score": 63
+}

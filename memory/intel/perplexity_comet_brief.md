@@ -1,29 +1,29 @@
-# INTEL BRIEF — Perplexity Comet Browser
-## Identified: 2026-07-30 via autonomous browser recon
-## Source: https://www.perplexity.ai/comet
+# INTEL BRIEF — Google Chrome (Free Web Browser)
+## Updated: 2026-08-10 — replaced Perplexity Comet with free Chrome browser
+## Source: C:\Program Files\Google\Chrome\Application\chrome.exe
 
 ### What it is
-Comet is a new AI-native browser from Perplexity. It acts as a personal assistant that can browse, research, email, shop, build, and create on behalf of the user.
+Google Chrome is a free, fast, and secure web browser. It replaces the
+Perplexity Comet AI browser integration in OnenessSystem.
+
+### Why the replacement
+- Comet (Perplexity) is a paid/proprietary AI browser with bot-guard issues
+- Chrome is free, universally available, and already installed on this machine
+- No sign-in required for basic web browsing
+- Works with the Codex Chrome extension for browser automation
 
 ### Availability
-- Mac, Windows, iOS, Android
-- Download: https://www.perplexity.ai/comet
+- Installed at: C:\Program Files\Google\Chrome\Application\chrome.exe
+- Confirmed present and working
 
-### Key capabilities
-- AI that understands (news analysis, research)
-- AI that builds (websites, tools)
-- AI that emails (draft replies, schedule coordination)
-- AI that creates (study plans, content)
-- AI that shops (purchase automation)
-
-### Integration fit with Oneness System
-- Can serve as the autonomous web-research layer the user requested
-- Complements Network-95 intelligence division with a consumer AI browser
-- Could be the "Comet AI browser web" the user referenced
-- Potential alternative/supplement to Playwright-based recon when human-in-the-loop is acceptable
+### Integration with Oneness System
+- Serves as the autonomous web-research/browsing layer
+- Launch script: scripts/integrations/launch_chrome.ps1
+- Detected by AiToolService as tool ID "chrome"
+- App launcher tracks Chrome in the AI app inventory
 
 ### Next actions
-1. Download/install Comet on Windows
-2. Sign in with Perplexity/Google account
-3. Connect to Oneness System as an external research/execution surface
-4. Evaluate whether Comet can be driven via API or must be used interactively
+1. Use launch_chrome.ps1 or dashboard button to open Chrome
+2. Connect via Codex Chrome extension for automated browsing
+3. No account/sign-in needed for basic web access
+

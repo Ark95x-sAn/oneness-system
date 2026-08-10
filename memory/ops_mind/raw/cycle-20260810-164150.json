@@ -1,0 +1,323 @@
+{
+  "timestamp": "2026-08-10T16:41:48.075716+00:00",
+  "monitors": {
+    "telemetry": {
+      "monitor": "telemetry",
+      "status": "ok",
+      "snapshot": {
+        "cpu_percent": 43.7,
+        "ram_percent": 52.1,
+        "ram_used_gb": 16,
+        "ram_total_gb": 31,
+        "disk_free_gb": 410.74,
+        "disk_total_gb": 1882.67,
+        "disk_pct_free": 21.82
+      },
+      "findings": []
+    },
+    "services": {
+      "monitor": "services",
+      "status": "ok",
+      "snapshot": {
+        "total_checked": 13,
+        "running": 0,
+        "stopped": 13,
+        "stopped_names": [
+          "BITS",
+          "Dhcp",
+          "Dnscache",
+          "gpsvc",
+          "MapsBroker",
+          "NlaSvc",
+          "OnenessWeb",
+          "Spooler",
+          "sppsvc",
+          "WinDefend",
+          "wscsvc",
+          "WSearch",
+          "wuauserv"
+        ]
+      },
+      "findings": [
+        {
+          "type": "services_stopped",
+          "severity": "critical",
+          "title": "13 critical service(s) not running",
+          "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"Dhcp\", \"display\": \"DHCP Client\", \"status\": 4, \"start\": 2}, {\"name\": \"Dnscache\", \"display\": \"DNS Client\", \"status\": 4, \"start\": 2}, {\"name\": \"gpsvc\", \"display\": \"Group Policy Client\", \"status\": 4, \"start\": 2}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"NlaSvc\", \"display\": \"Network Location Awareness\", \"status\": 4, \"start\": 3}, {\"name\": \"OnenessWeb\", \"display\": \"Oneness System Web Control Center\", \"status\": 4, \"start\": 2}, {\"name\": \"Spooler\", \"display\": \"Print Spooler\", \"status\": 4, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}, {\"name\": \"wscsvc\", \"display\": \"Security Center\", \"status\": 4, \"start\": 2}, {\"name\": \"WSearch\", \"display\": \"Windows Search\", \"status\": 4, \"start\": 2}, {\"name\": \"wuauserv\", \"display\": \"Windows Update\", \"status\": 1, \"start\": 3}]",
+          "risk_score": 0.6,
+          "roi_score": 2.5,
+          "stopped_services": [
+            "BITS",
+            "Dhcp",
+            "Dnscache",
+            "gpsvc",
+            "MapsBroker",
+            "NlaSvc",
+            "OnenessWeb",
+            "Spooler",
+            "sppsvc",
+            "WinDefend",
+            "wscsvc",
+            "WSearch",
+            "wuauserv"
+          ]
+        }
+      ]
+    },
+    "processes": {
+      "monitor": "processes",
+      "status": "ok",
+      "snapshot": {
+        "top_processes": [
+          {
+            "name": "vmmemWSL",
+            "pid": 12084,
+            "cpu_s": 92938.7,
+            "ram_mb": 587.9
+          },
+          {
+            "name": "explorer",
+            "pid": 14196,
+            "cpu_s": 12725.1,
+            "ram_mb": 290
+          },
+          {
+            "name": "OneDrive.Sync.Service",
+            "pid": 3256,
+            "cpu_s": 9244.8,
+            "ram_mb": 112.6
+          },
+          {
+            "name": "System",
+            "pid": 4,
+            "cpu_s": 7255.9,
+            "ram_mb": 22.3
+          },
+          {
+            "name": "LightingService",
+            "pid": 6200,
+            "cpu_s": 1798.2,
+            "ram_mb": 25.3
+          },
+          {
+            "name": "AsusFanControlService",
+            "pid": 5632,
+            "cpu_s": 1594.7,
+            "ram_mb": 10.2
+          },
+          {
+            "name": "Corsair.Service",
+            "pid": 5812,
+            "cpu_s": 1535.8,
+            "ram_mb": 21.1
+          },
+          {
+            "name": "svchost",
+            "pid": 3604,
+            "cpu_s": 1415.2,
+            "ram_mb": 16.8
+          },
+          {
+            "name": "Oneness.Web",
+            "pid": 6468,
+            "cpu_s": 933.0,
+            "ram_mb": 45.3
+          },
+          {
+            "name": "dwm",
+            "pid": 1228,
+            "cpu_s": 914.3,
+            "ram_mb": 214.4
+          }
+        ]
+      },
+      "findings": [
+        {
+          "type": "process_high_cpu",
+          "severity": "warning",
+          "title": "vmmemWSL has accumulated 92939s CPU time",
+          "description": "PID 12084, RAM 588 MB. Consider shutting down WSL if not needed.",
+          "risk_score": 0.5,
+          "roi_score": 3.0,
+          "process": "vmmemWSL",
+          "pid": 12084
+        }
+      ]
+    },
+    "network": {
+      "monitor": "network",
+      "status": "ok",
+      "snapshot": {
+        "checks": [
+          {
+            "host": "8.8.8.8",
+            "port": 53,
+            "label": "Google DNS",
+            "reachable": true
+          },
+          {
+            "host": "github.com",
+            "port": 443,
+            "label": "GitHub",
+            "reachable": true
+          },
+          {
+            "host": "www.google.com",
+            "port": 443,
+            "label": "Google Web",
+            "reachable": true
+          }
+        ],
+        "dns_ok": true
+      },
+      "findings": []
+    },
+    "reboot": {
+      "monitor": "reboot",
+      "status": "ok",
+      "snapshot": {
+        "reboot_pending": true,
+        "reasons": [
+          "PendingFileRenameOperations"
+        ],
+        "uptime_days": 0,
+        "uptime_hours": 12
+      },
+      "findings": [
+        {
+          "type": "reboot_pending",
+          "severity": "warning",
+          "title": "System reboot pending",
+          "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+          "risk_score": 0.5,
+          "roi_score": 2.0,
+          "reasons": [
+            "PendingFileRenameOperations"
+          ]
+        }
+      ]
+    },
+    "apps": {
+      "monitor": "apps",
+      "status": "ok",
+      "snapshot": {
+        "total": 6,
+        "installed": 4,
+        "missing": 2,
+        "apps": [
+          {
+            "name": "Google Chrome",
+            "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "installed": true
+          },
+          {
+            "name": "Codex CLI",
+            "path": "C:\\Users\\ArcXN\\AppData\\Roaming\\npm\\codex.cmd",
+            "installed": true
+          },
+          {
+            "name": "Notion",
+            "path": "C:\\Users\\ArcXN\\AppData\\Local\\Programs\\Notion\\Notion.exe",
+            "installed": true
+          },
+          {
+            "name": "Docker Desktop",
+            "path": "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+            "installed": true
+          },
+          {
+            "name": "Claude Desktop",
+            "path": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+            "installed": false
+          },
+          {
+            "name": "Visual Studio",
+            "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+            "installed": false
+          }
+        ]
+      },
+      "findings": [
+        {
+          "type": "app_missing",
+          "severity": "info",
+          "title": "Claude Desktop not installed",
+          "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+          "risk_score": 0.1,
+          "roi_score": 0.5
+        },
+        {
+          "type": "app_missing",
+          "severity": "info",
+          "title": "Visual Studio not installed",
+          "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+          "risk_score": 0.1,
+          "roi_score": 0.5
+        }
+      ]
+    }
+  },
+  "findings": [
+    {
+      "type": "services_stopped",
+      "severity": "critical",
+      "title": "13 critical service(s) not running",
+      "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"Dhcp\", \"display\": \"DHCP Client\", \"status\": 4, \"start\": 2}, {\"name\": \"Dnscache\", \"display\": \"DNS Client\", \"status\": 4, \"start\": 2}, {\"name\": \"gpsvc\", \"display\": \"Group Policy Client\", \"status\": 4, \"start\": 2}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"NlaSvc\", \"display\": \"Network Location Awareness\", \"status\": 4, \"start\": 3}, {\"name\": \"OnenessWeb\", \"display\": \"Oneness System Web Control Center\", \"status\": 4, \"start\": 2}, {\"name\": \"Spooler\", \"display\": \"Print Spooler\", \"status\": 4, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}, {\"name\": \"wscsvc\", \"display\": \"Security Center\", \"status\": 4, \"start\": 2}, {\"name\": \"WSearch\", \"display\": \"Windows Search\", \"status\": 4, \"start\": 2}, {\"name\": \"wuauserv\", \"display\": \"Windows Update\", \"status\": 1, \"start\": 3}]",
+      "risk_score": 0.6,
+      "roi_score": 2.5,
+      "stopped_services": [
+        "BITS",
+        "Dhcp",
+        "Dnscache",
+        "gpsvc",
+        "MapsBroker",
+        "NlaSvc",
+        "OnenessWeb",
+        "Spooler",
+        "sppsvc",
+        "WinDefend",
+        "wscsvc",
+        "WSearch",
+        "wuauserv"
+      ]
+    },
+    {
+      "type": "process_high_cpu",
+      "severity": "warning",
+      "title": "vmmemWSL has accumulated 92939s CPU time",
+      "description": "PID 12084, RAM 588 MB. Consider shutting down WSL if not needed.",
+      "risk_score": 0.5,
+      "roi_score": 3.0,
+      "process": "vmmemWSL",
+      "pid": 12084
+    },
+    {
+      "type": "reboot_pending",
+      "severity": "warning",
+      "title": "System reboot pending",
+      "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+      "risk_score": 0.5,
+      "roi_score": 2.0,
+      "reasons": [
+        "PendingFileRenameOperations"
+      ]
+    },
+    {
+      "type": "app_missing",
+      "severity": "info",
+      "title": "Claude Desktop not installed",
+      "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+      "risk_score": 0.1,
+      "roi_score": 0.5
+    },
+    {
+      "type": "app_missing",
+      "severity": "info",
+      "title": "Visual Studio not installed",
+      "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+      "risk_score": 0.1,
+      "roi_score": 0.5
+    }
+  ],
+  "health_score": 55
+}
