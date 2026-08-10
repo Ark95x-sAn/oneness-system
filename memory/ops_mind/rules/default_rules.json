@@ -1,0 +1,420 @@
+{
+  "rules": [
+    {
+      "id": "cpu_critical_wsl",
+      "name": "CPU Critical - WSL Shutdown Alert",
+      "enabled": true,
+      "cooldown_seconds": 600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.cpu_percent"
+      },
+      "condition": {
+        "operator": ">=",
+        "value": 90
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "critical",
+        "message": "CPU at {actual}% - recommend WSL shutdown",
+        "script_lines": [
+          "# CPU is critically high",
+          "Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 | Format-Table -AutoSize",
+          "Write-Host wsl --shutdown to stop WSL"
+        ]
+      }
+    },
+    {
+      "id": "cpu_high_onedrive",
+      "name": "CPU High - OneDrive Pause",
+      "enabled": true,
+      "cooldown_seconds": 900,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.cpu_percent"
+      },
+      "condition": {
+        "operator": ">=",
+        "value": 70
+      },
+      "action": {
+        "type": "alert",
+        "severity": "warning",
+        "message": "CPU at {actual}% - consider pausing OneDrive sync"
+      }
+    },
+    {
+      "id": "ram_critical",
+      "name": "RAM Critical - Close Apps",
+      "enabled": true,
+      "cooldown_seconds": 600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.ram_percent"
+      },
+      "condition": {
+        "operator": ">=",
+        "value": 90
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "critical",
+        "message": "RAM at {actual}% - close memory-heavy apps",
+        "script_lines": [
+          "# RAM critical",
+          "Get-Process | Sort-Object WorkingSet64 -Descending | Select-Object -First 10 Name,Id,@{N=\"RAM_MB\";E={[math]::Round(\\.WorkingSet64/1MB,0)}} | Format-Table -AutoSize"
+        ]
+      }
+    },
+    {
+      "id": "disk_critical",
+      "name": "Disk Critical - Cleanup Required",
+      "enabled": true,
+      "cooldown_seconds": 1800,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.disk_pct_free"
+      },
+      "condition": {
+        "operator": "<=",
+        "value": 5
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "critical",
+        "message": "Disk critical: {actual}% free",
+        "script_lines": [
+          "# Disk cleanup required",
+          "Write-Host Run disk-cleanup-helper.ps1 -Reclaim",
+          "Write-Host Run cleanmgr /sagerun:1"
+        ]
+      }
+    },
+    {
+      "id": "disk_low",
+      "name": "Disk Low - Cleanup Recommended",
+      "enabled": true,
+      "cooldown_seconds": 3600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.disk_pct_free"
+      },
+      "condition": {
+        "operator": "<=",
+        "value": 15
+      },
+      "action": {
+        "type": "alert",
+        "severity": "warning",
+        "message": "Disk low: {actual}% free"
+      }
+    },
+    {
+      "id": "service_stopped_windefend",
+      "name": "WinDefend Stopped - Security Alert",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "findings",
+        "field": "stopped_services",
+        "match": "WinDefend"
+      },
+      "condition": {
+        "operator": "not_empty",
+        "value": null
+      },
+      "action": {
+        "type": "alert",
+        "severity": "critical",
+        "message": "Windows Defender stopped - security risk"
+      }
+    },
+    {
+      "id": "service_stopped_dhcp",
+      "name": "DHCP Stopped - Network Alert",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "findings",
+        "field": "stopped_services",
+        "match": "Dhcp"
+      },
+      "condition": {
+        "operator": "not_empty",
+        "value": null
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "critical",
+        "message": "DHCP Client stopped - network impaired",
+        "script_lines": [
+          "# Restart DHCP",
+          "Write-Host Start-Service -Name Dhcp (requires admin)"
+        ]
+      }
+    },
+    {
+      "id": "reboot_pending",
+      "name": "Reboot Pending - Daily Reminder",
+      "enabled": true,
+      "cooldown_seconds": 3600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "reboot.reboot_pending"
+      },
+      "condition": {
+        "operator": "==",
+        "value": true
+      },
+      "action": {
+        "type": "alert",
+        "severity": "warning",
+        "message": "Reboot pending - restart to complete updates"
+      }
+    },
+    {
+      "id": "network_unreachable",
+      "name": "Network Unreachable Alert",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "findings",
+        "field": "type",
+        "match": "network_unreachable"
+      },
+      "condition": {
+        "operator": "not_empty",
+        "value": null
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "warning",
+        "message": "Network connectivity issue",
+        "script_lines": [
+          "# Network repair",
+          "ipconfig /flushdns",
+          "Write-Host netsh winsock reset (admin)"
+        ]
+      }
+    },
+    {
+      "id": "dns_failure",
+      "name": "DNS Failure - Critical",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "findings",
+        "field": "type",
+        "match": "dns_failure"
+      },
+      "condition": {
+        "operator": "not_empty",
+        "value": null
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "critical",
+        "message": "DNS resolution failing",
+        "script_lines": [
+          "# DNS repair",
+          "ipconfig /flushdns",
+          "Write-Host Set DNS to 8.8.8.8"
+        ]
+      }
+    },
+    {
+      "id": "process_wsl_hog",
+      "name": "WSL CPU Hog Alert",
+      "enabled": true,
+      "cooldown_seconds": 600,
+      "trigger": {
+        "source": "findings",
+        "field": "type",
+        "match": "process_high_cpu"
+      },
+      "condition": {
+        "operator": "not_empty",
+        "value": null
+      },
+      "action": {
+        "type": "alert",
+        "severity": "warning",
+        "message": "High-CPU process - consider WSL shutdown"
+      }
+    },
+    {
+      "id": "multiple_critical",
+      "name": "Multiple Critical Issues",
+      "enabled": true,
+      "cooldown_seconds": 600,
+      "trigger": {
+        "source": "findings_count",
+        "field": "critical",
+        "match": "critical"
+      },
+      "condition": {
+        "operator": ">=",
+        "value": 3
+      },
+      "action": {
+        "type": "remediation",
+        "severity": "critical",
+        "message": "{actual} critical issues - system degraded",
+        "script_lines": [
+          "# Multiple critical issues",
+          "Write-Host Run python -m src.ops_mind.mind --report",
+          "Write-Host Check http://localhost:5050/api/ops-mind/report"
+        ]
+      }
+    },
+    {
+      "id": "cpu_normal",
+      "name": "CPU Normal - Log Recovery",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.cpu_percent"
+      },
+      "condition": {
+        "operator": "<",
+        "value": 30
+      },
+      "action": {
+        "type": "log",
+        "message": "CPU normal: {actual}% - healthy"
+      }
+    },
+    {
+      "id": "ram_normal",
+      "name": "RAM Normal - Log Recovery",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.ram_percent"
+      },
+      "condition": {
+        "operator": "<",
+        "value": 60
+      },
+      "action": {
+        "type": "log",
+        "message": "RAM normal: {actual}% - healthy"
+      }
+    },
+    {
+      "id": "disk_healthy",
+      "name": "Disk Healthy - Log",
+      "enabled": true,
+      "cooldown_seconds": 3600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "telemetry.disk_pct_free"
+      },
+      "condition": {
+        "operator": ">=",
+        "value": 25
+      },
+      "action": {
+        "type": "log",
+        "message": "Disk healthy: {actual}% free"
+      }
+    },
+    {
+      "id": "uptime_extended",
+      "name": "Extended Uptime - Reboot Suggest",
+      "enabled": true,
+      "cooldown_seconds": 21600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "reboot.uptime_days"
+      },
+      "condition": {
+        "operator": ">=",
+        "value": 3
+      },
+      "action": {
+        "type": "alert",
+        "severity": "info",
+        "message": "Uptime {actual} days - consider reboot"
+      }
+    },
+    {
+      "id": "all_services_ok",
+      "name": "All Services Running - Log Success",
+      "enabled": true,
+      "cooldown_seconds": 600,
+      "trigger": {
+        "source": "snapshots",
+        "field": "services.stopped"
+      },
+      "condition": {
+        "operator": "==",
+        "value": 0
+      },
+      "action": {
+        "type": "log",
+        "message": "All critical services running"
+      }
+    },
+    {
+      "id": "app_missing",
+      "name": "App Missing Alert",
+      "enabled": true,
+      "cooldown_seconds": 86400,
+      "trigger": {
+        "source": "findings",
+        "field": "type",
+        "match": "app_missing"
+      },
+      "condition": {
+        "operator": "not_empty",
+        "value": null
+      },
+      "action": {
+        "type": "alert",
+        "severity": "info",
+        "message": "Known app missing - check if needed"
+      }
+    },
+    {
+      "id": "cycle_complete",
+      "name": "Cycle Complete Log",
+      "enabled": true,
+      "cooldown_seconds": 60,
+      "trigger": {
+        "source": "constant",
+        "value": 1
+      },
+      "condition": {
+        "operator": "==",
+        "value": 1
+      },
+      "action": {
+        "type": "log",
+        "message": "Operations Mind cycle completed"
+      }
+    },
+    {
+      "id": "health_api_refresh",
+      "name": "Refresh Health API",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "trigger": {
+        "source": "constant",
+        "value": 1
+      },
+      "condition": {
+        "operator": "==",
+        "value": 1
+      },
+      "action": {
+        "type": "api_call",
+        "method": "GET",
+        "endpoint": "/api/ops-mind/status",
+        "message": "Refresh ops-mind status API"
+      }
+    }
+  ]
+}

@@ -334,6 +334,30 @@ app.MapPost("/api/ops-mind/cycle", () =>
     return Results.Text(proc?.StandardOutput.ReadToEnd() ?? "", "application/json");
 });
 
+// OPS-MIND RULES ENDPOINT
+app.MapGet("/api/ops-mind/rules", () =>
+{
+    var psi = new System.Diagnostics.ProcessStartInfo
+    {
+        FileName = Path.Combine(systemRoot, "venv", "Scripts", "python.exe"),
+        Arguments = "-m src.ops_mind.mind --rules --json",
+        RedirectStandardOutput = true, RedirectStandardError = true, UseShellExecute = false,
+        WorkingDirectory = systemRoot
+    };
+    using var proc = System.Diagnostics.Process.Start(psi);
+    proc?.WaitForExit(10000);
+    var output = proc?.StandardOutput.ReadToEnd() ?? "";
+    try { return Results.Json(JsonSerializer.Deserialize<JsonElement>(output)); }
+    catch { return Results.Text(output); }
+});
+
+// OPS-MIND FIRINGS ENDPOINT
+app.MapGet("/api/ops-mind/firings", () =>
+{
+    var firingsFile = Path.Combine(systemRoot, "memory", "ops_mind", "firings", "latest-firings.json");
+    return File.Exists(firingsFile) ? Results.Json(JsonSerializer.Deserialize<JsonElement>(File.ReadAllText(firingsFile))) : Results.Json(new { total_firings = 0, firings = Array.Empty<object>() });
+});
+
 // AURA ENDPOINTS — gaming-aware ambient subagents
 app.MapGet("/api/aura/status", () =>
 {

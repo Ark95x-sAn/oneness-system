@@ -1,0 +1,46 @@
+{
+  "templates_found": [
+    {
+      "name": "StackStorm/st2",
+      "language": "Python",
+      "url": "https://github.com/StackStorm/st2",
+      "description": "StackStorm (aka \"IFTTT for Ops\") is event-driven automation for auto-remediation, incident responses, troubleshooting, deployments, and more for DevOps and SREs. Includes rules engine, workflow, 160 integration packs with 6000+ actions (see https://exchange.stackstorm.org) and ChatOps. Installer at https://docs.stackstorm.com/install/index.html",
+      "stars": 6515
+    },
+    {
+      "name": "masfaatanveer/Agentic-AI-Computer",
+      "language": "Python",
+      "url": "https://github.com/masfaatanveer/Agentic-AI-Computer",
+      "description": "This is a fully autonomous, self-operating computer automation system designed to automate tasks on Windows without any user interaction. It runs scheduled or trigger-based workflows using Python, system tools, and smart agents — ideal for repetitive tasks, bots, or self-executing pipelines.",
+      "stars": 21
+    },
+    {
+      "name": "squaredup/Community.PowerShellMonitoring.MP",
+      "language": "PowerShell",
+      "url": "https://github.com/squaredup/Community.PowerShellMonitoring.MP",
+      "description": "The PowerShell Monitoring Management Pack extends the System Center Operations Manager (SCOM) console with the ability to create PowerShell based monitoring and automation workflows, including Monitors, Rules, Agent tasks, Diagnostics and Recoveries.",
+      "stars": 26
+    },
+    {
+      "name": "robev2252060/2247107_MAP",
+      "language": "JavaScript",
+      "url": "https://github.com/robev2252060/2247107_MAP",
+      "description": "Mars Automation Platform (MAP) is an event-driven system that ingests heterogeneous Mars habitat sensor data, normalizes it into a unified event format, evaluates automation rules, and controls actuators. It provides real-time monitoring through a dashboard while maintaining the latest sensor state for safe habitat operations.",
+      "stars": 3
+    },
+    {
+      "name": "naveena-zen/orchestrix",
+      "language": "JavaScript",
+      "url": "https://github.com/naveena-zen/orchestrix",
+      "description": "A dynamic workflow automation engine designed to model, execute, and monitor complex business processes. It enables rule-driven decision making, approval pipelines, automated tasks, and real-time execution tracking through a scalable workflow orchestration system.",
+      "stars": 3
+    }
+  ],
+  "searched_at": "2026-08-10T12:05:48.4698079-05:00",
+  "search_queries": [
+    "ifttt+rules+engine+python",
+    "automation+workflow+python+self-operating",
+    "system+monitoring+automation+rules"
+  ],
+  "note": "Templates pulled from GitHub for customization. Patterns adapted into IFTTT rules for OnenessSystem."
+}

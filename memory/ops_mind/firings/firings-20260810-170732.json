@@ -1,0 +1,93 @@
+[
+  {
+    "type": "alert",
+    "rule_id": "cpu_high_onedrive",
+    "timestamp": "2026-08-10T17:07:32.859289+00:00",
+    "message": "CPU at 76.5% - consider pausing OneDrive sync",
+    "severity": "warning",
+    "fired": true,
+    "actual_value": 76.5,
+    "rule_name": "CPU High - OneDrive Pause",
+    "trigger": {
+      "source": "snapshots",
+      "field": "telemetry.cpu_percent"
+    },
+    "condition": {
+      "operator": ">=",
+      "value": 70
+    }
+  },
+  {
+    "type": "alert",
+    "rule_id": "reboot_pending",
+    "timestamp": "2026-08-10T17:07:32.859289+00:00",
+    "message": "Reboot pending - restart to complete updates",
+    "severity": "warning",
+    "fired": true,
+    "actual_value": true,
+    "rule_name": "Reboot Pending - Daily Reminder",
+    "trigger": {
+      "source": "snapshots",
+      "field": "reboot.reboot_pending"
+    },
+    "condition": {
+      "operator": "==",
+      "value": true
+    }
+  },
+  {
+    "type": "alert",
+    "rule_id": "app_missing",
+    "timestamp": "2026-08-10T17:07:32.859289+00:00",
+    "message": "Known app missing - check if needed",
+    "severity": "info",
+    "fired": true,
+    "actual_value": 2,
+    "rule_name": "App Missing Alert",
+    "trigger": {
+      "source": "findings",
+      "field": "type",
+      "match": "app_missing"
+    },
+    "condition": {
+      "operator": "not_empty",
+      "value": null
+    }
+  },
+  {
+    "type": "log",
+    "rule_id": "cycle_complete",
+    "timestamp": "2026-08-10T17:07:32.859289+00:00",
+    "message": "Operations Mind cycle completed",
+    "fired": true,
+    "actual_value": 1,
+    "rule_name": "Cycle Complete Log",
+    "trigger": {
+      "source": "constant",
+      "value": 1
+    },
+    "condition": {
+      "operator": "==",
+      "value": 1
+    }
+  },
+  {
+    "type": "api_call",
+    "rule_id": "health_api_refresh",
+    "timestamp": "2026-08-10T17:07:32.859289+00:00",
+    "endpoint": "/api/ops-mind/status",
+    "method": "GET",
+    "message": "API call suggested: GET /api/ops-mind/status",
+    "fired": true,
+    "actual_value": 1,
+    "rule_name": "Refresh Health API",
+    "trigger": {
+      "source": "constant",
+      "value": 1
+    },
+    "condition": {
+      "operator": "==",
+      "value": 1
+    }
+  }
+]

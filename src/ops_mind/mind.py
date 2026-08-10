@@ -36,6 +36,7 @@ from ops_mind import (
 from ops_mind.monitors import run_all_monitors
 from ops_mind.reporter import generate_report
 from ops_mind.remediator import generate_remediations
+from ops_mind.rules_engine import evaluate_all_rules, get_rules_summary, load_rules
 
 ensure_dirs()
 
@@ -117,12 +118,24 @@ class OperationsMind:
         for f in warnings:
             log.info("WARNING: %s", f.get("title"))
 
+        # Evaluate IFTTT rules against current data
+        rule_firings = []
+        try:
+            rule_firings = evaluate_all_rules(snapshots, findings)
+            if rule_firings:
+                log.info("IFTTT rules fired: %d", len(rule_firings))
+                for f in rule_firings:
+                    log.info("  RULE [%s]: %s", f.get("rule_name", "?"), f.get("message", ""))
+        except Exception as exc:
+            log.error("Rules engine error: %s", exc)
+
         return {
             "timestamp": ts,
             "health_score": health_score,
             "findings": findings,
             "snapshots": snapshots,
             "raw_path": str(raw_path),
+            "rule_firings": rule_firings,
         }
 
     # ------------------------------------------------------------------
@@ -292,6 +305,7 @@ Options:
     parser.add_argument("--cycle-interval", type=int, default=DEFAULT_CYCLE_INTERVAL)
     parser.add_argument("--report-interval", type=int, default=DEFAULT_REPORT_INTERVAL)
     parser.add_argument("--remediate-interval", type=int, default=DEFAULT_REMEDIATE_INTERVAL)
+    parser.add_argument("--rules", action="store_true", help="Show IFTTT rules summary")
     parser.add_argument("--json", action="store_true", help="Output JSON only")
     args = parser.parse_args()
 
@@ -347,6 +361,16 @@ Options:
     elif args.remediate:
         result = mind.remediate()
         print(json.dumps(result, indent=2, default=str) if args.json else f"Remediations: {len(result.get('generated', []))} scripts generated")
+
+    elif args.rules:
+        summary = get_rules_summary()
+        if args.json:
+            print(json.dumps(summary, indent=2, default=str))
+        else:
+            print(f"Rules loaded: {len(summary)}")
+            for s in summary:
+                status = "ENABLED" if s.get("enabled") else "DISABLED"
+                print(f"  [{status}] {s['id']}: {s['name']} -> {s.get('action_type', 'alert')}")
 
     elif args.health:
         result = mind.health()

@@ -1,34 +1,32 @@
 {
-  "generated_at": "2026-08-10T17:06:52.601460+00:00",
-  "health_score": 50,
+  "generated_at": "2026-08-10T16:55:14.385937+00:00",
+  "health_score": 63,
   "health_status": "FAIR",
   "summary": {
-    "total_findings": 5,
+    "total_findings": 4,
     "critical": 1,
-    "warnings": 2,
+    "warnings": 1,
     "info": 2
   },
   "snapshots": {
     "telemetry": {
-      "cpu_percent": 85.6,
-      "ram_percent": 60.3,
+      "cpu_percent": 11.2,
+      "ram_percent": 59.7,
       "ram_used_gb": 18,
       "ram_total_gb": 31,
-      "disk_free_gb": 418.01,
+      "disk_free_gb": 418.22,
       "disk_total_gb": 1882.67,
-      "disk_pct_free": 22.2
+      "disk_pct_free": 22.21
     },
     "services": {
       "total_checked": 13,
-      "running": 7,
-      "stopped": 6,
+      "running": 9,
+      "stopped": 4,
       "stopped_names": [
         "BITS",
         "MapsBroker",
-        "OnenessWeb",
         "sppsvc",
-        "WinDefend",
-        "wuauserv"
+        "WinDefend"
       ]
     },
     "processes": {
@@ -36,62 +34,62 @@
         {
           "name": "explorer",
           "pid": 14196,
-          "cpu_s": 13136.6,
-          "ram_mb": 341.9
+          "cpu_s": 12958.1,
+          "ram_mb": 327.2
         },
         {
           "name": "OneDrive.Sync.Service",
           "pid": 3256,
-          "cpu_s": 9781.7,
-          "ram_mb": 106.8
+          "cpu_s": 9535.5,
+          "ram_mb": 117.9
         },
         {
           "name": "System",
           "pid": 4,
-          "cpu_s": 7483.8,
-          "ram_mb": 22.9
-        },
-        {
-          "name": "vmmemWSL",
-          "pid": 4488,
-          "cpu_s": 2279.9,
-          "ram_mb": 4079.5
+          "cpu_s": 7373.9,
+          "ram_mb": 22.7
         },
         {
           "name": "LightingService",
           "pid": 6200,
-          "cpu_s": 1862.1,
-          "ram_mb": 21.9
+          "cpu_s": 1830.5,
+          "ram_mb": 22
         },
         {
           "name": "AsusFanControlService",
           "pid": 5632,
-          "cpu_s": 1657.6,
-          "ram_mb": 10.2
+          "cpu_s": 1627.7,
+          "ram_mb": 10.4
         },
         {
           "name": "Corsair.Service",
           "pid": 5812,
-          "cpu_s": 1571.7,
-          "ram_mb": 22.3
+          "cpu_s": 1554.7,
+          "ram_mb": 22.5
         },
         {
           "name": "svchost",
           "pid": 3604,
-          "cpu_s": 1485.9,
-          "ram_mb": 19.4
+          "cpu_s": 1454.8,
+          "ram_mb": 20.5
         },
         {
           "name": "dwm",
           "pid": 1228,
-          "cpu_s": 1063.1,
-          "ram_mb": 98.8
+          "cpu_s": 991.7,
+          "ram_mb": 92.2
+        },
+        {
+          "name": "Oneness.Web",
+          "pid": 6468,
+          "cpu_s": 961.4,
+          "ram_mb": 57.4
         },
         {
           "name": "OneDrive",
           "pid": 35324,
-          "cpu_s": 1057.9,
-          "ram_mb": 993.5
+          "cpu_s": 933.8,
+          "ram_mb": 948.9
         }
       ]
     },
@@ -168,20 +166,13 @@
     "critical": [
       {
         "type": "services_stopped",
-        "title": "6 critical service(s) not running",
-        "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"OnenessWeb\", \"display\": \"Oneness System Web Control Center\", \"status\": 1, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}, {\"name\": \"wuauserv\", \"display\": \"Windows Update\", \"status\": 1, \"start\": 3}]",
+        "title": "4 critical service(s) not running",
+        "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}]",
         "risk_score": 0.6,
         "roi_score": 2.5
       }
     ],
     "warnings": [
-      {
-        "type": "cpu_high",
-        "title": "CPU high at 85.6%",
-        "description": "System under CPU pressure.",
-        "risk_score": 0.6,
-        "roi_score": 3.0
-      },
       {
         "type": "reboot_pending",
         "title": "System reboot pending",
@@ -209,16 +200,10 @@
   },
   "recommendations": [
     {
-      "priority": "medium",
-      "action": "Investigate top CPU processes and consider stopping resource hogs",
-      "safe": true,
-      "command": "python -m src.ops_mind.mind --cycle  # re-check after action"
-    },
-    {
       "priority": "high",
-      "action": "Review stopped services: BITS, MapsBroker, OnenessWeb, sppsvc, WinDefend, wuauserv",
+      "action": "Review stopped services: BITS, MapsBroker, sppsvc, WinDefend",
       "safe": true,
-      "command": "Get-Service -Name BITS,MapsBroker,OnenessWeb,sppsvc,WinDefend,wuauserv | Format-Table"
+      "command": "Get-Service -Name BITS,MapsBroker,sppsvc,WinDefend | Format-Table"
     },
     {
       "priority": "medium",
@@ -228,6 +213,6 @@
       "note": "Requires user approval \u2014 closes all applications"
     }
   ],
-  "cycles_run": 12,
-  "last_cycle": "2026-08-10T17:06:48.457365+00:00"
+  "cycles_run": 8,
+  "last_cycle": "2026-08-10T16:55:09.183738+00:00"
 }
