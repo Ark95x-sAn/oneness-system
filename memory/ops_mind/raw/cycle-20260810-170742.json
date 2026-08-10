@@ -1,0 +1,281 @@
+{
+  "timestamp": "2026-08-10T17:07:36.488605+00:00",
+  "monitors": {
+    "telemetry": {
+      "monitor": "telemetry",
+      "status": "ok",
+      "snapshot": {
+        "cpu_percent": 42.9,
+        "ram_percent": 62.9,
+        "ram_used_gb": 19,
+        "ram_total_gb": 31,
+        "disk_free_gb": 417.96,
+        "disk_total_gb": 1882.67,
+        "disk_pct_free": 22.2
+      },
+      "findings": []
+    },
+    "services": {
+      "monitor": "services",
+      "status": "ok",
+      "snapshot": {
+        "total_checked": 13,
+        "running": 7,
+        "stopped": 6,
+        "stopped_names": [
+          "BITS",
+          "MapsBroker",
+          "OnenessWeb",
+          "sppsvc",
+          "WinDefend",
+          "wuauserv"
+        ]
+      },
+      "findings": [
+        {
+          "type": "services_stopped",
+          "severity": "critical",
+          "title": "6 critical service(s) not running",
+          "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"OnenessWeb\", \"display\": \"Oneness System Web Control Center\", \"status\": 1, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}, {\"name\": \"wuauserv\", \"display\": \"Windows Update\", \"status\": 1, \"start\": 3}]",
+          "risk_score": 0.6,
+          "roi_score": 2.5,
+          "stopped_services": [
+            "BITS",
+            "MapsBroker",
+            "OnenessWeb",
+            "sppsvc",
+            "WinDefend",
+            "wuauserv"
+          ]
+        }
+      ]
+    },
+    "processes": {
+      "monitor": "processes",
+      "status": "ok",
+      "snapshot": {
+        "top_processes": [
+          {
+            "name": "explorer",
+            "pid": 14196,
+            "cpu_s": 13152.1,
+            "ram_mb": 342.5
+          },
+          {
+            "name": "OneDrive.Sync.Service",
+            "pid": 3256,
+            "cpu_s": 9802.1,
+            "ram_mb": 106.8
+          },
+          {
+            "name": "OneDrive",
+            "pid": 35324,
+            "cpu_s": 1073.4,
+            "ram_mb": 996.2
+          },
+          {
+            "name": "XboxPcApp",
+            "pid": 25172,
+            "cpu_s": 239.2,
+            "ram_mb": 252.5
+          },
+          {
+            "name": "audiodg",
+            "pid": 4776,
+            "cpu_s": 170.7,
+            "ram_mb": 14.5
+          },
+          {
+            "name": "AacAmbientLighting",
+            "pid": 9456,
+            "cpu_s": 165.9,
+            "ram_mb": 18.5
+          },
+          {
+            "name": "Docker Desktop",
+            "pid": 13936,
+            "cpu_s": 136.2,
+            "ram_mb": 57.5
+          },
+          {
+            "name": "ArmouryCrate.UserSessionHelper",
+            "pid": 34744,
+            "cpu_s": 115.7,
+            "ram_mb": 41.5
+          },
+          {
+            "name": "com.docker.backend",
+            "pid": 38660,
+            "cpu_s": 111.1,
+            "ram_mb": 18.5
+          },
+          {
+            "name": "NortonUI",
+            "pid": 19272,
+            "cpu_s": 98.6,
+            "ram_mb": 94.1
+          }
+        ]
+      },
+      "findings": []
+    },
+    "network": {
+      "monitor": "network",
+      "status": "ok",
+      "snapshot": {
+        "checks": [
+          {
+            "host": "8.8.8.8",
+            "port": 53,
+            "label": "Google DNS",
+            "reachable": true
+          },
+          {
+            "host": "github.com",
+            "port": 443,
+            "label": "GitHub",
+            "reachable": true
+          },
+          {
+            "host": "www.google.com",
+            "port": 443,
+            "label": "Google Web",
+            "reachable": true
+          }
+        ],
+        "dns_ok": true
+      },
+      "findings": []
+    },
+    "reboot": {
+      "monitor": "reboot",
+      "status": "ok",
+      "snapshot": {
+        "reboot_pending": true,
+        "reasons": [
+          "PendingFileRenameOperations"
+        ],
+        "uptime_days": 0,
+        "uptime_hours": 12
+      },
+      "findings": [
+        {
+          "type": "reboot_pending",
+          "severity": "warning",
+          "title": "System reboot pending",
+          "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+          "risk_score": 0.5,
+          "roi_score": 2.0,
+          "reasons": [
+            "PendingFileRenameOperations"
+          ]
+        }
+      ]
+    },
+    "apps": {
+      "monitor": "apps",
+      "status": "ok",
+      "snapshot": {
+        "total": 6,
+        "installed": 4,
+        "missing": 2,
+        "apps": [
+          {
+            "name": "Google Chrome",
+            "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "installed": true
+          },
+          {
+            "name": "Codex CLI",
+            "path": "C:\\Users\\ArcXN\\AppData\\Roaming\\npm\\codex.cmd",
+            "installed": true
+          },
+          {
+            "name": "Notion",
+            "path": "C:\\Users\\ArcXN\\AppData\\Local\\Programs\\Notion\\Notion.exe",
+            "installed": true
+          },
+          {
+            "name": "Docker Desktop",
+            "path": "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+            "installed": true
+          },
+          {
+            "name": "Claude Desktop",
+            "path": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+            "installed": false
+          },
+          {
+            "name": "Visual Studio",
+            "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+            "installed": false
+          }
+        ]
+      },
+      "findings": [
+        {
+          "type": "app_missing",
+          "severity": "info",
+          "title": "Claude Desktop not installed",
+          "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+          "risk_score": 0.1,
+          "roi_score": 0.5
+        },
+        {
+          "type": "app_missing",
+          "severity": "info",
+          "title": "Visual Studio not installed",
+          "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+          "risk_score": 0.1,
+          "roi_score": 0.5
+        }
+      ]
+    }
+  },
+  "findings": [
+    {
+      "type": "services_stopped",
+      "severity": "critical",
+      "title": "6 critical service(s) not running",
+      "description": "[{\"name\": \"BITS\", \"display\": \"Background Intelligent Transfer Service\", \"status\": 1, \"start\": 3}, {\"name\": \"MapsBroker\", \"display\": \"Downloaded Maps Manager\", \"status\": 1, \"start\": 2}, {\"name\": \"OnenessWeb\", \"display\": \"Oneness System Web Control Center\", \"status\": 1, \"start\": 2}, {\"name\": \"sppsvc\", \"display\": \"Software Protection\", \"status\": 1, \"start\": 2}, {\"name\": \"WinDefend\", \"display\": \"Microsoft Defender Antivirus Service\", \"status\": 1, \"start\": 3}, {\"name\": \"wuauserv\", \"display\": \"Windows Update\", \"status\": 1, \"start\": 3}]",
+      "risk_score": 0.6,
+      "roi_score": 2.5,
+      "stopped_services": [
+        "BITS",
+        "MapsBroker",
+        "OnenessWeb",
+        "sppsvc",
+        "WinDefend",
+        "wuauserv"
+      ]
+    },
+    {
+      "type": "reboot_pending",
+      "severity": "warning",
+      "title": "System reboot pending",
+      "description": "Reasons: PendingFileRenameOperations. Restart to complete updates.",
+      "risk_score": 0.5,
+      "roi_score": 2.0,
+      "reasons": [
+        "PendingFileRenameOperations"
+      ]
+    },
+    {
+      "type": "app_missing",
+      "severity": "info",
+      "title": "Claude Desktop not installed",
+      "description": "C:\\Users\\ArcXN\\AppData\\Local\\AnthropicClaude\\Claude.exe",
+      "risk_score": 0.1,
+      "roi_score": 0.5
+    },
+    {
+      "type": "app_missing",
+      "severity": "info",
+      "title": "Visual Studio not installed",
+      "description": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+      "risk_score": 0.1,
+      "roi_score": 0.5
+    }
+  ],
+  "health_score": 63
+}

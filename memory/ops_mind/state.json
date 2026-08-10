@@ -1,23 +1,13 @@
 {
   "created": "2026-08-10T16:41:48.075716+00:00",
-  "last_cycle": "2026-08-10T17:07:30.112401+00:00",
+  "last_cycle": "2026-08-10T17:20:28.050696+00:00",
   "last_report": "2026-08-10T17:06:52.603970+00:00",
   "last_remediate": "2026-08-10T17:06:52.608971+00:00",
-  "cycles_run": 13,
+  "cycles_run": 18,
   "reports_generated": 5,
   "remediations_generated": 10,
-  "health_score": 50,
+  "health_score": 63,
   "current_findings": [
-    {
-      "type": "cpu_high",
-      "severity": "warning",
-      "title": "CPU high at 76.5%",
-      "description": "System under CPU pressure.",
-      "risk_score": 0.6,
-      "roi_score": 3.0,
-      "metric": 76.5,
-      "unit": "%"
-    },
     {
       "type": "services_stopped",
       "severity": "critical",
@@ -64,13 +54,13 @@
   ],
   "snapshots": {
     "telemetry": {
-      "cpu_percent": 76.5,
-      "ram_percent": 63.4,
-      "ram_used_gb": 19,
+      "cpu_percent": 57.1,
+      "ram_percent": 57.7,
+      "ram_used_gb": 17,
       "ram_total_gb": 31,
-      "disk_free_gb": 417.96,
+      "disk_free_gb": 417.8,
       "disk_total_gb": 1882.67,
-      "disk_pct_free": 22.2
+      "disk_pct_free": 22.19
     },
     "services": {
       "total_checked": 13,
@@ -90,62 +80,62 @@
         {
           "name": "explorer",
           "pid": 14196,
-          "cpu_s": 13150.2,
-          "ram_mb": 342.2
+          "cpu_s": 13318.8,
+          "ram_mb": 347.3
         },
         {
           "name": "OneDrive.Sync.Service",
           "pid": 3256,
-          "cpu_s": 9798.6,
-          "ram_mb": 106.8
+          "cpu_s": 10018.3,
+          "ram_mb": 104.3
         },
         {
           "name": "System",
           "pid": 4,
-          "cpu_s": 7493.5,
-          "ram_mb": 22.9
+          "cpu_s": 7613.8,
+          "ram_mb": 23.1
         },
         {
           "name": "vmmemWSL",
           "pid": 4488,
-          "cpu_s": 2365.8,
-          "ram_mb": 4084.8
+          "cpu_s": 4233.6,
+          "ram_mb": 1747.9
         },
         {
           "name": "LightingService",
           "pid": 6200,
-          "cpu_s": 1863.8,
-          "ram_mb": 21.9
+          "cpu_s": 1896.6,
+          "ram_mb": 21.8
         },
         {
           "name": "AsusFanControlService",
           "pid": 5632,
-          "cpu_s": 1659.4,
-          "ram_mb": 9.4
+          "cpu_s": 1694.0,
+          "ram_mb": 10.3
         },
         {
           "name": "Corsair.Service",
           "pid": 5812,
-          "cpu_s": 1572.8,
-          "ram_mb": 22.3
+          "cpu_s": 1589.3,
+          "ram_mb": 21.5
         },
         {
           "name": "svchost",
           "pid": 3604,
-          "cpu_s": 1485.9,
-          "ram_mb": 19.3
+          "cpu_s": 1486.5,
+          "ram_mb": 17.8
         },
         {
           "name": "OneDrive",
           "pid": 35324,
-          "cpu_s": 1072.3,
-          "ram_mb": 996.1
+          "cpu_s": 1161.6,
+          "ram_mb": 1033.5
         },
         {
           "name": "dwm",
           "pid": 1228,
-          "cpu_s": 1066.6,
-          "ram_mb": 97.4
+          "cpu_s": 1134.0,
+          "ram_mb": 95.9
         }
       ]
     },
