@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -66,7 +66,7 @@ header h1 { margin:0; font-size:1.5rem; background: linear-gradient(90deg, var(-
 <header>
   <div>
     <h1>🌠 Comet X9 Commander</h1>
-    <div class="subtitle">Legal • Wealth Generation • Desktop Operations • Self-Operating AI</div>
+    <div class="subtitle">Legal • Wealth Generation • Desktop Operations • Self-Operating AI • <span style="color:var(--accent2)">Connected via Chrome</span></div>
   </div>
   <div style="display:flex;gap:10px;align-items:center">
     <span class="badge badge-red">Foreclosure Active</span>
@@ -82,6 +82,9 @@ header h1 { margin:0; font-size:1.5rem; background: linear-gradient(90deg, var(-
   <button onclick="runAgent('file_ops')">🔍 Scan Case Files</button>
   <button onclick="runAgent('cleanup_ops')">🧹 Cleanup Report</button>
   <button onclick="location.reload()">🔄 Refresh Dashboard</button>
+  <button onclick="window.open('http://localhost:5050','_blank')">🌐 Oneness.Web API</button>
+  <button onclick="window.open('http://localhost:5050/api/tools','_blank')">🔧 AI Tools</button>
+  <button onclick="window.open('http://localhost:5050/api/agents','_blank')">🤖 Agents</button>
 </div>
 
 <div class="grid">
