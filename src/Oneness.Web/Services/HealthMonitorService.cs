@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Management;
 using System.ServiceProcess;
 using Oneness.Web.Models;
@@ -57,12 +57,29 @@ public class HealthMonitorService
 
         try
         {
-            snapshot.RecentErrors = EventLog.GetEventLogs()
-                .SelectMany(l =>
+            // Limit to System and Application logs only with a short timeout to prevent hanging
+            var logNames = new[] { "System", "Application" };
+            var errors = new List<System.Diagnostics.EventLogEntry>();
+            foreach (var logName in logNames)
+            {
+                try
                 {
-                    try { return l.Entries.Cast<System.Diagnostics.EventLogEntry>().Where(e => e.TimeGenerated > DateTime.Now.AddHours(-24) && e.EntryType == EventLogEntryType.Error).Take(5); }
-                    catch { return Enumerable.Empty<System.Diagnostics.EventLogEntry>(); }
-                })
+                    using var log = new System.Diagnostics.EventLog(logName);
+                    var count = Math.Min(log.Entries.Count, 500); // Cap at 500 most recent entries
+                    for (int i = log.Entries.Count - 1; i >= 0 && i >= log.Entries.Count - count && errors.Count < 20; i--)
+                    {
+                        try
+                        {
+                            var entry = log.Entries[i];
+                            if (entry.TimeGenerated > DateTime.Now.AddHours(-24) && entry.EntryType == EventLogEntryType.Error)
+                                errors.Add(entry);
+                        }
+                        catch { }
+                    }
+                }
+                catch { }
+            }
+            snapshot.RecentErrors = errors
                 .Select(e => new Models.EventLogEntry
                 {
                     TimeCreated = e.TimeGenerated,

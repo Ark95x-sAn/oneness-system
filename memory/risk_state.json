@@ -1,12 +1,1 @@
-{
-  "kill_switch_active": false,
-  "legal_hold": false,
-  "daily_drawdown_pct": 0.0,
-  "total_exposure_usd": 0.0,
-  "available_capital_usd": 0.0,
-  "reserve_usd": 0.0,
-  "max_order_usd": 50,
-  "max_exposure_usd": 200,
-  "demo_mode": true,
-  "last_updated": "2026-07-30T22:56:29.882464+00:00"
-}
+﻿{"kill_switch_active":false,"legal_hold":false,"daily_drawdown_pct":0.0,"total_exposure_usd":0.0,"available_capital_usd":0.0,"reserve_usd":0.0,"max_order_usd":50,"max_exposure_usd":200,"demo_mode":true,"last_updated":"2026-08-10T17:00:00.000000+00:00"}
