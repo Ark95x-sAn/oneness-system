@@ -1,18 +1,19 @@
 ﻿#requires -Version 5.1
 <#
 .SYNOPSIS
-    Install the Operations Mind as a Windows Scheduled Task.
+    Install the Operations Mind as a silent background scheduled task.
 .DESCRIPTION
     Creates a scheduled task that runs the Operations Mind oversight cycle
-    every 5 minutes in the background. All actions are safe/read-only;
-    remediation scripts are preview-only and never auto-executed.
+    every 10 minutes completely silently - no window, no console flash,
+    no stdout output. Uses S4U logon (service-style) and CREATE_NO_WINDOW
+    on all subprocess calls. All actions are safe/read-only.
 .PARAMETER Interval
-    Task run interval in minutes (default: 5).
+    Task run interval in minutes (default: 10).
 .PARAMETER Remove
     Remove the scheduled task instead of creating it.
 #>
 param(
-    [int]$Interval = 5,
+    [int]$Interval = 10,
     [switch]$Remove
 )
 
@@ -28,28 +29,29 @@ if ($Remove) {
     exit 0
 }
 
-Write-Host "Installing Operations Mind scheduled task..."
+Write-Host "Installing Operations Mind (silent background mode)..."
 Write-Host "  Name: $taskName"
 Write-Host "  Interval: every $Interval minute(s)"
-Write-Host "  Python: $python"
+Write-Host "  Mode: silent (no window, no stdout, file logging only)"
 
 $action = New-ScheduledTaskAction `
     -Execute $python `
-    -Argument "-m src.ops_mind.mind --cycle" `
+    -Argument "-m src.ops_mind.mind --cycle --background" `
     -WorkingDirectory $root
 
-$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) `
+$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) `
     -RepetitionInterval (New-TimeSpan -Minutes $Interval)
 
 $settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
     -StartWhenAvailable `
-    -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
+    -ExecutionTimeLimit (New-TimeSpan -Minutes 3) `
+    -MultipleInstances IgnoreNew
 
 $principal = New-ScheduledTaskPrincipal `
     -UserId $env:USERDOMAIN\$env:USERNAME `
-    -LogonType Interactive `
+    -LogonType S4U `
     -RunLevel Limited
 
 Register-ScheduledTask `
@@ -58,10 +60,11 @@ Register-ScheduledTask `
     -Trigger $trigger `
     -Settings $settings `
     -Principal $principal `
-    -Description "OnenessSystem Operations Mind - unified PC oversight (safe, read-only monitoring)" `
+    -Description "OnenessSystem Operations Mind - silent background PC oversight" `
     -Force
 
 Write-Host ""
-Write-Host "Installed. The Operations Mind will run every $Interval minute(s)."
-Write-Host "View status: Get-ScheduledTask -TaskName '$taskName' | Get-ScheduledTaskInfo"
+Write-Host "Installed. Runs silently every $Interval minute(s)."
+Write-Host "No windows, no console flash, no disruption to your work."
+Write-Host ""
 Write-Host "Remove: .\scripts\install_ops_mind_service.ps1 -Remove"

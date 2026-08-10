@@ -24,11 +24,12 @@ from . import (
 
 
 def _run_ps(cmd, timeout=20):
-    """Run a PowerShell command and return (stdout, stderr, code)."""
+    """Run a PowerShell command silently (no window) and return (stdout, stderr, code)."""
     try:
         result = subprocess.run(
-            ["powershell.exe", "-NoProfile", "-Command", cmd],
+            ["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden", "-Command", cmd],
             capture_output=True, text=True, timeout=timeout, check=False,
+            creationflags=0x08000000,  # CREATE_NO_WINDOW - prevents console flash
         )
         return result.stdout.strip(), result.stderr.strip(), result.returncode
     except Exception as exc:

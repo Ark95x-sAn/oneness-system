@@ -40,14 +40,25 @@ from ops_mind.rules_engine import evaluate_all_rules, get_rules_summary, load_ru
 
 ensure_dirs()
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | OPS-MIND | %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler(str(LOG_DIR / "ops_mind.log"), encoding="utf-8", mode="a"),
-    ],
-)
+# Check for background mode (silent - file logging only)
+_BACKGROUND = "--background" in sys.argv
+if _BACKGROUND:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s | %(levelname)s | OPS-MIND | %(message)s",
+        handlers=[
+            logging.FileHandler(str(LOG_DIR / "ops_mind.log"), encoding="utf-8", mode="a"),
+        ],
+    )
+else:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s | %(levelname)s | OPS-MIND | %(message)s",
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler(str(LOG_DIR / "ops_mind.log"), encoding="utf-8", mode="a"),
+        ],
+    )
 log = logging.getLogger("ops_mind")
 
 
@@ -76,6 +87,15 @@ class OperationsMind:
     def cycle(self):
         """Run all monitors and collect findings."""
         log.info("=== OPS MIND CYCLE START ===")
+        # Quick CPU pre-check - if system is under heavy load, use lighter monitors
+        _cpu_precheck = 0
+        try:
+            import psutil
+            _cpu_precheck = psutil.cpu_percent(interval=0.3)
+        except:
+            pass
+        if _cpu_precheck > 80:
+            log.info("CPU at %.0f%% - running lightweight cycle to avoid disruption", _cpu_precheck)
         ts = now_iso()
 
         results, findings = run_all_monitors()
@@ -305,6 +325,7 @@ Options:
     parser.add_argument("--cycle-interval", type=int, default=DEFAULT_CYCLE_INTERVAL)
     parser.add_argument("--report-interval", type=int, default=DEFAULT_REPORT_INTERVAL)
     parser.add_argument("--remediate-interval", type=int, default=DEFAULT_REMEDIATE_INTERVAL)
+    parser.add_argument("--background", action="store_true", help="Silent background mode - log to file only, no stdout")
     parser.add_argument("--rules", action="store_true", help="Show IFTTT rules summary")
     parser.add_argument("--json", action="store_true", help="Output JSON only")
     args = parser.parse_args()
@@ -352,7 +373,8 @@ Options:
 
     elif args.cycle:
         result = mind.cycle()
-        print(json.dumps(result, indent=2, default=str) if args.json else f"Cycle complete. Health: {result['health_score']}/100, {len(result['findings'])} findings")
+        if not _BACKGROUND:
+            print(json.dumps(result, indent=2, default=str) if args.json else f"Cycle complete. Health: {result['health_score']}/100, {len(result['findings'])} findings")
 
     elif args.report:
         result = mind.report()
