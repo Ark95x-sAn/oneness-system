@@ -8,6 +8,8 @@ The machine does the repetitive R0/R1 work. A small review team checks results b
 
 The nine-entry specialist toolbelt in `config/connector-registry.json` is a separate planning surface. Its plugin and application IDs are never copied into this lease or dispatched by this broker; see `TOOLBELT.md`.
 
+The optional whole-team Mission Control adds one coordinating layer above the existing planner and broker. It replays one immutable objective through **Intake → Decompose → Route & Delegate → Execute → Verify → Persist & Learn → Notify & Present**. It creates no new handler or connector authority; see `docs/MISSION_CONTROL.md`.
+
 ```mermaid
 flowchart LR
     S["Current-user schedule"] --> Q["Recurring and owner-enqueued duties"]
@@ -71,6 +73,15 @@ The schedule is an availability mechanism, not broader authority. The current po
 
 ## Owner controls
 
+Open the local dashboard with `Launch-ARKO95-MissionControl.vbs`, or use the state/version-checked CLI:
+
+```powershell
+.\scripts\Invoke-ARKO95MissionControl.ps1 -Action Status
+.\scripts\Invoke-ARKO95MissionControl.ps1 -Action VerifyChain
+```
+
+Mission Control permits one open mission, derives stage only from its linked journal, and can queue only the same five compiled Operations VP capabilities. OpenClaw is represented only as a proposal/status adapter; it cannot write mission events, invoke Operations VP, approve work, or clear the kill latch.
+
 ```powershell
 # Status
 .\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Status
@@ -107,6 +118,7 @@ On a resource hold, free PC resources and allow the next scheduled cycle to retr
 ```powershell
 pwsh -NoLogo -NoProfile -STA -File .\tests\Test-ARKO95.ps1
 pwsh -NoLogo -NoProfile -File .\tests\Test-OperationsVP.ps1
+pwsh -NoLogo -NoProfile -File .\tests\Test-MissionControl.ps1
 ```
 
-The adversarial fixture verifies default-closed initialization, acknowledgement gating, handler allowlisting, path confinement, queue idempotency, the three-duty cycle cap, three-review unanimity, receipt tamper detection, and automatic kill-latch activation.
+The adversarial fixtures verify default-closed initialization, acknowledgement gating, handler allowlisting, path confinement, queue idempotency, the three-duty cycle cap, three-review unanimity, receipt tamper detection, automatic kill-latch activation, mission replay, the single-open-mission cap, stale-version and stage-skip rejection, independent verification, and local-only presentation.
