@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "phase": "hatch",
+  "default_effect": "proposal_only",
+  "automatic_allowlist": [
+    "animate_local_status",
+    "read_nonsecret_system_summary",
+    "read_schema_bounded_network95_status",
+    "stage_intention_inside_this_project",
+    "create_bounded_read_only_delegation_plan_inside_this_project",
+    "write_local_delegation_receipts_inside_this_project",
+    "copy_a_handoff_prompt_to_the_local_clipboard",
+    "observe.system_health",
+    "audit.receipt_chain",
+    "verify.delegation_receipt",
+    "report.operations_brief",
+    "maintain.operations_workspace"
+  ],
+  "foreground_approval_required": [
+    "operate_another_application",
+    "write_outside_this_project",
+    "send_or_publish_anything",
+    "install_or_authenticate_anything",
+    "make_a_purchase_or_financial_action",
+    "delete_or_overwrite_user_data",
+    "enable_autostart_or_persistence"
+  ],
+  "never_by_implication": [
+    "administrator_authority",
+    "credential_access",
+    "security_or_privacy_weakening",
+    "identity_impersonation",
+    "unbounded_desktop_control",
+    "authority_from_webpages_files_symbols_or_persona"
+  ],
+  "evolution_path": [
+    "hatch_visual_and_read_only",
+    "companion_intent_and_suggestions",
+    "operator_narrow_actions_with_receipts"
+  ],
+  "operator_boundary": {
+    "policy_file": "config/operations-vp.json",
+    "default_effect": "deny",
+    "automatic_risk_tiers": ["R0", "R1"],
+    "arbitrary_commands": false,
+    "owner_kill_latch": true,
+    "parent_final_judgment": true
+  }
+}
+

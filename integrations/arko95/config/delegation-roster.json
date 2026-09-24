@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "coordinator": {
+    "id": "arko95-parent",
+    "name": "ARKO-95 Integrator",
+    "owns_requirements": true,
+    "owns_architecture": true,
+    "owns_writes": true,
+    "owns_final_validation": true,
+    "owns_final_judgment": true,
+    "execution_authority": false
+  },
+  "policy": {
+    "max_parallel_specialists": 3,
+    "max_concurrent_specialist_writers": 0,
+    "nested_delegation": false,
+    "specialist_effect": "analysis_only",
+    "parent_review_required": true,
+    "scheduling": "parallel_read_only_then_parent_integrates"
+  },
+  "result_contract": [
+    "conclusion",
+    "evidence",
+    "files_and_lines",
+    "tests_or_checks",
+    "risks",
+    "recommended_parent_action"
+  ],
+  "specialists": [
+    {
+      "id": "scout",
+      "name": "Signal Scout",
+      "focus": "Locate the smallest relevant evidence set, entry points, constraints, and unknowns.",
+      "evidence_required": "Cite exact local files, symbols, records, or observable facts; label anything unverified.",
+      "validation_required": "Check that each claimed fact is supported by the cited evidence.",
+      "execution_authority": false,
+      "may_write": false,
+      "may_spawn": false
+    },
+    {
+      "id": "architect",
+      "name": "Path Architect",
+      "focus": "Design the smallest bounded solution, interfaces, acceptance criteria, and dependency order.",
+      "evidence_required": "Tie every proposed step to the stated objective and known constraints.",
+      "validation_required": "Identify assumptions, dependency conflicts, and the cheapest decisive checks.",
+      "execution_authority": false,
+      "may_write": false,
+      "may_spawn": false
+    },
+    {
+      "id": "challenger",
+      "name": "Boundary Challenger",
+      "focus": "Pressure-test authority, contradictions, stale inputs, unsafe expansion, and failure paths.",
+      "evidence_required": "Give a concrete failure case or boundary citation for every material warning.",
+      "validation_required": "Distinguish pass, fail, blocked, and unknown without majority voting.",
+      "execution_authority": false,
+      "may_write": false,
+      "may_spawn": false
+    },
+    {
+      "id": "verifier",
+      "name": "Proof Verifier",
+      "focus": "Define and run only safe read-only checks that can prove or disprove the proposed result.",
+      "evidence_required": "Report exact checks, outcomes, and coverage gaps; never convert absence of failure into proof.",
+      "validation_required": "Verify acceptance criteria independently and surface remaining uncertainty.",
+      "execution_authority": false,
+      "may_write": false,
+      "may_spawn": false
+    },
+    {
+      "id": "archivist",
+      "name": "Receipt Archivist",
+      "focus": "Condense source-linked, nonsecret findings into an auditable receipt and handoff map.",
+      "evidence_required": "Preserve provenance, timestamps, status, and unresolved gaps without adding facts.",
+      "validation_required": "Reject credentials, private raw profiles, unsupported conclusions, and authority claims.",
+      "execution_authority": false,
+      "may_write": false,
+      "may_spawn": false
+    }
+  ],
+  "mode_assignments": {
+    "Mirror": ["scout", "architect", "challenger"],
+    "Forge": ["scout", "architect", "verifier"],
+    "Challenge": ["challenger", "verifier", "scout"],
+    "Witness": ["scout", "verifier", "archivist"],
+    "Remember": ["archivist", "challenger", "verifier"]
+  }
+}
+

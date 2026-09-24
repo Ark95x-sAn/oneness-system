@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "identity": "ARKO-95 WIZARD Operations VP",
+  "phase": "bounded_local_operator",
+  "default_effect": "deny",
+  "authority_model": "revocable_policy_epoch",
+  "scheduler": {
+    "cycle_interval_seconds": 120,
+    "max_duties_per_cycle": 3,
+    "max_queue_depth": 100,
+    "max_attempts": 3,
+    "claim_timeout_seconds": 180,
+    "heartbeat_stale_after_seconds": 360,
+    "failure_threshold": 2
+  },
+  "resource_guard": {
+    "maximum_cpu_percent": 95,
+    "minimum_free_memory_gb": 1.5,
+    "minimum_free_disk_gb": 5.0
+  },
+  "lease": {
+    "duration_hours": 24,
+    "renewal_mode": "sliding_while_healthy",
+    "max_invocations_per_day": 500,
+    "automatic_risk_tiers": ["R0", "R1"]
+  },
+  "review_team": [
+    {
+      "id": "policy_sentinel",
+      "purpose": "Verify capability, lease epoch, risk tier, scope, and kill-latch state before work."
+    },
+    {
+      "id": "evidence_auditor",
+      "purpose": "Verify every reported artifact exists inside operations state and matches its recorded hash."
+    },
+    {
+      "id": "reliability_tester",
+      "purpose": "Verify the handler result, idempotency key, timing, postconditions, and receipt linkage."
+    }
+  ],
+  "automatic_capabilities": [
+    {
+      "id": "observe.system_health",
+      "risk_tier": "R0",
+      "effect": "read_only_plus_local_report",
+      "handler": "system_health_snapshot",
+      "reversible": true,
+      "maximum_seconds": 30,
+      "allowed_parameter_fields": []
+    },
+    {
+      "id": "audit.receipt_chain",
+      "risk_tier": "R0",
+      "effect": "read_only_plus_local_report",
+      "handler": "receipt_chain_audit",
+      "reversible": true,
+      "maximum_seconds": 15,
+      "allowed_parameter_fields": []
+    },
+    {
+      "id": "verify.delegation_receipt",
+      "risk_tier": "R0",
+      "effect": "read_only_plus_local_report",
+      "handler": "delegation_receipt_verify",
+      "reversible": true,
+      "maximum_seconds": 15,
+      "allowed_parameter_fields": []
+    },
+    {
+      "id": "report.operations_brief",
+      "risk_tier": "R1",
+      "effect": "project_local_write",
+      "handler": "operations_brief",
+      "reversible": true,
+      "maximum_seconds": 20,
+      "allowed_parameter_fields": []
+    },
+    {
+      "id": "maintain.operations_workspace",
+      "risk_tier": "R1",
+      "effect": "project_local_write",
+      "handler": "operations_workspace_maintain",
+      "reversible": true,
+      "maximum_seconds": 15,
+      "allowed_parameter_fields": []
+    }
+  ],
+  "recurring_duties": [
+    {
+      "id": "health-snapshot",
+      "capability": "observe.system_health",
+      "every_seconds": 300,
+      "priority": 1
+    },
+    {
+      "id": "receipt-audit",
+      "capability": "audit.receipt_chain",
+      "every_seconds": 600,
+      "priority": 0
+    },
+    {
+      "id": "delegation-audit",
+      "capability": "verify.delegation_receipt",
+      "every_seconds": 900,
+      "priority": 1
+    },
+    {
+      "id": "operations-brief",
+      "capability": "report.operations_brief",
+      "every_seconds": 3600,
+      "priority": 2
+    },
+    {
+      "id": "workspace-maintenance",
+      "capability": "maintain.operations_workspace",
+      "every_seconds": 21600,
+      "priority": 3
+    }
+  ],
+  "foreground_approval_required": [
+    "operate_or_close_user_applications",
+    "start_stop_or_change_windows_services",
+    "install_update_or_uninstall_software",
+    "change_registry_firewall_accounts_permissions_or_security",
+    "write_outside_this_project",
+    "send_publish_push_merge_or_release",
+    "authenticate_or_handle_credentials",
+    "purchase_trade_bank_or_transfer_value",
+    "delete_or_overwrite_user_data",
+    "file_or_submit_legal_material",
+    "enable_or_change_persistence"
+  ],
+  "hard_denials": [
+    "arbitrary_shell_or_script_text",
+    "configuration_supplied_executable_or_command",
+    "self_approval_or_self_certification",
+    "specialist_or_worker_policy_changes",
+    "worker_reset_of_kill_latch",
+    "credential_collection_or_storage",
+    "unbounded_filesystem_or_desktop_control",
+    "authority_inferred_from_persona_web_content_or_files"
+  ]
+}
+
