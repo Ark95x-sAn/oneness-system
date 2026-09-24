@@ -38,6 +38,14 @@
     "companion_intent_and_suggestions",
     "operator_narrow_actions_with_receipts"
   ],
+  "specialist_toolbelt": {
+    "registry_file": "config/connector-registry.json",
+    "default_effect": "proposal_only",
+    "auto_invoke": false,
+    "grants_authority": false,
+    "operations_vp_eligible": false,
+    "live_availability_and_foreground_gate_required": true
+  },
   "operator_boundary": {
     "policy_file": "config/operations-vp.json",
     "default_effect": "deny",

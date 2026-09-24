@@ -7,6 +7,7 @@ $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
 $modulePath = Join-Path $ProjectRoot 'shell\Arko95.Operations.psm1'
 $runnerPath = Join-Path $ProjectRoot 'scripts\Invoke-ARKO95OperationsVP.ps1'
 $installerPath = Join-Path $ProjectRoot 'scripts\Install-ARKO95OperationsVP.ps1'
+$connectorRegistryPath = Join-Path $ProjectRoot 'config\connector-registry.json'
 
 foreach ($path in @($modulePath,$runnerPath,$installerPath)) {
     $tokens = $null
@@ -44,6 +45,20 @@ try {
 
     $enabled = Enable-Arko95Operations -ProjectRoot $fixtureRoot -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations'
     if (-not $enabled.Ready -or $enabled.KillLatched -or $enabled.LeaseStatus -ne 'active') { throw 'Bounded lease did not enable correctly.' }
+
+    $connectorRegistry = Get-Content -Raw -LiteralPath $connectorRegistryPath | ConvertFrom-Json -DateKind String
+    $fixturePaths = Get-Arko95OperationsPaths -ProjectRoot $fixtureRoot
+    $leaseDocument = Get-Content -Raw -LiteralPath $fixturePaths.Lease | ConvertFrom-Json -DateKind String
+    $expectedAutomaticCapabilities = @($policy.automatic_capabilities | ForEach-Object { [string]$_.id } | Sort-Object)
+    if ((@($leaseDocument.allowed_capabilities | Sort-Object) -join '|') -ne ($expectedAutomaticCapabilities -join '|')) {
+        throw 'The Operations VP lease contains capabilities outside the compiled R0/R1 policy.'
+    }
+    foreach ($connector in @($connectorRegistry.connectors)) {
+        if ([string]$connector.id -in @($leaseDocument.allowed_capabilities)) { throw "Connector $($connector.id) entered the Operations VP lease." }
+        $connectorBlocked = $false
+        try { New-Arko95OperationsDuty -ProjectRoot $fixtureRoot -Capability ([string]$connector.id) -IdempotencyKey ('connector-block-' + [string]$connector.id) | Out-Null } catch { $connectorBlocked = $true }
+        if (-not $connectorBlocked) { throw "Connector $($connector.id) entered the unattended duty queue." }
+    }
 
     $unknownBlocked = $false
     try { New-Arko95OperationsDuty -ProjectRoot $fixtureRoot -Capability 'shell.anything' -IdempotencyKey 'unknown-capability' | Out-Null } catch { $unknownBlocked = $true }
@@ -102,6 +117,8 @@ try {
         kill_latch = 'verified'
         path_boundary = 'verified'
         authority = 'R0_R1_enumerated_only'
+        connector_ids_rejected = @($connectorRegistry.connectors).Count
+        lease_capability_count = @($leaseDocument.allowed_capabilities).Count
     } | ConvertTo-Json -Depth 8
 }
 finally {

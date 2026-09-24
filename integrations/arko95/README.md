@@ -6,6 +6,8 @@ WIZARD is the bounded path from **Work intake** through **Zero-trust admission**
 
 The machine does the repetitive R0/R1 work. A small review team checks results by exception. The owner remains the authority and can stop the operator instantly.
 
+The nine-entry specialist toolbelt in `config/connector-registry.json` is a separate planning surface. Its plugin and application IDs are never copied into this lease or dispatched by this broker; see `TOOLBELT.md`.
+
 ```mermaid
 flowchart LR
     S["Current-user schedule"] --> Q["Recurring and owner-enqueued duties"]
