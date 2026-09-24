@@ -108,4 +108,3 @@ pwsh -NoLogo -NoProfile -File .\tests\Test-OperationsVP.ps1
 ```
 
 The adversarial fixture verifies default-closed initialization, acknowledgement gating, handler allowlisting, path confinement, queue idempotency, the three-duty cycle cap, three-review unanimity, receipt tamper detection, and automatic kill-latch activation.
-

@@ -66,4 +66,3 @@ $task = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop
     consequential_actions = 'still require separate foreground approval'
     remove_command = ".\scripts\Install-ARKO95OperationsVP.ps1 -Remove"
 } | ConvertTo-Json -Depth 6
-

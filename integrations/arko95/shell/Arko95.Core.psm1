@@ -596,4 +596,3 @@ function New-Arko95DelegationProposal {
 }
 
 Export-ModuleMember -Function Get-Arko95ProjectPaths, Resolve-Arko95StateWritePath, Get-Arko95Status, Get-Arko95ModeDirective, Get-Arko95HandoffPrompt, Get-Arko95DelegationRoster, Get-Arko95DelegationProfile, Get-Arko95DelegationHandoff, New-Arko95IntentProposal, New-Arko95DelegationPlan, Test-Arko95DelegationReceipt, New-Arko95DelegationProposal
-

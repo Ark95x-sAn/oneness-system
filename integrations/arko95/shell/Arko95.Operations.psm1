@@ -378,7 +378,425 @@ function Invoke-Arko95OpsTripCircuit {
         policy_epoch   = [int](Get-Arko95OpsProperty -InputObject $control -Name 'policy_epoch' -Default 0)
         updated_at     = $now
         updated_by     = 'circuit_breaker'
-  …5816 tokens truncated…ilityDefinition.risk_tier -notin @($Policy.lease.automatic_risk_tiers | ForEach-Object { [string]$_ })) { $reasons.Add('risk_tier_not_automatic') }
+    })
+    if ($null -ne $lease) {
+        $lease.status = 'faulted'
+        $lease.revoked_at = $now
+        $lease.revocation_reason = $Reason
+        Write-Arko95OpsJsonAtomic -Path $Paths.Lease -Value $lease
+    }
+    Write-Arko95OpsJsonAtomic -Path $Paths.Runtime -Value ([ordered]@{
+        schema_version       = 1
+        circuit_state        = 'open'
+        consecutive_failures = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'consecutive_failures' -Default 0) + 1
+        cycles_completed     = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'cycles_completed' -Default 0)
+        duties_completed     = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_completed' -Default 0)
+        duties_failed        = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_failed' -Default 0) + $(if ([string]::IsNullOrWhiteSpace($DutyId)) { 0 } else { 1 })
+        last_fault           = $Reason
+        last_fault_class     = $FaultClass
+        last_cycle_at        = Get-Arko95OpsProperty -InputObject $runtime -Name 'last_cycle_at'
+        updated_at           = $now
+    })
+    try { $null = Add-Arko95OpsEvent -Paths $Paths -EventType 'circuit_opened' -DutyId $DutyId -Payload ([ordered]@{ reason = $Reason; fault_class = $FaultClass }) } catch { }
+}
+
+function Enable-Arko95Operations {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [Parameter(Mandatory)][string]$Acknowledgement,
+        [string]$StateRoot
+    )
+    $required = 'I authorize bounded R0/R1 ARKO-95 operations'
+    if ($Acknowledgement -cne $required) { throw "Enabling Operations VP requires the exact acknowledgement: $required" }
+    $mutex = $null
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        $policy = Get-Arko95OperationsPolicy -ProjectRoot $ProjectRoot
+        $chain = Get-Arko95OpsReceiptChainStatus -Paths $paths
+        if (-not $chain.Valid) { throw "Cannot enable against an invalid receipt chain: $($chain.Error)" }
+        $control = Read-Arko95OpsJson -Path $paths.Control
+        $epoch = [int](Get-Arko95OpsProperty -InputObject $control -Name 'policy_epoch' -Default 0) + 1
+        $now = [DateTimeOffset]::UtcNow
+        $allowedCapabilities = @($policy.automatic_capabilities | ForEach-Object { [string]$_.id })
+        $lease = [ordered]@{
+            schema_version          = 1
+            lease_id                = 'lease-' + [guid]::NewGuid().ToString('D')
+            status                  = 'active'
+            policy_epoch            = $epoch
+            issued_at               = $now.ToString('o')
+            expires_at              = $now.AddHours([double]$policy.lease.duration_hours).ToString('o')
+            renewal_mode            = 'sliding_while_healthy'
+            issued_by               = 'local_owner_explicit_request'
+            allowed_capabilities    = $allowedCapabilities
+            allowed_risk_tiers      = @($policy.lease.automatic_risk_tiers)
+            invocation_window_date  = $now.UtcDateTime.ToString('yyyy-MM-dd')
+            invocations_today       = 0
+            max_invocations_per_day = [int]$policy.lease.max_invocations_per_day
+            execution_authority     = 'only_enumerated_r0_r1_handlers'
+            revoked_at              = $null
+            revocation_reason       = ''
+        }
+        Write-Arko95OpsJsonAtomic -Path $paths.Control -Value ([ordered]@{
+            schema_version = 1; desired_state = 'running'; kill_latched = $false; reason = 'owner_enabled_bounded_operations'; policy_epoch = $epoch; updated_at = $now.ToString('o'); updated_by = 'local_owner'
+        })
+        Write-Arko95OpsJsonAtomic -Path $paths.Lease -Value $lease
+        $runtime = Read-Arko95OpsJson -Path $paths.Runtime
+        Write-Arko95OpsJsonAtomic -Path $paths.Runtime -Value ([ordered]@{
+            schema_version = 1; circuit_state = 'closed'; consecutive_failures = 0; cycles_completed = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'cycles_completed' -Default 0); duties_completed = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_completed' -Default 0); duties_failed = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_failed' -Default 0); last_fault = ''; last_fault_class = ''; last_cycle_at = Get-Arko95OpsProperty -InputObject $runtime -Name 'last_cycle_at'; updated_at = $now.ToString('o')
+        })
+        try {
+            $null = Add-Arko95OpsEvent -Paths $paths -EventType 'operations_enabled' -Payload ([ordered]@{ lease_id = $lease.lease_id; policy_epoch = $epoch; capabilities = $allowedCapabilities; boundary = 'R0_R1_only' })
+        }
+        catch {
+            Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'enable_receipt_failed' -FaultClass 'audit_failure'
+            throw
+        }
+        return Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+function Stop-Arko95Operations {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [string]$Reason = 'owner_stop',
+        [string]$StateRoot
+    )
+    $mutex = $null
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        Invoke-Arko95OpsTripCircuit -Paths $paths -Reason $Reason -FaultClass 'owner_stop'
+        return Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+function Get-Arko95OpsResourceSnapshot {
+    param([Parameter(Mandatory)][string]$ProjectRoot)
+    $cpu = $null
+    $freeMemory = $null
+    $totalMemory = $null
+    $diskFree = $null
+    $probeError = $null
+    try {
+        $processors = @(Get-CimInstance -ClassName Win32_Processor -ErrorAction Stop)
+        if ($processors.Count -gt 0) { $cpu = [math]::Round(($processors | Measure-Object -Property LoadPercentage -Average).Average, 1) }
+        $os = Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction Stop
+        $freeMemory = [math]::Round(([double]$os.FreePhysicalMemory / 1MB), 2)
+        $totalMemory = [math]::Round(([double]$os.TotalVisibleMemorySize / 1MB), 2)
+        $root = [System.IO.Path]::GetPathRoot([System.IO.Path]::GetFullPath($ProjectRoot))
+        $drive = [System.IO.DriveInfo]::new($root)
+        if ($drive.IsReady) { $diskFree = [math]::Round($drive.AvailableFreeSpace / 1GB, 2) }
+    }
+    catch { $probeError = $_.Exception.Message }
+    [pscustomobject]@{
+        timestamp_utc = [DateTimeOffset]::UtcNow.ToString('o')
+        cpu_percent = $cpu
+        free_memory_gb = $freeMemory
+        total_memory_gb = $totalMemory
+        disk_free_gb = $diskFree
+        network_available = [System.Net.NetworkInformation.NetworkInterface]::GetIsNetworkAvailable()
+        probe_error = $probeError
+    }
+}
+
+function Test-Arko95OpsResourceAdmission {
+    param(
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)]$Snapshot
+    )
+    $reasons = [Collections.Generic.List[string]]::new()
+    if (-not [string]::IsNullOrWhiteSpace([string]$Snapshot.probe_error)) { $reasons.Add('resource_probe_failed') }
+    if ($null -eq $Snapshot.cpu_percent -or [double]$Snapshot.cpu_percent -gt [double]$Policy.resource_guard.maximum_cpu_percent) { $reasons.Add('cpu_pressure_or_unknown') }
+    if ($null -eq $Snapshot.free_memory_gb -or [double]$Snapshot.free_memory_gb -lt [double]$Policy.resource_guard.minimum_free_memory_gb) { $reasons.Add('memory_pressure_or_unknown') }
+    if ($null -eq $Snapshot.disk_free_gb -or [double]$Snapshot.disk_free_gb -lt [double]$Policy.resource_guard.minimum_free_disk_gb) { $reasons.Add('disk_pressure_or_unknown') }
+    [pscustomobject]@{ Admitted = $reasons.Count -eq 0; Reasons = $reasons.ToArray(); Snapshot = $Snapshot }
+}
+
+function ConvertTo-Arko95OpsParameters {
+    param([AllowNull()]$Parameters)
+    $normalized = [ordered]@{}
+    if ($null -eq $Parameters) { return $normalized }
+    if ($Parameters -is [System.Collections.IDictionary]) {
+        foreach ($key in @($Parameters.Keys | Sort-Object)) { $normalized[[string]$key] = $Parameters[$key] }
+    }
+    else {
+        foreach ($property in @($Parameters.PSObject.Properties | Sort-Object Name)) { $normalized[$property.Name] = $property.Value }
+    }
+    return $normalized
+}
+
+function Find-Arko95OpsDutyPath {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)][string]$FileName
+    )
+    foreach ($directory in @($Paths.Pending,$Paths.Working,$Paths.Completed,$Paths.Failed,$Paths.Held)) {
+        $candidate = Join-Path $directory $FileName
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) { return $candidate }
+    }
+    return $null
+}
+
+function Add-Arko95OpsDutyUnlocked {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)][string]$Capability,
+        [AllowNull()]$Parameters,
+        [Parameter(Mandatory)][string]$IdempotencyKey,
+        [int]$Priority = 2,
+        [string]$RequestedBy = 'local_owner'
+    )
+    if ([string]::IsNullOrWhiteSpace($IdempotencyKey) -or $IdempotencyKey.Length -gt 180 -or $IdempotencyKey -match '[\u0000-\u001F\u007F]') { throw 'Duty idempotency key is missing or invalid.' }
+    if ($Priority -lt 0 -or $Priority -gt 4) { throw 'Duty priority must be between zero and four.' }
+    $capabilityDefinition = Get-Arko95OpsCapability -Policy $Policy -CapabilityId $Capability
+    if ($null -eq $capabilityDefinition) { throw "Capability '$Capability' is not in the automatic broker allowlist." }
+    $normalizedParameters = ConvertTo-Arko95OpsParameters -Parameters $Parameters
+    $allowedFields = @($capabilityDefinition.allowed_parameter_fields | ForEach-Object { [string]$_ })
+    foreach ($parameterName in @($normalizedParameters.Keys)) {
+        if ($parameterName -notin $allowedFields) { throw "Capability '$Capability' does not accept parameter '$parameterName'." }
+    }
+    $requestMaterial = [ordered]@{ capability = $Capability; parameters = $normalizedParameters }
+    $requestHash = Get-Arko95OpsObjectHash -Value $requestMaterial
+    $keyHash = Get-Arko95OpsStringHash -Text $IdempotencyKey
+    $fileName = 'duty-' + $keyHash.Substring(0, 32) + '.json'
+    $existingPath = Find-Arko95OpsDutyPath -Paths $Paths -FileName $fileName
+    if (-not [string]::IsNullOrWhiteSpace($existingPath)) {
+        $existing = Read-Arko95OpsJson -Path $existingPath
+        if ([string]$existing.request_hash -cne $requestHash) { throw 'The idempotency key was reused for a different duty request.' }
+        return [pscustomobject]@{ Created = $false; Duty = $existing; Path = $existingPath }
+    }
+    if ((Get-Arko95OpsQueueCounts -Paths $Paths).pending -ge [int]$Policy.scheduler.max_queue_depth) { throw 'Operations duty queue is full.' }
+    $cleanRequestedBy = (($RequestedBy -replace '[\u0000-\u001F\u007F]+',' ') -replace '\s+',' ').Trim()
+    if ($cleanRequestedBy.Length -gt 80) { $cleanRequestedBy = $cleanRequestedBy.Substring(0,80) }
+    $duty = [ordered]@{
+        schema_version    = 1
+        duty_id           = 'duty-' + [guid]::NewGuid().ToString('D')
+        capability        = $Capability
+        parameters        = $normalizedParameters
+        idempotency_key   = $IdempotencyKey
+        request_hash      = $requestHash
+        requested_by      = $cleanRequestedBy
+        priority          = $Priority
+        status            = 'pending'
+        attempts          = 0
+        fence_token       = 0
+        created_at        = [DateTimeOffset]::UtcNow.ToString('o')
+        not_before        = $null
+        claimed_at        = $null
+        completed_at      = $null
+        failed_at         = $null
+        hold_reason       = ''
+        failure_reason    = ''
+        worker_instance   = ''
+        lease_id          = ''
+        policy_epoch      = 0
+        preflight         = $null
+        result            = $null
+        review_path       = $null
+        review_hash       = $null
+        duration_seconds  = $null
+        parent_final_judgment_required = $true
+        execution_authority = $false
+    }
+    $targetPath = Join-Path $Paths.Pending $fileName
+    Write-Arko95OpsJsonAtomic -Path $targetPath -Value $duty
+    try { $null = Add-Arko95OpsEvent -Paths $Paths -EventType 'duty_enqueued' -DutyId $duty.duty_id -Payload ([ordered]@{ capability = $Capability; request_hash = $requestHash; idempotency_key_hash = $keyHash; requested_by = $cleanRequestedBy }) }
+    catch {
+        $duty.status = 'held'
+        $duty.hold_reason = 'enqueue_receipt_failed'
+        Write-Arko95OpsJsonAtomic -Path $targetPath -Value $duty
+        [System.IO.File]::Move($targetPath, (Join-Path $Paths.Held $fileName), $true)
+        throw
+    }
+    return [pscustomobject]@{ Created = $true; Duty = [pscustomobject]$duty; Path = $targetPath }
+}
+
+function New-Arko95OperationsDuty {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [Parameter(Mandatory)][string]$Capability,
+        [Parameter(Mandatory)][string]$IdempotencyKey,
+        [AllowNull()]$Parameters = $null,
+        [int]$Priority = 2,
+        [string]$RequestedBy = 'local_owner',
+        [string]$StateRoot
+    )
+    $mutex = $null
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        $policy = Get-Arko95OperationsPolicy -ProjectRoot $ProjectRoot
+        return Add-Arko95OpsDutyUnlocked -Paths $paths -Policy $policy -Capability $Capability -Parameters $Parameters -IdempotencyKey $IdempotencyKey -Priority $Priority -RequestedBy $RequestedBy
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+function Add-Arko95OpsRecurringDuties {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Policy
+    )
+    $nowSeconds = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+    $created = 0
+    foreach ($schedule in @($Policy.recurring_duties)) {
+        $everySeconds = [int]$schedule.every_seconds
+        $bucket = [math]::Floor($nowSeconds / $everySeconds)
+        $key = 'schedule:{0}:{1}' -f [string]$schedule.id, [int64]$bucket
+        $result = Add-Arko95OpsDutyUnlocked -Paths $Paths -Policy $Policy -Capability ([string]$schedule.capability) -Parameters ([ordered]@{}) -IdempotencyKey $key -Priority ([int]$schedule.priority) -RequestedBy 'operations_scheduler'
+        if ($result.Created) { $created++ }
+    }
+    return $created
+}
+
+function Write-Arko95OpsReportResult {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Duty,
+        [Parameter(Mandatory)][string]$ReportKind,
+        [Parameter(Mandatory)]$Report,
+        [string]$Summary = 'completed'
+    )
+    $safeKind = $ReportKind -replace '[^a-z0-9_-]','-'
+    $reportPath = Join-Path $Paths.Reports ('{0}-{1}.json' -f $safeKind, [string]$Duty.duty_id)
+    Write-Arko95OpsJsonAtomic -Path $reportPath -Value $Report
+    $hash = (Get-FileHash -LiteralPath $reportPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    [pscustomobject]@{
+        Success        = $true
+        Summary        = $Summary
+        ArtifactPaths  = @($reportPath)
+        ArtifactHashes = [ordered]@{ $reportPath = $hash }
+        Reversible     = $true
+        Rollback       = 'Archive this generated report inside operations state after owner review.'
+    }
+}
+
+function Invoke-Arko95OpsCapability {
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)]$CapabilityDefinition,
+        [Parameter(Mandatory)]$Duty
+    )
+    $handler = [string]$CapabilityDefinition.handler
+    switch ($handler) {
+        'system_health_snapshot' {
+            $snapshot = Get-Arko95OpsResourceSnapshot -ProjectRoot $ProjectRoot
+            $admission = Test-Arko95OpsResourceAdmission -Policy $Policy -Snapshot $snapshot
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'system_health_snapshot'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                snapshot = $snapshot
+                admission = [ordered]@{ admitted = $admission.Admitted; reasons = @($admission.Reasons) }
+                scope = 'coarse_nonsecret_local_health'
+            }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'health' -Report $report -Summary 'Coarse local system health captured.'
+        }
+        'receipt_chain_audit' {
+            $chain = Get-Arko95OpsReceiptChainStatus -Paths $Paths
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'receipt_chain_audit'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                valid = $chain.Valid
+                event_count = $chain.EventCount
+                head_hash = $chain.HeadHash
+                error = $chain.Error
+                limitation = 'Hash chaining detects accidental or ordinary modification but is not an external immutable anchor.'
+            }
+            if (-not $chain.Valid) { throw "Receipt chain audit failed: $($chain.Error)" }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'receipt-audit' -Report $report -Summary 'Operations receipt chain verified.'
+        }
+        'delegation_receipt_verify' {
+            $available = Test-Path -LiteralPath $Paths.DelegationPlan -PathType Leaf
+            $valid = if ($available) { Test-Arko95DelegationReceipt -PlanPath $Paths.DelegationPlan } else { $false }
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'delegation_receipt_verify'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                available = $available
+                valid = $valid
+                plan_path = if ($available) { $Paths.DelegationPlan } else { $null }
+                interpretation = if (-not $available) { 'No delegation receipt has been staged.' } elseif ($valid) { 'Delegation receipt is internally consistent.' } else { 'Delegation receipt failed verification.' }
+            }
+            if ($available -and -not $valid) { throw 'The latest delegation receipt failed verification.' }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'delegation-audit' -Report $report -Summary $(if ($available) { 'Delegation receipt verified.' } else { 'No delegation receipt was available; no authority inferred.' })
+        }
+        'operations_brief' {
+            $queue = Get-Arko95OpsQueueCounts -Paths $Paths
+            $control = Read-Arko95OpsJson -Path $Paths.Control
+            $runtime = Read-Arko95OpsJson -Path $Paths.Runtime
+            $lease = Read-Arko95OpsJson -Path $Paths.Lease
+            $chain = Get-Arko95OpsReceiptChainStatus -Paths $Paths
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'operations_brief'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                control = [ordered]@{ desired_state = $control.desired_state; kill_latched = $control.kill_latched; reason = $control.reason; policy_epoch = $control.policy_epoch }
+                circuit = [ordered]@{ state = $runtime.circuit_state; last_fault = $runtime.last_fault; failures = $runtime.consecutive_failures }
+                lease = [ordered]@{ status = $lease.status; lease_id = $lease.lease_id; expires_at = $lease.expires_at; invocations_today = $lease.invocations_today }
+                queue = $queue
+                receipt_chain = [ordered]@{ valid = $chain.Valid; event_count = $chain.EventCount; head_hash = $chain.HeadHash }
+                authority = 'Only enumerated R0/R1 handlers; all consequential actions remain gated.'
+            }
+            $result = Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'brief' -Report $report -Summary 'Operations brief generated.'
+            Write-Arko95OpsJsonAtomic -Path $Paths.LatestBrief -Value $report
+            $latestHash = (Get-FileHash -LiteralPath $Paths.LatestBrief -Algorithm SHA256).Hash.ToLowerInvariant()
+            $result.ArtifactPaths = @($result.ArtifactPaths) + @($Paths.LatestBrief)
+            $result.ArtifactHashes[$Paths.LatestBrief] = $latestHash
+            return $result
+        }
+        'operations_workspace_maintain' {
+            $directories = @($Paths.Pending,$Paths.Working,$Paths.Completed,$Paths.Failed,$Paths.Held,$Paths.Reports,$Paths.Reviews)
+            $checks = foreach ($directory in $directories) {
+                $item = Get-Item -LiteralPath $directory -Force -ErrorAction Stop
+                [ordered]@{ path = $directory; exists = $true; reparse_point = (($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) }
+            }
+            if (@($checks | Where-Object { $_.reparse_point }).Count -gt 0) { throw 'An operations workspace directory became a reparse point.' }
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'operations_workspace_maintain'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                directories = $checks
+                queue = Get-Arko95OpsQueueCounts -Paths $Paths
+                effect = 'verify_and_create_only; no user data deleted or moved'
+            }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'workspace' -Report $report -Summary 'Operations workspace boundaries verified.'
+        }
+        default { throw "Handler '$handler' is not compiled into Operations VP." }
+    }
+}
+
+function Invoke-Arko95OpsPreflightReview {
+    param(
+        [Parameter(Mandatory)]$Duty,
+        [Parameter(Mandatory)]$CapabilityDefinition,
+        [Parameter(Mandatory)]$Control,
+        [Parameter(Mandatory)]$Lease,
+        [Parameter(Mandatory)]$Policy
+    )
+    $reasons = [Collections.Generic.List[string]]::new()
+    if ([bool]$Control.kill_latched -or [string]$Control.desired_state -ne 'running') { $reasons.Add('kill_latch_or_control_not_running') }
+    if ([string]$Lease.status -ne 'active') { $reasons.Add('lease_not_active') }
+    if ([int]$Lease.policy_epoch -ne [int]$Control.policy_epoch) { $reasons.Add('lease_epoch_mismatch') }
+    if ([string]$Duty.capability -notin @($Lease.allowed_capabilities | ForEach-Object { [string]$_ })) { $reasons.Add('capability_not_in_lease') }
+    if ([string]$CapabilityDefinition.risk_tier -notin @($Policy.lease.automatic_risk_tiers | ForEach-Object { [string]$_ })) { $reasons.Add('risk_tier_not_automatic') }
     if ([bool]$Duty.execution_authority) { $reasons.Add('duty_claimed_its_own_authority') }
     [pscustomobject]@{
         reviewer = 'policy_sentinel'
@@ -657,4 +1075,3 @@ function Invoke-Arko95OperationsCycle {
 }
 
 Export-ModuleMember -Function Get-Arko95OperationsPaths, Get-Arko95OperationsPolicy, Initialize-Arko95Operations, Enable-Arko95Operations, Stop-Arko95Operations, Get-Arko95OperationsStatus, Test-Arko95OperationsReceiptChain, New-Arko95OperationsDuty, Invoke-Arko95OperationsCycle
-
