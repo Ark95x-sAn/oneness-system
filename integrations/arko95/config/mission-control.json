@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "identity": "ARKO-95 Mission Control",
+  "operating_principle": "one_objective_one_state_one_evidence_chain",
+  "maximum_open_missions": 1,
+  "default_effect": "proposal_only",
+  "external_notification_default": false,
+  "learning_promotion_default": "proposed_only",
+  "stages": [
+    {
+      "id": "intake",
+      "label": "1. INTAKE",
+      "owner_lane": "signal_scout",
+      "meaning": "Register one bounded owner objective, constraints, success criteria, and admitted sources."
+    },
+    {
+      "id": "decompose",
+      "label": "2. DECOMPOSE",
+      "owner_lane": "path_architect",
+      "meaning": "Break the objective into typed tasks with dependencies and acceptance evidence."
+    },
+    {
+      "id": "route_delegate",
+      "label": "3. ROUTE & DELEGATE",
+      "owner_lane": "tool_router",
+      "meaning": "Bind narrow specialists and routing hints without granting execution authority."
+    },
+    {
+      "id": "execute",
+      "label": "4. EXECUTE",
+      "owner_lane": "operations_vp",
+      "meaning": "Queue only a compiled, leased, low-risk Operations VP duty; all other work holds."
+    },
+    {
+      "id": "verify",
+      "label": "5. VERIFY",
+      "owner_lane": "proof_verifier",
+      "meaning": "Independently test the duty result against the mission success criteria."
+    },
+    {
+      "id": "persist_learn",
+      "label": "6. PERSIST & LEARN",
+      "owner_lane": "receipt_archivist",
+      "meaning": "Seal artifacts and propose source-linked lessons; never auto-promote policy or memory."
+    },
+    {
+      "id": "notify_present",
+      "label": "7. NOTIFY & PRESENT",
+      "owner_lane": "parent_integrator",
+      "meaning": "Present a local delta, proof, limits, and the next owner decision. Nothing is sent externally."
+    }
+  ],
+  "team_lanes": [
+    {
+      "id": "parent_integrator",
+      "name": "ARKO Integrator",
+      "responsibility": "Own the objective, architecture, conflict resolution, final validation, and final judgment.",
+      "may_approve": true,
+      "may_execute": false
+    },
+    {
+      "id": "signal_scout",
+      "name": "Signal Scout",
+      "responsibility": "Register admitted signals and distinguish facts, inferences, assumptions, and gaps.",
+      "may_approve": false,
+      "may_execute": false
+    },
+    {
+      "id": "path_architect",
+      "name": "Path Architect",
+      "responsibility": "Decompose the objective and define acceptance evidence.",
+      "may_approve": false,
+      "may_execute": false
+    },
+    {
+      "id": "tool_router",
+      "name": "Tool Router",
+      "responsibility": "Select proposal-only specialist and connector hints after live verification.",
+      "may_approve": false,
+      "may_execute": false
+    },
+    {
+      "id": "operations_vp",
+      "name": "Operations VP",
+      "responsibility": "Run only the five compiled local R0/R1 duties under the revocable lease.",
+      "may_approve": false,
+      "may_execute": true
+    },
+    {
+      "id": "proof_verifier",
+      "name": "Proof Verifier",
+      "responsibility": "Verify mechanics and evidence independently from the producer.",
+      "may_approve": false,
+      "may_execute": false
+    },
+    {
+      "id": "receipt_archivist",
+      "name": "Receipt Archivist",
+      "responsibility": "Preserve linked receipts, originals, derivatives, contradictions, and limitations.",
+      "may_approve": false,
+      "may_execute": false
+    }
+  ],
+  "allowed_operations_capabilities": [
+    "observe.system_health",
+    "audit.receipt_chain",
+    "verify.delegation_receipt",
+    "report.operations_brief",
+    "maintain.operations_workspace"
+  ],
+  "adapters": [
+    {
+      "id": "openclaw_companion",
+      "role": "proposal_and_status_adapter",
+      "effect": "proposal_only",
+      "may_write_mission_events": false,
+      "may_invoke_operations": false,
+      "may_approve": false,
+      "may_clear_kill_latch": false,
+      "requires_fresh_observation": true
+    }
+  ],
+  "sensor_acceptance": {
+    "catalog_entry_is_availability": false,
+    "required_receipt_fields": [
+      "sensor_id",
+      "adapter_id",
+      "adapter_version",
+      "host_or_tenant",
+      "observed_at",
+      "fresh_until",
+      "source_reference",
+      "observation_sha256"
+    ],
+    "unverified_state": "unavailable"
+  },
+  "hard_denials": [
+    "ui_or_adapter_authored_stage",
+    "content_authored_control_event",
+    "stage_skip",
+    "worker_self_approval",
+    "connector_or_sensor_inferred_authority",
+    "generic_handler_command_or_script_dispatch",
+    "automatic_external_notification",
+    "automatic_memory_or_policy_promotion",
+    "unsupported_sensor_claim",
+    "objective_drift_inside_a_mission"
+  ]
+}
