@@ -571,6 +571,82 @@ function ConvertTo-Arko95OpsParameters {
     return $normalized
 }
 
+function Resolve-Arko95OpsContainedArtifactPath {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)][string]$Directory,
+        [Parameter(Mandatory)][string]$FileName
+    )
+    if ([string]::IsNullOrWhiteSpace($FileName) -or [IO.Path]::IsPathRooted($FileName) -or [IO.Path]::GetFileName($FileName) -cne $FileName -or $FileName -match '[\\/\u0000-\u001F\u007F]') { throw 'Operations artifact filename is unsafe.' }
+    $rootFull=[IO.Path]::GetFullPath([string]$Paths.Root).TrimEnd([IO.Path]::DirectorySeparatorChar,[IO.Path]::AltDirectorySeparatorChar)
+    $directoryFull=[IO.Path]::GetFullPath($Directory).TrimEnd([IO.Path]::DirectorySeparatorChar,[IO.Path]::AltDirectorySeparatorChar)
+    if(-not ($directoryFull -ceq $rootFull -or $directoryFull.StartsWith($rootFull+[IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase))){ throw 'Operations artifact directory escaped operations state.' }
+    $directoryItem=Get-Item -LiteralPath $directoryFull -Force -ErrorAction Stop
+    if(($directoryItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0){ throw 'Operations artifact directory is a reparse point.' }
+    $candidate=[IO.Path]::GetFullPath((Join-Path $directoryFull $FileName))
+    if(-not $candidate.StartsWith($directoryFull+[IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)){ throw 'Operations artifact path escaped its declared directory.' }
+    return $candidate
+}
+
+function Test-Arko95OpsDutyReceiptBinding {
+    param([Parameter(Mandatory)]$Paths,[Parameter(Mandatory)]$Duty,[Parameter(Mandatory)][string]$IdempotencyKeyHash)
+    $dutyId=[string](Get-Arko95OpsProperty -InputObject $Duty -Name 'duty_id' -Default '')
+    $requestHash=[string](Get-Arko95OpsProperty -InputObject $Duty -Name 'request_hash' -Default '')
+    $matched=$false
+    if(-not (Test-Path -LiteralPath $Paths.Receipts -PathType Leaf)){ return $false }
+    foreach($line in [IO.File]::ReadLines($Paths.Receipts)){
+        if([string]::IsNullOrWhiteSpace($line)){continue}
+        $event=$line|Microsoft.PowerShell.Utility\ConvertFrom-Json -DateKind String -ErrorAction Stop
+        if([string](Get-Arko95OpsProperty -InputObject $event -Name 'duty_id' -Default '') -cne $dutyId){continue}
+        $eventType=[string](Get-Arko95OpsProperty -InputObject $event -Name 'event_type' -Default '')
+        if($eventType -eq 'duty_enqueued'){
+            $payload=Get-Arko95OpsProperty -InputObject $event -Name 'payload'
+            if($matched -or [string](Get-Arko95OpsProperty -InputObject $payload -Name 'request_hash' -Default '') -cne $requestHash -or [string](Get-Arko95OpsProperty -InputObject $payload -Name 'idempotency_key_hash' -Default '') -cne $IdempotencyKeyHash){return $false}
+            $matched=$true
+            continue
+        }
+        if($eventType -in @('duty_claimed','duty_verified','duty_failed')){return $false}
+    }
+    return $matched
+}
+
+function Test-Arko95OpsPendingDuty {
+    param([Parameter(Mandatory)]$Paths,[Parameter(Mandatory)]$Policy,[Parameter(Mandatory)]$Duty,[Parameter(Mandatory)][string]$QueuePath)
+    $reasons=[Collections.Generic.List[string]]::new()
+    $expectedFields=@('schema_version','duty_id','capability','parameters','idempotency_key','request_hash','requested_by','priority','status','attempts','fence_token','created_at','not_before','claimed_at','completed_at','failed_at','hold_reason','failure_reason','worker_instance','lease_id','policy_epoch','preflight','result','review_path','review_hash','duration_seconds','parent_final_judgment_required','execution_authority')
+    $actualFields=@($Duty.PSObject.Properties.Name)
+    if(@($expectedFields|Where-Object{$_ -notin $actualFields}).Count -gt 0 -or @($actualFields|Where-Object{$_ -notin $expectedFields}).Count -gt 0){$reasons.Add('duty_schema_fields_invalid')}
+    if([int](Get-Arko95OpsProperty -InputObject $Duty -Name 'schema_version' -Default 0) -ne 1){$reasons.Add('duty_schema_version_invalid')}
+    $dutyId=[string](Get-Arko95OpsProperty -InputObject $Duty -Name 'duty_id' -Default '')
+    if($dutyId -cnotmatch '^duty-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'){$reasons.Add('duty_id_invalid')}
+    if([string](Get-Arko95OpsProperty -InputObject $Duty -Name 'status' -Default '') -ne 'pending'){$reasons.Add('duty_status_invalid')}
+    if([bool](Get-Arko95OpsProperty -InputObject $Duty -Name 'execution_authority' -Default $true)){$reasons.Add('duty_claimed_authority')}
+    if(-not [bool](Get-Arko95OpsProperty -InputObject $Duty -Name 'parent_final_judgment_required' -Default $false)){$reasons.Add('parent_judgment_flag_missing')}
+    if([int](Get-Arko95OpsProperty -InputObject $Duty -Name 'attempts' -Default -1) -ne 0 -or [int](Get-Arko95OpsProperty -InputObject $Duty -Name 'fence_token' -Default -1) -ne 0){$reasons.Add('pending_duty_counters_invalid')}
+    if([int](Get-Arko95OpsProperty -InputObject $Duty -Name 'priority' -Default -1) -lt 0 -or [int](Get-Arko95OpsProperty -InputObject $Duty -Name 'priority' -Default 5) -gt 4){$reasons.Add('duty_priority_invalid')}
+    foreach($emptyField in @('claimed_at','completed_at','failed_at','preflight','result','review_path','review_hash','duration_seconds')){if($null -ne (Get-Arko95OpsProperty -InputObject $Duty -Name $emptyField)){$reasons.Add('pending_duty_output_fields_not_empty');break}}
+    foreach($blankField in @('hold_reason','failure_reason','worker_instance','lease_id')){if(-not [string]::IsNullOrEmpty([string](Get-Arko95OpsProperty -InputObject $Duty -Name $blankField -Default 'x'))){$reasons.Add('pending_duty_state_fields_not_blank');break}}
+    if([int](Get-Arko95OpsProperty -InputObject $Duty -Name 'policy_epoch' -Default -1) -ne 0){$reasons.Add('pending_duty_policy_epoch_invalid')}
+    $created=[DateTimeOffset]::MinValue
+    if(-not [DateTimeOffset]::TryParse([string](Get-Arko95OpsProperty -InputObject $Duty -Name 'created_at' -Default ''),[ref]$created)){$reasons.Add('duty_created_at_invalid')}
+    $notBeforeValue=Get-Arko95OpsProperty -InputObject $Duty -Name 'not_before'
+    if($null -ne $notBeforeValue){$notBefore=[DateTimeOffset]::MinValue;if(-not [DateTimeOffset]::TryParse([string]$notBeforeValue,[ref]$notBefore)){$reasons.Add('duty_not_before_invalid')}}
+    $idempotencyKey=[string](Get-Arko95OpsProperty -InputObject $Duty -Name 'idempotency_key' -Default '')
+    if([string]::IsNullOrWhiteSpace($idempotencyKey) -or $idempotencyKey.Length -gt 180 -or $idempotencyKey -match '[\u0000-\u001F\u007F]'){$reasons.Add('duty_idempotency_key_invalid')}
+    $keyHash=if([string]::IsNullOrWhiteSpace($idempotencyKey)){''}else{Get-Arko95OpsStringHash -Text $idempotencyKey}
+    $expectedFileName=if([string]::IsNullOrWhiteSpace($keyHash)){''}else{'duty-'+$keyHash.Substring(0,32)+'.json'}
+    if([IO.Path]::GetFileName($QueuePath) -cne $expectedFileName){$reasons.Add('duty_queue_filename_mismatch')}
+    $capability=[string](Get-Arko95OpsProperty -InputObject $Duty -Name 'capability' -Default '')
+    $capabilityDefinition=Get-Arko95OpsCapability -Policy $Policy -CapabilityId $capability
+    if($null -eq $capabilityDefinition){$reasons.Add('duty_capability_invalid')}
+    $parameters=ConvertTo-Arko95OpsParameters -Parameters (Get-Arko95OpsProperty -InputObject $Duty -Name 'parameters')
+    if($null -ne $capabilityDefinition){foreach($parameterName in @($parameters.Keys)){if($parameterName -notin @($capabilityDefinition.allowed_parameter_fields|ForEach-Object{[string]$_})){$reasons.Add('duty_parameter_invalid');break}}}
+    $computedRequestHash=Get-Arko95OpsObjectHash -Value ([ordered]@{capability=$capability;parameters=$parameters})
+    if([string](Get-Arko95OpsProperty -InputObject $Duty -Name 'request_hash' -Default '') -cne $computedRequestHash){$reasons.Add('duty_request_hash_mismatch')}
+    if($reasons.Count -eq 0 -and -not (Test-Arko95OpsDutyReceiptBinding -Paths $Paths -Duty $Duty -IdempotencyKeyHash $keyHash)){$reasons.Add('duty_enqueue_receipt_missing_or_replayed')}
+    [pscustomobject]@{Passed=($reasons.Count -eq 0);Reasons=$reasons.ToArray();SafeDutyId=$(if($dutyId -cmatch '^duty-[0-9a-f-]{36}$'){$dutyId}else{''})}
+}
+
 function Find-Arko95OpsDutyPath {
     param(
         [Parameter(Mandatory)]$Paths,
@@ -703,10 +779,14 @@ function Write-Arko95OpsReportResult {
         [Parameter(Mandatory)]$Duty,
         [Parameter(Mandatory)][string]$ReportKind,
         [Parameter(Mandatory)]$Report,
+        [Parameter(Mandatory)][DateTimeOffset]$EffectNotAfter,
         [string]$Summary = 'completed'
     )
+    if([DateTimeOffset]::UtcNow -ge $EffectNotAfter){throw 'operation_effect_deadline_elapsed'}
+    $dutyId=[string](Get-Arko95OpsProperty -InputObject $Duty -Name 'duty_id' -Default '')
+    if($dutyId -cnotmatch '^duty-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'){throw 'operation_duty_id_invalid_before_artifact_write'}
     $safeKind = $ReportKind -replace '[^a-z0-9_-]','-'
-    $reportPath = Join-Path $Paths.Reports ('{0}-{1}.json' -f $safeKind, [string]$Duty.duty_id)
+    $reportPath = Resolve-Arko95OpsContainedArtifactPath -Paths $Paths -Directory $Paths.Reports -FileName ('{0}-{1}.json' -f $safeKind,$dutyId)
     Write-Arko95OpsJsonAtomic -Path $reportPath -Value $Report
     $hash = (Get-FileHash -LiteralPath $reportPath -Algorithm SHA256).Hash.ToLowerInvariant()
     [pscustomobject]@{
@@ -725,7 +805,8 @@ function Invoke-Arko95OpsCapability {
         [Parameter(Mandatory)]$Paths,
         [Parameter(Mandatory)]$Policy,
         [Parameter(Mandatory)]$CapabilityDefinition,
-        [Parameter(Mandatory)]$Duty
+        [Parameter(Mandatory)]$Duty,
+        [Parameter(Mandatory)][DateTimeOffset]$EffectNotAfter
     )
     $handler = [string]$CapabilityDefinition.handler
     switch ($handler) {
@@ -741,7 +822,7 @@ function Invoke-Arko95OpsCapability {
                 admission = [ordered]@{ admitted = $admission.Admitted; reasons = @($admission.Reasons) }
                 scope = 'coarse_nonsecret_local_health'
             }
-            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'health' -Report $report -Summary 'Coarse local system health captured.'
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'health' -Report $report -EffectNotAfter $EffectNotAfter -Summary 'Coarse local system health captured.'
         }
         'receipt_chain_audit' {
             $chain = Get-Arko95OpsReceiptChainStatus -Paths $Paths
@@ -757,7 +838,7 @@ function Invoke-Arko95OpsCapability {
                 limitation = 'Hash chaining detects accidental or ordinary modification but is not an external immutable anchor.'
             }
             if (-not $chain.Valid) { throw "Receipt chain audit failed: $($chain.Error)" }
-            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'receipt-audit' -Report $report -Summary 'Operations receipt chain verified.'
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'receipt-audit' -Report $report -EffectNotAfter $EffectNotAfter -Summary 'Operations receipt chain verified.'
         }
         'delegation_receipt_verify' {
             $available = Test-Path -LiteralPath $Paths.DelegationPlan -PathType Leaf
@@ -773,7 +854,7 @@ function Invoke-Arko95OpsCapability {
                 interpretation = if (-not $available) { 'No delegation receipt has been staged.' } elseif ($valid) { 'Delegation receipt is internally consistent.' } else { 'Delegation receipt failed verification.' }
             }
             if ($available -and -not $valid) { throw 'The latest delegation receipt failed verification.' }
-            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'delegation-audit' -Report $report -Summary $(if ($available) { 'Delegation receipt verified.' } else { 'No delegation receipt was available; no authority inferred.' })
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'delegation-audit' -Report $report -EffectNotAfter $EffectNotAfter -Summary $(if ($available) { 'Delegation receipt verified.' } else { 'No delegation receipt was available; no authority inferred.' })
         }
         'operations_brief' {
             $queue = Get-Arko95OpsQueueCounts -Paths $Paths
@@ -793,7 +874,8 @@ function Invoke-Arko95OpsCapability {
                 receipt_chain = [ordered]@{ valid = $chain.Valid; event_count = $chain.EventCount; head_hash = $chain.HeadHash }
                 authority = 'Only enumerated R0/R1 handlers; all consequential actions remain gated.'
             }
-            $result = Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'brief' -Report $report -Summary 'Operations brief generated.'
+            $result = Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'brief' -Report $report -EffectNotAfter $EffectNotAfter -Summary 'Operations brief generated.'
+            if([DateTimeOffset]::UtcNow -ge $EffectNotAfter){throw 'operation_effect_deadline_elapsed'}
             Write-Arko95OpsJsonAtomic -Path $Paths.LatestBrief -Value $report
             $latestHash = (Get-FileHash -LiteralPath $Paths.LatestBrief -Algorithm SHA256).Hash.ToLowerInvariant()
             $result.ArtifactPaths = @($result.ArtifactPaths) + @($Paths.LatestBrief)
@@ -816,7 +898,7 @@ function Invoke-Arko95OpsCapability {
                 queue = Get-Arko95OpsQueueCounts -Paths $Paths
                 effect = 'verify_and_create_only; no user data deleted or moved'
             }
-            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'workspace' -Report $report -Summary 'Operations workspace boundaries verified.'
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'workspace' -Report $report -EffectNotAfter $EffectNotAfter -Summary 'Operations workspace boundaries verified.'
         }
         default { throw "Handler '$handler' is not compiled into Operations VP." }
     }
@@ -977,6 +1059,13 @@ function Invoke-Arko95OperationsCycle {
         $pending = [Collections.Generic.List[object]]::new()
         foreach ($file in @(Get-ChildItem -LiteralPath $paths.Pending -Filter '*.json' -File -ErrorAction Stop)) {
             $duty = Read-Arko95OpsJson -Path $file.FullName
+            $dutyValidation=Test-Arko95OpsPendingDuty -Paths $paths -Policy $policy -Duty $duty -QueuePath $file.FullName
+            if(-not $dutyValidation.Passed){
+                $null=Move-Arko95OpsDuty -Source $file.FullName -DestinationDirectory $paths.Held
+                $reason='invalid_pending_duty:' + (@($dutyValidation.Reasons)-join ',')
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason $reason -DutyId ([string]$dutyValidation.SafeDutyId) -FaultClass 'queue_integrity'
+                throw 'A pending duty failed schema, request, path, or enqueue-receipt validation.'
+            }
             $notBeforeReady = $true
             if (-not [string]::IsNullOrWhiteSpace([string]$duty.not_before)) {
                 $notBefore = [DateTimeOffset]::MinValue
@@ -1041,15 +1130,17 @@ function Invoke-Arko95OperationsCycle {
                 if (-not $chainBeforeEffect.Valid) { throw 'receipt_chain_invalid_before_effect' }
                 $leaseBeforeEffectState=Get-Arko95OpsLeaseAuthorityState -Lease $leaseBeforeEffect -Control $controlBeforeEffect -MinimumRemainingSeconds ([double]$capabilityDefinition.maximum_seconds)
                 if (-not $leaseBeforeEffectState.Valid -or [string]$leaseBeforeEffect.lease_id -cne [string]$duty.lease_id) { throw ('lease_invalid_before_effect:' + $leaseBeforeEffectState.Reason) }
+                $handlerNotAfter=[DateTimeOffset]::UtcNow.AddSeconds([double]$capabilityDefinition.maximum_seconds)
+                $effectNotAfter=if($handlerNotAfter -lt $leaseBeforeEffectState.AbsoluteNotAfter){$handlerNotAfter}else{$leaseBeforeEffectState.AbsoluteNotAfter}
                 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-                $result = Invoke-Arko95OpsCapability -ProjectRoot $ProjectRoot -Paths $paths -Policy $policy -CapabilityDefinition $capabilityDefinition -Duty $duty
+                $result = Invoke-Arko95OpsCapability -ProjectRoot $ProjectRoot -Paths $paths -Policy $policy -CapabilityDefinition $capabilityDefinition -Duty $duty -EffectNotAfter $effectNotAfter
                 $stopwatch.Stop()
                 $leaseAfterEffect=Read-Arko95OpsJson -Path $paths.Lease
                 $controlAfterEffect=Read-Arko95OpsJson -Path $paths.Control
                 $leaseAfterEffectState=Get-Arko95OpsLeaseAuthorityState -Lease $leaseAfterEffect -Control $controlAfterEffect
                 if (-not $leaseAfterEffectState.Valid -or [string]$leaseAfterEffect.lease_id -cne [string]$duty.lease_id) { throw ('lease_invalid_after_effect:' + $leaseAfterEffectState.Reason) }
                 $review = Invoke-Arko95OpsPostReview -Paths $paths -Duty $duty -CapabilityDefinition $capabilityDefinition -Result $result -DurationSeconds $stopwatch.Elapsed.TotalSeconds -Preflight $preflight
-                $reviewPath = Join-Path $paths.Reviews (([string]$duty.duty_id) + '.json')
+                $reviewPath = Resolve-Arko95OpsContainedArtifactPath -Paths $paths -Directory $paths.Reviews -FileName (([string]$duty.duty_id) + '.json')
                 Write-Arko95OpsJsonAtomic -Path $reviewPath -Value ([ordered]@{ schema_version=1; duty_id=$duty.duty_id; capability=$duty.capability; duration_seconds=[math]::Round($stopwatch.Elapsed.TotalSeconds,3); decision=$review.decision; parent_final_judgment_required=$true; reviews=$review.reviews; created_at=[DateTimeOffset]::UtcNow.ToString('o') })
                 $reviewHash = (Get-FileHash -LiteralPath $reviewPath -Algorithm SHA256).Hash.ToLowerInvariant()
                 if (-not $review.passed) {

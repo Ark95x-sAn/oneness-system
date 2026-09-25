@@ -30,6 +30,7 @@ function Test-Arko95ScheduledTaskOwnership {
         [Parameter(Mandatory)][string]$ExpectedArguments,
         [Parameter(Mandatory)][string]$ExpectedWorkingDirectory
     )
+    if(@($Task).Count -ne 1){return $false}
     $actions=@($Task.Actions)
     if ($actions.Count -ne 1) { return $false }
     try {
@@ -37,7 +38,14 @@ function Test-Arko95ScheduledTaskOwnership {
         $actualWorkingDirectory=[IO.Path]::GetFullPath([string]$actions[0].WorkingDirectory)
     }
     catch { return $false }
-    return $actualExecutable.Equals([IO.Path]::GetFullPath($ExpectedExecutable),[StringComparison]::OrdinalIgnoreCase) -and
+    $expectedUsers=@([string]$env:USERNAME,('{0}\{1}' -f $env:USERDOMAIN,$env:USERNAME))
+    $principalValid=([string]$Task.Principal.UserId -iin $expectedUsers) -and [string]$Task.Principal.LogonType -eq 'Interactive' -and [string]$Task.Principal.RunLevel -eq 'Limited'
+    $triggers=@($Task.Triggers)
+    if($triggers.Count -ne 1 -or [string]$triggers[0].CimClass.CimClassName -ne 'MSFT_TaskTimeTrigger'){return $false}
+    try{$interval=[Xml.XmlConvert]::ToTimeSpan([string]$triggers[0].Repetition.Interval);$executionLimit=[Xml.XmlConvert]::ToTimeSpan([string]$Task.Settings.ExecutionTimeLimit)}catch{return $false}
+    $scheduleValid=$interval.TotalMinutes -ge 1 -and $interval.TotalMinutes -le 60 -and $executionLimit -eq [TimeSpan]::FromMinutes(2) -and [string]$Task.Settings.MultipleInstances -eq 'IgnoreNew'
+    return [string]$Task.TaskPath -eq '\' -and $principalValid -and $scheduleValid -and
+        $actualExecutable.Equals([IO.Path]::GetFullPath($ExpectedExecutable),[StringComparison]::OrdinalIgnoreCase) -and
         ([string]$actions[0].Arguments -ceq $ExpectedArguments) -and
         $actualWorkingDirectory.Equals([IO.Path]::GetFullPath($ExpectedWorkingDirectory),[StringComparison]::OrdinalIgnoreCase)
 }

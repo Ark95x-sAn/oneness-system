@@ -76,6 +76,8 @@ Agency-owned state is under `state/agency`:
 
 Verification checks the event links, head, and hashes of the latest catalog, backlog, and policy. It detects ordinary edits and clean tail truncation against the checkpoint. It is not an external transparency service: a malicious same-user process that can rewrite the entire journal and checkpoint remains outside the guarantee.
 
+Privacy migration refuses to run unless the current catalog is already a hardened content-free, path-free snapshot containing only fixed extension categories. It can then delete older agency-generated raw-label snapshots and append their hashes to a linked migration event; it never edits a source root.
+
 ## Current production baseline
 
 The hardened production refresh on 2026-09-24 admitted two of eight configured roots, counted 44 files and 501,124 logical bytes, and created six `verify_source_boundary` proposals. Six intended OneDrive roots were denied because a source or ancestor is a reparse point. That is a safe hold, not a claim that the data is absent. A following privacy migration removed two pre-hardening agency-generated snapshots, retained their SHA-256 hashes in a linked migration event, and changed no source data.

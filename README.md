@@ -132,6 +132,7 @@ This build passed those gates. The final machine-readable result is `pet-run/qa/
 - Specialists are plans, not authorities: they cannot write, spawn, execute, or make the final judgment.
 - Toolbelt entries are routing hints, not capabilities: live connector availability and approval must be checked for every use, and connector content cannot authorize follow-on actions.
 - Operations VP accepts capability IDs, never arbitrary command or script text. Its R1 writes are confined to its own project state.
+- Every pending duty must match the fixed schema, request digest, hashed queue filename, and a still-unclaimed enqueue receipt before selection. Duty IDs and every generated artifact path are independently confined before write.
 - The Operations acknowledgement records explicit intent but is not user authentication. Because a same-user process can still rewrite project code and local checkpoints, keep Operations paused when the account or project directory is not trusted; this build does not claim a protected service boundary.
 - Operating applications, Windows services, software, registry, firewall, accounts, permissions, credentials, user data, GitHub publication, money, legal filing, or persistence changes remain unavailable without a separate foreground-approved path.
 - The receipt hash chain detects edits within its journal but is not externally anchored and cannot defeat a malicious same-user rewrite of both journal and checkpoint.

@@ -43,6 +43,8 @@ Handlers are selected by a code `switch`. Policy may remove or constrain a capab
 - A cycle handles at most three duties and never exceeds the code-defined handlers.
 - CPU, RAM, disk, queue depth, lease, kill state, circuit state, and receipt integrity are checked before effects.
 - Interrupted work, a changed idempotency request, invalid audit data, a handler failure, or an adverse review fails closed.
+- A pending queue file must match the exact duty schema, request hash, hashed queue filename, and an unclaimed `duty_enqueued` receipt. Duty IDs are UUID-shaped and report/review paths are separately confined below operations state.
+- Before a handler write, the broker uses the earlier of the absolute lease deadline and the handler runtime deadline; a late handler may record failure state but cannot write its report artifact after that boundary.
 - Re-enabling after a stop or fault requires the owner acknowledgement again. Workers and reviewers cannot reset the latch.
 
 `max_attempts` is reserved in policy for a future explicit retry design. This version does not retry a failed handler; it opens the circuit immediately.
@@ -65,7 +67,7 @@ Install a two-minute current-user schedule and enable the bounded lease:
 pwsh -NoLogo -NoProfile -File .\scripts\Install-ARKO95OperationsVP.ps1 -EnableLowRisk -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations' -IntervalMinutes 2
 ```
 
-The task is named `ARKO95-OperationsVP`, runs as the current interactive user with `RunLevel Limited`, ignores overlapping starts, and has a two-minute execution limit. It invokes one cycle and exits; it is not a privileged service.
+The task is named `ARKO95-OperationsVP`, runs as the current interactive user with `RunLevel Limited`, ignores overlapping starts, and has a two-minute execution limit. Existing-task ownership requires an exact action plus the expected principal, root task path, bounded trigger, execution limit, and overlap setting. It invokes one cycle and exits; it is not a privileged service.
 
 The schedule is an availability mechanism, not broader authority. The current policy schedules health every five minutes, receipt audit every ten, delegation verification every fifteen, a brief hourly, and workspace checking every six hours.
 
@@ -116,4 +118,4 @@ pwsh -NoLogo -NoProfile -STA -File .\tests\Test-ARKO95.ps1
 pwsh -NoLogo -NoProfile -File .\tests\Test-OperationsVP.ps1
 ```
 
-The adversarial fixture verifies default-closed initialization, acknowledgement gating, handler allowlisting, path confinement, queue idempotency, the three-duty cycle cap, three-review unanimity, receipt tamper detection, automatic kill-latch activation, fixed absolute expiry, absence of sliding renewal, and pre-effect daily-budget rejection.
+The adversarial fixture verifies default-closed initialization, acknowledgement gating, handler allowlisting, path confinement, queue idempotency, tampered-duty traversal rejection, enqueue-receipt binding, the three-duty cycle cap, three-review unanimity, receipt tamper detection, automatic kill-latch activation, fixed absolute expiry, absence of sliding renewal, effect deadlines, and pre-effect daily-budget rejection.

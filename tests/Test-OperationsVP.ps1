@@ -19,7 +19,7 @@ foreach ($path in @($modulePath,$runnerPath,$installerPath)) {
     if ($errors.Count -gt 0) { throw "PowerShell parse errors in ${path}: $($errors -join '; ')" }
 }
 $installerSource=Get-Content -Raw -LiteralPath $installerPath
-if ($installerSource -match '-notlike' -or $installerSource -notmatch 'Test-Arko95ScheduledTaskOwnership' -or $installerSource -notmatch '\-ceq \$ExpectedArguments') { throw 'Scheduled-task ownership is not matched exactly.' }
+if ($installerSource -match '-notlike' -or $installerSource -notmatch 'Test-Arko95ScheduledTaskOwnership' -or $installerSource -notmatch '\-ceq \$ExpectedArguments' -or $installerSource -notmatch 'principalValid' -or $installerSource -notmatch 'scheduleValid') { throw 'Scheduled-task ownership is not matched exactly.' }
 
 $fixtureRoot = Join-Path $ProjectRoot ('state\test-operations-project-{0}' -f [guid]::NewGuid().ToString('N'))
 $fixtureConfig = Join-Path $fixtureRoot 'config'
@@ -82,6 +82,20 @@ try {
     $escapeBlocked = $false
     try { Initialize-Arko95Operations -ProjectRoot $fixtureRoot -StateRoot (Join-Path $fixtureRoot 'escape') | Out-Null } catch { $escapeBlocked = $true }
     if (-not $escapeBlocked) { throw 'Operations state escaped the fixture state directory.' }
+
+    $traversalDuty=New-Arko95OperationsDuty -ProjectRoot $fixtureRoot -Capability 'observe.system_health' -IdempotencyKey 'tampered-duty-path-traversal' -Parameters ([ordered]@{}) -Priority 0
+    $escapeArtifact=Join-Path $fixtureRoot 'queue-traversal-escape.json'
+    $tamperedDuty=Get-Content -Raw -LiteralPath $traversalDuty.Path|ConvertFrom-Json -DateKind String
+    $tamperedDuty.duty_id=[IO.Path]::GetRelativePath($fixturePaths.Reviews,(Join-Path $fixtureRoot 'queue-traversal-escape'))
+    [IO.File]::WriteAllText($traversalDuty.Path,($tamperedDuty|ConvertTo-Json -Depth 24),[Text.UTF8Encoding]::new($false))
+    $reportsBeforeTraversal=@(Get-ChildItem -LiteralPath $fixturePaths.Reports -File).Count
+    $traversalBlocked=$false
+    try{Invoke-Arko95OperationsCycle -ProjectRoot $fixtureRoot|Out-Null}catch{$traversalBlocked=$true}
+    if(-not $traversalBlocked -or (Test-Path -LiteralPath $escapeArtifact) -or @(Get-ChildItem -LiteralPath $fixturePaths.Reports -File).Count -ne $reportsBeforeTraversal){throw 'A tampered queue duty reached an artifact write outside operations state.'}
+    $traversalStatus=Get-Arko95OperationsStatus -ProjectRoot $fixtureRoot
+    if(-not $traversalStatus.KillLatched -or $traversalStatus.CircuitState -ne 'open'){throw 'Tampered queue duty did not fail closed.'}
+    $null=Enable-Arko95Operations -ProjectRoot $fixtureRoot -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations'
+    $leaseDocument=Get-Content -Raw -LiteralPath $fixturePaths.Lease|ConvertFrom-Json -DateKind String
 
     $first = New-Arko95OperationsDuty -ProjectRoot $fixtureRoot -Capability 'observe.system_health' -IdempotencyKey 'manual-health' -Parameters ([ordered]@{}) -Priority 2
     $duplicate = New-Arko95OperationsDuty -ProjectRoot $fixtureRoot -Capability 'observe.system_health' -IdempotencyKey 'manual-health' -Parameters ([ordered]@{}) -Priority 2
@@ -176,6 +190,8 @@ try {
         pre_effect_lease_runway = 'verified'
         future_heartbeat_rejection = 'verified'
         exact_task_ownership = 'verified'
+        queue_duty_schema_and_path = 'verified'
+        handler_effect_deadline = 'verified'
     } | ConvertTo-Json -Depth 8
 }
 finally {

@@ -539,8 +539,14 @@ function Invoke-Arko95AgencyPrivacyMigration {
         $chain=Test-Arko95AgencyChain -ProjectRoot $ProjectRoot -StateRoot $StateRoot
         if(-not $chain.Valid){ throw 'Agency chain failed before privacy migration.' }
         $latest=Read-Arko95AgencyJson -Path $paths.LatestCatalog
-        $currentScanId=if($null -eq $latest){''}else{[string]$latest.scan_id}
         $allowedBuckets=@('[none]','[code]','[document]','[structured]','[media]','[archive]','[binary]','[other]')
+        if($null -eq $latest -or [bool]$latest.content_read -or [bool]$latest.raw_paths_stored){throw 'A hardened current catalog is required before privacy migration.'}
+        $currentScanId=[string]$latest.scan_id
+        $currentLabels=@(
+            @($latest.sources|ForEach-Object{@($_.extension_counts)|ForEach-Object{[string]$_.extension}})
+            @($latest.sources|ForEach-Object{@($_.duplicate_candidates)|ForEach-Object{[string]$_.extension}})
+        )
+        if(@($currentLabels|Where-Object{$_ -notin $allowedBuckets}).Count -gt 0){throw 'Run a hardened Agency scan before removing legacy snapshots.'}
         $removedHashes=[Collections.Generic.List[string]]::new()
         foreach($file in @(Get-ChildItem -LiteralPath $paths.Snapshots -Filter 'agency-scan-*.json' -File -ErrorAction SilentlyContinue)){
             if(($file.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0){ throw 'Agency snapshot privacy migration encountered a reparse point.' }
