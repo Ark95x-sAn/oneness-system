@@ -19,6 +19,8 @@ The visual is the face, not the authority. The shell does not replace Windows Ex
 - Close the overlay with its `×` button. The optional Operations VP schedule is installed only by the explicit command below.
 - Select **MISSION** in the overlay, or double-click `Launch-ARKO95-MissionControl.vbs`, to open the whole-team dashboard.
 
+The launchers intentionally use `pwsh.exe`. Windows PowerShell 5.1 is not a supported runtime because ARKO-95 preserves JSON timestamps as strings while replaying receipt and evidence chains; unsupported engines now stop with a clear boundary error.
+
 Inside the overlay:
 
 - choose **Mirror**, **Forge**, **Test**, **Witness**, or **Remember**;

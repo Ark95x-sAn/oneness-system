@@ -1,8 +1,13 @@
 [CmdletBinding()]
-param([string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot))
+param([string]$ProjectRoot)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
+    $ProjectRoot = Split-Path -Parent $PSScriptRoot
+}
+$ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
 
 $learningModulePath = Join-Path $ProjectRoot 'shell\Arko95.DecisionLearning.psm1'
 $missionModulePath = Join-Path $ProjectRoot 'shell\Arko95.MissionControl.psm1'
