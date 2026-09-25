@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "identity": "ARKO-95 Decision Learning Fabric",
+  "mode": "shadow_learning",
+  "operating_principle": "facts_inferences_projections_decisions_outcomes_and_lessons_remain_distinct",
+  "maximum_open_cycles": 1,
+  "mission_binding_required": true,
+  "default_effect": "proposal_only",
+  "execution_authority": "operations_vp_only",
+  "learning_promotion_default": "proposed_only",
+  "credit_budget": {
+    "default_total_credits": 100,
+    "exploration_cap_percent": 25,
+    "protected_execution_evidence_percent": 75,
+    "auto_replenish": false,
+    "hard_fail_on_overage": true
+  },
+  "record_kinds": [
+    {
+      "id": "observation",
+      "lane": "evidence",
+      "credit_class": "execution_evidence",
+      "allowed_parent_kinds": [],
+      "minimum_parents": 0,
+      "meaning": "A source-linked fact or machine state observation."
+    },
+    {
+      "id": "inference",
+      "lane": "analysis",
+      "credit_class": "exploration",
+      "allowed_parent_kinds": ["observation"],
+      "minimum_parents": 1,
+      "meaning": "A bounded interpretation derived from one or more observations."
+    },
+    {
+      "id": "projection",
+      "lane": "forecast",
+      "credit_class": "exploration",
+      "allowed_parent_kinds": ["observation", "inference"],
+      "minimum_parents": 1,
+      "meaning": "A forward-looking possibility, never presented as a fact."
+    },
+    {
+      "id": "decision_proposal",
+      "lane": "decision",
+      "credit_class": "exploration",
+      "allowed_parent_kinds": ["inference", "projection"],
+      "minimum_parents": 1,
+      "meaning": "An inert recommendation that cannot invoke a tool or approve itself."
+    },
+    {
+      "id": "outcome",
+      "lane": "evidence",
+      "credit_class": "execution_evidence",
+      "allowed_parent_kinds": ["decision_proposal"],
+      "minimum_parents": 1,
+      "meaning": "A receipt-linked result observed after a separately authorized action."
+    },
+    {
+      "id": "lesson_candidate",
+      "lane": "learning",
+      "credit_class": "exploration",
+      "allowed_parent_kinds": ["outcome"],
+      "minimum_parents": 1,
+      "meaning": "A source-linked learning proposal that cannot rewrite memory or policy."
+    }
+  ],
+  "adapters": [
+    {
+      "id": "openclaw_companion",
+      "display_name": "OpenClaw Companion",
+      "native_boundary": "local_companion_metadata",
+      "configured_state": "runtime_observation_supported",
+      "allowed_claims": ["package_present", "process_running", "signed_binary", "loopback_gateway_listening", "selected_model_metadata", "completed_response_event_metadata"],
+      "effect": "proposal_only",
+      "may_read_status": true,
+      "may_submit_typed_proposal": true,
+      "may_write_mission_events": false,
+      "may_invoke_operations": false,
+      "may_approve": false,
+      "may_promote_learning": false,
+      "may_clear_kill_latch": false
+    },
+    {
+      "id": "microsoft_copilot",
+      "display_name": "Microsoft Copilot",
+      "native_boundary": "declared_adapter_slot",
+      "configured_state": "not_live_verified",
+      "allowed_claims": ["package_present", "process_running", "package_signature_valid"],
+      "effect": "proposal_only",
+      "may_read_status": false,
+      "may_submit_typed_proposal": false,
+      "may_write_mission_events": false,
+      "may_invoke_operations": false,
+      "may_approve": false,
+      "may_promote_learning": false,
+      "may_clear_kill_latch": false
+    },
+    {
+      "id": "chatgpt",
+      "display_name": "ChatGPT",
+      "native_boundary": "declared_adapter_slot",
+      "configured_state": "not_live_verified",
+      "allowed_claims": ["package_present", "process_running", "package_identity_observed"],
+      "effect": "proposal_only",
+      "may_read_status": false,
+      "may_submit_typed_proposal": false,
+      "may_write_mission_events": false,
+      "may_invoke_operations": false,
+      "may_approve": false,
+      "may_promote_learning": false,
+      "may_clear_kill_latch": false
+    },
+    {
+      "id": "codex",
+      "display_name": "Codex",
+      "native_boundary": "current_host_context_only",
+      "configured_state": "host_present_adapter_unverified",
+      "allowed_claims": ["package_present", "process_running", "arko_pet_validated", "manual_handoff_only"],
+      "effect": "proposal_only",
+      "may_read_status": false,
+      "may_submit_typed_proposal": false,
+      "may_write_mission_events": false,
+      "may_invoke_operations": false,
+      "may_approve": false,
+      "may_promote_learning": false,
+      "may_clear_kill_latch": false
+    }
+  ],
+  "adapter_receipt": {
+    "freshness_minutes": 15,
+    "required_fields": [
+      "adapter_id",
+      "receipt_kind",
+      "adapter_version",
+      "host_or_tenant",
+      "observed_at",
+      "fresh_until",
+      "source_kind",
+      "source_reference",
+      "claims",
+      "content_read",
+      "credentials_read",
+      "observation_sha256"
+    ],
+    "missing_or_stale_state": "unverified"
+  },
+  "hard_denials": [
+    "adapter_or_content_authored_control_event",
+    "inference_presented_as_observation",
+    "projection_presented_as_fact",
+    "decision_proposal_invokes_execution",
+    "outcome_without_receipt_hash",
+    "automatic_memory_or_policy_promotion",
+    "learning_budget_over_25_percent",
+    "cross_mission_parent_link",
+    "worker_self_approval",
+    "generic_command_script_or_tool_arguments"
+  ]
+}

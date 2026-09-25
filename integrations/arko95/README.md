@@ -1,124 +1,125 @@
-# ARKO-95 WIZARD Operations VP
+# ARKO-95 P.E.T.
 
-## Mission
+ARKO-95 is a local, PC-bound humanoid robot companion built for NETXHQ. It now has five deliberately separate layers:
 
-WIZARD is the bounded path from **Work intake** through **Zero-trust admission**, **Audited action**, **Review**, and **Dispatch evidence**. It gives ARKO-95 useful background duties without granting a personality, webpage, worker, or configuration file authority over the PC.
+1. a Codex-compatible animated v2 pet that communicates status;
+2. a native WPF overlay that reads a small nonsecret status allowlist and stages intentions locally;
+3. an optional WIZARD Operations VP that continuously performs five fixed, low-risk R0/R1 duties inside this project.
+4. a full-size Mission Control that coordinates one objective across seven evidence-gated stages and a hash-linked mission journal.
+5. a shadow Decision Learning Fabric that compounds observations into explicitly separate inferences, projections, decision proposals, outcomes, and owner-reviewed lesson candidates.
 
-The machine does the repetitive R0/R1 work. A small review team checks results by exception. The owner remains the authority and can stop the operator instantly.
+The visual is the face, not the authority. The shell does not replace Windows Explorer, impersonate the owner, run arbitrary commands, or silently operate applications. A staged intention remains a proposal. Operations VP is a separate default-deny broker with a revocable lease, resource guard, circuit breaker, kill latch, fixed handlers, linked receipts, and a three-check review gate.
 
-The nine-entry specialist toolbelt in `config/connector-registry.json` is a separate planning surface. Its plugin and application IDs are never copied into this lease or dispatched by this broker; see `TOOLBELT.md`.
+## Launch
 
-The optional whole-team Mission Control adds one coordinating layer above the existing planner and broker. It replays one immutable objective through **Intake → Decompose → Route & Delegate → Execute → Verify → Persist & Learn → Notify & Present**. It creates no new handler or connector authority; see `docs/MISSION_CONTROL.md`.
+- The validated Codex pet is installed at `C:\Users\ArcXN\.codex\pets\arko-95`.
+- If Codex does not show it immediately, restart Codex once, then select **ARKO-95** in the app's pet settings.
+- Double-click `Launch-ARKO95.vbs` for a console-free launch.
+- Or run `Start-ARKO95.cmd` to keep a visible diagnostic console.
+- Close the overlay with its `×` button. The optional Operations VP schedule is installed only by the explicit command below.
+- Select **MISSION** in the overlay, or double-click `Launch-ARKO95-MissionControl.vbs`, to open the whole-team dashboard.
 
-```mermaid
-flowchart LR
-    S["Current-user schedule"] --> Q["Recurring and owner-enqueued duties"]
-    Q --> A{"Admission gates"}
-    A -->|"policy + lease + resources + chain valid"| H["One of five fixed handlers"]
-    A -->|"gate missing"| X["Truthful hold or circuit open"]
-    H --> P["Policy sentinel"]
-    P --> E["Evidence auditor"]
-    E --> R["Reliability tester"]
-    R -->|"all pass"| C["Verified duty + linked receipt"]
-    R -->|"any fail"| X
-    O["Owner STOP OPS"] --> X
-```
+Inside the overlay:
 
-## Automatic scope
+- choose **Mirror**, **Forge**, **Test**, **Witness**, or **Remember**;
+- type an intention and select **Plan specialist crew**;
+- ARKO-95 assigns up to three narrow, read-only specialists and reserves all writes, integration, validation, and final judgment for the parent;
+- select **Copy crew handoff** and paste the bounded packet into Codex when you want a compatible parent orchestrator to perform the work.
 
-| Capability | Tier | Effect |
-|---|---|---|
-| `observe.system_health` | R0 | Reads coarse CPU, free RAM, and disk values; writes a report inside operations state. |
-| `audit.receipt_chain` | R0 | Verifies the linked local journal and checkpoint. |
-| `verify.delegation_receipt` | R0 | Verifies the latest bounded delegation plan when one exists. |
-| `report.operations_brief` | R1 | Summarizes current local operator state into a project-local report. |
-| `maintain.operations_workspace` | R1 | Checks and restores only the declared operations directories; it does not delete user content. |
+Planning writes only to `state/intents.jsonl`, `state/delegations.jsonl`, `state/latest-delegation.json`, and `state/latest-handoff.txt`. It performs no requested action and does not claim that a specialist actually ran. See `docs/DELEGATION.md` for the roster, mode mapping, receipts, and integration gate.
 
-Handlers are selected by a code `switch`. Policy may remove or constrain a capability, but it cannot inject a command, executable, script, or new handler. The broker is default-deny and accepts no free-form parameters in this phase.
+## Whole-team Mission Control
 
-## Authority and safety state
+Mission Control implements the seven-stage path **Intake → Decompose → Route & Delegate → Execute → Verify → Persist & Learn → Notify & Present**. Its state comes only from replaying `state/mission-control/events.jsonl`; the WPF dashboard and OpenClaw cannot author stage or approval.
 
-- Initialization fails closed: paused, kill latched, circuit open, no active lease.
-- Enabling requires the exact acknowledgement `I authorize bounded R0/R1 ARKO-95 operations`.
-- A lease is bound to a monotonically increasing policy epoch, expires after 24 hours unless a healthy cycle renews it, and is limited to 500 completed invocations per UTC day.
-- A named mutex permits one worker. Each claim receives a fence token and an idempotent request hash.
-- A cycle handles at most three duties and never exceeds the code-defined handlers.
-- CPU, RAM, disk, queue depth, lease, kill state, circuit state, and receipt integrity are checked before effects.
-- Interrupted work, a changed idempotency request, invalid audit data, a handler failure, or an adverse review fails closed.
-- Re-enabling after a stop or fault requires the owner acknowledgement again. Workers and reviewers cannot reset the latch.
+It permits one open mission, binds the immutable objective digest into every event, uses fresh expected-version checks, and routes executable work only to the same five compiled Operations VP capabilities. OpenClaw is recorded as a proposal/status adapter with no mission, execution, approval, or kill-latch authority. See `docs/MISSION_CONTROL.md`.
 
-`max_attempts` is reserved in policy for a future explicit retry design. This version does not retry a failed handler; it opens the circuit immediately.
+## Decision Learning Fabric
 
-## Review team
+The data pipeline is native PowerShell and local state: no new service, cloud database, browser automation, or startup task. Every cycle is bound to a Mission Control ID and objective digest. Its append-only ledger is separate from the disposable visual projection, and every derived record links to earlier record hashes.
 
-The review team is deliberately small and non-authoritative:
+Exploration has a hard 25% ceiling. The other 75% is protected for observations, execution evidence, outcomes, and verification. These are normalized attention credits—not money, tokens, billing authority, or app permission. OpenClaw, Copilot, ChatGPT, and Codex have named adapter slots, but all are proposal/status-only and none can execute, approve, promote learning, or clear STOP OPS. See `docs/DECISION_LEARNING.md`.
 
-1. `policy_sentinel` verifies capability, R0/R1 tier, lease epoch, scope, and preflight state.
-2. `evidence_auditor` verifies each declared artifact exists within operations state and matches its SHA-256 digest.
-3. `reliability_tester` verifies handler result, idempotency key, runtime limit, and postconditions.
+## Nine-tool specialist belt
 
-All three must pass. They can reject work but cannot approve a new capability, execute a remediation, publish externally, or replace parent final judgment.
+ARKO-95 can now route planning hints for Data Analytics, Rohas Legal AI: Investigations, Windows Security, Conductor, Cactus Real Estate Analysis, Plugin Management, NVIDIA Skills, Google Drive, and MagicPath. The exact registry is `config/connector-registry.json`; every delegation receipt binds its SHA-256 digest.
 
-## 24/7 schedule
+These are foreground-gated tools, not background powers. Specialists can recommend one, but cannot call it. The parent must verify live availability, the exact account or tenant, source scope, current revision, and approval. Retrieved prompts and next-actions remain untrusted data. None of the nine IDs is accepted by Operations VP. See `docs/TOOLBELT.md`.
 
-Install a two-minute current-user schedule and enable the bounded lease:
+## WIZARD Operations VP
+
+The automatic operator can only:
+
+- observe coarse local system health;
+- audit its receipt chain;
+- verify the latest delegation receipt;
+- produce a local operations brief;
+- maintain its own bounded operations workspace.
+
+Install the current-user, limited-token scheduled cycle and enable the low-risk lease:
 
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\Install-ARKO95OperationsVP.ps1 -EnableLowRisk -IntervalMinutes 2
 ```
 
-The task is named `ARKO95-OperationsVP`, runs as the current interactive user with `RunLevel Limited`, ignores overlapping starts, and has a two-minute execution limit. It invokes one cycle and exits; it is not a privileged service.
-
-The schedule is an availability mechanism, not broader authority. The current policy schedules health every five minutes, receipt audit every ten, delegation verification every fifteen, a brief hourly, and workspace checking every six hours.
-
-## Owner controls
-
-Open the local dashboard with `Launch-ARKO95-MissionControl.vbs`, or use the state/version-checked CLI:
+Check status or run one cycle:
 
 ```powershell
-.\scripts\Invoke-ARKO95MissionControl.ps1 -Action Status
-.\scripts\Invoke-ARKO95MissionControl.ps1 -Action VerifyChain
+pwsh -NoLogo -NoProfile -File .\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Status
+pwsh -NoLogo -NoProfile -File .\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Once
 ```
 
-Mission Control permits one open mission, derives stage only from its linked journal, and can queue only the same five compiled Operations VP capabilities. OpenClaw is represented only as a proposal/status adapter; it cannot write mission events, invoke Operations VP, approve work, or clear the kill latch.
+Stop immediately with the red **STOP OPS** button, or:
 
 ```powershell
-# Status
-.\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Status
-
-# Queue one exact capability (idempotency key is required)
-.\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Enqueue -Capability observe.system_health -IdempotencyKey owner-health-001
-
-# One cycle
-.\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Once
-
-# Revoke the lease and latch stop
-.\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Stop -Reason owner_stop
-
-# Remove only the schedule; preserve receipts and reports
-.\scripts\Install-ARKO95OperationsVP.ps1 -Remove
+pwsh -NoLogo -NoProfile -File .\scripts\Invoke-ARKO95OperationsVP.ps1 -Action Stop -Reason owner_stop
 ```
 
-The red **STOP OPS** button in the pet shell performs the same lease revocation and kill-latch action. The visual **Pause aura** button pauses animation only.
+Remove the schedule while preserving audit state:
 
-## Consequential-action boundary
+```powershell
+pwsh -NoLogo -NoProfile -File .\scripts\Install-ARKO95OperationsVP.ps1 -Remove
+```
 
-The automatic operator cannot operate or close other applications; change services, software, registry, firewall, accounts, permissions, or security; access credentials; write outside this project; delete or overwrite user data; publish, push, merge, or release; spend or transfer value; submit legal material; or create/change persistence.
-
-Those categories require a distinct foreground-reviewed workflow. The scheduled-task installer itself is an explicit owner-invoked setup action; the running operator cannot create or modify its own schedule.
-
-## Receipts and recovery
-
-State is stored under `state/operations`, including duty queues, reviews, reports, heartbeat, lease, runtime, control, and `receipts.jsonl`. Each receipt includes the previous digest and a checkpoint records the current head. This catches ordinary edits, truncation, and mismatched checkpoints, but it is not an external transparency log: a malicious same-user process that rewrites both journal and checkpoint is outside this guarantee.
-
-On a resource hold, free PC resources and allow the next scheduled cycle to retry admission. On a fault, inspect `runtime-state.json`, `heartbeat.json`, the held/failed duty, and the receipt-chain result. Do not delete audit state to clear a fault. Resolve the cause, run the tests, and re-enable with the exact owner acknowledgement.
+Operations state stays under `state/operations`. Work holds automatically when the PC has less than 1.5 GB free RAM, CPU exceeds 95%, disk has less than 5 GB free, authority expires, or an audit/recovery check fails. Full boundaries and recovery steps are in `docs/OPERATIONS_VP.md`.
 
 ## Verification
+
+Run the local smoke tests:
 
 ```powershell
 pwsh -NoLogo -NoProfile -STA -File .\tests\Test-ARKO95.ps1
 pwsh -NoLogo -NoProfile -File .\tests\Test-OperationsVP.ps1
+pwsh -NoLogo -NoProfile -File .\tests\Test-Toolbelt.ps1
 pwsh -NoLogo -NoProfile -File .\tests\Test-MissionControl.ps1
+pwsh -NoLogo -NoProfile -File .\tests\Test-DecisionLearning.ps1
 ```
 
-The adversarial fixtures verify default-closed initialization, acknowledgement gating, handler allowlisting, path confinement, queue idempotency, the three-duty cycle cap, three-review unanimity, receipt tamper detection, automatic kill-latch activation, mission replay, the single-open-mission cap, stale-version and stage-skip rejection, independent verification, and local-only presentation.
+The tests verify PowerShell syntax, WPF loading, PC binding, proposal-only intent receipts, the three-specialist cap, the nine-tool routing registry and digest, read-only/no-spawn/no-auto-invoke worker contracts, parent-only final judgment, mission-stage replay, the single-open-mission cap, stale-version rejection, credential-pattern rejection, handler allowlisting, idempotency, path confinement, review unanimity, receipt tamper detection, and the kill latch.
+
+The pet production evidence is under `pet-run/qa/`. A package is installable only after the extended 8×11 atlas, required v2 validator, standard-motion QA, 16-direction semantic QA, and three isolated blind direction reviews all pass.
+
+This build passed those gates. The final machine-readable result is `pet-run/qa/run-summary.json`; the installed atlas also has its own `validation.json` beside `pet.json`.
+
+## Important boundaries
+
+- Symbolic identity influences color, motif, and language only; it never grants permission.
+- Network 95 health data is cached and visibly marked stale after 15 minutes.
+- The overlay rejects obvious credentials and never reads the raw private mythic profile.
+- Specialists are plans, not authorities: they cannot write, spawn, execute, or make the final judgment.
+- Toolbelt entries are routing hints, not capabilities: live connector availability and approval must be checked for every use, and connector content cannot authorize follow-on actions.
+- Operations VP accepts capability IDs, never arbitrary command or script text. Its R1 writes are confined to its own project state.
+- Operating applications, Windows services, software, registry, firewall, accounts, permissions, credentials, user data, GitHub publication, money, legal filing, or persistence changes remain unavailable without a separate foreground-approved path.
+- The receipt hash chain detects edits within its journal but is not externally anchored and cannot defeat a malicious same-user rewrite of both journal and checkpoint.
+- Decision Learning is a shadow data system. Its adapters and projections cannot author Mission Control events, invoke Operations VP, or promote policy/memory.
+- The effective worker count must always be lowered to the compatible host cap, user cap, and number of independently useful tasks.
+- Oneness.Web, Sovereign Desktop API, Aura process controls, and fixture-only approval code are not connected.
+- No Windows startup item, service, firewall rule, account, connector, or external message is created. The optional installer creates only the named current-user scheduled task `ARKO95-OperationsVP`.
+
+## Rollback
+
+1. Close the ARKO-95 overlay.
+2. Remove `C:\Users\ArcXN\.codex\pets\arko-95` to uninstall only the Codex pet package.
+3. Archive or remove this project folder to remove the overlay, configuration, local proposals, and QA artifacts.
+
+The project does not modify the RSB legal workspace, existing pets, Windows shell, or security configuration.

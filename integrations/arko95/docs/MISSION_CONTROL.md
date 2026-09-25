@@ -19,6 +19,8 @@ The dashboard has four owner actions before independent verification:
 
 Mission Control then requires an independent verifier before Persist & Learn and the parent integrator before Notify & Present. Those final APIs exist in `Arko95.MissionControl.psm1`; the dashboard intentionally does not make machine self-approval one click away.
 
+The dashboard also reads the separate Decision Learning Fabric. That fabric may compound source-linked observations into inferences, projections, inert decision proposals, outcomes, and lesson candidates, but it cannot advance a mission or execute a duty. Its 25% exploration ceiling and four AI-adapter slots are documented in `DECISION_LEARNING.md`.
+
 ## Seven stages
 
 | Stage | Lane | Gate |
@@ -51,7 +53,7 @@ The current read-only observation verified:
 - completed assistant-response delivery events exist in current logs;
 - response content, quality, and human viewing were not inspected.
 
-The observation is stored without a token or chat content under `state/mission-control/adapter-observations`. OpenClaw is a proposal/status adapter. It cannot write mission events, select a sensor, invoke Operations VP, approve work, or clear the kill latch.
+The observation is stored without a token or chat content under `state/mission-control/adapter-observations`. It is now expired and predates the canonical Decision Learning receipt hash, so the adapter fabric reports it as integrity-unverified rather than live capability. OpenClaw is a proposal/status adapter. It cannot write mission events, select a sensor, invoke Operations VP, approve work, promote learning, or clear the kill latch.
 
 ## Sensor honesty
 

@@ -14,6 +14,7 @@ Add-Type -AssemblyName System.Xaml
 
 Import-Module (Join-Path $PSScriptRoot 'Arko95.MissionControl.psm1') -Force
 Import-Module (Join-Path $PSScriptRoot 'Arko95.Operations.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot 'Arko95.DecisionLearning.psm1') -Force
 
 $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
 
@@ -172,11 +173,11 @@ $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
 
       <Border Grid.Column="4" Style="{StaticResource PanelBorder}">
         <Grid>
-          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="88"/><RowDefinition Height="Auto"/><RowDefinition Height="112"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="88"/><RowDefinition Height="Auto"/><RowDefinition Height="150"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
           <TextBlock Text="PROOF &amp; SYSTEM STATE" Foreground="{StaticResource Cyan}" FontWeight="Bold"/>
           <TextBlock x:Name="ChainDetail" Grid.Row="1" Margin="0,8,0,12" TextWrapping="Wrap" Foreground="#FFCFE1E0"/>
-          <TextBlock Grid.Row="2" Text="OPENCLAW ADAPTER" Foreground="{StaticResource Gold}" FontWeight="Bold"/>
-          <TextBlock x:Name="OpenClawDetail" Grid.Row="3" Margin="0,8,0,12" TextWrapping="Wrap" Foreground="#FFCFE1E0"/>
+          <TextBlock Grid.Row="2" Text="AI FABRIC  •  25% LEARNING CAP" Foreground="{StaticResource Gold}" FontWeight="Bold"/>
+          <TextBlock x:Name="AIFabricDetail" Grid.Row="3" Margin="0,8,0,12" TextWrapping="Wrap" Foreground="#FFCFE1E0" FontSize="10"/>
           <TextBlock Grid.Row="4" Text="OPERATIONS VP" Foreground="{StaticResource Gold}" FontWeight="Bold"/>
           <TextBlock x:Name="OpsDetail" Grid.Row="5" Margin="0,8,0,0" TextWrapping="Wrap" Foreground="#FFCFE1E0"/>
         </Grid>
@@ -194,12 +195,13 @@ $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
           <Button x:Name="HoldButton" Content="Hold mission" Style="{StaticResource SecondaryButton}"/>
           <Button x:Name="AbortButton" Content="Abort mission" Style="{StaticResource SecondaryButton}"/>
           <Button x:Name="RefreshButton" Content="Refresh proof" Style="{StaticResource SecondaryButton}"/>
+          <Button x:Name="RefreshFabricButton" Content="Refresh AI fabric" Style="{StaticResource SecondaryButton}" ToolTip="Observe content-free local package, process, signature, listener, and pet-validation metadata. No chats or credentials."/>
           <Button x:Name="StopOpsButton" Content="STOP OPS" Style="{StaticResource StopButton}"/>
         </WrapPanel>
         <Grid Grid.Row="1" Margin="5,8,5,0">
           <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="420"/></Grid.ColumnDefinitions>
           <TextBlock x:Name="ActionStatus" Text="READY • LOCAL ONLY • NOTHING SENT" Foreground="#FF9DC0C2" TextWrapping="Wrap"/>
-          <TextBlock Grid.Column="1" Text="OPENCLAW: PROPOSE + READ STATUS ONLY  •  OWNER: FINAL JUDGMENT" Foreground="#FFFFCC66" FontWeight="Bold" HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+          <TextBlock Grid.Column="1" Text="AI ADAPTERS: STATUS + PROPOSALS ONLY  •  OWNER: FINAL JUDGMENT" Foreground="#FFFFCC66" FontWeight="Bold" HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
         </Grid>
       </Grid>
     </Border>
@@ -210,7 +212,7 @@ $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
 $reader = [System.Xml.XmlNodeReader]::new($xaml)
 $window = [Windows.Markup.XamlReader]::Load($reader)
 
-$names = @('HeaderState','HeaderProof','MissionList','TeamList','ObjectiveDigest','ObjectiveInput','ModeCombo','CapabilityCombo','MissionDetail','ChainDetail','OpenClawDetail','OpsDetail','StageMissionButton','PlanTeamButton','QueueDutyButton','SyncButton','HoldButton','AbortButton','RefreshButton','StopOpsButton','ActionStatus')
+$names = @('HeaderState','HeaderProof','MissionList','TeamList','ObjectiveDigest','ObjectiveInput','ModeCombo','CapabilityCombo','MissionDetail','ChainDetail','AIFabricDetail','OpsDetail','StageMissionButton','PlanTeamButton','QueueDutyButton','SyncButton','HoldButton','AbortButton','RefreshButton','RefreshFabricButton','StopOpsButton','ActionStatus')
 foreach ($name in $names) { Set-Variable -Name $name -Value $window.FindName($name) -Scope Script }
 $stageBorders = @(0..6 | ForEach-Object { $window.FindName("Stage$_") })
 $stageIds = @('intake','decompose','route_delegate','execute','verify','persist_learn','notify_present')
@@ -240,6 +242,7 @@ function Set-StageVisuals {
 function Update-MissionControlView {
     try {
         $status = Get-Arko95MissionControlStatus -ProjectRoot $ProjectRoot
+        $learning = Get-Arko95DecisionLearningStatus -ProjectRoot $ProjectRoot
         $script:CurrentMission = $status.ActiveMission
         $MissionList.Items.Clear()
         foreach ($mission in @($status.Missions)) {
@@ -256,7 +259,9 @@ function Update-MissionControlView {
 
         if ($null -eq $script:CurrentMission) {
             $HeaderState.Text = 'NO OPEN MISSION • INTAKE READY'
-            $HeaderProof.Text = ('CHAIN {0} • {1} EVENTS • OPS {2}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$status.EventCount,$status.Operations.DesiredState).ToUpperInvariant()
+            $learnUsed = if ($null -eq $learning.ActiveCycle) { 0 } else { [int]$learning.ActiveCycle.exploration_used }
+            $learnCap = if ($null -eq $learning.ActiveCycle) { 25 } else { [int]$learning.ActiveCycle.exploration_cap_credits }
+            $HeaderProof.Text = ('MISSION CHAIN {0} • DATA CHAIN {1} • LEARN {2}/{3} • OPS {4}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$(if($learning.ChainValid){'OK'}else{'FAULT'}),$learnUsed,$learnCap,$status.Operations.DesiredState).ToUpperInvariant()
             $ObjectiveDigest.Text = 'SHA-256 —'
             $MissionDetail.Text = "One objective becomes one replayed state and one evidence chain.`n`nStage a bounded outcome. The system will plan three read-only specialists, hold connector use behind live verification, and permit execution only through the five compiled R0/R1 Operations VP duties."
             $ObjectiveInput.IsReadOnly = $false
@@ -265,7 +270,9 @@ function Update-MissionControlView {
             $mission = $script:CurrentMission
             $short = ([string]$mission.mission_id).Replace('mission-','').Substring(0,8)
             $HeaderState.Text = ('MISSION {0} • {1} • {2}' -f $short,$mission.stage,$mission.status).ToUpperInvariant()
-            $HeaderProof.Text = ('CHAIN {0} • {1} EVENTS • v{2} • OPS {3}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$status.EventCount,$mission.version,$status.Operations.DesiredState).ToUpperInvariant()
+            $learnUsed = if ($null -eq $learning.ActiveCycle) { 0 } else { [int]$learning.ActiveCycle.exploration_used }
+            $learnCap = if ($null -eq $learning.ActiveCycle) { 25 } else { [int]$learning.ActiveCycle.exploration_cap_credits }
+            $HeaderProof.Text = ('MISSION CHAIN {0} • v{1} • DATA CHAIN {2} • LEARN {3}/{4} • OPS {5}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$mission.version,$(if($learning.ChainValid){'OK'}else{'FAULT'}),$learnUsed,$learnCap,$status.Operations.DesiredState).ToUpperInvariant()
             $ObjectiveInput.Text = [string]$mission.objective
             $ObjectiveInput.IsReadOnly = $true
             $ObjectiveDigest.Text = 'OBJECTIVE SHA-256  ' + [string]$mission.objective_sha256
@@ -275,16 +282,12 @@ function Update-MissionControlView {
 
         Set-StageVisuals -Mission $script:CurrentMission
         $head = if ([string]::IsNullOrWhiteSpace($status.HeadHash)) { '—' } else { $status.HeadHash.Substring(0,16) + '…' }
-        $ChainDetail.Text = "CHAIN  $(if($status.ChainValid){'VALID'}else{'FAULT'})`nEVENTS  $($status.EventCount)`nHEAD  $head`nLIMIT  one open mission"
+        $dataHead = if ([string]::IsNullOrWhiteSpace($learning.HeadHash)) { '—' } else { $learning.HeadHash.Substring(0,16) + '…' }
+        $ChainDetail.Text = "MISSION  $(if($status.ChainValid){'VALID'}else{'FAULT'}) • $($status.EventCount) events`nMISSION HEAD  $head`nDATA  $(if($learning.ChainValid){'VALID'}else{'FAULT'}) • $($learning.EventCount) events`nDATA HEAD  $dataHead`nLIMIT  one open mission + one shadow cycle"
 
-        if ($null -eq $status.OpenClawObservation) {
-            $OpenClawDetail.Text = "UNVERIFIED / NO FRESH RECEIPT`nRole: proposal + status adapter only.`nAuthority: none."
-        }
-        else {
-            $obs = $status.OpenClawObservation
-            $fresh = try { [DateTimeOffset]::Parse([string]$obs.fresh_until) -gt [DateTimeOffset]::UtcNow } catch { $false }
-            $OpenClawDetail.Text = "$(if($fresh){'OBSERVED CONNECTED'}else{'STALE OBSERVATION'}) • $($obs.gateway_scope)`nMODEL  $($obs.selected_provider) / $($obs.selected_model)`nREPLIES  event delivery observed; content/quality unverified`nAUTHORITY  proposal + status only"
-        }
+        $adapterLines = @($learning.Adapters | ForEach-Object { '{0}  {1}' -f ([string]$_.display_name).ToUpperInvariant(),([string]$_.runtime_state).ToUpperInvariant() })
+        $budgetLine = if ($null -eq $learning.ActiveCycle) { 'LEARNING  no open cycle • 25/100 max exploration' } else { 'LEARNING  {0}/{1} exploration • {2} remaining' -f $learning.ActiveCycle.exploration_used,$learning.ActiveCycle.exploration_cap_credits,$learning.ActiveCycle.remaining_credits }
+        $AIFabricDetail.Text = ($adapterLines -join [Environment]::NewLine) + [Environment]::NewLine + $budgetLine + [Environment]::NewLine + 'FACTS ≠ INFERENCES ≠ PROJECTIONS • AUTHORITY NONE'
 
         $ops = $status.Operations
         $OpsDetail.Text = "STATE  $($ops.DesiredState) • circuit $($ops.CircuitState)`nLEASE  $($ops.LeaseStatus) • kill $($ops.KillLatched)`nQUEUE  $($ops.Queue.pending) pending • $($ops.DutiesCompleted) complete`nRECEIPT CHAIN  $($ops.ReceiptChainValid)`nCAPABILITIES  exactly five local R0/R1 handlers"
@@ -369,6 +372,15 @@ $AbortButton.Add_Click({
 
 $RefreshButton.Add_Click({ Update-MissionControlView; $ActionStatus.Text='REFRESHED • AUTHORITATIVE STATE REPLAYED'; $ActionStatus.Foreground='#FF9DC0C2' })
 
+$RefreshFabricButton.Add_Click({
+    try {
+        $observed = Update-Arko95LocalAdapterObservations -ProjectRoot $ProjectRoot
+        $ActionStatus.Text = ('AI FABRIC REFRESHED • {0} CONTENT-FREE RECEIPTS • AUTHORITY NONE' -f $observed.ReceiptCount)
+        $ActionStatus.Foreground = '#FF58E393'
+        Update-MissionControlView
+    } catch { $ActionStatus.Text=('AI FABRIC HELD • '+$_.Exception.Message).ToUpperInvariant(); $ActionStatus.Foreground='#FFFF7183' }
+})
+
 $StopOpsButton.Add_Click({
     try {
         $null = Stop-Arko95Operations -ProjectRoot $ProjectRoot -Reason 'owner_pressed_mission_control_stop'
@@ -382,6 +394,7 @@ Update-MissionControlView
 
 if ($TestMode) {
     $status = Get-Arko95MissionControlStatus -ProjectRoot $ProjectRoot
+    $learning = Get-Arko95DecisionLearningStatus -ProjectRoot $ProjectRoot
     [pscustomobject]@{
         ok = $true
         xaml_loaded = $null -ne $window
@@ -390,8 +403,14 @@ if ($TestMode) {
         chain_valid = $status.ChainValid
         maximum_open_missions = 1
         openclaw_effect = $status.AdapterAuthority
+        adapter_count = @($learning.Adapters).Count
+        adapter_authority = $learning.AdapterAuthority
+        decision_learning_mode = $learning.Mode
+        exploration_cap_percent = $learning.ExplorationCapPercent
+        projection_is_authority = $learning.ProjectionIsAuthority
         operations_capability_count = @($status.AllowedOperationsCapabilities).Count
         stop_control_ready = $null -ne $StopOpsButton
+        adapter_refresh_control_ready = $null -ne $RefreshFabricButton
         external_notification_default = $false
     } | ConvertTo-Json -Depth 6
     $window.Close()

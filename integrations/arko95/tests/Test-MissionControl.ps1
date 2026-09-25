@@ -151,7 +151,7 @@ try {
 
     $dashboardOutput = & pwsh.exe -NoLogo -NoProfile -STA -File $dashboardPath -ProjectRoot $ProjectRoot -TestMode
     $dashboard = $dashboardOutput | ConvertFrom-Json
-    if (-not $dashboard.ok -or -not $dashboard.xaml_loaded -or $dashboard.stage_count -ne 7 -or $dashboard.openclaw_effect -ne 'proposal_and_status_only' -or $dashboard.operations_capability_count -ne 5 -or -not $dashboard.stop_control_ready) {
+    if (-not $dashboard.ok -or -not $dashboard.xaml_loaded -or $dashboard.stage_count -ne 7 -or $dashboard.openclaw_effect -ne 'proposal_and_status_only' -or $dashboard.operations_capability_count -ne 5 -or -not $dashboard.stop_control_ready -or -not $dashboard.adapter_refresh_control_ready -or $dashboard.adapter_count -ne 4 -or $dashboard.adapter_authority -ne 'none' -or $dashboard.decision_learning_mode -ne 'shadow_learning' -or $dashboard.exploration_cap_percent -ne 25 -or $dashboard.projection_is_authority -ne $false) {
         throw 'Mission Control WPF smoke test failed.'
     }
 
@@ -168,6 +168,8 @@ try {
         independent_verification = 'verified'
         local_presentation_only = 'verified'
         openclaw_authority = 'none'
+        ai_adapter_count = 4
+        decision_learning = 'shadow_only_25_percent_cap'
         sensor_catalog_is_not_availability = $true
         tamper_detection = 'verified'
         dashboard = 'loaded'
