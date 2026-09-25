@@ -109,6 +109,14 @@ function Get-Arko95OperationsPolicy {
     }
     if ([string](Get-Arko95OpsProperty -InputObject $policy -Name 'default_effect') -ne 'deny') { throw 'Operations VP must remain default-deny.' }
     if ([string](Get-Arko95OpsProperty -InputObject $policy -Name 'authority_model') -ne 'revocable_policy_epoch') { throw 'Operations VP requires revocable policy epochs.' }
+    if ([string]$policy.lease.renewal_mode -ne 'absolute_owner_grant') { throw 'Operations VP leases must expire absolutely and may not slide.' }
+    if ([double]$policy.lease.duration_hours -le 0 -or [double]$policy.lease.duration_hours -gt 24) { throw 'Operations VP lease duration must be greater than zero and no more than 24 hours.' }
+    if ([int]$policy.lease.max_invocations_per_day -lt 1 -or [int]$policy.lease.max_invocations_per_day -gt 500) { throw 'Operations VP daily invocation limit is invalid.' }
+    if ([int]$policy.scheduler.max_duties_per_cycle -lt 1 -or [int]$policy.scheduler.max_duties_per_cycle -gt 3) { throw 'Operations VP per-cycle duty limit is invalid.' }
+    if ([int]$policy.scheduler.max_queue_depth -lt 1 -or [int]$policy.scheduler.max_queue_depth -gt 100) { throw 'Operations VP queue depth limit is invalid.' }
+    if ([double]$policy.resource_guard.maximum_cpu_percent -lt 1 -or [double]$policy.resource_guard.maximum_cpu_percent -gt 99) { throw 'Operations VP CPU guard is invalid.' }
+    if ([double]$policy.resource_guard.minimum_free_memory_gb -lt 0.1 -or [double]$policy.resource_guard.minimum_free_memory_gb -gt 128) { throw 'Operations VP memory guard is invalid.' }
+    if ([double]$policy.resource_guard.minimum_free_disk_gb -lt 0.1 -or [double]$policy.resource_guard.minimum_free_disk_gb -gt 1024) { throw 'Operations VP disk guard is invalid.' }
 
     $allowedHandlers = @('system_health_snapshot','receipt_chain_audit','delegation_receipt_verify','operations_brief','operations_workspace_maintain')
     $allowedRiskTiers = @('R0','R1')
@@ -293,4 +301,832 @@ function Get-Arko95OpsQueueCounts {
     [ordered]@{
         pending   = @(Get-ChildItem -LiteralPath $Paths.Pending -Filter '*.json' -File -ErrorAction SilentlyContinue).Count
         working   = @(Get-ChildItem -LiteralPath $Paths.Working -Filter '*.json' -File -ErrorAction SilentlyContinue).Count
-        completed = @(Get-ChildItem -LiteralPath $Paths.Completed -Filter '*.json' ×]tîÚ$z{-®éÜj×†–âÒvWBÔ&¶ó“T÷5&V6V—D6†–å7FGW2ÕF‡2GF‡0¢–b‚Öæ÷BF6†–âåfÆ–B’°¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâ‚w&V6V—Eö6†–åö–çfÆ–C¢r²F6†–âäW'&÷"’ÔfVÇD6Æ72vVF—Eö–çFVw&—G’p¢F‡&÷r%&V6V—B6†–â—2–çfÆ–C¢B‚F6†–âäW'&÷"’ ¢Ğ¢–b…¶&ööÅÒF6öçG&öÂæ¶–ÆÅöÆF6†VBÖ÷"·7G&–æuÒF6öçG&öÂæFW6—&VE÷7FFRÖæRw'Vææ–ærrÖ÷"·7G&–æuÒG'VçF–ÖRæ6—&7V—E÷7FFRÖæRv6Æ÷6VBr’°¢&WGW&â·67W7FöÖö&¦V7EÔ²7–6ÆT–CÒF7–6ÆT–C²7FGW3ÒwW6VBs²&ö6W76VCÔ‚“²&V6öãÕ·7G&–æuÒF6öçG&öÂç&V6öã²÷W&F–öç3ÔvWBÔ&¶ó“T÷W&F–öç57FGW2Õ&ö¦V7E&ö÷BE&ö¦V7E&ö÷BÕ7FFU&ö÷BE7FFU&ö÷BĞ¢Ğ¢–b‚FçVÆÂÖWFÆV6RÖ÷"·7G&–æuÒFÆV6Rç7FGW2ÖæRv7F—fRrÖ÷"¶–çEÒFÆV6RçöÆ–7•öWö6‚ÖæR¶–çEÒF6öçG&öÂçöÆ–7•öWö6‚’°¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâvÆV6UöÖ—76–æuö–æ7F—fUö÷%öWö6…öÖ—6ÖF6‚rÔfVÇD6Æ72vWF†÷&—G•öf–ÇW&Rp¢F‡&÷ruF†R7F—fRÆV6R—2Ö—76–ærÂ–æ7F—fRÂ÷"&÷VæBFòæ÷F†W"öÆ–7’Wö6‚âp¢Ğ¢FÆV6TW‡—'’Ò´FFUF–ÖTöfg6WEÓ£¤Ö–åfÇVP¢–b‚Öæ÷B´FFUF–ÖTöfg6WEÓ£¥G'•'6R…·7G&–æuÒFÆV6RæW‡—&W5öBÅ·&VeÒFÆV6TW‡—'’’Ö÷"FÆV6TW‡—'’ÖÆR´FFUF–ÖTöfg6WEÓ£¥WF4æ÷r’°¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâvÆV6UöW‡—&VBrÔfVÇD6Æ72vWF†÷&—G•öf–ÇW&Rp¢F‡&÷ruF†R÷W&F–öç2eÆV6RW‡—&VBâp¢Ğ ¢Gv÷&¶–ætf–ÆW2Ò„vWBÔ6†–ÆD—FVÒÔÆ—FW&ÅF‚GF‡2åv÷&¶–ærÔf–ÇFW"r¢æ§6öârÔf–ÆRÔW'&÷$7F–öâ6–ÆVçFÇ”6öçF–çVR¢–b‚Gv÷&¶–ætf–ÆW2ä6÷VçBÖwB’°¢f÷&V6‚‚Gv÷&¶–ætf–ÆR–âGv÷&¶–ætf–ÆW2’°¢FGWG’Ò&VBÔ&¶ó“T÷4§6öâÕF‚Gv÷&¶–ætf–ÆRägVÆÄæÖP¢FGWG’ç7FGW2Òv†VÆBp¢FGWG’æ†öÆE÷&V6öâÒwVæ6W'F–åögFW%÷v÷&¶W%ö–çFW''WF–öâp¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚Gv÷&¶–ætf–ÆRägVÆÄæÖRÕfÇVRFGWG¢FçVÆÂÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RGv÷&¶–ætf–ÆRägVÆÄæÖRÔFW7F–æF–öäF—&V7F÷'’GF‡2ä†VÆ@¢Ğ¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâwVæ6W'F–å÷v÷&¶–æuöGWG•ögFW%ö–çFW''WF–öârÔfVÇD6Æ72v7&6…÷&V6÷fW'’p¢F‡&÷rt&Wf–÷W6Ç’6Æ–ÖVBGWG’†BVæ6W'F–â÷7B×7FFS²÷W&F–öç27F÷VBf÷"&Wf–Wrâp¢Ğ ¢6WBÔ&¶ó“T÷4†V'F&VBÕF‡2GF‡2Õv÷&¶W$–ç7Fæ6RGv÷&¶W$–ç7Fæ6RÔ7–6ÆT–BF7–6ÆT–BÕ7FGW2w'Vææ–ærp¢G&W6÷W&6U6æ6†÷BÒvWBÔ&¶ó“T÷5&W6÷W&6U6æ6†÷BÕ&ö¦V7E&ö÷BE&ö¦V7E&ö÷@¢FFÖ—76–öâÒFW7BÔ&¶ó“T÷5&W6÷W&6TFÖ—76–öâÕöÆ–7’GöÆ–7’Õ6æ6†÷BG&W6÷W&6U6æ6†÷@¢–b‚Öæ÷BFFÖ—76–öâäFÖ—GFVB’°¢6WBÔ&¶ó“T÷4†V'F&VBÕF‡2GF‡2Õv÷&¶W$–ç7Fæ6RGv÷&¶W$–ç7Fæ6RÔ7–6ÆT–BF7–6ÆT–BÕ7FGW2w&W6÷W&6Uö†öÆBrÔFWF–Ç2…¶÷&FW&VEÔ²&V6öç3Ô‚FFÖ—76–öâå&V6öç2’Ò¢&WGW&â·67W7FöÖö&¦V7EÔ²7–6ÆT–CÒF7–6ÆT–C²7FGW3Òw&W6÷W&6Uö†öÆBs²&ö6W76VCÔ‚“²&V6öãÒ‚FFÖ—76–öâå&V6öç2Ö¦ö–ârÂr“²÷W&F–öç3ÔvWBÔ&¶ó“T÷W&F–öç57FGW2Õ&ö¦V7E&ö÷BE&ö¦V7E&ö÷BÕ7FFU&ö÷BE7FFU&ö÷BĞ¢Ğ ¢G66†VGVÆVBÒFBÔ&¶ó“T÷5&V7W'&–ætGWF–W2ÕF‡2GF‡2ÕöÆ–7’GöÆ–7¢GVæF–ærÒ´6öÆÆV7F–öç2ävVæW&–2äÆ—7E¶ö&¦V7EÕÓ£¦æWr‚¢f÷&V6‚‚Ff–ÆR–â„vWBÔ6†–ÆD—FVÒÔÆ—FW&ÅF‚GF‡2åVæF–ærÔf–ÇFW"r¢æ§6öârÔf–ÆRÔW'&÷$7F–öâ7F÷’’°¢FGWG’Ò&VBÔ&¶ó“T÷4§6öâÕF‚Ff–ÆRägVÆÄæÖP¢Fæ÷D&Vf÷&U&VG’ÒGG'VP¢–b‚Öæ÷B·7G&–æuÓ£¤—4çVÆÄ÷%v†—FU76R…·7G&–æuÒFGWG’ææ÷Eö&Vf÷&R’’°¢Fæ÷D&Vf÷&RÒ´FFUF–ÖTöfg6WEÓ£¤Ö–åfÇVP¢–b…´FFUF–ÖTöfg6WEÓ£¥G'•'6R…·7G&–æuÒFGWG’ææ÷Eö&Vf÷&RÅ·&VeÒFæ÷D&Vf÷&R’’²Fæ÷D&Vf÷&U&VG’ÒFæ÷D&Vf÷&RÖÆR´FFUF–ÖTöfg6WEÓ£¥WF4æ÷rĞ¢Ğ¢–b‚Fæ÷D&Vf÷&U&VG’’²GVæF–æräFB…·67W7FöÖö&¦V7EÔ²FƒÒFf–ÆRägVÆÄæÖS²GWG“ÒFGWG’Ò’Ğ¢Ğ¢G6VÆV7FVBÒ‚GVæF–ærÂ6÷'BÔö&¦V7B´W‡&W76–öã×µ¶–çEÒEòäGWG’ç&–÷&—G—Ó´66VæF–æsÒGG'VWÒÂ´W‡&W76–öã×µ·7G&–æuÒEòäGWG’æ7&VFVEöGÓ´66VæF–æsÒGG'VWÒÂ6VÆV7BÔö&¦V7BÔf—'7B…¶–çEÒGöÆ–7’ç66†VGVÆW"æÖ…öGWF–W5÷W%ö7–6ÆR’¢f÷&V6‚‚F—FVÒ–âG6VÆV7FVB’°¢F6öçG&öÂÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2ä6öçG&öÀ¢FÆV6RÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2äÆV6P¢–b…¶&ööÅÒF6öçG&öÂæ¶–ÆÅöÆF6†VBÖ÷"·7G&–æuÒF6öçG&öÂæFW6—&VE÷7FFRÖæRw'Vææ–ærr’²'&V²Ğ¢F6†–âÒvWBÔ&¶ó“T÷5&V6V—D6†–å7FGW2ÕF‡2GF‡0¢–b‚Öæ÷BF6†–âåfÆ–B’°¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâ‚w&V6V—Eö6†–åö6†ævVEöGW&–æuö7–6ÆS¢r²F6†–âäW'&÷"’ÔGWG”–B…·7G&–æuÒF—FVÒäGWG’æGWG•ö–B’ÔfVÇD6Æ72vVF—Eö–çFVw&—G’p¢'&V°¢Ğ¢FGWG’ÒF—FVÒäGWG¢F6&–Æ—G”FVf–æ—F–öâÒvWBÔ&¶ó“T÷46&–Æ—G’ÕöÆ–7’GöÆ–7’Ô6&–Æ—G”–B…·7G&–æuÒFGWG’æ6&–Æ—G’¢–b‚FçVÆÂÖWF6&–Æ—G”FVf–æ—F–öâ’°¢FGWG’ç7FGW2Òv†VÆBs²FGWG’æ†öÆE÷&V6öâÒwVæ¶æ÷våö6&–Æ—G’p¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚F—FVÒåF‚ÕfÇVRFGWG¢FçVÆÂÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RF—FVÒåF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2ä†VÆ@¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâwVæ¶æ÷våö6&–Æ—G•ö–å÷VWVRrÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’ÔfVÇD6Æ72wöÆ–7•÷f–öÆF–öâp¢'&V°¢Ğ¢G&VfÆ–v‡BÒ–çfö¶RÔ&¶ó“T÷5&VfÆ–v‡E&Wf–WrÔGWG’FGWG’Ô6&–Æ—G”FVf–æ—F–öâF6&–Æ—G”FVf–æ—F–öâÔ6öçG&öÂF6öçG&öÂÔÆV6RFÆV6RÕöÆ–7’GöÆ–7¢–b‚Öæ÷BG&VfÆ–v‡Bç76VB’°¢FGWG’ç7FGW2Òv†VÆBs²FGWG’æ†öÆE÷&V6öâÒw&VfÆ–v‡E÷&V¦V7FVBs²FGWG’ç&VfÆ–v‡BÒG&VfÆ–v‡@¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚F—FVÒåF‚ÕfÇVRFGWG¢FçVÆÂÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RF—FVÒåF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2ä†VÆ@¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâ‚w&VfÆ–v‡E÷&V¦V7FVC¢r²‚G&VfÆ–v‡Bç&V6öç2Ö¦ö–ârÂr’’ÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’ÔfVÇD6Æ72wöÆ–7•÷f–öÆF–öâp¢'&V°¢Ğ ¢Gv÷&¶–æuF‚ÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RF—FVÒåF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2åv÷&¶–æp¢FGWG’ç7FGW2Òwv÷&¶–ærp¢FGWG’æGFV×G2Ò¶–çEÒFGWG’æGFV×G2²¢FGWG’æfVæ6U÷Fö¶VâÒ¶–çEÒFGWG’æfVæ6U÷Fö¶Vâ²¢FGWG’æ6Æ–ÖVEöBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr¢FGWG’çv÷&¶W%ö–ç7Fæ6RÒGv÷&¶W$–ç7Fæ6P¢FGWG’æÆV6Uö–BÒ·7G&–æuÒFÆV6RæÆV6Uö–@¢FGWG’çöÆ–7•öWö6‚Ò¶–çEÒF6öçG&öÂçöÆ–7•öWö6€¢FGWG’ç&VfÆ–v‡BÒG&VfÆ–v‡@¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚Gv÷&¶–æuF‚ÕfÇVRFGWG¢FçVÆÂÒFBÔ&¶ó“T÷4WfVçBÕF‡2GF‡2ÔWfVçEG—RvGWG•ö6Æ–ÖVBrÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’Õ–ÆöB…¶÷&FW&VEÔ²6&–Æ—G“ÒFGWG’æ6&–Æ—G“²ÆV6Uö–CÒFGWG’æÆV6Uö–C²öÆ–7•öWö6ƒÒFGWG’çöÆ–7•öWö6ƒ²fVæ6U÷Fö¶VãÒFGWG’æfVæ6U÷Fö¶Vã²&WVW7Eö†6ƒÒFGWG’ç&WVW7Eö†6‚Ò ¢G'’°¢F6öçG&öÄ&Vf÷&TVffV7BÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2ä6öçG&öÀ¢F6†–ä&Vf÷&TVffV7BÒvWBÔ&¶ó“T÷5&V6V—D6†–å7FGW2ÕF‡2GF‡0¢–b…¶&ööÅÒF6öçG&öÄ&Vf÷&TVffV7Bæ¶–ÆÅöÆF6†VBÖ÷"·7G&–æuÒF6öçG&öÄ&Vf÷&TVffV7BæFW6—&VE÷7FFRÖæRw'Vææ–ærr’²F‡&÷rv¶–ÆÅöÆF6…ö6†ævVEö&Vf÷&UöVffV7BrĞ¢–b‚Öæ÷BF6†–ä&Vf÷&TVffV7BåfÆ–B’²F‡&÷rw&V6V—Eö6†–åö–çfÆ–Eö&Vf÷&UöVffV7BrĞ¢G7F÷vF6‚Òµ7—7FVÒäF–væ÷7F–72å7F÷vF6…Ó£¥7F'DæWr‚¢G&W7VÇBÒ–çfö¶RÔ&¶ó“T÷46&–Æ—G’Õ&ö¦V7E&ö÷BE&ö¦V7E&ö÷BÕF‡2GF‡2ÕöÆ–7’GöÆ–7’Ô6&–Æ—G”FVf–æ—F–öâF6&–Æ—G”FVf–æ—F–öâÔGWG’FGWG¢G7F÷vF6‚å7F÷‚¢G&Wf–WrÒ–çfö¶RÔ&¶ó“T÷5÷7E&Wf–WrÕF‡2GF‡2ÔGWG’FGWG’Ô6&–Æ—G”FVf–æ—F–öâF6&–Æ—G”FVf–æ—F–öâÕ&W7VÇBG&W7VÇBÔGW&F–öå6V6öæG2G7F÷vF6‚äVÆ6VBåF÷FÅ6V6öæG2Õ&VfÆ–v‡BG&VfÆ–v‡@¢G&Wf–WuF‚Ò¦ö–âÕF‚GF‡2å&Wf–Ww2‚…·7G&–æuÒFGWG’æGWG•ö–B’²ræ§6öâr¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚G&Wf–WuF‚ÕfÇVR…¶÷&FW&VEÔ²66†VÖ÷fW'6–öãÓ²GWG•ö–CÒFGWG’æGWG•ö–C²6&–Æ—G“ÒFGWG’æ6&–Æ—G“²GW&F–öå÷6V6öæG3Õ¶ÖF…Ó£¥&÷VæB‚G7F÷vF6‚äVÆ6VBåF÷FÅ6V6öæG2Ã2“²FV6—6–öãÒG&Wf–WræFV6—6–öã²&VçEöf–æÅö§VFvÖVçE÷&WV—&VCÒGG'VS²&Wf–Ww3ÒG&Wf–Wrç&Wf–Ww3²7&VFVEöCÕ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr’Ò¢G&Wf–Wt†6‚Ò„vWBÔf–ÆT†6‚ÔÆ—FW&ÅF‚G&Wf–WuF‚ÔÆv÷&—F†Ò4„#Sb’ä†6‚åFôÆ÷vW$–çf&–çB‚¢–b‚Öæ÷BG&Wf–Wrç76VB’°¢FGWG’ç7FGW2Òv†VÆBs²FGWG’æ†öÆE÷&V6öâÒw÷7E÷&Wf–Wu÷&V¦V7FVBs²FGWG’ç&W7VÇBÒG&W7VÇC²FGWG’ç&Wf–Wu÷F‚ÒG&Wf–WuFƒ²FGWG’ç&Wf–Wuö†6‚ÒG&Wf–Wt†6€¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚Gv÷&¶–æuF‚ÕfÇVRFGWG¢FçVÆÂÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RGv÷&¶–æuF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2ä†VÆ@¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâw÷7E÷&Wf–Wu÷&V¦V7FVBrÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’ÔfVÇD6Æ72vGfW'6U÷&Wf–Wrp¢'&V°¢Ğ¢FGWG’ç7FGW2ÒwfW&–f–VBp¢FGWG’æ6ö×ÆWFVEöBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr¢FGWG’æGW&F–öå÷6V6öæG2Ò¶ÖF…Ó£¥&÷VæB‚G7F÷vF6‚äVÆ6VBåF÷FÅ6V6öæG2Ã2¢FGWG’ç&W7VÇBÒG&W7VÇ@¢FGWG’ç&Wf–Wu÷F‚ÒG&Wf–WuF€¢FGWG’ç&Wf–Wuö†6‚ÒG&Wf–Wt†6€¢FGWG’ç&VçEöf–æÅö§VFvÖVçE÷&WV—&VBÒGG'VP¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚Gv÷&¶–æuF‚ÕfÇVRFGWG¢F6ö×ÆWFVEF‚ÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RGv÷&¶–æuF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2ä6ö×ÆWFV@¢G'’°¢G&V6V—BÒFBÔ&¶ó“T÷4WfVçBÕF‡2GF‡2ÔWfVçEG—RvGWG•÷fW&–f–VBrÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’Õ–ÆöB…¶÷&FW&VEÔ²6&–Æ—G“ÒFGWG’æ6&–Æ—G“²&WVW7Eö†6ƒÒFGWG’ç&WVW7Eö†6ƒ²fVæ6U÷Fö¶VãÒFGWG’æfVæ6U÷Fö¶Vã²'F–f7Eö†6†W3ÒG&W7VÇBä'F–f7D†6†W3²&Wf–Wuö†6ƒÒG&Wf–Wt†6ƒ²GW&F–öå÷6V6öæG3ÒFGWG’æGW&F–öå÷6V6öæG3²&VçEöf–æÅö§VFvÖVçE÷&WV—&VCÒGG'VRÒ¢G&ö6W76VBäFB…·67W7FöÖö&¦V7EÔ²GWG•ö–CÒFGWG’æGWG•ö–C²6&–Æ—G“ÒFGWG’æ6&–Æ—G“²7FGW3ÒwfW&–f–VBs²&V6V—Eö†6ƒÒG&V6V—BæWfVçEö†6ƒ²6ö×ÆWFVE÷FƒÒF6ö×ÆWFVEF‚Ò¢Ğ¢6F6‚°¢F†VÆEF‚ÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RF6ö×ÆWFVEF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2ä†VÆ@¢F†VÆDGWG’Ò&VBÔ&¶ó“T÷4§6öâÕF‚F†VÆEF€¢F†VÆDGWG’ç7FGW2Òv†VÆBs²F†VÆDGWG’æ†öÆE÷&V6öâÒv6ö×ÆWF–öå÷&V6V—Eöf–ÆVBp¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚F†VÆEF‚ÕfÇVRF†VÆDGWG¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâv6ö×ÆWF–öå÷&V6V—Eöf–ÆVBrÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’ÔfVÇD6Æ72vVF—Eöf–ÇW&Rp¢'&V°¢Ğ¢G'VçF–ÖRÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2å'VçF–ÖP¢G'VçF–ÖRæGWF–W5ö6ö×ÆWFVBÒ¶–çEÒG'VçF–ÖRæGWF–W5ö6ö×ÆWFVB²¢G'VçF–ÖRæ6öç6V7WF—fUöf–ÇW&W2Ò ¢G'VçF–ÖRçWFFVEöBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚GF‡2å'VçF–ÖRÕfÇVRG'VçF–ÖP¢FÆV6RÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2äÆV6P¢GFöF’Ò´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råWF4FFUF–ÖRåFõ7G&–ær‚w———’ÔÔÒÖFBr¢–b…·7G&–æuÒFÆV6Ræ–çfö6F–öå÷v–æF÷uöFFRÖæRGFöF’’²FÆV6Ræ–çfö6F–öå÷v–æF÷uöFFRÒGFöF“²FÆV6Ræ–çfö6F–öç5÷FöF’ÒĞ¢FÆV6Ræ–çfö6F–öç5÷FöF’Ò¶–çEÒFÆV6Ræ–çfö6F–öç5÷FöF’²¢–b…¶–çEÒFÆV6Ræ–çfö6F–öç5÷FöF’ÖwB¶–çEÒFÆV6RæÖ…ö–çfö6F–öç5÷W%öF’’°¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâvF–Ç•ö–çfö6F–öåö'VFvWEöW†6VVFVBrÔfVÇD6Æ72w&W6÷W&6Uö'VFvWBp¢'&V°¢Ğ¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚GF‡2äÆV6RÕfÇVRFÆV6P¢Ğ¢6F6‚°¢–b…FW7BÕF‚ÔÆ—FW&ÅF‚Gv÷&¶–æuF‚ÕF…G—RÆVb’°¢Ff–ÆVDGWG’Ò&VBÔ&¶ó“T÷4§6öâÕF‚Gv÷&¶–æuF€¢Ff–ÆVDGWG’ç7FGW2Òvf–ÆVBp¢Ff–ÆVDGWG’æf–ÇW&U÷&V6öâÒ‚‚EòäW†6WF–öâäÖW76vR×&WÆ6RuµÇSÕÇSeÇSteÒ²rÂrr’×&WÆ6RuÇ2²rÂrr’åG&–Ò‚¢Ff–ÆVDGWG’æf–ÆVEöBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚Gv÷&¶–æuF‚ÕfÇVRFf–ÆVDGWG¢FçVÆÂÒÖ÷fRÔ&¶ó“T÷4GWG’Õ6÷W&6RGv÷&¶–æuF‚ÔFW7F–æF–öäF—&V7F÷'’GF‡2äf–ÆV@¢Ğ¢G'’²FçVÆÂÒFBÔ&¶ó“T÷4WfVçBÕF‡2GF‡2ÔWfVçEG—RvGWG•öf–ÆVBrÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’Õ–ÆöB…¶÷&FW&VEÔ²6&–Æ—G“ÒFGWG’æ6&–Æ—G“²&V6öãÒEòäW†6WF–öâäÖW76vRÒ’Ò6F6‚²Ğ¢–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâ‚vGWG•öf–ÆVC¢r²EòäW†6WF–öâäÖW76vR’ÔGWG”–B…·7G&–æuÒFGWG’æGWG•ö–B’ÔfVÇD6Æ72v†æFÆW%öf–ÇW&Rp¢'&V°¢Ğ¢Ğ ¢G'VçF–ÖRÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2å'VçF–ÖP¢–b…·7G&–æuÒG'VçF–ÖRæ6—&7V—E÷7FFRÖWv6Æ÷6VBr’°¢G'VçF–ÖRæ7–6ÆW5ö6ö×ÆWFVBÒ¶–çEÒG'VçF–ÖRæ7–6ÆW5ö6ö×ÆWFVB²¢G'VçF–ÖRæÆ7Eö7–6ÆUöBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr¢G'VçF–ÖRçWFFVEöBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷råFõ7G&–ær‚vòr¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚GF‡2å'VçF–ÖRÕfÇVRG'VçF–ÖP¢FÆV6RÒ&VBÔ&¶ó“T÷4§6öâÕF‚GF‡2äÆV6P¢FÆV6RæW‡—&W5öBÒ´FFUF–ÖTöfg6WEÓ£¥WF4æ÷räFD†÷W'2…¶F÷V&ÆUÒGöÆ–7’æÆV6RæGW&F–öåö†÷W'2’åFõ7G&–ær‚vòr¢w&—FRÔ&¶ó“T÷4§6öäFöÖ–2ÕF‚GF‡2äÆV6RÕfÇVRFÆV6P¢6WBÔ&¶ó“T÷4†V'F&VBÕF‡2GF‡2Õv÷&¶W$–ç7Fæ6RGv÷&¶W$–ç7Fæ6RÔ7–6ÆT–BF7–6ÆT–BÕ7FGW2v–FÆRrÔFWF–Ç2…¶÷&FW&VEÔ²&ö6W76VCÒG&ö6W76VBä6÷VçC²66†VGVÆVCÒG66†VGVÆVBÒ¢Ğ¢VÇ6R°¢6WBÔ&¶ó“T÷4†V'F&VBÕF‡2GF‡2Õv÷&¶W$–ç7Fæ6RGv÷&¶W$–ç7Fæ6RÔ7–6ÆT–BF7–6ÆT–BÕ7FGW2v6—&7V—Eö÷VârÔFWF–Ç2…¶÷&FW&VEÔ²&ö6W76VCÒG&ö6W76VBä6÷VçBÒ¢Ğ¢&WGW&â·67W7FöÖö&¦V7EÔ²7–6ÆT–CÒF7–6ÆT–C²7FGW3ÒB†–b…·7G&–æuÒG'VçF–ÖRæ6—&7V—E÷7FFRÖWv6Æ÷6VBr’²v6ö×ÆWFVBwÒVÇ6R²v6—&7V—Eö÷VâwÒ“²66†VGVÆVCÒG66†VGVÆVC²&ö6W76VCÒG&ö6W76VBåFô'&’‚“²÷W&F–öç3ÔvWBÔ&¶ó“T÷W&F–öç57FGW2Õ&ö¦V7E&ö÷BE&ö¦V7E&ö÷BÕ7FFU&ö÷BE7FFU&ö÷BĞ¢Ğ¢6F6‚°¢–b‚FçVÆÂÖæRGF‡2ÖæB…FW7BÕF‚ÔÆ—FW&ÅF‚GF‡2ä6öçG&öÂÕF…G—RÆVb’’°¢G'’²–çfö¶RÔ&¶ó“T÷5G&—6—&7V—BÕF‡2GF‡2Õ&V6öâ‚v7–6ÆUöW†6WF–öã¢r²EòäW†6WF–öâäÖW76vR’ÔfVÇD6Æ72v7–6ÆUöW†6WF–öârÒ6F6‚²Ğ¢G'’²6WBÔ&¶ó“T÷4†V'F&VBÕF‡2GF‡2Õv÷&¶W$–ç7Fæ6RGv÷&¶W$–ç7Fæ6RÔ7–6ÆT–BF7–6ÆT–BÕ7FGW2vfVÇFVBrÔFWF–Ç2…¶÷&FW&VEÔ²&V6öãÒEòäW†6WF–öâäÖW76vRÒ’Ò6F6‚²Ğ¢Ğ¢F‡&÷p¢Ğ¢f–æÆÇ’²W†—BÔ&¶ó“T÷W&F–öç4×WFW‚Ô×WFW‚F×WFW‚Ğ§Ğ ¤W‡÷'BÔÖöGVÆTÖVÖ&W"ÔgVæ7F–öâvWBÔ&¶ó“T÷W&F–öç5F‡2ÂvWBÔ&¶ó“T÷W&F–öç5öÆ–7’Â–æ—F–Æ—¦RÔ&¶ó“T÷W&F–öç2ÂVæ&ÆRÔ&¶ó“T÷W&F–öç2Â7F÷Ô&¶ó“T÷W&F–öç2ÂvWBÔ&¶ó“T÷W&F–öç57FGW2ÂFW7BÔ&¶ó“T÷W&F–öç5&V6V—D6†–âÂæWrÔ&¶ó“T÷W&F–öç4GWG’Â–çfö¶RÔ&¶ó“T÷W&F–öç47–6ÆP
+        completed = @(Get-ChildItem -LiteralPath $Paths.Completed -Filter '*.json' -File -ErrorAction SilentlyContinue).Count
+        failed    = @(Get-ChildItem -LiteralPath $Paths.Failed -Filter '*.json' -File -ErrorAction SilentlyContinue).Count
+        held      = @(Get-ChildItem -LiteralPath $Paths.Held -Filter '*.json' -File -ErrorAction SilentlyContinue).Count
+    }
+}
+
+function Get-Arko95OpsLeaseAuthorityState {
+    param(
+        [AllowNull()]$Lease,
+        [AllowNull()]$Control,
+        [ValidateRange(0,3600)][double]$MinimumRemainingSeconds = 0
+    )
+    if ($null -eq $Lease -or $null -eq $Control) { return [pscustomobject]@{ Valid=$false; Reason='lease_or_control_missing'; ExpiresAt=$null; AbsoluteNotAfter=$null } }
+    $leaseExpiry=[DateTimeOffset]::MinValue
+    $absoluteNotAfter=[DateTimeOffset]::MinValue
+    $leaseExpiryValid=[DateTimeOffset]::TryParse([string](Get-Arko95OpsProperty -InputObject $Lease -Name 'expires_at' -Default ''),[ref]$leaseExpiry)
+    $absoluteValid=[DateTimeOffset]::TryParse([string](Get-Arko95OpsProperty -InputObject $Lease -Name 'absolute_not_after' -Default ''),[ref]$absoluteNotAfter)
+    if (-not $leaseExpiryValid -or -not $absoluteValid) { return [pscustomobject]@{ Valid=$false; Reason='lease_deadline_malformed'; ExpiresAt=$leaseExpiry; AbsoluteNotAfter=$absoluteNotAfter } }
+    if ([string](Get-Arko95OpsProperty -InputObject $Lease -Name 'status' -Default '') -ne 'active') { return [pscustomobject]@{ Valid=$false; Reason='lease_inactive'; ExpiresAt=$leaseExpiry; AbsoluteNotAfter=$absoluteNotAfter } }
+    if ([int](Get-Arko95OpsProperty -InputObject $Lease -Name 'policy_epoch' -Default -1) -ne [int](Get-Arko95OpsProperty -InputObject $Control -Name 'policy_epoch' -Default -2)) { return [pscustomobject]@{ Valid=$false; Reason='lease_epoch_mismatch'; ExpiresAt=$leaseExpiry; AbsoluteNotAfter=$absoluteNotAfter } }
+    if ([string](Get-Arko95OpsProperty -InputObject $Lease -Name 'renewal_mode' -Default '') -ne 'absolute_owner_grant' -or $leaseExpiry -ne $absoluteNotAfter) { return [pscustomobject]@{ Valid=$false; Reason='lease_not_absolutely_bounded'; ExpiresAt=$leaseExpiry; AbsoluteNotAfter=$absoluteNotAfter } }
+    $requiredUntil=[DateTimeOffset]::UtcNow.AddSeconds($MinimumRemainingSeconds)
+    if ($absoluteNotAfter -le $requiredUntil) { return [pscustomobject]@{ Valid=$false; Reason=$(if($MinimumRemainingSeconds -gt 0){'insufficient_lease_runway'}else{'lease_expired'}); ExpiresAt=$leaseExpiry; AbsoluteNotAfter=$absoluteNotAfter } }
+    return [pscustomobject]@{ Valid=$true; Reason='active'; ExpiresAt=$leaseExpiry; AbsoluteNotAfter=$absoluteNotAfter }
+}
+
+function Get-Arko95OperationsStatus {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [string]$StateRoot
+    )
+    $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+    if (-not (Test-Path -LiteralPath $paths.Control -PathType Leaf)) {
+        return [pscustomobject]@{ Initialized = $false; Ready = $false; DesiredState = 'not_initialized'; KillLatched = $true; CircuitState = 'open'; LeaseStatus = 'missing'; Queue = [ordered]@{ pending=0;working=0;completed=0;failed=0;held=0 }; HeartbeatAgeSeconds = $null; HeartbeatStale = $true; ReceiptChainValid = $false; LastFault = 'not_initialized' }
+    }
+    $policy = Get-Arko95OperationsPolicy -ProjectRoot $ProjectRoot
+    $control = Read-Arko95OpsJson -Path $paths.Control
+    $runtime = Read-Arko95OpsJson -Path $paths.Runtime
+    $lease = Read-Arko95OpsJson -Path $paths.Lease
+    $heartbeat = Read-Arko95OpsJson -Path $paths.Heartbeat
+    $chain = Get-Arko95OpsReceiptChainStatus -Paths $paths
+    $heartbeatAge = $null
+    $heartbeatFuture = $false
+    $heartbeatTimestamp = Get-Arko95OpsProperty -InputObject $heartbeat -Name 'timestamp'
+    if (-not [string]::IsNullOrWhiteSpace([string]$heartbeatTimestamp)) {
+        $parsed = [DateTimeOffset]::MinValue
+        if ([DateTimeOffset]::TryParse([string]$heartbeatTimestamp, [ref]$parsed)) {
+            $heartbeatAge = [math]::Round(([DateTimeOffset]::UtcNow - $parsed.ToUniversalTime()).TotalSeconds,0)
+            if ($heartbeatAge -lt -5) { $heartbeatFuture=$true } elseif ($heartbeatAge -lt 0) { $heartbeatAge=0 }
+        }
+    }
+    $staleAfter = [int]$policy.scheduler.heartbeat_stale_after_seconds
+    $leaseStatus = [string](Get-Arko95OpsProperty -InputObject $lease -Name 'status' -Default 'missing')
+    $desired = [string](Get-Arko95OpsProperty -InputObject $control -Name 'desired_state' -Default 'paused')
+    $kill = [bool](Get-Arko95OpsProperty -InputObject $control -Name 'kill_latched' -Default $true)
+    $circuit = [string](Get-Arko95OpsProperty -InputObject $runtime -Name 'circuit_state' -Default 'open')
+    $leaseAuthority=Get-Arko95OpsLeaseAuthorityState -Lease $lease -Control $control
+    $leaseTemporalValid=[bool]$leaseAuthority.Valid
+    $heartbeatStale=($null -eq $heartbeatAge) -or $heartbeatFuture -or ($heartbeatAge -gt $staleAfter)
+    [pscustomobject]@{
+        Initialized         = $true
+        Ready               = ($desired -eq 'running' -and -not $kill -and $circuit -eq 'closed' -and $leaseStatus -eq 'active' -and $leaseTemporalValid -and -not $heartbeatStale -and $chain.Valid)
+        DesiredState        = $desired
+        KillLatched         = $kill
+        KillReason          = [string](Get-Arko95OpsProperty -InputObject $control -Name 'reason' -Default '')
+        PolicyEpoch         = [int](Get-Arko95OpsProperty -InputObject $control -Name 'policy_epoch' -Default 0)
+        CircuitState        = $circuit
+        LeaseStatus         = $leaseStatus
+        LeaseId             = [string](Get-Arko95OpsProperty -InputObject $lease -Name 'lease_id' -Default '')
+        LeaseExpiresAt      = Get-Arko95OpsProperty -InputObject $lease -Name 'expires_at'
+        LeaseAbsoluteNotAfter = Get-Arko95OpsProperty -InputObject $lease -Name 'absolute_not_after'
+        LeaseTemporalValid  = $leaseTemporalValid
+        Queue               = Get-Arko95OpsQueueCounts -Paths $paths
+        HeartbeatStatus     = [string](Get-Arko95OpsProperty -InputObject $heartbeat -Name 'status' -Default 'unknown')
+        HeartbeatAgeSeconds = $heartbeatAge
+        HeartbeatFuture      = $heartbeatFuture
+        HeartbeatStale      = $heartbeatStale
+        ReceiptChainValid   = $chain.Valid
+        ReceiptEventCount   = $chain.EventCount
+        ReceiptHeadHash     = $chain.HeadHash
+        LastFault           = [string](Get-Arko95OpsProperty -InputObject $runtime -Name 'last_fault' -Default '')
+        CyclesCompleted     = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'cycles_completed' -Default 0)
+        DutiesCompleted     = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_completed' -Default 0)
+        DutiesFailed        = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_failed' -Default 0)
+    }
+}
+
+function Get-Arko95OpsCapability {
+    param(
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)][string]$CapabilityId
+    )
+    return @($Policy.automatic_capabilities | Where-Object { [string]$_.id -ceq $CapabilityId } | Select-Object -First 1)[0]
+}
+
+function Invoke-Arko95OpsTripCircuit {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)][string]$Reason,
+        [string]$DutyId = '',
+        [string]$FaultClass = 'runtime_fault'
+    )
+    $now = [DateTimeOffset]::UtcNow.ToString('o')
+    $control = Read-Arko95OpsJson -Path $Paths.Control
+    $runtime = Read-Arko95OpsJson -Path $Paths.Runtime
+    $lease = Read-Arko95OpsJson -Path $Paths.Lease
+    Write-Arko95OpsJsonAtomic -Path $Paths.Control -Value ([ordered]@{
+        schema_version = 1
+        desired_state  = 'paused'
+        kill_latched   = $true
+        reason         = $Reason
+        policy_epoch   = [int](Get-Arko95OpsProperty -InputObject $control -Name 'policy_epoch' -Default 0)
+        updated_at     = $now
+        updated_by     = 'circuit_breaker'
+    })
+    if ($null -ne $lease) {
+        $lease.status = 'faulted'
+        $lease.revoked_at = $now
+        $lease.revocation_reason = $Reason
+        Write-Arko95OpsJsonAtomic -Path $Paths.Lease -Value $lease
+    }
+    Write-Arko95OpsJsonAtomic -Path $Paths.Runtime -Value ([ordered]@{
+        schema_version       = 1
+        circuit_state        = 'open'
+        consecutive_failures = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'consecutive_failures' -Default 0) + 1
+        cycles_completed     = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'cycles_completed' -Default 0)
+        duties_completed     = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_completed' -Default 0)
+        duties_failed        = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_failed' -Default 0) + $(if ([string]::IsNullOrWhiteSpace($DutyId)) { 0 } else { 1 })
+        last_fault           = $Reason
+        last_fault_class     = $FaultClass
+        last_cycle_at        = Get-Arko95OpsProperty -InputObject $runtime -Name 'last_cycle_at'
+        updated_at           = $now
+    })
+    try { $null = Add-Arko95OpsEvent -Paths $Paths -EventType 'circuit_opened' -DutyId $DutyId -Payload ([ordered]@{ reason = $Reason; fault_class = $FaultClass }) } catch { }
+}
+
+function Enable-Arko95Operations {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [Parameter(Mandatory)][string]$Acknowledgement,
+        [string]$StateRoot
+    )
+    $required = 'I authorize bounded R0/R1 ARKO-95 operations'
+    if ($Acknowledgement -cne $required) { throw "Enabling Operations VP requires the exact acknowledgement: $required" }
+    $mutex = $null
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        $policy = Get-Arko95OperationsPolicy -ProjectRoot $ProjectRoot
+        $chain = Get-Arko95OpsReceiptChainStatus -Paths $paths
+        if (-not $chain.Valid) { throw "Cannot enable against an invalid receipt chain: $($chain.Error)" }
+        $control = Read-Arko95OpsJson -Path $paths.Control
+        $epoch = [int](Get-Arko95OpsProperty -InputObject $control -Name 'policy_epoch' -Default 0) + 1
+        $now = [DateTimeOffset]::UtcNow
+        $allowedCapabilities = @($policy.automatic_capabilities | ForEach-Object { [string]$_.id })
+        $lease = [ordered]@{
+            schema_version          = 1
+            lease_id                = 'lease-' + [guid]::NewGuid().ToString('D')
+            status                  = 'active'
+            policy_epoch            = $epoch
+            issued_at               = $now.ToString('o')
+            expires_at              = $now.AddHours([double]$policy.lease.duration_hours).ToString('o')
+            absolute_not_after      = $now.AddHours([double]$policy.lease.duration_hours).ToString('o')
+            renewal_mode            = 'absolute_owner_grant'
+            issued_by               = 'local_owner_explicit_request'
+            allowed_capabilities    = $allowedCapabilities
+            allowed_risk_tiers      = @($policy.lease.automatic_risk_tiers)
+            invocation_window_date  = $now.UtcDateTime.ToString('yyyy-MM-dd')
+            invocations_today       = 0
+            max_invocations_per_day = [int]$policy.lease.max_invocations_per_day
+            execution_authority     = 'only_enumerated_r0_r1_handlers'
+            revoked_at              = $null
+            revocation_reason       = ''
+        }
+        Write-Arko95OpsJsonAtomic -Path $paths.Control -Value ([ordered]@{
+            schema_version = 1; desired_state = 'running'; kill_latched = $false; reason = 'owner_enabled_bounded_operations'; policy_epoch = $epoch; updated_at = $now.ToString('o'); updated_by = 'local_owner'
+        })
+        Write-Arko95OpsJsonAtomic -Path $paths.Lease -Value $lease
+        $runtime = Read-Arko95OpsJson -Path $paths.Runtime
+        Write-Arko95OpsJsonAtomic -Path $paths.Runtime -Value ([ordered]@{
+            schema_version = 1; circuit_state = 'closed'; consecutive_failures = 0; cycles_completed = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'cycles_completed' -Default 0); duties_completed = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_completed' -Default 0); duties_failed = [int](Get-Arko95OpsProperty -InputObject $runtime -Name 'duties_failed' -Default 0); last_fault = ''; last_fault_class = ''; last_cycle_at = Get-Arko95OpsProperty -InputObject $runtime -Name 'last_cycle_at'; updated_at = $now.ToString('o')
+        })
+        try {
+            $null = Add-Arko95OpsEvent -Paths $paths -EventType 'operations_enabled' -Payload ([ordered]@{ lease_id = $lease.lease_id; policy_epoch = $epoch; capabilities = $allowedCapabilities; boundary = 'R0_R1_only' })
+        }
+        catch {
+            Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'enable_receipt_failed' -FaultClass 'audit_failure'
+            throw
+        }
+        return Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+function Stop-Arko95Operations {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [string]$Reason = 'owner_stop',
+        [string]$StateRoot
+    )
+    $mutex = $null
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        Invoke-Arko95OpsTripCircuit -Paths $paths -Reason $Reason -FaultClass 'owner_stop'
+        return Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+function Get-Arko95OpsResourceSnapshot {
+    param([Parameter(Mandatory)][string]$ProjectRoot)
+    $cpu = $null
+    $freeMemory = $null
+    $totalMemory = $null
+    $diskFree = $null
+    $probeError = $null
+    try {
+        $processors = @(Get-CimInstance -ClassName Win32_Processor -ErrorAction Stop)
+        if ($processors.Count -gt 0) { $cpu = [math]::Round(($processors | Measure-Object -Property LoadPercentage -Average).Average, 1) }
+        $os = Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction Stop
+        $freeMemory = [math]::Round(([double]$os.FreePhysicalMemory / 1MB), 2)
+        $totalMemory = [math]::Round(([double]$os.TotalVisibleMemorySize / 1MB), 2)
+        $root = [System.IO.Path]::GetPathRoot([System.IO.Path]::GetFullPath($ProjectRoot))
+        $drive = [System.IO.DriveInfo]::new($root)
+        if ($drive.IsReady) { $diskFree = [math]::Round($drive.AvailableFreeSpace / 1GB, 2) }
+    }
+    catch { $probeError = $_.Exception.Message }
+    [pscustomobject]@{
+        timestamp_utc = [DateTimeOffset]::UtcNow.ToString('o')
+        cpu_percent = $cpu
+        free_memory_gb = $freeMemory
+        total_memory_gb = $totalMemory
+        disk_free_gb = $diskFree
+        network_available = [System.Net.NetworkInformation.NetworkInterface]::GetIsNetworkAvailable()
+        probe_error = $probeError
+    }
+}
+
+function Test-Arko95OpsResourceAdmission {
+    param(
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)]$Snapshot
+    )
+    $reasons = [Collections.Generic.List[string]]::new()
+    if (-not [string]::IsNullOrWhiteSpace([string]$Snapshot.probe_error)) { $reasons.Add('resource_probe_failed') }
+    if ($null -eq $Snapshot.cpu_percent -or [double]$Snapshot.cpu_percent -gt [double]$Policy.resource_guard.maximum_cpu_percent) { $reasons.Add('cpu_pressure_or_unknown') }
+    if ($null -eq $Snapshot.free_memory_gb -or [double]$Snapshot.free_memory_gb -lt [double]$Policy.resource_guard.minimum_free_memory_gb) { $reasons.Add('memory_pressure_or_unknown') }
+    if ($null -eq $Snapshot.disk_free_gb -or [double]$Snapshot.disk_free_gb -lt [double]$Policy.resource_guard.minimum_free_disk_gb) { $reasons.Add('disk_pressure_or_unknown') }
+    [pscustomobject]@{ Admitted = $reasons.Count -eq 0; Reasons = $reasons.ToArray(); Snapshot = $Snapshot }
+}
+
+function ConvertTo-Arko95OpsParameters {
+    param([AllowNull()]$Parameters)
+    $normalized = [ordered]@{}
+    if ($null -eq $Parameters) { return $normalized }
+    if ($Parameters -is [System.Collections.IDictionary]) {
+        foreach ($key in @($Parameters.Keys | Sort-Object)) { $normalized[[string]$key] = $Parameters[$key] }
+    }
+    else {
+        foreach ($property in @($Parameters.PSObject.Properties | Sort-Object Name)) { $normalized[$property.Name] = $property.Value }
+    }
+    return $normalized
+}
+
+function Find-Arko95OpsDutyPath {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)][string]$FileName
+    )
+    foreach ($directory in @($Paths.Pending,$Paths.Working,$Paths.Completed,$Paths.Failed,$Paths.Held)) {
+        $candidate = Join-Path $directory $FileName
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) { return $candidate }
+    }
+    return $null
+}
+
+function Add-Arko95OpsDutyUnlocked {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)][string]$Capability,
+        [AllowNull()]$Parameters,
+        [Parameter(Mandatory)][string]$IdempotencyKey,
+        [int]$Priority = 2,
+        [string]$RequestedBy = 'local_owner'
+    )
+    if ([string]::IsNullOrWhiteSpace($IdempotencyKey) -or $IdempotencyKey.Length -gt 180 -or $IdempotencyKey -match '[\u0000-\u001F\u007F]') { throw 'Duty idempotency key is missing or invalid.' }
+    if ($Priority -lt 0 -or $Priority -gt 4) { throw 'Duty priority must be between zero and four.' }
+    $capabilityDefinition = Get-Arko95OpsCapability -Policy $Policy -CapabilityId $Capability
+    if ($null -eq $capabilityDefinition) { throw "Capability '$Capability' is not in the automatic broker allowlist." }
+    $normalizedParameters = ConvertTo-Arko95OpsParameters -Parameters $Parameters
+    $allowedFields = @($capabilityDefinition.allowed_parameter_fields | ForEach-Object { [string]$_ })
+    foreach ($parameterName in @($normalizedParameters.Keys)) {
+        if ($parameterName -notin $allowedFields) { throw "Capability '$Capability' does not accept parameter '$parameterName'." }
+    }
+    $requestMaterial = [ordered]@{ capability = $Capability; parameters = $normalizedParameters }
+    $requestHash = Get-Arko95OpsObjectHash -Value $requestMaterial
+    $keyHash = Get-Arko95OpsStringHash -Text $IdempotencyKey
+    $fileName = 'duty-' + $keyHash.Substring(0, 32) + '.json'
+    $existingPath = Find-Arko95OpsDutyPath -Paths $Paths -FileName $fileName
+    if (-not [string]::IsNullOrWhiteSpace($existingPath)) {
+        $existing = Read-Arko95OpsJson -Path $existingPath
+        if ([string]$existing.request_hash -cne $requestHash) { throw 'The idempotency key was reused for a different duty request.' }
+        return [pscustomobject]@{ Created = $false; Duty = $existing; Path = $existingPath }
+    }
+    if ((Get-Arko95OpsQueueCounts -Paths $Paths).pending -ge [int]$Policy.scheduler.max_queue_depth) { throw 'Operations duty queue is full.' }
+    $cleanRequestedBy = (($RequestedBy -replace '[\u0000-\u001F\u007F]+',' ') -replace '\s+',' ').Trim()
+    if ($cleanRequestedBy.Length -gt 80) { $cleanRequestedBy = $cleanRequestedBy.Substring(0,80) }
+    $duty = [ordered]@{
+        schema_version    = 1
+        duty_id           = 'duty-' + [guid]::NewGuid().ToString('D')
+        capability        = $Capability
+        parameters        = $normalizedParameters
+        idempotency_key   = $IdempotencyKey
+        request_hash      = $requestHash
+        requested_by      = $cleanRequestedBy
+        priority          = $Priority
+        status            = 'pending'
+        attempts          = 0
+        fence_token       = 0
+        created_at        = [DateTimeOffset]::UtcNow.ToString('o')
+        not_before        = $null
+        claimed_at        = $null
+        completed_at      = $null
+        failed_at         = $null
+        hold_reason       = ''
+        failure_reason    = ''
+        worker_instance   = ''
+        lease_id          = ''
+        policy_epoch      = 0
+        preflight         = $null
+        result            = $null
+        review_path       = $null
+        review_hash       = $null
+        duration_seconds  = $null
+        parent_final_judgment_required = $true
+        execution_authority = $false
+    }
+    $targetPath = Join-Path $Paths.Pending $fileName
+    Write-Arko95OpsJsonAtomic -Path $targetPath -Value $duty
+    try { $null = Add-Arko95OpsEvent -Paths $Paths -EventType 'duty_enqueued' -DutyId $duty.duty_id -Payload ([ordered]@{ capability = $Capability; request_hash = $requestHash; idempotency_key_hash = $keyHash; requested_by = $cleanRequestedBy }) }
+    catch {
+        $duty.status = 'held'
+        $duty.hold_reason = 'enqueue_receipt_failed'
+        Write-Arko95OpsJsonAtomic -Path $targetPath -Value $duty
+        [System.IO.File]::Move($targetPath, (Join-Path $Paths.Held $fileName), $true)
+        throw
+    }
+    return [pscustomobject]@{ Created = $true; Duty = [pscustomobject]$duty; Path = $targetPath }
+}
+
+function New-Arko95OperationsDuty {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [Parameter(Mandatory)][string]$Capability,
+        [Parameter(Mandatory)][string]$IdempotencyKey,
+        [AllowNull()]$Parameters = $null,
+        [int]$Priority = 2,
+        [string]$RequestedBy = 'local_owner',
+        [string]$StateRoot
+    )
+    $mutex = $null
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        $policy = Get-Arko95OperationsPolicy -ProjectRoot $ProjectRoot
+        return Add-Arko95OpsDutyUnlocked -Paths $paths -Policy $policy -Capability $Capability -Parameters $Parameters -IdempotencyKey $IdempotencyKey -Priority $Priority -RequestedBy $RequestedBy
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+function Add-Arko95OpsRecurringDuties {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Policy
+    )
+    $nowSeconds = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+    $created = 0
+    foreach ($schedule in @($Policy.recurring_duties)) {
+        $everySeconds = [int]$schedule.every_seconds
+        $bucket = [math]::Floor($nowSeconds / $everySeconds)
+        $key = 'schedule:{0}:{1}' -f [string]$schedule.id, [int64]$bucket
+        $result = Add-Arko95OpsDutyUnlocked -Paths $Paths -Policy $Policy -Capability ([string]$schedule.capability) -Parameters ([ordered]@{}) -IdempotencyKey $key -Priority ([int]$schedule.priority) -RequestedBy 'operations_scheduler'
+        if ($result.Created) { $created++ }
+    }
+    return $created
+}
+
+function Write-Arko95OpsReportResult {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Duty,
+        [Parameter(Mandatory)][string]$ReportKind,
+        [Parameter(Mandatory)]$Report,
+        [string]$Summary = 'completed'
+    )
+    $safeKind = $ReportKind -replace '[^a-z0-9_-]','-'
+    $reportPath = Join-Path $Paths.Reports ('{0}-{1}.json' -f $safeKind, [string]$Duty.duty_id)
+    Write-Arko95OpsJsonAtomic -Path $reportPath -Value $Report
+    $hash = (Get-FileHash -LiteralPath $reportPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    [pscustomobject]@{
+        Success        = $true
+        Summary        = $Summary
+        ArtifactPaths  = @($reportPath)
+        ArtifactHashes = [ordered]@{ $reportPath = $hash }
+        Reversible     = $true
+        Rollback       = 'Archive this generated report inside operations state after owner review.'
+    }
+}
+
+function Invoke-Arko95OpsCapability {
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Policy,
+        [Parameter(Mandatory)]$CapabilityDefinition,
+        [Parameter(Mandatory)]$Duty
+    )
+    $handler = [string]$CapabilityDefinition.handler
+    switch ($handler) {
+        'system_health_snapshot' {
+            $snapshot = Get-Arko95OpsResourceSnapshot -ProjectRoot $ProjectRoot
+            $admission = Test-Arko95OpsResourceAdmission -Policy $Policy -Snapshot $snapshot
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'system_health_snapshot'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                snapshot = $snapshot
+                admission = [ordered]@{ admitted = $admission.Admitted; reasons = @($admission.Reasons) }
+                scope = 'coarse_nonsecret_local_health'
+            }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'health' -Report $report -Summary 'Coarse local system health captured.'
+        }
+        'receipt_chain_audit' {
+            $chain = Get-Arko95OpsReceiptChainStatus -Paths $Paths
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'receipt_chain_audit'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                valid = $chain.Valid
+                event_count = $chain.EventCount
+                head_hash = $chain.HeadHash
+                error = $chain.Error
+                limitation = 'Hash chaining detects accidental or ordinary modification but is not an external immutable anchor.'
+            }
+            if (-not $chain.Valid) { throw "Receipt chain audit failed: $($chain.Error)" }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'receipt-audit' -Report $report -Summary 'Operations receipt chain verified.'
+        }
+        'delegation_receipt_verify' {
+            $available = Test-Path -LiteralPath $Paths.DelegationPlan -PathType Leaf
+            $valid = if ($available) { Test-Arko95DelegationReceipt -PlanPath $Paths.DelegationPlan } else { $false }
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'delegation_receipt_verify'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                available = $available
+                valid = $valid
+                plan_path = if ($available) { $Paths.DelegationPlan } else { $null }
+                interpretation = if (-not $available) { 'No delegation receipt has been staged.' } elseif ($valid) { 'Delegation receipt is internally consistent.' } else { 'Delegation receipt failed verification.' }
+            }
+            if ($available -and -not $valid) { throw 'The latest delegation receipt failed verification.' }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'delegation-audit' -Report $report -Summary $(if ($available) { 'Delegation receipt verified.' } else { 'No delegation receipt was available; no authority inferred.' })
+        }
+        'operations_brief' {
+            $queue = Get-Arko95OpsQueueCounts -Paths $Paths
+            $control = Read-Arko95OpsJson -Path $Paths.Control
+            $runtime = Read-Arko95OpsJson -Path $Paths.Runtime
+            $lease = Read-Arko95OpsJson -Path $Paths.Lease
+            $chain = Get-Arko95OpsReceiptChainStatus -Paths $Paths
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'operations_brief'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                control = [ordered]@{ desired_state = $control.desired_state; kill_latched = $control.kill_latched; reason = $control.reason; policy_epoch = $control.policy_epoch }
+                circuit = [ordered]@{ state = $runtime.circuit_state; last_fault = $runtime.last_fault; failures = $runtime.consecutive_failures }
+                lease = [ordered]@{ status = $lease.status; lease_id = $lease.lease_id; expires_at = $lease.expires_at; invocations_today = $lease.invocations_today }
+                queue = $queue
+                receipt_chain = [ordered]@{ valid = $chain.Valid; event_count = $chain.EventCount; head_hash = $chain.HeadHash }
+                authority = 'Only enumerated R0/R1 handlers; all consequential actions remain gated.'
+            }
+            $result = Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'brief' -Report $report -Summary 'Operations brief generated.'
+            Write-Arko95OpsJsonAtomic -Path $Paths.LatestBrief -Value $report
+            $latestHash = (Get-FileHash -LiteralPath $Paths.LatestBrief -Algorithm SHA256).Hash.ToLowerInvariant()
+            $result.ArtifactPaths = @($result.ArtifactPaths) + @($Paths.LatestBrief)
+            $result.ArtifactHashes[$Paths.LatestBrief] = $latestHash
+            return $result
+        }
+        'operations_workspace_maintain' {
+            $directories = @($Paths.Pending,$Paths.Working,$Paths.Completed,$Paths.Failed,$Paths.Held,$Paths.Reports,$Paths.Reviews)
+            $checks = foreach ($directory in $directories) {
+                $item = Get-Item -LiteralPath $directory -Force -ErrorAction Stop
+                [ordered]@{ path = $directory; exists = $true; reparse_point = (($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) }
+            }
+            if (@($checks | Where-Object { $_.reparse_point }).Count -gt 0) { throw 'An operations workspace directory became a reparse point.' }
+            $report = [ordered]@{
+                schema_version = 1
+                report_kind = 'operations_workspace_maintain'
+                created_at = [DateTimeOffset]::UtcNow.ToString('o')
+                duty_id = [string]$Duty.duty_id
+                directories = $checks
+                queue = Get-Arko95OpsQueueCounts -Paths $Paths
+                effect = 'verify_and_create_only; no user data deleted or moved'
+            }
+            return Write-Arko95OpsReportResult -Paths $Paths -Duty $Duty -ReportKind 'workspace' -Report $report -Summary 'Operations workspace boundaries verified.'
+        }
+        default { throw "Handler '$handler' is not compiled into Operations VP." }
+    }
+}
+
+function Invoke-Arko95OpsPreflightReview {
+    param(
+        [Parameter(Mandatory)]$Duty,
+        [Parameter(Mandatory)]$CapabilityDefinition,
+        [Parameter(Mandatory)]$Control,
+        [Parameter(Mandatory)]$Lease,
+        [Parameter(Mandatory)]$Policy
+    )
+    $reasons = [Collections.Generic.List[string]]::new()
+    if ([bool]$Control.kill_latched -or [string]$Control.desired_state -ne 'running') { $reasons.Add('kill_latch_or_control_not_running') }
+    if ([string]$Lease.status -ne 'active') { $reasons.Add('lease_not_active') }
+    if ([int]$Lease.policy_epoch -ne [int]$Control.policy_epoch) { $reasons.Add('lease_epoch_mismatch') }
+    if ([string]$Duty.capability -notin @($Lease.allowed_capabilities | ForEach-Object { [string]$_ })) { $reasons.Add('capability_not_in_lease') }
+    if ([string]$CapabilityDefinition.risk_tier -notin @($Policy.lease.automatic_risk_tiers | ForEach-Object { [string]$_ })) { $reasons.Add('risk_tier_not_automatic') }
+    if ([bool]$Duty.execution_authority) { $reasons.Add('duty_claimed_its_own_authority') }
+    [pscustomobject]@{
+        reviewer = 'policy_sentinel'
+        phase = 'preflight'
+        passed = $reasons.Count -eq 0
+        reasons = $reasons.ToArray()
+        checked_at = [DateTimeOffset]::UtcNow.ToString('o')
+    }
+}
+
+function Invoke-Arko95OpsPostReview {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)]$Duty,
+        [Parameter(Mandatory)]$CapabilityDefinition,
+        [Parameter(Mandatory)]$Result,
+        [Parameter(Mandatory)][double]$DurationSeconds,
+        [Parameter(Mandatory)]$Preflight
+    )
+    $evidenceReasons = [Collections.Generic.List[string]]::new()
+    $rootPrefix = [System.IO.Path]::GetFullPath($Paths.Root).TrimEnd('\') + '\'
+    foreach ($artifactPath in @($Result.ArtifactPaths)) {
+        $fullPath = [System.IO.Path]::GetFullPath([string]$artifactPath)
+        if (-not $fullPath.StartsWith($rootPrefix,[System.StringComparison]::OrdinalIgnoreCase)) { $evidenceReasons.Add("artifact_outside_operations_state:$fullPath"); continue }
+        if (-not (Test-Path -LiteralPath $fullPath -PathType Leaf)) { $evidenceReasons.Add("artifact_missing:$fullPath"); continue }
+        $item = Get-Item -LiteralPath $fullPath -Force
+        if (($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0) { $evidenceReasons.Add("artifact_reparse_point:$fullPath"); continue }
+        $actualHash = (Get-FileHash -LiteralPath $fullPath -Algorithm SHA256).Hash.ToLowerInvariant()
+        $expectedHash = [string]$Result.ArtifactHashes[$fullPath]
+        if ($actualHash -cne $expectedHash) { $evidenceReasons.Add("artifact_hash_mismatch:$fullPath") }
+    }
+    if (@($Result.ArtifactPaths).Count -lt 1) { $evidenceReasons.Add('no_artifact') }
+    $evidenceReview = [pscustomobject]@{ reviewer='evidence_auditor'; phase='postcondition'; passed=$evidenceReasons.Count -eq 0; reasons=$evidenceReasons.ToArray(); checked_at=[DateTimeOffset]::UtcNow.ToString('o') }
+
+    $reliabilityReasons = [Collections.Generic.List[string]]::new()
+    if (-not [bool]$Result.Success) { $reliabilityReasons.Add('handler_reported_failure') }
+    if ($DurationSeconds -gt [double]$CapabilityDefinition.maximum_seconds) { $reliabilityReasons.Add('handler_exceeded_runtime_budget') }
+    if ([string]::IsNullOrWhiteSpace([string]$Duty.idempotency_key)) { $reliabilityReasons.Add('missing_idempotency_key') }
+    if (-not [bool]$Result.Reversible) { $reliabilityReasons.Add('result_not_reversible') }
+    $reliabilityReview = [pscustomobject]@{ reviewer='reliability_tester'; phase='postcondition'; passed=$reliabilityReasons.Count -eq 0; reasons=$reliabilityReasons.ToArray(); checked_at=[DateTimeOffset]::UtcNow.ToString('o') }
+    $passed = [bool]$Preflight.passed -and [bool]$evidenceReview.passed -and [bool]$reliabilityReview.passed
+    [pscustomobject]@{
+        passed = $passed
+        reviews = @($Preflight,$evidenceReview,$reliabilityReview)
+        decision = if ($passed) { 'verified' } else { 'rejected' }
+        parent_final_judgment_required = $true
+    }
+}
+
+function Move-Arko95OpsDuty {
+    param(
+        [Parameter(Mandatory)][string]$Source,
+        [Parameter(Mandatory)][string]$DestinationDirectory
+    )
+    $destination = Join-Path $DestinationDirectory ([System.IO.Path]::GetFileName($Source))
+    [System.IO.File]::Move($Source,$destination,$true)
+    return $destination
+}
+
+function Set-Arko95OpsHeartbeat {
+    param(
+        [Parameter(Mandatory)]$Paths,
+        [Parameter(Mandatory)][string]$WorkerInstance,
+        [Parameter(Mandatory)][string]$CycleId,
+        [Parameter(Mandatory)][string]$Status,
+        $Details = $null
+    )
+    Write-Arko95OpsJsonAtomic -Path $Paths.Heartbeat -Value ([ordered]@{
+        schema_version = 1; worker_instance = $WorkerInstance; status = $Status; timestamp = [DateTimeOffset]::UtcNow.ToString('o'); cycle_id = $CycleId; details = $Details
+    })
+}
+
+function Invoke-Arko95OperationsCycle {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ProjectRoot,
+        [string]$StateRoot
+    )
+    $mutex = $null
+    $paths = $null
+    $cycleId = 'cycle-' + [guid]::NewGuid().ToString('D')
+    $workerInstance = 'worker-' + [guid]::NewGuid().ToString('D')
+    $processed = [Collections.Generic.List[object]]::new()
+    try {
+        $mutex = Enter-Arko95OperationsMutex -ProjectRoot $ProjectRoot
+        $paths = Get-Arko95OperationsPaths -ProjectRoot $ProjectRoot -StateRoot $StateRoot
+        Initialize-Arko95OperationsState -ProjectRoot $ProjectRoot -Paths $paths
+        $policy = Get-Arko95OperationsPolicy -ProjectRoot $ProjectRoot
+        $control = Read-Arko95OpsJson -Path $paths.Control
+        $runtime = Read-Arko95OpsJson -Path $paths.Runtime
+        $lease = Read-Arko95OpsJson -Path $paths.Lease
+        $chain = Get-Arko95OpsReceiptChainStatus -Paths $paths
+        if (-not $chain.Valid) {
+            Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('receipt_chain_invalid:' + $chain.Error) -FaultClass 'audit_integrity'
+            throw "Receipt chain is invalid: $($chain.Error)"
+        }
+        if ([bool]$control.kill_latched -or [string]$control.desired_state -ne 'running' -or [string]$runtime.circuit_state -ne 'closed') {
+            return [pscustomobject]@{ CycleId=$cycleId; Status='paused'; Processed=@(); Reason=[string]$control.reason; Operations=Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot }
+        }
+        $leaseAuthority=Get-Arko95OpsLeaseAuthorityState -Lease $lease -Control $control
+        if (-not $leaseAuthority.Valid) {
+            Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('lease_invalid:' + $leaseAuthority.Reason) -FaultClass 'authority_failure'
+            throw "The Operations VP lease failed authority validation: $($leaseAuthority.Reason)."
+        }
+
+        $today = [DateTimeOffset]::UtcNow.UtcDateTime.ToString('yyyy-MM-dd')
+        if ([string]$lease.invocation_window_date -ne $today) {
+            $lease.invocation_window_date=$today
+            $lease.invocations_today=0
+            Write-Arko95OpsJsonAtomic -Path $paths.Lease -Value $lease
+        }
+        if ([int]$lease.invocations_today -ge [int]$lease.max_invocations_per_day) {
+            Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'daily_invocation_budget_exhausted' -FaultClass 'resource_budget'
+            throw 'The Operations VP daily invocation budget is exhausted before execution.'
+        }
+
+        $workingFiles = @(Get-ChildItem -LiteralPath $paths.Working -Filter '*.json' -File -ErrorAction SilentlyContinue)
+        if ($workingFiles.Count -gt 0) {
+            foreach ($workingFile in $workingFiles) {
+                $duty = Read-Arko95OpsJson -Path $workingFile.FullName
+                $duty.status = 'held'
+                $duty.hold_reason = 'uncertain_after_worker_interruption'
+                Write-Arko95OpsJsonAtomic -Path $workingFile.FullName -Value $duty
+                $null = Move-Arko95OpsDuty -Source $workingFile.FullName -DestinationDirectory $paths.Held
+            }
+            Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'uncertain_working_duty_after_interruption' -FaultClass 'crash_recovery'
+            throw 'A previously claimed duty had uncertain post-state; operations stopped for review.'
+        }
+
+        Set-Arko95OpsHeartbeat -Paths $paths -WorkerInstance $workerInstance -CycleId $cycleId -Status 'running'
+        $resourceSnapshot = Get-Arko95OpsResourceSnapshot -ProjectRoot $ProjectRoot
+        $admission = Test-Arko95OpsResourceAdmission -Policy $policy -Snapshot $resourceSnapshot
+        if (-not $admission.Admitted) {
+            Set-Arko95OpsHeartbeat -Paths $paths -WorkerInstance $workerInstance -CycleId $cycleId -Status 'resource_hold' -Details ([ordered]@{ reasons=@($admission.Reasons) })
+            return [pscustomobject]@{ CycleId=$cycleId; Status='resource_hold'; Processed=@(); Reason=($admission.Reasons -join ','); Operations=Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot }
+        }
+
+        $scheduled = Add-Arko95OpsRecurringDuties -Paths $paths -Policy $policy
+        $pending = [Collections.Generic.List[object]]::new()
+        foreach ($file in @(Get-ChildItem -LiteralPath $paths.Pending -Filter '*.json' -File -ErrorAction Stop)) {
+            $duty = Read-Arko95OpsJson -Path $file.FullName
+            $notBeforeReady = $true
+            if (-not [string]::IsNullOrWhiteSpace([string]$duty.not_before)) {
+                $notBefore = [DateTimeOffset]::MinValue
+                if ([DateTimeOffset]::TryParse([string]$duty.not_before,[ref]$notBefore)) { $notBeforeReady = $notBefore -le [DateTimeOffset]::UtcNow }
+            }
+            if ($notBeforeReady) { $pending.Add([pscustomobject]@{ Path=$file.FullName; Duty=$duty }) }
+        }
+        $selected = @($pending | Sort-Object @{Expression={[int]$_.Duty.priority};Ascending=$true}, @{Expression={[string]$_.Duty.created_at};Ascending=$true} | Select-Object -First ([int]$policy.scheduler.max_duties_per_cycle))
+        foreach ($item in $selected) {
+            $control = Read-Arko95OpsJson -Path $paths.Control
+            $lease = Read-Arko95OpsJson -Path $paths.Lease
+            if ([bool]$control.kill_latched -or [string]$control.desired_state -ne 'running') { break }
+            $leaseAuthority=Get-Arko95OpsLeaseAuthorityState -Lease $lease -Control $control
+            if (-not $leaseAuthority.Valid) {
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('lease_invalid_during_cycle:' + $leaseAuthority.Reason) -DutyId ([string]$item.Duty.duty_id) -FaultClass 'authority_failure'
+                break
+            }
+            if ([int]$lease.invocations_today -ge [int]$lease.max_invocations_per_day) {
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'daily_invocation_budget_exhausted' -DutyId ([string]$item.Duty.duty_id) -FaultClass 'resource_budget'
+                break
+            }
+            $chain = Get-Arko95OpsReceiptChainStatus -Paths $paths
+            if (-not $chain.Valid) {
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('receipt_chain_changed_during_cycle:' + $chain.Error) -DutyId ([string]$item.Duty.duty_id) -FaultClass 'audit_integrity'
+                break
+            }
+            $duty = $item.Duty
+            $capabilityDefinition = Get-Arko95OpsCapability -Policy $policy -CapabilityId ([string]$duty.capability)
+            if ($null -eq $capabilityDefinition) {
+                $duty.status = 'held'; $duty.hold_reason = 'unknown_capability'
+                Write-Arko95OpsJsonAtomic -Path $item.Path -Value $duty
+                $null = Move-Arko95OpsDuty -Source $item.Path -DestinationDirectory $paths.Held
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'unknown_capability_in_queue' -DutyId ([string]$duty.duty_id) -FaultClass 'policy_violation'
+                break
+            }
+            $preflight = Invoke-Arko95OpsPreflightReview -Duty $duty -CapabilityDefinition $capabilityDefinition -Control $control -Lease $lease -Policy $policy
+            if (-not $preflight.passed) {
+                $duty.status = 'held'; $duty.hold_reason = 'preflight_rejected'; $duty.preflight = $preflight
+                Write-Arko95OpsJsonAtomic -Path $item.Path -Value $duty
+                $null = Move-Arko95OpsDuty -Source $item.Path -DestinationDirectory $paths.Held
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('preflight_rejected:' + ($preflight.reasons -join ',')) -DutyId ([string]$duty.duty_id) -FaultClass 'policy_violation'
+                break
+            }
+
+            $workingPath = Move-Arko95OpsDuty -Source $item.Path -DestinationDirectory $paths.Working
+            $duty.status = 'working'
+            $duty.attempts = [int]$duty.attempts + 1
+            $duty.fence_token = [int]$duty.fence_token + 1
+            $duty.claimed_at = [DateTimeOffset]::UtcNow.ToString('o')
+            $duty.worker_instance = $workerInstance
+            $duty.lease_id = [string]$lease.lease_id
+            $duty.policy_epoch = [int]$control.policy_epoch
+            $duty.preflight = $preflight
+            Write-Arko95OpsJsonAtomic -Path $workingPath -Value $duty
+            $null = Add-Arko95OpsEvent -Paths $paths -EventType 'duty_claimed' -DutyId ([string]$duty.duty_id) -Payload ([ordered]@{ capability=$duty.capability; lease_id=$duty.lease_id; policy_epoch=$duty.policy_epoch; fence_token=$duty.fence_token; request_hash=$duty.request_hash })
+
+            try {
+                $controlBeforeEffect = Read-Arko95OpsJson -Path $paths.Control
+                $leaseBeforeEffect = Read-Arko95OpsJson -Path $paths.Lease
+                $chainBeforeEffect = Get-Arko95OpsReceiptChainStatus -Paths $paths
+                if ([bool]$controlBeforeEffect.kill_latched -or [string]$controlBeforeEffect.desired_state -ne 'running') { throw 'kill_latch_changed_before_effect' }
+                if (-not $chainBeforeEffect.Valid) { throw 'receipt_chain_invalid_before_effect' }
+                $leaseBeforeEffectState=Get-Arko95OpsLeaseAuthorityState -Lease $leaseBeforeEffect -Control $controlBeforeEffect -MinimumRemainingSeconds ([double]$capabilityDefinition.maximum_seconds)
+                if (-not $leaseBeforeEffectState.Valid -or [string]$leaseBeforeEffect.lease_id -cne [string]$duty.lease_id) { throw ('lease_invalid_before_effect:' + $leaseBeforeEffectState.Reason) }
+                $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+                $result = Invoke-Arko95OpsCapability -ProjectRoot $ProjectRoot -Paths $paths -Policy $policy -CapabilityDefinition $capabilityDefinition -Duty $duty
+                $stopwatch.Stop()
+                $leaseAfterEffect=Read-Arko95OpsJson -Path $paths.Lease
+                $controlAfterEffect=Read-Arko95OpsJson -Path $paths.Control
+                $leaseAfterEffectState=Get-Arko95OpsLeaseAuthorityState -Lease $leaseAfterEffect -Control $controlAfterEffect
+                if (-not $leaseAfterEffectState.Valid -or [string]$leaseAfterEffect.lease_id -cne [string]$duty.lease_id) { throw ('lease_invalid_after_effect:' + $leaseAfterEffectState.Reason) }
+                $review = Invoke-Arko95OpsPostReview -Paths $paths -Duty $duty -CapabilityDefinition $capabilityDefinition -Result $result -DurationSeconds $stopwatch.Elapsed.TotalSeconds -Preflight $preflight
+                $reviewPath = Join-Path $paths.Reviews (([string]$duty.duty_id) + '.json')
+                Write-Arko95OpsJsonAtomic -Path $reviewPath -Value ([ordered]@{ schema_version=1; duty_id=$duty.duty_id; capability=$duty.capability; duration_seconds=[math]::Round($stopwatch.Elapsed.TotalSeconds,3); decision=$review.decision; parent_final_judgment_required=$true; reviews=$review.reviews; created_at=[DateTimeOffset]::UtcNow.ToString('o') })
+                $reviewHash = (Get-FileHash -LiteralPath $reviewPath -Algorithm SHA256).Hash.ToLowerInvariant()
+                if (-not $review.passed) {
+                    $duty.status = 'held'; $duty.hold_reason = 'post_review_rejected'; $duty.result = $result; $duty.review_path = $reviewPath; $duty.review_hash = $reviewHash
+                    Write-Arko95OpsJsonAtomic -Path $workingPath -Value $duty
+                    $null = Move-Arko95OpsDuty -Source $workingPath -DestinationDirectory $paths.Held
+                    Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'post_review_rejected' -DutyId ([string]$duty.duty_id) -FaultClass 'adverse_review'
+                    break
+                }
+                $duty.status = 'verified'
+                $duty.completed_at = [DateTimeOffset]::UtcNow.ToString('o')
+                $duty.duration_seconds = [math]::Round($stopwatch.Elapsed.TotalSeconds,3)
+                $duty.result = $result
+                $duty.review_path = $reviewPath
+                $duty.review_hash = $reviewHash
+                $duty.parent_final_judgment_required = $true
+                Write-Arko95OpsJsonAtomic -Path $workingPath -Value $duty
+                $completedPath = Move-Arko95OpsDuty -Source $workingPath -DestinationDirectory $paths.Completed
+                try {
+                    $receipt = Add-Arko95OpsEvent -Paths $paths -EventType 'duty_verified' -DutyId ([string]$duty.duty_id) -Payload ([ordered]@{ capability=$duty.capability; request_hash=$duty.request_hash; fence_token=$duty.fence_token; artifact_hashes=$result.ArtifactHashes; review_hash=$reviewHash; duration_seconds=$duty.duration_seconds; parent_final_judgment_required=$true })
+                    $processed.Add([pscustomobject]@{ duty_id=$duty.duty_id; capability=$duty.capability; status='verified'; receipt_hash=$receipt.event_hash; completed_path=$completedPath })
+                }
+                catch {
+                    $heldPath = Move-Arko95OpsDuty -Source $completedPath -DestinationDirectory $paths.Held
+                    $heldDuty = Read-Arko95OpsJson -Path $heldPath
+                    $heldDuty.status = 'held'; $heldDuty.hold_reason = 'completion_receipt_failed'
+                    Write-Arko95OpsJsonAtomic -Path $heldPath -Value $heldDuty
+                    Invoke-Arko95OpsTripCircuit -Paths $paths -Reason 'completion_receipt_failed' -DutyId ([string]$duty.duty_id) -FaultClass 'audit_failure'
+                    break
+                }
+                $runtime = Read-Arko95OpsJson -Path $paths.Runtime
+                $runtime.duties_completed = [int]$runtime.duties_completed + 1
+                $runtime.consecutive_failures = 0
+                $runtime.updated_at = [DateTimeOffset]::UtcNow.ToString('o')
+                Write-Arko95OpsJsonAtomic -Path $paths.Runtime -Value $runtime
+                $lease = Read-Arko95OpsJson -Path $paths.Lease
+                $today = [DateTimeOffset]::UtcNow.UtcDateTime.ToString('yyyy-MM-dd')
+                if ([string]$lease.invocation_window_date -ne $today) { $lease.invocation_window_date = $today; $lease.invocations_today = 0 }
+                $lease.invocations_today = [int]$lease.invocations_today + 1
+                Write-Arko95OpsJsonAtomic -Path $paths.Lease -Value $lease
+            }
+            catch {
+                if (Test-Path -LiteralPath $workingPath -PathType Leaf) {
+                    $failedDuty = Read-Arko95OpsJson -Path $workingPath
+                    $failedDuty.status = 'failed'
+                    $failedDuty.failure_reason = (($_.Exception.Message -replace '[\u0000-\u001F\u007F]+',' ') -replace '\s+',' ').Trim()
+                    $failedDuty.failed_at = [DateTimeOffset]::UtcNow.ToString('o')
+                    Write-Arko95OpsJsonAtomic -Path $workingPath -Value $failedDuty
+                    $null = Move-Arko95OpsDuty -Source $workingPath -DestinationDirectory $paths.Failed
+                }
+                try { $null = Add-Arko95OpsEvent -Paths $paths -EventType 'duty_failed' -DutyId ([string]$duty.duty_id) -Payload ([ordered]@{ capability=$duty.capability; reason=$_.Exception.Message }) } catch { }
+                Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('duty_failed:' + $_.Exception.Message) -DutyId ([string]$duty.duty_id) -FaultClass 'handler_failure'
+                break
+            }
+        }
+
+        $runtime = Read-Arko95OpsJson -Path $paths.Runtime
+        if ([string]$runtime.circuit_state -eq 'closed') {
+            $runtime.cycles_completed = [int]$runtime.cycles_completed + 1
+            $runtime.last_cycle_at = [DateTimeOffset]::UtcNow.ToString('o')
+            $runtime.updated_at = [DateTimeOffset]::UtcNow.ToString('o')
+            Write-Arko95OpsJsonAtomic -Path $paths.Runtime -Value $runtime
+            Set-Arko95OpsHeartbeat -Paths $paths -WorkerInstance $workerInstance -CycleId $cycleId -Status 'idle' -Details ([ordered]@{ processed=$processed.Count; scheduled=$scheduled })
+        }
+        else {
+            Set-Arko95OpsHeartbeat -Paths $paths -WorkerInstance $workerInstance -CycleId $cycleId -Status 'circuit_open' -Details ([ordered]@{ processed=$processed.Count })
+        }
+        return [pscustomobject]@{ CycleId=$cycleId; Status=$(if ([string]$runtime.circuit_state -eq 'closed') {'completed'} else {'circuit_open'}); Scheduled=$scheduled; Processed=$processed.ToArray(); Operations=Get-Arko95OperationsStatus -ProjectRoot $ProjectRoot -StateRoot $StateRoot }
+    }
+    catch {
+        if ($null -ne $paths -and (Test-Path -LiteralPath $paths.Control -PathType Leaf)) {
+            try { Invoke-Arko95OpsTripCircuit -Paths $paths -Reason ('cycle_exception:' + $_.Exception.Message) -FaultClass 'cycle_exception' } catch { }
+            try { Set-Arko95OpsHeartbeat -Paths $paths -WorkerInstance $workerInstance -CycleId $cycleId -Status 'faulted' -Details ([ordered]@{ reason=$_.Exception.Message }) } catch { }
+        }
+        throw
+    }
+    finally { Exit-Arko95OperationsMutex -Mutex $mutex }
+}
+
+Export-ModuleMember -Function Get-Arko95OperationsPaths, Get-Arko95OperationsPolicy, Initialize-Arko95Operations, Enable-Arko95Operations, Stop-Arko95Operations, Get-Arko95OperationsStatus, Test-Arko95OperationsReceiptChain, New-Arko95OperationsDuty, Invoke-Arko95OperationsCycle

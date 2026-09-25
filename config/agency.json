@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "identity": "ARKO-95 Local AI Agency",
+  "mode": "metadata_only",
+  "default_effect": "proposal_only",
+  "authority": "none",
+  "catalog_rules": {
+    "maximum_runtime_seconds": 45,
+    "maximum_sources_per_cycle": 12,
+    "maximum_depth": 4,
+    "maximum_files_per_source": 25000,
+    "path_storage": "sha256_only",
+    "inspect_file_contents": false,
+    "compute_content_hashes": false,
+    "follow_reparse_points": false,
+    "stale_after_days": 365,
+    "extension_limit": 16,
+    "duplicate_candidate_limit": 12
+  },
+  "crew": [
+    {
+      "id": "agency_director",
+      "purpose": "Surface priorities to the owner, who remains outside the agency and retains final judgment.",
+      "may_write_source_data": false,
+      "may_approve": false
+    },
+    {
+      "id": "data_cartographer",
+      "purpose": "Map allowlisted source metadata without reading file contents.",
+      "may_write_source_data": false,
+      "may_approve": false
+    },
+    {
+      "id": "memory_librarian",
+      "purpose": "Turn source summaries into a canonical aggregate metadata snapshot.",
+      "may_write_source_data": false,
+      "may_approve": false
+    },
+    {
+      "id": "workflow_operator",
+      "purpose": "Compile evidence-linked proposals into a bounded backlog.",
+      "may_write_source_data": false,
+      "may_approve": false
+    },
+    {
+      "id": "proof_auditor",
+      "purpose": "Verify the agency receipt chain, boundaries, and outputs independently.",
+      "may_write_source_data": false,
+      "may_approve": false
+    }
+  ],
+  "sources": [
+    {
+      "id": "arko_workspace",
+      "base": "project_root",
+      "relative_path": ".",
+      "maximum_depth": 4,
+      "maximum_files": 8000,
+      "excludes": ["state", "pet-run", "evidence"]
+    },
+    {
+      "id": "codex_projects",
+      "base": "user_profile",
+      "relative_path": "Documents\\Codex",
+      "maximum_depth": 1,
+      "maximum_files": 5000,
+      "excludes": ["2026-09-24\\arko95-pr-mission-control\\.git"]
+    },
+    {
+      "id": "oneness_src",
+      "base": "user_profile",
+      "relative_path": "OneDrive\\Desktop\\OnenessSystem\\src",
+      "maximum_depth": 3,
+      "maximum_files": 8000,
+      "excludes": ["Oneness.Web\\bin", "Oneness.Web\\obj", "node_modules", "__pycache__"]
+    },
+    {
+      "id": "oneness_config",
+      "base": "user_profile",
+      "relative_path": "OneDrive\\Desktop\\OnenessSystem\\config",
+      "maximum_depth": 3,
+      "maximum_files": 3000,
+      "excludes": []
+    },
+    {
+      "id": "oneness_docs",
+      "base": "user_profile",
+      "relative_path": "OneDrive\\Desktop\\OnenessSystem\\docs",
+      "maximum_depth": 3,
+      "maximum_files": 5000,
+      "excludes": []
+    },
+    {
+      "id": "oneness_scripts",
+      "base": "user_profile",
+      "relative_path": "OneDrive\\Desktop\\OnenessSystem\\scripts",
+      "maximum_depth": 3,
+      "maximum_files": 5000,
+      "excludes": ["node_modules", "__pycache__"]
+    },
+    {
+      "id": "oneness_tests",
+      "base": "user_profile",
+      "relative_path": "OneDrive\\Desktop\\OnenessSystem\\tests",
+      "maximum_depth": 3,
+      "maximum_files": 5000,
+      "excludes": ["__pycache__", ".pytest_cache"]
+    },
+    {
+      "id": "approved_inbox",
+      "base": "user_profile",
+      "relative_path": "OneDrive\\Desktop\\SecondBrain\\0-Inbox",
+      "maximum_depth": 2,
+      "maximum_files": 2000,
+      "excludes": []
+    }
+  ],
+  "forbidden_user_profile_roots": [
+    "OneDrive\\Desktop\\rsb case",
+    ".ssh",
+    ".gnupg",
+    ".codex",
+    "Downloads",
+    "AppData",
+    "OneDrive\\Personal Vault"
+  ],
+  "proposal_rules": {
+    "minimum_stale_files": 25,
+    "minimum_duplicate_candidate_groups": 5,
+    "unavailable_source_priority": 1,
+    "truncated_source_priority": 2,
+    "duplicate_review_priority": 3,
+    "stale_review_priority": 4
+  },
+  "hard_denials": [
+    "read_file_contents",
+    "store_raw_paths_or_file_names",
+    "follow_reparse_points",
+    "move_rename_delete_or_overwrite_source_data",
+    "execute_catalog_content",
+    "infer_authority_from_discovered_data",
+    "scan_legal_case_roots",
+    "store_credentials_or_browser_profiles",
+    "send_sync_publish_or_upload",
+    "auto_promote_backlog_proposals"
+  ]
+}

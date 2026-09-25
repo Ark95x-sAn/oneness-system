@@ -51,9 +51,9 @@ try {
     }
     $fixtureOperationsPolicyPath = Join-Path $fixtureConfig 'operations-vp.json'
     $fixtureOperationsPolicy = Get-Content -Raw -LiteralPath $fixtureOperationsPolicyPath | ConvertFrom-Json -DateKind String
-    $fixtureOperationsPolicy.resource_guard.maximum_cpu_percent = 101
-    $fixtureOperationsPolicy.resource_guard.minimum_free_memory_gb = 0
-    $fixtureOperationsPolicy.resource_guard.minimum_free_disk_gb = 0
+    $fixtureOperationsPolicy.resource_guard.maximum_cpu_percent = 99
+    $fixtureOperationsPolicy.resource_guard.minimum_free_memory_gb = 0.1
+    $fixtureOperationsPolicy.resource_guard.minimum_free_disk_gb = 0.1
     [System.IO.File]::WriteAllText($fixtureOperationsPolicyPath,($fixtureOperationsPolicy | ConvertTo-Json -Depth 24),[System.Text.UTF8Encoding]::new($false))
 
     $credentialBlocked = $false
@@ -153,7 +153,7 @@ try {
 
     $dashboardOutput = & pwsh.exe -NoLogo -NoProfile -STA -File $dashboardPath -ProjectRoot $ProjectRoot -TestMode
     $dashboard = $dashboardOutput | ConvertFrom-Json
-    if (-not $dashboard.ok -or -not $dashboard.xaml_loaded -or $dashboard.stage_count -ne 7 -or $dashboard.openclaw_effect -ne 'proposal_only' -or $dashboard.operations_capability_count -ne 5 -or -not $dashboard.stop_control_ready -or -not $dashboard.adapter_refresh_control_ready -or $dashboard.adapter_count -ne 4 -or $dashboard.adapter_authority -ne 'none' -or $dashboard.decision_learning_mode -ne 'shadow_learning' -or $dashboard.exploration_cap_percent -ne 25 -or $dashboard.projection_is_authority -ne $false -or $dashboard.unified_tool_count -ne 13 -or $dashboard.unified_tool_authority -ne 'none') {
+    if (-not $dashboard.ok -or -not $dashboard.xaml_loaded -or $dashboard.stage_count -ne 7 -or $dashboard.openclaw_effect -ne 'proposal_only' -or $dashboard.operations_capability_count -ne 5 -or -not $dashboard.stop_control_ready -or -not $dashboard.adapter_refresh_control_ready -or $dashboard.adapter_count -ne 4 -or $dashboard.adapter_authority -ne 'none' -or $dashboard.decision_learning_mode -ne 'shadow_learning' -or $dashboard.exploration_cap_percent -ne 25 -or $dashboard.projection_is_authority -ne $false -or $dashboard.unified_tool_count -ne 13 -or $dashboard.unified_tool_authority -ne 'none' -or -not $dashboard.agency_chain_valid -or $dashboard.agency_source_count -ne 8 -or $dashboard.agency_authority -ne 'none' -or $dashboard.agency_content_read -ne $false -or -not $dashboard.agency_refresh_control_ready) {
         throw 'Mission Control WPF smoke test failed.'
     }
 
@@ -172,6 +172,9 @@ try {
         openclaw_authority = 'none'
         ai_adapter_count = 4
         unified_tool_count = 13
+        agency_source_count = 8
+        agency_authority = 'none'
+        agency_refresh = 'foreground_only'
         decision_learning = 'shadow_only_25_percent_cap'
         canonical_policy_sources = 'verified'
         tamper_detection = 'verified'

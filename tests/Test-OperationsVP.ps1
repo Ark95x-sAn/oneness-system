@@ -18,6 +18,8 @@ foreach ($path in @($modulePath,$runnerPath,$installerPath)) {
     [System.Management.Automation.Language.Parser]::ParseFile($path,[ref]$tokens,[ref]$errors) | Out-Null
     if ($errors.Count -gt 0) { throw "PowerShell parse errors in ${path}: $($errors -join '; ')" }
 }
+$installerSource=Get-Content -Raw -LiteralPath $installerPath
+if ($installerSource -match '-notlike' -or $installerSource -notmatch 'Test-Arko95ScheduledTaskOwnership' -or $installerSource -notmatch '\-ceq \$ExpectedArguments') { throw 'Scheduled-task ownership is not matched exactly.' }
 
 $fixtureRoot = Join-Path $ProjectRoot ('state\test-operations-project-{0}' -f [guid]::NewGuid().ToString('N'))
 $fixtureConfig = Join-Path $fixtureRoot 'config'
@@ -26,9 +28,9 @@ New-Item -ItemType Directory -Path $fixtureConfig -Force | Out-Null
 
 try {
     $policy = Get-Content -Raw -LiteralPath (Join-Path $ProjectRoot 'config\operations-vp.json') | ConvertFrom-Json -DateKind String
-    $policy.resource_guard.maximum_cpu_percent = 100
-    $policy.resource_guard.minimum_free_memory_gb = 0
-    $policy.resource_guard.minimum_free_disk_gb = 0
+    $policy.resource_guard.maximum_cpu_percent = 99
+    $policy.resource_guard.minimum_free_memory_gb = 0.1
+    $policy.resource_guard.minimum_free_disk_gb = 0.1
     [System.IO.File]::WriteAllText((Join-Path $fixtureConfig 'operations-vp.json'),($policy | ConvertTo-Json -Depth 24),[System.Text.UTF8Encoding]::new($false))
 
     Import-Module $modulePath -Force
@@ -47,11 +49,21 @@ try {
     if (-not $wrongAckBlocked) { throw 'Operations enabled without the exact owner acknowledgement.' }
 
     $enabled = Enable-Arko95Operations -ProjectRoot $fixtureRoot -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations'
-    if (-not $enabled.Ready -or $enabled.KillLatched -or $enabled.LeaseStatus -ne 'active') { throw 'Bounded lease did not enable correctly.' }
+    if ($enabled.DesiredState -ne 'running' -or $enabled.KillLatched -or $enabled.LeaseStatus -ne 'active' -or -not $enabled.LeaseTemporalValid) { throw 'Bounded lease did not enable correctly.' }
 
     $connectorRegistry = Get-Content -Raw -LiteralPath $connectorRegistryPath | ConvertFrom-Json -DateKind String
     $fixturePaths = Get-Arko95OperationsPaths -ProjectRoot $fixtureRoot
     $leaseDocument = Get-Content -Raw -LiteralPath $fixturePaths.Lease | ConvertFrom-Json -DateKind String
+    if ($leaseDocument.renewal_mode -ne 'absolute_owner_grant' -or [string]$leaseDocument.absolute_not_after -cne [string]$leaseDocument.expires_at) {
+        throw 'The Operations VP lease is not absolutely bounded.'
+    }
+    $heartbeatDocument=Get-Content -Raw -LiteralPath $fixturePaths.Heartbeat|ConvertFrom-Json -DateKind String
+    $heartbeatOriginal=$heartbeatDocument|ConvertTo-Json -Depth 24
+    $heartbeatDocument.timestamp=[DateTimeOffset]::UtcNow.AddDays(1).ToString('o')
+    [IO.File]::WriteAllText($fixturePaths.Heartbeat,($heartbeatDocument|ConvertTo-Json -Depth 24),[Text.UTF8Encoding]::new($false))
+    $futureHeartbeatStatus=Get-Arko95OperationsStatus -ProjectRoot $fixtureRoot
+    if(-not $futureHeartbeatStatus.HeartbeatFuture -or -not $futureHeartbeatStatus.HeartbeatStale -or $futureHeartbeatStatus.Ready){ throw 'A future-dated heartbeat was accepted as fresh.' }
+    [IO.File]::WriteAllText($fixturePaths.Heartbeat,$heartbeatOriginal,[Text.UTF8Encoding]::new($false))
     $expectedAutomaticCapabilities = @($policy.automatic_capabilities | ForEach-Object { [string]$_.id } | Sort-Object)
     if ((@($leaseDocument.allowed_capabilities | Sort-Object) -join '|') -ne ($expectedAutomaticCapabilities -join '|')) {
         throw 'The Operations VP lease contains capabilities outside the compiled R0/R1 policy.'
@@ -82,6 +94,42 @@ try {
     if ($cycleOne.Status -ne 'completed' -or @($cycleOne.Processed).Count -ne 3) { throw 'First Operations VP cycle did not process the bounded three-duty cap.' }
     $cycleTwo = Invoke-Arko95OperationsCycle -ProjectRoot $fixtureRoot
     if ($cycleTwo.Status -ne 'completed' -or @($cycleTwo.Processed).Count -lt 1) { throw 'Second Operations VP cycle did not finish remaining work.' }
+
+    $leaseAfterCycles = Get-Content -Raw -LiteralPath $fixturePaths.Lease | ConvertFrom-Json -DateKind String
+    if ([string]$leaseAfterCycles.absolute_not_after -cne [string]$leaseDocument.absolute_not_after -or [string]$leaseAfterCycles.expires_at -cne [string]$leaseDocument.expires_at) {
+        throw 'A healthy Operations VP cycle extended the absolute owner lease.'
+    }
+
+    $expiredAt=[DateTimeOffset]::UtcNow.AddMinutes(-1).ToString('o')
+    $leaseAfterCycles.expires_at=$expiredAt
+    $leaseAfterCycles.absolute_not_after=$expiredAt
+    [IO.File]::WriteAllText($fixturePaths.Lease,($leaseAfterCycles|ConvertTo-Json -Depth 24),[Text.UTF8Encoding]::new($false))
+    if ((Get-Arko95OperationsStatus -ProjectRoot $fixtureRoot).Ready) { throw 'Expired lease still reported Operations VP ready.' }
+    $expiryBlocked=$false
+    try { Invoke-Arko95OperationsCycle -ProjectRoot $fixtureRoot | Out-Null } catch { $expiryBlocked=$true }
+    if (-not $expiryBlocked) { throw 'Expired lease did not stop the Operations VP cycle.' }
+    $null=Enable-Arko95Operations -ProjectRoot $fixtureRoot -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations'
+
+    $budgetLease=Get-Content -Raw -LiteralPath $fixturePaths.Lease | ConvertFrom-Json -DateKind String
+    $budgetLease.invocations_today=[int]$budgetLease.max_invocations_per_day
+    [IO.File]::WriteAllText($fixturePaths.Lease,($budgetLease|ConvertTo-Json -Depth 24),[Text.UTF8Encoding]::new($false))
+    $completedBeforeBudget=@(Get-ChildItem -LiteralPath $fixturePaths.Completed -Filter '*.json' -File).Count
+    $null=New-Arko95OperationsDuty -ProjectRoot $fixtureRoot -Capability 'observe.system_health' -IdempotencyKey 'budget-exhaustion-proof' -Parameters ([ordered]@{}) -Priority 0
+    $budgetBlocked=$false
+    try { Invoke-Arko95OperationsCycle -ProjectRoot $fixtureRoot | Out-Null } catch { $budgetBlocked=$true }
+    if (-not $budgetBlocked) { throw 'Exhausted invocation budget did not stop before execution.' }
+    if (@(Get-ChildItem -LiteralPath $fixturePaths.Completed -Filter '*.json' -File).Count -ne $completedBeforeBudget) { throw 'A duty executed after the daily invocation budget was exhausted.' }
+    $null=Enable-Arko95Operations -ProjectRoot $fixtureRoot -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations'
+
+    $runwayLease=Get-Content -Raw -LiteralPath $fixturePaths.Lease|ConvertFrom-Json -DateKind String
+    $shortDeadline=[DateTimeOffset]::UtcNow.AddSeconds(5).ToString('o')
+    $runwayLease.expires_at=$shortDeadline
+    $runwayLease.absolute_not_after=$shortDeadline
+    [IO.File]::WriteAllText($fixturePaths.Lease,($runwayLease|ConvertTo-Json -Depth 24),[Text.UTF8Encoding]::new($false))
+    $completedBeforeRunway=@(Get-ChildItem -LiteralPath $fixturePaths.Completed -Filter '*.json' -File).Count
+    $runwayCycle=Invoke-Arko95OperationsCycle -ProjectRoot $fixtureRoot
+    if($runwayCycle.Status -ne 'circuit_open' -or @(Get-ChildItem -LiteralPath $fixturePaths.Completed -Filter '*.json' -File).Count -ne $completedBeforeRunway){ throw 'A duty effect was allowed without enough absolute lease runway.' }
+    $null=Enable-Arko95Operations -ProjectRoot $fixtureRoot -Acknowledgement 'I authorize bounded R0/R1 ARKO-95 operations'
 
     $paths = Get-Arko95OperationsPaths -ProjectRoot $fixtureRoot
     if (@(Get-ChildItem -LiteralPath $paths.Working -Filter '*.json' -File).Count -ne 0) { throw 'A completed cycle left a claimed duty behind.' }
@@ -122,6 +170,12 @@ try {
         authority = 'R0_R1_enumerated_only'
         connector_ids_rejected = @($connectorRegistry.connectors).Count
         lease_capability_count = @($leaseDocument.allowed_capabilities).Count
+        lease_absolute_expiry = 'verified'
+        lease_sliding_renewal = 'disabled'
+        pre_effect_invocation_budget = 'verified'
+        pre_effect_lease_runway = 'verified'
+        future_heartbeat_rejection = 'verified'
+        exact_task_ownership = 'verified'
     } | ConvertTo-Json -Depth 8
 }
 finally {

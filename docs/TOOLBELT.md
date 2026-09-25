@@ -6,6 +6,10 @@ The toolbelt gives the read-only planning crew routing hints for nine explicitly
 
 For display and inventory, `Get-Arko95UnifiedToolIndex` combines these nine routing entries with the four Decision Learning runtime adapters into one 13-item in-memory view. The connector registry and adapter policy remain separate canonical sources, every projected item retains its lane, and the combined view has no execution authority.
 
+The Local AI Agency is not a fourteenth tool. It catalogs bounded local metadata and produces proposals; it has no connector endpoint, invocation route, or Operations capability ID. The unified tool count therefore remains 13.
+
+Agency source IDs are data-map labels, not connectors or runtime adapters. They are excluded from delegation routing and cannot appear as executable tool entries.
+
 ```mermaid
 flowchart LR
     I["Owner intention"] --> D["Bounded delegation plan"]
@@ -50,7 +54,7 @@ No account names, email addresses, organization identifiers, access tokens, deal
 
 ## Operations VP separation
 
-`config/operations-vp.json` remains unchanged: its lease contains only the five compiled local R0/R1 capability IDs. `Arko95.Operations.psm1` has no generic connector, plugin, command, endpoint, browser, or computer-use handler. All nine registry IDs are tested as invalid Operations VP duties.
+`config/operations-vp.json` contains only the five compiled local R0/R1 capability IDs. `Arko95.Operations.psm1` has no generic connector, plugin, agency, command, endpoint, browser, or computer-use handler. All nine registry IDs are tested as invalid Operations VP duties.
 
 ## Validation
 

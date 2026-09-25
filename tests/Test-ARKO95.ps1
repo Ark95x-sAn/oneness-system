@@ -13,6 +13,7 @@ $modulePath = Join-Path $ProjectRoot 'shell\Arko95.Core.psm1'
 $operationsModulePath = Join-Path $ProjectRoot 'shell\Arko95.Operations.psm1'
 $missionModulePath = Join-Path $ProjectRoot 'shell\Arko95.MissionControl.psm1'
 $learningModulePath = Join-Path $ProjectRoot 'shell\Arko95.DecisionLearning.psm1'
+$agencyModulePath = Join-Path $ProjectRoot 'shell\Arko95.Agency.psm1'
 $shellPath = Join-Path $ProjectRoot 'shell\ARKO95.PetShell.ps1'
 $missionShellPath = Join-Path $ProjectRoot 'shell\ARKO95.MissionControl.ps1'
 $operationsRunnerPath = Join-Path $ProjectRoot 'scripts\Invoke-ARKO95OperationsVP.ps1'
@@ -22,10 +23,12 @@ $missionTestPath = Join-Path $ProjectRoot 'tests\Test-MissionControl.ps1'
 $learningRunnerPath = Join-Path $ProjectRoot 'scripts\Invoke-ARKO95DecisionLearning.ps1'
 $adapterRefreshPath = Join-Path $ProjectRoot 'scripts\Update-ARKO95AdapterObservations.ps1'
 $learningTestPath = Join-Path $ProjectRoot 'tests\Test-DecisionLearning.ps1'
+$agencyRunnerPath = Join-Path $ProjectRoot 'scripts\Invoke-ARKO95Agency.ps1'
+$agencyTestPath = Join-Path $ProjectRoot 'tests\Test-Agency.ps1'
 $rosterPath = Join-Path $ProjectRoot 'config\delegation-roster.json'
 $registryPath = Join-Path $ProjectRoot 'config\connector-registry.json'
 
-foreach ($path in @($modulePath, $operationsModulePath, $missionModulePath, $learningModulePath, $shellPath, $missionShellPath, $operationsRunnerPath, $operationsInstallerPath, $learningRunnerPath, $adapterRefreshPath, $toolbeltTestPath, $missionTestPath, $learningTestPath)) {
+foreach ($path in @($modulePath, $operationsModulePath, $missionModulePath, $learningModulePath, $agencyModulePath, $shellPath, $missionShellPath, $operationsRunnerPath, $operationsInstallerPath, $learningRunnerPath, $agencyRunnerPath, $adapterRefreshPath, $toolbeltTestPath, $missionTestPath, $learningTestPath, $agencyTestPath)) {
     $tokens = $null
     $errors = $null
     [System.Management.Automation.Language.Parser]::ParseFile($path, [ref]$tokens, [ref]$errors) | Out-Null
@@ -33,6 +36,10 @@ foreach ($path in @($modulePath, $operationsModulePath, $missionModulePath, $lea
 }
 
 Import-Module $modulePath -Force
+Import-Module $agencyModulePath -Force
+$agencyPolicy = Get-Arko95AgencyPolicy -ProjectRoot $ProjectRoot
+if ($agencyPolicy.mode -ne 'metadata_only' -or $agencyPolicy.default_effect -ne 'proposal_only' -or $agencyPolicy.authority -ne 'none') { throw 'Agency policy crossed its metadata-only, proposal-only boundary.' }
+if (@($agencyPolicy.crew | Where-Object { $_.may_write_source_data -or $_.may_approve }).Count -ne 0) { throw 'Agency crew gained write or approval authority.' }
 $roster = Get-Content -Raw -LiteralPath $rosterPath | ConvertFrom-Json
 if ($roster.schema_version -ne 1) { throw 'Delegation roster schema is invalid.' }
 $registry = Get-Arko95ConnectorRegistry -ProjectRoot $ProjectRoot
@@ -159,7 +166,7 @@ if (-not $shellResult.mission_control_ready) { throw 'WPF shell did not expose t
 
 [pscustomobject]@{
     ok = $true
-    parsed_files = 13
+    parsed_files = 16
     status_effect = $status.Effect
     mission_status = $status.MissionStatus
     intent_boundary = 'verified'
@@ -172,4 +179,7 @@ if (-not $shellResult.mission_control_ready) { throw 'WPF shell did not expose t
     operations_stop_control = 'loaded'
     mission_control = 'entry_point_loaded'
     decision_learning = 'parsed_and_separate'
+    agency = 'metadata_only_proposal_backlog'
+    agency_source_count = @($agencyPolicy.sources).Count
+    agency_authority = $agencyPolicy.authority
 } | ConvertTo-Json -Depth 4

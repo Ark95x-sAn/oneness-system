@@ -65,6 +65,8 @@ Runtime receipts live under `state/` and are not source-controlled. A checkout t
 
 These four adapter definitions are canonical. Mission Control no longer maintains a duplicate OpenClaw definition or legacy receipt fallback. `Get-Arko95UnifiedToolIndex` may combine adapter and connector metadata for display, but it remains an in-memory, zero-authority projection and never collapses their policy lanes.
 
+Agency backlog items are not Decision Learning records. They have no lineage standing, consume no attention credits, and cannot become observations, inferences, projections, decision proposals, outcomes, or lessons without a separate parent-reviewed append bound to a Mission Control mission.
+
 Select **Refresh AI fabric** in Mission Control, or run the command below, to create new 15-minute receipts from only the closed local metadata allowlist:
 
 ```powershell

@@ -20,6 +20,7 @@ Import-Module (Join-Path $PSScriptRoot 'Arko95.Core.psm1') -Force
 Import-Module (Join-Path $PSScriptRoot 'Arko95.MissionControl.psm1') -Force
 Import-Module (Join-Path $PSScriptRoot 'Arko95.Operations.psm1') -Force
 Import-Module (Join-Path $PSScriptRoot 'Arko95.DecisionLearning.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot 'Arko95.Agency.psm1') -Force
 Import-Module (Join-Path $PSScriptRoot 'Arko95.Core.psm1') -Force
 
 $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
@@ -202,6 +203,7 @@ $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
           <Button x:Name="AbortButton" Content="Abort mission" Style="{StaticResource SecondaryButton}"/>
           <Button x:Name="RefreshButton" Content="Refresh proof" Style="{StaticResource SecondaryButton}"/>
           <Button x:Name="RefreshFabricButton" Content="Refresh AI fabric" Style="{StaticResource SecondaryButton}" ToolTip="Observe content-free local package, process, signature, listener, and pet-validation metadata. No chats or credentials."/>
+          <Button x:Name="RefreshAgencyButton" Content="Refresh agency map" Style="{StaticResource SecondaryButton}" ToolTip="Foreground metadata-only scan of the explicit agency allowlist. No contents, moves, deletes, uploads, or legal workspace access."/>
           <Button x:Name="StopOpsButton" Content="STOP OPS" Style="{StaticResource StopButton}"/>
         </WrapPanel>
         <Grid Grid.Row="1" Margin="5,8,5,0">
@@ -218,7 +220,7 @@ $ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
 $reader = [System.Xml.XmlNodeReader]::new($xaml)
 $window = [Windows.Markup.XamlReader]::Load($reader)
 
-$names = @('HeaderState','HeaderProof','MissionList','TeamList','ObjectiveDigest','ObjectiveInput','ModeCombo','CapabilityCombo','MissionDetail','ChainDetail','AIFabricDetail','OpsDetail','StageMissionButton','PlanTeamButton','QueueDutyButton','SyncButton','HoldButton','AbortButton','RefreshButton','RefreshFabricButton','StopOpsButton','ActionStatus')
+$names = @('HeaderState','HeaderProof','MissionList','TeamList','ObjectiveDigest','ObjectiveInput','ModeCombo','CapabilityCombo','MissionDetail','ChainDetail','AIFabricDetail','OpsDetail','StageMissionButton','PlanTeamButton','QueueDutyButton','SyncButton','HoldButton','AbortButton','RefreshButton','RefreshFabricButton','RefreshAgencyButton','StopOpsButton','ActionStatus')
 foreach ($name in $names) { Set-Variable -Name $name -Value $window.FindName($name) -Scope Script }
 $stageBorders = @(0..6 | ForEach-Object { $window.FindName("Stage$_") })
 $stageIds = @('intake','decompose','route_delegate','execute','verify','persist_learn','notify_present')
@@ -250,6 +252,7 @@ function Update-MissionControlView {
         $status = Get-Arko95MissionControlStatus -ProjectRoot $ProjectRoot
         $learning = Get-Arko95DecisionLearningStatus -ProjectRoot $ProjectRoot
         $toolIndex = Get-Arko95UnifiedToolIndex -ProjectRoot $ProjectRoot
+        $agency = Get-Arko95AgencyStatus -ProjectRoot $ProjectRoot
         $script:CurrentMission = $status.ActiveMission
         $MissionList.Items.Clear()
         foreach ($mission in @($status.Missions)) {
@@ -268,7 +271,7 @@ function Update-MissionControlView {
             $HeaderState.Text = 'NO OPEN MISSION • INTAKE READY'
             $learnUsed = if ($null -eq $learning.ActiveCycle) { 0 } else { [int]$learning.ActiveCycle.exploration_used }
             $learnCap = if ($null -eq $learning.ActiveCycle) { 25 } else { [int]$learning.ActiveCycle.exploration_cap_credits }
-            $HeaderProof.Text = ('MISSION CHAIN {0} • DATA CHAIN {1} • LEARN {2}/{3} • OPS {4}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$(if($learning.ChainValid){'OK'}else{'FAULT'}),$learnUsed,$learnCap,$status.Operations.DesiredState).ToUpperInvariant()
+            $HeaderProof.Text = ('MISSION {0} • DATA {1} • AGENCY {2} • LEARN {3}/{4} • OPS {5}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$(if($learning.ChainValid){'OK'}else{'FAULT'}),$(if($agency.ChainValid){'OK'}else{'FAULT'}),$learnUsed,$learnCap,$status.Operations.DesiredState).ToUpperInvariant()
             $ObjectiveDigest.Text = 'SHA-256 —'
             $MissionDetail.Text = "One objective becomes one replayed state and one evidence chain.`n`nStage a bounded outcome. The system will plan three read-only specialists, hold connector use behind live verification, and permit execution only through the five compiled R0/R1 Operations VP duties."
             $ObjectiveInput.IsReadOnly = $false
@@ -279,7 +282,7 @@ function Update-MissionControlView {
             $HeaderState.Text = ('MISSION {0} • {1} • {2}' -f $short,$mission.stage,$mission.status).ToUpperInvariant()
             $learnUsed = if ($null -eq $learning.ActiveCycle) { 0 } else { [int]$learning.ActiveCycle.exploration_used }
             $learnCap = if ($null -eq $learning.ActiveCycle) { 25 } else { [int]$learning.ActiveCycle.exploration_cap_credits }
-            $HeaderProof.Text = ('MISSION CHAIN {0} • v{1} • DATA CHAIN {2} • LEARN {3}/{4} • OPS {5}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$mission.version,$(if($learning.ChainValid){'OK'}else{'FAULT'}),$learnUsed,$learnCap,$status.Operations.DesiredState).ToUpperInvariant()
+            $HeaderProof.Text = ('MISSION {0} • v{1} • DATA {2} • AGENCY {3} • LEARN {4}/{5} • OPS {6}' -f $(if($status.ChainValid){'OK'}else{'FAULT'}),$mission.version,$(if($learning.ChainValid){'OK'}else{'FAULT'}),$(if($agency.ChainValid){'OK'}else{'FAULT'}),$learnUsed,$learnCap,$status.Operations.DesiredState).ToUpperInvariant()
             $ObjectiveInput.Text = [string]$mission.objective
             $ObjectiveInput.IsReadOnly = $true
             $ObjectiveDigest.Text = 'OBJECTIVE SHA-256  ' + [string]$mission.objective_sha256
@@ -295,10 +298,11 @@ function Update-MissionControlView {
         $adapterLines = @($learning.Adapters | ForEach-Object { '{0}  {1}' -f ([string]$_.display_name).ToUpperInvariant(),([string]$_.runtime_state).ToUpperInvariant() })
         $budgetLine = if ($null -eq $learning.ActiveCycle) { 'LEARNING  no open cycle • 25/100 max exploration' } else { 'LEARNING  {0}/{1} exploration • {2} remaining' -f $learning.ActiveCycle.exploration_used,$learning.ActiveCycle.exploration_cap_credits,$learning.ActiveCycle.remaining_credits }
         $catalogLine = 'UNIFIED VIEW  {0} • {1} ROUTING + {2} RUNTIME • AUTHORITY NONE' -f $toolIndex.TotalCount,$toolIndex.ConnectorCount,$toolIndex.AdapterCount
-        $AIFabricDetail.Text = ($adapterLines -join [Environment]::NewLine) + [Environment]::NewLine + $budgetLine + [Environment]::NewLine + $catalogLine + [Environment]::NewLine + 'FACTS ≠ INFERENCES ≠ PROJECTIONS'
+        $agencyLine = 'AGENCY  {0} SOURCES • {1} FILES • {2} PROPOSALS • AUTHORITY NONE' -f $agency.SourceCount,$agency.TotalFiles,$agency.BacklogCount
+        $AIFabricDetail.Text = ($adapterLines -join [Environment]::NewLine) + [Environment]::NewLine + $budgetLine + [Environment]::NewLine + $catalogLine + [Environment]::NewLine + $agencyLine + [Environment]::NewLine + 'FACTS ≠ INFERENCES ≠ PROJECTIONS'
 
         $ops = $status.Operations
-        $OpsDetail.Text = "STATE  $($ops.DesiredState) • circuit $($ops.CircuitState)`nLEASE  $($ops.LeaseStatus) • kill $($ops.KillLatched)`nQUEUE  $($ops.Queue.pending) pending • $($ops.DutiesCompleted) complete`nRECEIPT CHAIN  $($ops.ReceiptChainValid)`nCAPABILITIES  exactly five local R0/R1 handlers"
+        $OpsDetail.Text = "STATE  $($ops.DesiredState) • circuit $($ops.CircuitState)`nLEASE  $($ops.LeaseStatus) • absolute $($ops.LeaseTemporalValid) • kill $($ops.KillLatched)`nQUEUE  $($ops.Queue.pending) pending • $($ops.DutiesCompleted) complete`nRECEIPT CHAIN  $($ops.ReceiptChainValid)`nCAPABILITIES  exactly five local R0/R1 handlers"
 
         $hasMission = $null -ne $script:CurrentMission
         $StageMissionButton.IsEnabled = -not $hasMission
@@ -389,6 +393,15 @@ $RefreshFabricButton.Add_Click({
     } catch { $ActionStatus.Text=('AI FABRIC HELD • '+$_.Exception.Message).ToUpperInvariant(); $ActionStatus.Foreground='#FFFF7183' }
 })
 
+$RefreshAgencyButton.Add_Click({
+    try {
+        $scan = Invoke-Arko95AgencyScan -ProjectRoot $ProjectRoot
+        $ActionStatus.Text = ('AGENCY MAP SEALED • {0} FILES • {1} PROPOSALS • NO CONTENT READ' -f $scan.Catalog.totals.file_count,$scan.Backlog.item_count).ToUpperInvariant()
+        $ActionStatus.Foreground = '#FF58E393'
+        Update-MissionControlView
+    } catch { $ActionStatus.Text=('AGENCY MAP HELD • '+$_.Exception.Message).ToUpperInvariant(); $ActionStatus.Foreground='#FFFF7183' }
+})
+
 $StopOpsButton.Add_Click({
     try {
         $null = Stop-Arko95Operations -ProjectRoot $ProjectRoot -Reason 'owner_pressed_mission_control_stop'
@@ -404,6 +417,7 @@ if ($TestMode) {
     $status = Get-Arko95MissionControlStatus -ProjectRoot $ProjectRoot
     $learning = Get-Arko95DecisionLearningStatus -ProjectRoot $ProjectRoot
     $toolIndex = Get-Arko95UnifiedToolIndex -ProjectRoot $ProjectRoot
+    $agency = Get-Arko95AgencyStatus -ProjectRoot $ProjectRoot
     $openClaw = @($learning.Adapters | Where-Object { $_.adapter_id -eq 'openclaw_companion' })[0]
     [pscustomobject]@{
         ok = $true
@@ -420,6 +434,13 @@ if ($TestMode) {
         projection_is_authority = $learning.ProjectionIsAuthority
         unified_tool_count = $toolIndex.TotalCount
         unified_tool_authority = $toolIndex.Authority
+        agency_chain_valid = $agency.ChainValid
+        agency_source_count = $agency.SourceCount
+        agency_file_count = $agency.TotalFiles
+        agency_backlog_count = $agency.BacklogCount
+        agency_authority = $agency.Authority
+        agency_content_read = $agency.ContentRead
+        agency_refresh_control_ready = $null -ne $RefreshAgencyButton
         operations_capability_count = @($status.AllowedOperationsCapabilities).Count
         stop_control_ready = $null -ne $StopOpsButton
         adapter_refresh_control_ready = $null -ne $RefreshFabricButton

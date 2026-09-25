@@ -21,6 +21,10 @@ Mission Control then requires an independent verifier before Persist & Learn and
 
 The dashboard also reads the separate Decision Learning Fabric. That fabric may compound source-linked observations into inferences, projections, inert decision proposals, outcomes, and lesson candidates, but it cannot advance a mission or execute a duty. Its 25% exploration ceiling and four AI-adapter slots are documented in `DECISION_LEARNING.md`.
 
+**Refresh agency map** runs the Local AI Agency metadata scanner in the foreground and then displays its chain state, source count, file count, and backlog count. The button cannot advance a mission, queue a duty, read file contents, or promote a backlog item. See `AGENCY.md`.
+
+This refresh is an out-of-band utility, not a mission-stage transition. `AGENCY OK` or `AGENCY FAULT` reports only the Agency's independent receipt chain. A catalog count or backlog proposal is not admitted mission evidence and cannot change mission state.
+
 ## Seven stages
 
 | Stage | Lane | Gate |
@@ -40,6 +44,7 @@ The active stage is never read from a button, OpenClaw message, connector respon
 - The parent integrator owns requirements, architecture, conflicts, writes, final validation, and final judgment.
 - Specialists are narrow evidence lanes. They do not spawn, approve, change policy, execute, or decide the final result.
 - Operations VP is the only automatic execution lane, and it retains its existing lease, kill, resource, circuit, fixed-handler, and three-review gates.
+- Local AI Agency is a metadata catalog and proposal compiler. It has `authority=none` and is not an Operations capability.
 - Automated review proves mechanics; it is not human approval.
 - The archivist preserves originals, derivatives, contradictions, and linked receipts. Learning candidates never auto-change memory or policy.
 - The presenter writes locally. External notification defaults to false.
